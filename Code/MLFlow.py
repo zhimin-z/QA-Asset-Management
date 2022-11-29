@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 from dateutil import parser
+import time
 import json
 import os
 
@@ -77,28 +78,26 @@ def get_url(driver):
 if __name__ == '__main__':
     driver = uc.Chrome()
 
-    posts = []
+    posts_url = []
     last_page = ''
     base_url = 'https://groups.google.com/g/mlflow-users'
     driver.get(base_url)
     
     while True:
-        cur_urls_lst = get_url(driver)
-        for cur_url in cur_urls_lst:
-            posts.append(get_data(driver, cur_url))
-        
-        # go back to the main page
-        back_button = driver.find_element(By.XPATH, '//div[@role="button" and @aria-label="Back to Conversations"]')   
-        back_button.click()
-        
+        posts_url.extend(get_url(driver))
         if last_page == '-1':
             break
         
-        driver.implicitly_wait(1)
-        
         next_button = driver.find_element(By.XPATH, '//div[@role="button" and @aria-label="Next page"]')
         next_button.click()
+        
+        time.sleep(1)
+        
         last_page = next_button.get_attribute('tabindex')
+
+    posts = []
+    for post_url in posts_url:
+        posts.append(get_data(driver, post_url))
 
     posts_json = json.dumps(posts, indent='\t')
     with open(os.path.join('../Dataset/Raw', 'MLFlow.json'), 'w') as f:
