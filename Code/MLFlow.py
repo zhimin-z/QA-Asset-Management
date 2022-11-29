@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
-import time
+from dateutil import parser
 import json
-import re
+import os
 
 
 def convert2num(num):
@@ -16,7 +16,8 @@ def convert2num(num):
 
 
 def get_data(driver, url):
-    driver.get(url)
+    driver.get(url)    
+    driver.implicitly_wait(1)
 
     total_dict = {}
 
@@ -35,36 +36,26 @@ def get_data(driver, url):
     # print("list_number:", len(section_lst))
 
     for i in range(len(section_lst)):
-        answer = section_lst[i]
-        answer_time = answer.find_element(
+        date = section_lst[i].find_element(
             By.XPATH, './/span[@class="zX2W9c"]').text
-        answer_body = answer.find_element(
+        date = parser.parse(date).isoformat()
+        body = section_lst[i].find_element(
             By.XPATH, './/div[@class="ptW7te"]').get_attribute("innerText").strip()
 
-        k = answer_time.find('(')
-        answer_time = answer_time[:k-1]
-        answer_time = re.sub('\u5e74', '-', answer_time)
-        answer_time = re.sub('\u6708', '-', answer_time)
-        answer_time = re.sub('\u65e5 ', 'T', answer_time)
-        answer_time = answer_time + 'Z'
-        # print(answer_time)
-        # print(answer_time.encode('utf-8'))
-
-        if i == 0:
+        if i < 1:
             total_dict["Question_title"] = title
-            total_dict["Question_creation_date"] = answer_time
+            total_dict["Question_creation_date"] = date
             total_dict["Question_link"] = url
             total_dict["Question_answer_count"] = len(section_lst) - 1
             total_dict["Question_view_count"] = view_count
-            total_dict["Question_body"] = answer_body
+            total_dict["Question_body"] = body
             total_dict["Answers"] = []
-
-            # print("questino_time:", answer_time)
+            # print("question_time:", answer_time)
             # print("question_body:", answer_body)
         else:
             total_dict["Answers"].append({
-                "Answer_creation_time": answer_time,
-                "Answer_body": answer_body
+                "Answer_creation_time": date,
+                "Answer_body": body
             })
             # print("answer_time:", answer_time)
             # print("answer_body:", answer_body)
@@ -73,50 +64,42 @@ def get_data(driver, url):
 
 
 def get_url(driver):
+    posts_url = []
     urls_lst = driver.find_elements(By.XPATH, '//div[@jscontroller="MAWgde"]')
-    for i in range(len(urls_lst)):
-        urls_lst[i] = urls_lst[i].find_element(
-            By.XPATH, './/a[@class="ZLl54"]').get_attribute("href")
-    return urls_lst
-
+    
+    for url_node in urls_lst:
+        post_url = url_node.find_element(
+            By.XPATH, './/a[@class="ZLl54"]').get_attribute('href')
+        posts_url.append(post_url)
+    
+    return posts_url
 
 if __name__ == '__main__':
     driver = uc.Chrome()
 
+    posts = []
+    last_page = ''
     base_url = 'https://groups.google.com/g/mlflow-users'
-
-    res_dict = []
-    page_count = 0
-
+    driver.get(base_url)
+    
     while True:
-        driver.get(base_url)
-        time.sleep(3)
-
-        next_button = driver.find_element(
-            By.XPATH, '//div[@role="button" and @jslog="95005; track:JIbuQc"]')
-
-        is_quit = False
-
-        for i in range(page_count):
-            try:
-                next_button.click()
-            except:
-                continue
-            time.sleep(3)
-
-        cur_urls_lst = get_url()
-
+        cur_urls_lst = get_url(driver)
         for cur_url in cur_urls_lst:
-            if cur_url == 'https://groups.google.com/g/mlflow-users/c/QnASq7ITAoI':
-                is_quit = True
-            d = get_data(cur_url)
-            res_dict.append(d)
-
-        if is_quit == True:
+            posts.append(get_data(driver, cur_url))
+        
+        # go back to the main page
+        back_button = driver.find_element(By.XPATH, '//div[@role="button" and @aria-label="Back to Conversations"]')   
+        back_button.click()
+        
+        if last_page == '-1':
             break
+        
+        driver.implicitly_wait(1)
+        
+        next_button = driver.find_element(By.XPATH, '//div[@role="button" and @aria-label="Next page"]')
+        next_button.click()
+        last_page = next_button.get_attribute('tabindex')
 
-        page_count += 1
-
-    res_json = json.dumps(res_dict)
-    with open("MLFlow.json", 'w') as f:
-        f.write(res_json)
+    posts_json = json.dumps(posts, indent='\t')
+    with open(os.path.join('../Dataset/Raw', 'MLFlow.json'), 'w') as f:
+        f.write(posts_json)

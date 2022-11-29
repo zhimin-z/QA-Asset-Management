@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
-import time
 import json
 import os
 
@@ -17,7 +16,7 @@ def convert2num(num):
 
 def get_data(driver, url):
     driver.get(url)    
-    time.sleep(0.5) 
+    driver.implicitly_wait(1)
     
     total_dict = {}
 

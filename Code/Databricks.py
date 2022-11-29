@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver import Keys
 import undetected_chromedriver as uc
 from dateutil import parser
-import time
 import json
 import os
 
@@ -19,7 +18,7 @@ def convert2num(num):
 
 def get_data(driver, url):
     driver.get(url)
-    time.sleep(10)
+    driver.implicitly_wait(1)
 
     total_dict = {}
 
@@ -28,7 +27,7 @@ def get_data(driver, url):
             button = driver.find_element(
                 By.XPATH, '//div[contains(@class, "showMoreComments-bottom")]//button[@class="slds-button"]')
             button.send_keys(Keys.ENTER)
-            time.sleep(2)
+            driver.implicitly_wait(1)
         except:
             break
 
@@ -73,7 +72,7 @@ def get_data(driver, url):
     try:
         button = driver.find_element(By.XPATH, '//li[@class="moreLi"]/a')
         button.send_keys(Keys.ENTER)
-        time.sleep(2)
+        driver.implicitly_wait(1)
     except:
         pass
     tag_lst = driver.find_elements(
@@ -145,14 +144,14 @@ def get_data(driver, url):
 
 def get_url(driver, url):
     driver.get(url)
-    time.sleep(10)
+    driver.implicitly_wait(1)
 
     while True:
         try:
             button = driver.find_element(
                 By.XPATH, '//div[@class="cuf-showMoreContainer slds-var-p-vertical_x-small"]/button')
             button.send_keys(Keys.ENTER)
-            time.sleep(2)
+            driver.implicitly_wait(1)
         except:
             break
 

@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 import json
-import time
 import os
 
 
@@ -17,7 +16,7 @@ def convert2num(num):
 
 def get_data(driver, url):
     driver.get(url)
-    time.sleep(0.5)
+    driver.implicitly_wait(1)
 
     total_dict = {}
 
@@ -179,7 +178,6 @@ if __name__ == '__main__':
 
     while True:
         index += 1
-        print(index)
         page_url = base_url + str(index)
         posts_url = get_url(driver, page_url)
 

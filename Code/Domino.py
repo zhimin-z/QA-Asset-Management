@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 import json
-import time
 import os
 
 
@@ -17,12 +16,11 @@ def convert2num(num):
 
 def get_data(driver, url, topic):
     driver.get(url)
+    driver.implicitly_wait(1)
 
     total_dict = {}
 
     # question_title
-    driver.implicitly_wait(10)
-    time.sleep(3)
     title = driver.find_element(By.XPATH, '//div[@class="post-title"]').text
     #print("Title:", title)
 
@@ -124,7 +122,6 @@ if __name__ == '__main__':
         posts_url = get_url(driver, community_url)
         for post_url in posts_url:
             posts.append(get_data(driver, post_url, topic))
-            time.sleep(1)
 
     posts_json = json.dumps(posts, indent='\t')
     with open(os.path.join('../Dataset/Raw', 'Domino.json'), 'w') as f:
