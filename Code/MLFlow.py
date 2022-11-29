@@ -17,7 +17,7 @@ def convert2num(num):
 
 
 def get_data(driver, url):
-    driver.get(url)    
+    driver.get(url)
     driver.implicitly_wait(1)
 
     total_dict = {}
@@ -67,13 +67,14 @@ def get_data(driver, url):
 def get_url(driver):
     posts_url = []
     urls_lst = driver.find_elements(By.XPATH, '//div[@jscontroller="MAWgde"]')
-    
+
     for url_node in urls_lst:
         post_url = url_node.find_element(
             By.XPATH, './/a[@class="ZLl54"]').get_attribute('href')
         posts_url.append(post_url)
-    
+
     return posts_url
+
 
 if __name__ == '__main__':
     driver = uc.Chrome()
@@ -82,17 +83,18 @@ if __name__ == '__main__':
     last_page = ''
     base_url = 'https://groups.google.com/g/mlflow-users'
     driver.get(base_url)
-    
+
     while True:
         posts_url.extend(get_url(driver))
         if last_page == '-1':
             break
-        
-        next_button = driver.find_element(By.XPATH, '//div[@role="button" and @aria-label="Next page"]')
+
+        next_button = driver.find_element(
+            By.XPATH, '//div[@role="button" and @aria-label="Next page"]')
         next_button.click()
-        
+
         time.sleep(1)
-        
+
         last_page = next_button.get_attribute('tabindex')
 
     posts = []

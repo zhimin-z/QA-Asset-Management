@@ -15,9 +15,9 @@ def convert2num(num):
 
 
 def get_data(driver, url):
-    driver.get(url)    
+    driver.get(url)
     driver.implicitly_wait(1)
-    
+
     total_dict = {}
 
     # question_title
@@ -129,6 +129,7 @@ def get_data(driver, url):
 
 def get_url(driver, url):
     driver.get(url)
+    driver.implicitly_wait(1)
 
     posts_url = []
     urls_lst = driver.find_elements(
@@ -138,11 +139,12 @@ def get_url(driver, url):
 
     next_page_button = driver.find_element(
         By.XPATH, '//li[@title="Next Page"]')
-    try:
-        next_page_url = next_page_button.find_element(
-            By.XPATH, './/a').get_attribute('href')
-    except:
-        next_page_url = ''
+
+    if next_page_button.get_attribute('aria-disabled') == 'true':
+        return posts_url, ''
+
+    next_page_url = next_page_button.find_element(
+        By.XPATH, './/a').get_attribute('href')
 
     return posts_url, next_page_url
 
