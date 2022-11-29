@@ -16,6 +16,7 @@ def convert2num(num):
 
 
 def get_data(driver, url):
+    driver.get(url)    
     time.sleep(0.5) 
     
     total_dict = {}
