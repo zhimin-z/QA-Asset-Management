@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 import json
+import time
 import os
 
 
@@ -16,6 +17,9 @@ def convert2num(num):
 
 def get_data(driver, url):
     driver.get(url)
+    time.sleep(0.5)
+
+    total_dict = {}
 
     # question_title
     title = driver.find_element(By.XPATH, '//h2[@class="question-title"]').text
@@ -74,7 +78,6 @@ def get_data(driver, url):
         By.XPATH, '//div[@class="question-body post-body"]').get_attribute("innerText").strip()
     # print("body:", body)
 
-    total_dict = {}
     total_dict["Question_title"] = title
     total_dict["Question_creation_date"] = date
     total_dict["Question_link"] = url
@@ -159,6 +162,9 @@ def get_url(driver, url):
     urls_node_lst = driver.find_elements(By.XPATH, '//h2[@class="title"]/a')
 
     for urls_node in urls_node_lst:
+        # the marker post for out-of-bound pages
+        if urls_node.text == 'Your question goes here':
+            break
         urls_lst.append(urls_node.get_attribute('href'))
 
     return urls_lst
@@ -173,15 +179,16 @@ if __name__ == '__main__':
 
     while True:
         index += 1
+        print(index)
         page_url = base_url + str(index)
         posts_url = get_url(driver, page_url)
 
         if not posts_url:
             break
 
-        for url in posts_url:
-            posts.append(get_data(driver, url))
+        for post_url in posts_url:
+            posts.append(get_data(driver, post_url))
 
-    posts_json = json.dumps(posts)
+    posts_json = json.dumps(posts, indent='\t')
     with open(os.path.join('../Dataset/Raw', 'Azure Machine Learning.json'), 'w') as f:
         f.write(posts_json)

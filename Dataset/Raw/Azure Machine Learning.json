@@ -1,8 +1,119 @@
 [
     {
+        "Question_title": "Azure machine learning compute local",
+        "Question_creation_date": "2022-11-28T11:28:32.27Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/1106844/azure-machine-learning-compute-local.html",
+        "Question_tag": [
+            "azure-machine-learning",
+            "azure-machine-learning-studio-classic"
+        ],
+        "Question_has_accepted_answer": false,
+        "Question_answer_count": 1,
+        "Question_comment_count": 2,
+        "Question_follower_count": 13,
+        "Question_upvote_count": 0,
+        "Question_body": "Hello all, I have followed the https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-azure-ml-in-a-day tutorial with successful result. Now, instead of using the compute cluster, i would like to use the resources of my local computer to run the job. I change the compute option to 'local' in the command function, but throws me an error: JobException: Failed to read in local executable job. Do i need additional configuration? Thanks in advance.",
+        "Answers": [
+            {
+                "Answer_creation_date": "2022-11-29T07:50:45.563Z",
+                "Answer_upvote_count": 0,
+                "Answer_body": "@ramr-msft Good morning!! Thank you for your reply. I tried the code you wrote above but everytime i change parameters i get the same error: 'JobException: Failed to read in local executable job. If i create a compute, then set it in the command function it runs successfully and create the job in aml studio. I upload some pictures of the code and the error: \n\n\n\n\n\nAny idea why this error is happening?",
+                "Answer_comment_count": 0,
+                "Answer_has_accepted": false
+            }
+        ]
+    },
+    {
+        "Question_title": "Endpoint Unhealthy error when trying to test deployed endpoint for inference pipeline",
+        "Question_creation_date": "2022-11-28T21:59:56.28Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/1107528/endpoint-unhealthy-error-when-trying-to-test-deplo.html",
+        "Question_tag": [
+            "azure-machine-learning",
+            "azure-container-instances",
+            "azure-machine-learning-inference"
+        ],
+        "Question_has_accepted_answer": false,
+        "Question_answer_count": 0,
+        "Question_comment_count": 1,
+        "Question_follower_count": 19,
+        "Question_upvote_count": 0,
+        "Question_body": "Hello, I am following the module from Microsoft Learn on regression using Azure's Machine Learning Designer, when trying to Test the service\n\nhttps://microsoftlearning.github.io/AI-900-AIFundamentals/instructions/02a-create-regression-model.html#test-the-service\n\nWhen trying to test the predict-auto-price endpoint, I get the following screen\n\n\n\n\n\n\n\nDoes anyone know how I can address this? I am fairly new to Azure, so I apologize if I'm missing something obvious",
+        "Answers": []
+    },
+    {
+        "Question_title": "Batchscoring on Batch Endpoint of AutoML model giving error - UserError: {\"NonCompliant\":\"Process",
+        "Question_creation_date": "2022-11-24T19:30:57.423Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/1103764/batchscoring-on-batch-endpoint-of-automl-model-giv.html",
+        "Question_tag": [
+            "azure-machine-learning"
+        ],
+        "Question_has_accepted_answer": false,
+        "Question_answer_count": 0,
+        "Question_comment_count": 1,
+        "Question_follower_count": 18,
+        "Question_upvote_count": 0,
+        "Question_body": "AutoML time-series model created from Sql Database data. - successful\nRegistered Model. - successful\nEndPoints creation - Deploy to Batch End Point. - successful\nCreating Batchscoring Jon in EndPoint - Fails with below error.\n\nError -\n{\"NonCompliant\":\"Process '/azureml-envs/azureml_c9e8754bdba5226a1ab803f256ee343b/bin/python' exited with code 1 and error message 'Execution failed. Process exited with status code 1. Error: Traceback (most recent call last):\\n File \\\"driver/amlbi_main.py\\\", line 184, in <module>\\n main()\\n File \\\"driver/amlbi_main.py\\\", line 126, in main\\n boot(driver_dir)\\n File \\\"driver/amlbi_main.py\\\", line 58, in boot\\n booter.start()\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot.py\\\", line 383, in start\\n self.start_sys_main()\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot.py\\\", line 269, in start_sys_main\\n self.run_sys_main(cmd)\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot_node.py\\\", line 111, in run_sys_main\\n self.check_run_result(proc=proc, stdout=stdout or \\\"\\\", stderr=stderr or \\\"\\\")\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot.py\\\", line 218, in check_run_result\\n BootResult().check_result(stdout)\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot_result.py\\\", line 36, in check_result\\n raise Exception(message) from cause\\nException: Run failed, please check logs for details. You can check logs/readme.txt for the layout of logs.\\n\\n'. Please check the log file 'user_logs/std_log_0.txt' for more details.\"}\n{\n\"code\": \"ExecutionFailed\",\n\"target\": \"\",\n\"category\": \"UserError\",\n\"error_details\": [\n{\n\"key\": \"exit_codes\",\n\"value\": \"1\"\n}\n]\n}",
+        "Answers": []
+    },
+    {
+        "Question_title": "Error while depolying Whisper Model in batch pipeline",
+        "Question_creation_date": "2022-11-03T13:39:59.767Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/1074438/error-while-depolying-whisper-model-in-batch-pipli.html",
+        "Question_tag": [
+            "azure-machine-learning",
+            "azure-openai"
+        ],
+        "Question_has_accepted_answer": false,
+        "Question_answer_count": 0,
+        "Question_comment_count": 4,
+        "Question_follower_count": 17,
+        "Question_upvote_count": 0,
+        "Question_body": "I'm trying to deploy the OpenAI Whisper model with a batch pipeline, following the example notebook: https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/parallel-run/file-dataset-image-inference-mnist.ipynb\n\nI'm using the STANDARD_NC6S_V3 Machine.\n\nI keep getting the following error:\n\nError '/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/site-packages/torch/lib/../../nvidia/cublas/lib/libcublas.so.11: undefined symbol: cublasLtGetStatusString, version libcublasLt.so.11 File \"/mnt/azureml/cr/j/3f034c6e7a1b4166b24b196339e7b655/exe/wd/whisper_transcribe.py\", line 3, in <module>\nimport whisper\nFile \"/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/site-packages/whisper/init.py\", line 8, in <module>\nimport torch\nFile \"/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/site-packages/torch/init.py\", line 191, in <module>\nload_global_deps()\nFile \"/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/site-packages/torch/init.py\", line 153, in load_global_deps\nctypes.CDLL(lib_path, mode=ctypes.RTLD_GLOBAL)\nFile \"/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/ctypes/init.py\", line 382, in init\nself._handle = _dlopen(self._name, mode)'\n\nI can't find what causes the error, but I think it has to do with the machine I'm deploying on, because with a different machine, the error did not appear.\nhelp will be much appreciated.",
+        "Answers": []
+    },
+    {
+        "Question_title": "Import issue with azureml-train-automl-runtime package",
+        "Question_creation_date": "2022-11-29T02:38:36.027Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/1107805/import-issue-with-azureml-train-automl-runtime-pac.html",
+        "Question_tag": [
+            "azure-machine-learning",
+            "azure-machine-learning-inference"
+        ],
+        "Question_has_accepted_answer": false,
+        "Question_answer_count": 0,
+        "Question_comment_count": 0,
+        "Question_follower_count": 12,
+        "Question_upvote_count": 0,
+        "Question_body": "I am trying to import azureml-train-automl-runtime to do explanations from azure automl pipeline following the tutorial in the link https://learn.microsoft.com/en-us/azure/machine-learning/v1/how-to-machine-learning-interpretability-automl\n\nBut I am getting the below error\n\n Exception ignored in: <function _Win32Helper.del at 0x0000021ECA3AD430> Traceback (most recent call last): File \"C:\\Anaconda3\\envs\\check_win32_error\\lib\\site-packages\\azureml\\automl\\runtime\\shared\\win32_helper.py\", line 246, in del TypeError: catching classes that do not inherit from BaseException is not allowed\n\n\n\n\nError Screenshot:\n\n\n\n\n\nI asked this question in stackoverflow but did not get valid answer,\nplease refer to the stackoverflow link below:\nhttps://stackoverflow.com/questions/74160617/baseexception-when-trying-to-import-azureml-train-automl-runtime-in-windows-10",
+        "Answers": []
+    },
+    {
         "Question_title": "Why explanation dashboard is showing 2 tabs with duplicate information in Azure ML Studio?",
         "Question_creation_date": "2022-11-28T07:34:09.057Z",
         "Question_link": "https://learn.microsoft.com/answers/questions/1106407/why-explanation-dashboard-is-showing-2-tabs-with-d.html",
+        "Question_tag": [
+            "azure-machine-learning"
+        ],
+        "Question_has_accepted_answer": true,
+        "Question_answer_count": 1,
+        "Question_comment_count": 0,
+        "Question_follower_count": 13,
+        "Question_upvote_count": 0,
+        "Question_body": "When using explanations for AutoML models or standalone model, the explanation dashboard has 2 tabs which displays same information.\n\nI am using azureml-interpret to explain the models that are executed under azure context and upload the explanations into Azure ML studio.\nI use global_explanation and local_explanation to explain the overall model performance and local model performance.\n\nI guess this is creating 2 tabs if I am correct, but both of them seems to have same or duplicate information. I don't understand what is the need for that?\n\nThis seem to the case when I use AutoML models also, there is 2 tabs which has same information. Note, here I am not uploading anything, it is by default uploading the model explanations and I am using azure-python-sdk-v1.\n\nI have provided the accompanying screenshots with the information, please let me know if there is gap in my understanding or it is problem with the azure explanation?",
+        "Answers": [
+            {
+                "Answer_creation_date": "2022-11-28T11:24:56.12Z",
+                "Answer_upvote_count": 1,
+                "Answer_body": "@BharathKumarLoganathan-7743 I think the explanation ids are based on the raw and engineered datasets. Raw explanations are based on the features from the original dataset and engineered explanations are based on the features from the dataset with feature engineering applied. The documentation from these links provides a bit more information about the different explanation ids. If you expand the menu on the left this should confirm the same.\n\nhttps://learn.microsoft.com/en-us/azure/machine-learning/how-to-use-automated-ml-for-ml-models#model-explanations-preview\nhttps://learn.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-interpretability-aml#visualizations\n\n\n\n\nIf an answer is helpful, please click on  or upvote  which might help other community members reading this thread.",
+                "Answer_comment_count": 1,
+                "Answer_has_accepted": true
+            }
+        ]
+    },
+    {
+        "Question_title": "Azure Machine Learning Data Labeling: labeler can access the project but can't see the data",
+        "Question_creation_date": "2022-11-28T18:17:06.597Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/1107289/azure-machine-learning-data-labeling-labeler-can-a.html",
         "Question_tag": [
             "azure-machine-learning"
         ],
@@ -11,8 +122,77 @@
         "Question_comment_count": 0,
         "Question_follower_count": 12,
         "Question_upvote_count": 0,
-        "Question_body": "When using explanations for AutoML models or standalone model, the explanation dashboard has 2 tabs which displays same information.\n\nI am using azureml-interpret to explain the models that are executed under azure context and upload the explanations into Azure ML studio.\nI use global_explanation and local_explanation to explain the overall model performance and local model performance.\n\nI guess this is creating 2 tabs if I am correct, but both of them seems to have same or duplicate information. I don't understand what is the need for that?\n\nThis seem to the case when I use AutoML models also, there is 2 tabs which has same information. Note, here I am not uploading anything, it is by default uploading the model explanations and I am using azure-python-sdk-v1.\n\nI have provided the accompanying screenshots with the information, please let me know if there is gap in my understanding or it is problem with the azure explanation?",
+        "Question_body": "Granted the \"labeler\" permission. But when vendor clicked the \"start labeling\" button, blank under \"Tasks\".",
         "Answers": []
+    },
+    {
+        "Question_title": "The pre-built components of the pipeline designer in Azure ML studio don't appear",
+        "Question_creation_date": "2022-05-20T07:47:14.087Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/857398/the-pre-built-components-of-the-pipeline-designer.html",
+        "Question_tag": [
+            "azure-machine-learning"
+        ],
+        "Question_has_accepted_answer": false,
+        "Question_answer_count": 2,
+        "Question_comment_count": 2,
+        "Question_follower_count": 13,
+        "Question_upvote_count": 0,
+        "Question_body": "With allarming frequency, when I try to design a pipeline I don't have access to all the pre-built components/assets. In this case, the only components that are still available are the datasets, web input and output and the custom components. This problem reverts itself after some time without any input. What should I do to avoid it or at least revert it as fast as possible?\n\nEdit: I add a screenshot of the issue",
+        "Answers": [
+            {
+                "Answer_creation_date": "2022-05-25T11:19:16.43Z",
+                "Answer_upvote_count": 0,
+                "Answer_body": "Experiencing this as well, any update?",
+                "Answer_comment_count": 0,
+                "Answer_has_accepted": false
+            },
+            {
+                "Answer_creation_date": "2022-11-28T16:55:48.91Z",
+                "Answer_upvote_count": 0,
+                "Answer_body": "I have this challenge as well. Any tips?",
+                "Answer_comment_count": 0,
+                "Answer_has_accepted": false
+            }
+        ]
+    },
+    {
+        "Question_title": "AciDeploymentFailed",
+        "Question_creation_date": "2022-06-17T11:13:50.947Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/893526/acideploymentfailed.html",
+        "Question_tag": [
+            "azure-machine-learning",
+            "azure-machine-learning-studio-classic",
+            "azure-machine-learning-inference"
+        ],
+        "Question_has_accepted_answer": false,
+        "Question_answer_count": 3,
+        "Question_comment_count": 1,
+        "Question_follower_count": 12,
+        "Question_upvote_count": 0,
+        "Question_body": "Hello,\n\nIt's been a few days already since I've been struggling with this error which is not suggesting me anything.\nThis is the error I receive. Every time I'm trying to access the logs it displays me \"None\". Also, the init() function is a very basic one. It's the one I've found in your tutorials and while I've followed your tutorials I didn't encounter this bug.\n\nscore.py script:\n\n import pandas as pd\n import numpy as np\n import joblib\n import json\n import os\n    \n # Called when the service is loaded\n def init():\n     global model\n     # Get the path to the deployed model file and load it\n     model = joblib.load(Model.get_model_path(model_name='aml_live_model_end'))\n    \n # Called when a request is received\n def run(raw_data):\n     # Get the input data as a numpy array\n     data = np.array(json.loads(raw_data)['data'])\n     # Get a prediction from the model\n     predictions = model.predict(data)\n     # Get the corresponding classname for each prediction (0 or 1)\n     classnames = ['De avizat', 'De analizat']\n     predicted_classes = []\n     for prediction in predictions:\n         predicted_classes.append(classnames[prediction])\n     # Return the predictions as JSON\n     return json.dumps(predicted_classes)\n\n\n\n\n.yaml file\n\n name: aml_live_env\n dependencies:\n - python=3.6.2\n - scikit-learn\n - ipykernel\n - matplotlib\n - pandas\n - pip\n - pip:\n   - azureml-defaults\n   - pyarrow\n\n\n\n\nThe error I receive\n\n Deploying model...\n Tips: You can try get_logs(): https://aka.ms/debugimage#dockerlog or local deployment: https://aka.ms/debugimage#debug-locally to debug if deployment takes longer than 10 minutes.\n Running\n 2022-06-17 10:52:16+00:00 Creating Container Registry if not exists.\n 2022-06-17 10:52:16+00:00 Registering the environment.\n 2022-06-17 10:52:17+00:00 Use the existing image.\n 2022-06-17 10:52:17+00:00 Generating deployment configuration.\n 2022-06-17 10:52:18+00:00 Submitting deployment to compute.\n 2022-06-17 10:52:20+00:00 Checking the status of deployment aml-live-service-model..\n 2022-06-17 10:54:07+00:00 Checking the status of inference endpoint aml-live-service-model.\n Failed\n Service deployment polling reached non-successful terminal state, current service state: Failed\n Operation ID: 93d48e89-cb16-4d1c-bbb6-f453acaeaa7f\n More information can be found using '.get_logs()'\n Error:\n {\n   \"code\": \"AciDeploymentFailed\",\n   \"statusCode\": 400,\n   \"message\": \"Aci Deployment failed with exception: Your container application crashed. This may be caused by errors in your scoring file's init() function.\n     1. Please check the logs for your container instance: aml-live-service-model. From the AML SDK, you can run print(service.get_logs()) if you have service object to fetch the logs.\n     2. You can interactively debug your scoring file locally. Please refer to https://docs.microsoft.com/azure/machine-learning/how-to-debug-visual-studio-code#debug-and-troubleshoot-deployments for more information.\n     3. You can also try to run image libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31 locally. Please refer to https://aka.ms/debugimage#service-launch-fails for more information.\",\n   \"details\": [\n     {\n       \"code\": \"CrashLoopBackOff\",\n       \"message\": \"Your container application crashed. This may be caused by errors in your scoring file's init() function.\n     1. Please check the logs for your container instance: aml-live-service-model. From the AML SDK, you can run print(service.get_logs()) if you have service object to fetch the logs.\n     2. You can interactively debug your scoring file locally. Please refer to https://docs.microsoft.com/azure/machine-learning/how-to-debug-visual-studio-code#debug-and-troubleshoot-deployments for more information.\n     3. You can also try to run image libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31 locally. Please refer to https://aka.ms/debugimage#service-launch-fails for more information.\"\n     },\n     {\n       \"code\": \"AciDeploymentFailed\",\n       \"message\": \"Your container application crashed. Please follow the steps to debug:\n     1. From the AML SDK, you can run print(service.get_logs()) if you have service object to fetch the logs. Please refer to https://aka.ms/debugimage#dockerlog for more information.\n     2. If your container application crashed. This may be caused by errors in your scoring file's init() function. You can try debugging locally first. Please refer to https://aka.ms/debugimage#debug-locally for more information.\n     3. You can also interactively debug your scoring file locally. Please refer to https://docs.microsoft.com/azure/machine-learning/how-to-debug-visual-studio-code#debug-and-troubleshoot-deployments for more information.\n     4. View the diagnostic events to check status of container, it may help you to debug the issue.\n \"RestartCount\": 5\n \"CurrentState\": {\"state\":\"Waiting\",\"startTime\":null,\"exitCode\":null,\"finishTime\":null,\"detailStatus\":\"CrashLoopBackOff: Back-off restarting failed\"}\n \"PreviousState\": {\"state\":\"Terminated\",\"startTime\":\"2022-06-17T10:56:57.554Z\",\"exitCode\":111,\"finishTime\":\"2022-06-17T10:57:01.314Z\",\"detailStatus\":\"Error\"}\n \"Events\":\n {\"count\":1,\"firstTimestamp\":\"2022-06-17T10:26:38Z\",\"lastTimestamp\":\"2022-06-17T10:26:38Z\",\"name\":\"Pulling\",\"message\":\"pulling image \"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\"\",\"type\":\"Normal\"}\n {\"count\":1,\"firstTimestamp\":\"2022-06-17T10:27:42Z\",\"lastTimestamp\":\"2022-06-17T10:27:42Z\",\"name\":\"Pulled\",\"message\":\"Successfully pulled image \"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\"\",\"type\":\"Normal\"}\n {\"count\":10,\"firstTimestamp\":\"2022-06-17T10:28:00Z\",\"lastTimestamp\":\"2022-06-17T10:47:11Z\",\"name\":\"Started\",\"message\":\"Started container\",\"type\":\"Normal\"}\n {\"count\":9,\"firstTimestamp\":\"2022-06-17T10:28:03Z\",\"lastTimestamp\":\"2022-06-17T10:40:46Z\",\"name\":\"Killing\",\"message\":\"Killing container with id a7e717efa63259b36b19bc4951b3f3dcc5f1093177e729c589355a7371353ca3.\",\"type\":\"Normal\"}\n {\"count\":1,\"firstTimestamp\":\"2022-06-17T10:31:33Z\",\"lastTimestamp\":\"2022-06-17T10:31:33Z\",\"name\":\"Pulling\",\"message\":\"pulling image \"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\"\",\"type\":\"Normal\"}\n {\"count\":1,\"firstTimestamp\":\"2022-06-17T10:32:31Z\",\"lastTimestamp\":\"2022-06-17T10:32:31Z\",\"name\":\"Pulled\",\"message\":\"Successfully pulled image \"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\"\",\"type\":\"Normal\"}\n {\"count\":5,\"firstTimestamp\":\"2022-06-17T10:47:52Z\",\"lastTimestamp\":\"2022-06-17T10:52:09Z\",\"name\":\"Started\",\"message\":\"Started container\",\"type\":\"Normal\"}\n {\"count\":6,\"firstTimestamp\":\"2022-06-17T10:48:26Z\",\"lastTimestamp\":\"2022-06-17T10:52:37Z\",\"name\":\"Killing\",\"message\":\"Killing container with id 2bdec1005a6dd58312e10ab939d88ea08b312771de6573d9b86c5f571104277e.\",\"type\":\"Normal\"}\n \"\n     }\n   ]\n }\n    \n ---------------------------------------------------------------------------\n WebserviceException                       Traceback (most recent call last)\n <ipython-input-17-315dbb5f83ec> in <module>\n      16 service_name = \"aml-live-service-model\"\n      17 service = Model.deploy(ws, service_name, [model], inference_config, deployment_config, overwrite=True)\n ---> 18 service.wait_for_deployment(True)\n      19 print(service.state)\n    \n /anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml/core/webservice/webservice.py in wait_for_deployment(self, show_output, timeout_sec)\n     916                     logs_response = 'Current sub-operation type not known, more logs unavailable.'\n     917 \n --> 918                 raise WebserviceException('Service deployment polling reached non-successful terminal state, current '\n     919                                           'service state: {}\\n'\n     920                                           'Operation ID: {}\\n'\n    \n WebserviceException: WebserviceException:\n     Message: Service deployment polling reached non-successful terminal state, current service state: Failed\n Operation ID: 93d48e89-cb16-4d1c-bbb6-f453acaeaa7f\n More information can be found using '.get_logs()'\n Error:\n {\n   \"code\": \"AciDeploymentFailed\",\n   \"statusCode\": 400,\n   \"message\": \"Aci Deployment failed with exception: Your container application crashed. This may be caused by errors in your scoring file's init() function.\n     1. Please check the logs for your container instance: aml-live-service-model. From the AML SDK, you can run print(service.get_logs()) if you have service object to fetch the logs.\n     2. You can interactively debug your scoring file locally. Please refer to https://docs.microsoft.com/azure/machine-learning/how-to-debug-visual-studio-code#debug-and-troubleshoot-deployments for more information.\n     3. You can also try to run image libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31 locally. Please refer to https://aka.ms/debugimage#service-launch-fails for more information.\",\n   \"details\": [\n     {\n       \"code\": \"CrashLoopBackOff\",\n       \"message\": \"Your container application crashed. This may be caused by errors in your scoring file's init() function.\n     1. Please check the logs for your container instance: aml-live-service-model. From the AML SDK, you can run print(service.get_logs()) if you have service object to fetch the logs.\n     2. You can interactively debug your scoring file locally. Please refer to https://docs.microsoft.com/azure/machine-learning/how-to-debug-visual-studio-code#debug-and-troubleshoot-deployments for more information.\n     3. You can also try to run image libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31 locally. Please refer to https://aka.ms/debugimage#service-launch-fails for more information.\"\n     },\n     {\n       \"code\": \"AciDeploymentFailed\",\n       \"message\": \"Your container application crashed. Please follow the steps to debug:\n     1. From the AML SDK, you can run print(service.get_logs()) if you have service object to fetch the logs. Please refer to https://aka.ms/debugimage#dockerlog for more information.\n     2. If your container application crashed. This may be caused by errors in your scoring file's init() function. You can try debugging locally first. Please refer to https://aka.ms/debugimage#debug-locally for more information.\n     3. You can also interactively debug your scoring file locally. Please refer to https://docs.microsoft.com/azure/machine-learning/how-to-debug-visual-studio-code#debug-and-troubleshoot-deployments for more information.\n     4. View the diagnostic events to check status of container, it may help you to debug the issue.\n \"RestartCount\": 5\n \"CurrentState\": {\"state\":\"Waiting\",\"startTime\":null,\"exitCode\":null,\"finishTime\":null,\"detailStatus\":\"CrashLoopBackOff: Back-off restarting failed\"}\n \"PreviousState\": {\"state\":\"Terminated\",\"startTime\":\"2022-06-17T10:56:57.554Z\",\"exitCode\":111,\"finishTime\":\"2022-06-17T10:57:01.314Z\",\"detailStatus\":\"Error\"}\n \"Events\":\n {\"count\":1,\"firstTimestamp\":\"2022-06-17T10:26:38Z\",\"lastTimestamp\":\"2022-06-17T10:26:38Z\",\"name\":\"Pulling\",\"message\":\"pulling image \"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\"\",\"type\":\"Normal\"}\n {\"count\":1,\"firstTimestamp\":\"2022-06-17T10:27:42Z\",\"lastTimestamp\":\"2022-06-17T10:27:42Z\",\"name\":\"Pulled\",\"message\":\"Successfully pulled image \"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\"\",\"type\":\"Normal\"}\n {\"count\":10,\"firstTimestamp\":\"2022-06-17T10:28:00Z\",\"lastTimestamp\":\"2022-06-17T10:47:11Z\",\"name\":\"Started\",\"message\":\"Started container\",\"type\":\"Normal\"}\n {\"count\":9,\"firstTimestamp\":\"2022-06-17T10:28:03Z\",\"lastTimestamp\":\"2022-06-17T10:40:46Z\",\"name\":\"Killing\",\"message\":\"Killing container with id a7e717efa63259b36b19bc4951b3f3dcc5f1093177e729c589355a7371353ca3.\",\"type\":\"Normal\"}\n {\"count\":1,\"firstTimestamp\":\"2022-06-17T10:31:33Z\",\"lastTimestamp\":\"2022-06-17T10:31:33Z\",\"name\":\"Pulling\",\"message\":\"pulling image \"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\"\",\"type\":\"Normal\"}\n {\"count\":1,\"firstTimestamp\":\"2022-06-17T10:32:31Z\",\"lastTimestamp\":\"2022-06-17T10:32:31Z\",\"name\":\"Pulled\",\"message\":\"Successfully pulled image \"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\"\",\"type\":\"Normal\"}\n {\"count\":5,\"firstTimestamp\":\"2022-06-17T10:47:52Z\",\"lastTimestamp\":\"2022-06-17T10:52:09Z\",\"name\":\"Started\",\"message\":\"Started container\",\"type\":\"Normal\"}\n {\"count\":6,\"firstTimestamp\":\"2022-06-17T10:48:26Z\",\"lastTimestamp\":\"2022-06-17T10:52:37Z\",\"name\":\"Killing\",\"message\":\"Killing container with id 2bdec1005a6dd58312e10ab939d88ea08b312771de6573d9b86c5f571104277e.\",\"type\":\"Normal\"}\n \"\n     }\n   ]\n }\n     InnerException None\n     ErrorResponse \n {\n     \"error\": {\n         \"message\": \"Service deployment polling reached non-successful terminal state, current service state: Failed\\nOperation ID: 93d48e89-cb16-4d1c-bbb6-f453acaeaa7f\\nMore information can be found using '.get_logs()'\\nError:\\n{\\n  \\\"code\\\": \\\"AciDeploymentFailed\\\",\\n  \\\"statusCode\\\": 400,\\n  \\\"message\\\": \\\"Aci Deployment failed with exception: Your container application crashed. This may be caused by errors in your scoring file's init() function.\\n\\t1. Please check the logs for your container instance: aml-live-service-model. From the AML SDK, you can run print(service.get_logs()) if you have service object to fetch the logs.\\n\\t2. You can interactively debug your scoring file locally. Please refer to https://docs.microsoft.com/azure/machine-learning/how-to-debug-visual-studio-code#debug-and-troubleshoot-deployments for more information.\\n\\t3. You can also try to run image libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31 locally. Please refer to https://aka.ms/debugimage#service-launch-fails for more information.\\\",\\n  \\\"details\\\": [\\n    {\\n      \\\"code\\\": \\\"CrashLoopBackOff\\\",\\n      \\\"message\\\": \\\"Your container application crashed. This may be caused by errors in your scoring file's init() function.\\n\\t1. Please check the logs for your container instance: aml-live-service-model. From the AML SDK, you can run print(service.get_logs()) if you have service object to fetch the logs.\\n\\t2. You can interactively debug your scoring file locally. Please refer to https://docs.microsoft.com/azure/machine-learning/how-to-debug-visual-studio-code#debug-and-troubleshoot-deployments for more information.\\n\\t3. You can also try to run image libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31 locally. Please refer to https://aka.ms/debugimage#service-launch-fails for more information.\\\"\\n    },\\n    {\\n      \\\"code\\\": \\\"AciDeploymentFailed\\\",\\n      \\\"message\\\": \\\"Your container application crashed. Please follow the steps to debug:\\n\\t1. From the AML SDK, you can run print(service.get_logs()) if you have service object to fetch the logs. Please refer to https://aka.ms/debugimage#dockerlog for more information.\\n\\t2. If your container application crashed. This may be caused by errors in your scoring file's init() function. You can try debugging locally first. Please refer to https://aka.ms/debugimage#debug-locally for more information.\\n\\t3. You can also interactively debug your scoring file locally. Please refer to https://docs.microsoft.com/azure/machine-learning/how-to-debug-visual-studio-code#debug-and-troubleshoot-deployments for more information.\\n\\t4. View the diagnostic events to check status of container, it may help you to debug the issue.\\n\\\"RestartCount\\\": 5\\n\\\"CurrentState\\\": {\\\"state\\\":\\\"Waiting\\\",\\\"startTime\\\":null,\\\"exitCode\\\":null,\\\"finishTime\\\":null,\\\"detailStatus\\\":\\\"CrashLoopBackOff: Back-off restarting failed\\\"}\\n\\\"PreviousState\\\": {\\\"state\\\":\\\"Terminated\\\",\\\"startTime\\\":\\\"2022-06-17T10:56:57.554Z\\\",\\\"exitCode\\\":111,\\\"finishTime\\\":\\\"2022-06-17T10:57:01.314Z\\\",\\\"detailStatus\\\":\\\"Error\\\"}\\n\\\"Events\\\":\\n{\\\"count\\\":1,\\\"firstTimestamp\\\":\\\"2022-06-17T10:26:38Z\\\",\\\"lastTimestamp\\\":\\\"2022-06-17T10:26:38Z\\\",\\\"name\\\":\\\"Pulling\\\",\\\"message\\\":\\\"pulling image \\\"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\\\"\\\",\\\"type\\\":\\\"Normal\\\"}\\n{\\\"count\\\":1,\\\"firstTimestamp\\\":\\\"2022-06-17T10:27:42Z\\\",\\\"lastTimestamp\\\":\\\"2022-06-17T10:27:42Z\\\",\\\"name\\\":\\\"Pulled\\\",\\\"message\\\":\\\"Successfully pulled image \\\"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\\\"\\\",\\\"type\\\":\\\"Normal\\\"}\\n{\\\"count\\\":10,\\\"firstTimestamp\\\":\\\"2022-06-17T10:28:00Z\\\",\\\"lastTimestamp\\\":\\\"2022-06-17T10:47:11Z\\\",\\\"name\\\":\\\"Started\\\",\\\"message\\\":\\\"Started container\\\",\\\"type\\\":\\\"Normal\\\"}\\n{\\\"count\\\":9,\\\"firstTimestamp\\\":\\\"2022-06-17T10:28:03Z\\\",\\\"lastTimestamp\\\":\\\"2022-06-17T10:40:46Z\\\",\\\"name\\\":\\\"Killing\\\",\\\"message\\\":\\\"Killing container with id a7e717efa63259b36b19bc4951b3f3dcc5f1093177e729c589355a7371353ca3.\\\",\\\"type\\\":\\\"Normal\\\"}\\n{\\\"count\\\":1,\\\"firstTimestamp\\\":\\\"2022-06-17T10:31:33Z\\\",\\\"lastTimestamp\\\":\\\"2022-06-17T10:31:33Z\\\",\\\"name\\\":\\\"Pulling\\\",\\\"message\\\":\\\"pulling image \\\"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\\\"\\\",\\\"type\\\":\\\"Normal\\\"}\\n{\\\"count\\\":1,\\\"firstTimestamp\\\":\\\"2022-06-17T10:32:31Z\\\",\\\"lastTimestamp\\\":\\\"2022-06-17T10:32:31Z\\\",\\\"name\\\":\\\"Pulled\\\",\\\"message\\\":\\\"Successfully pulled image \\\"libraaimlwor4c93b458.azurecr.io/azureml/azureml_8fd1decee2b379a3d59fed509c692f31@sha256:47fc896a553e4b7bb972cbaa9a31de99b4755688dd525b9c725563ddde86aa0c\\\"\\\",\\\"type\\\":\\\"Normal\\\"}\\n{\\\"count\\\":5,\\\"firstTimestamp\\\":\\\"2022-06-17T10:47:52Z\\\",\\\"lastTimestamp\\\":\\\"2022-06-17T10:52:09Z\\\",\\\"name\\\":\\\"Started\\\",\\\"message\\\":\\\"Started container\\\",\\\"type\\\":\\\"Normal\\\"}\\n{\\\"count\\\":6,\\\"firstTimestamp\\\":\\\"2022-06-17T10:48:26Z\\\",\\\"lastTimestamp\\\":\\\"2022-06-17T10:52:37Z\\\",\\\"name\\\":\\\"Killing\\\",\\\"message\\\":\\\"Killing container with id 2bdec1005a6dd58312e10ab939d88ea08b312771de6573d9b86c5f571104277e.\\\",\\\"type\\\":\\\"Normal\\\"}\\n\\\"\\n    }\\n  ]\\n}\"\n     }\n }",
+        "Answers": [
+            {
+                "Answer_creation_date": "2022-06-20T07:11:19.413Z",
+                "Answer_upvote_count": 0,
+                "Answer_body": "@ramr-msft I've tried to use both of the commands that you've mentioned above. Unfortunately they tell me nothing, both of them are displaying me \"None\" and it's not very suggestive honestly.\n\n\nAlso, I've tried to debug it locally. This is the error that I receive:\n\n The environment variable 'AZUREML_MODEL_DIR' has not been set.\n Use the --model_dir command line argument to set it.\n    \n Azure ML Inferencing HTTP server v0.4.11\n    \n    \n Server Settings\n ---------------\n Entry Script Name: score_aml_live.py\n Model Directory: None\n Worker Count: 1\n Worker Timeout (seconds): None\n Server Port: 5001\n Application Insights Enabled: false\n Application Insights Key: None\n    \n    \n Server Routes\n ---------------\n Liveness Probe: GET   127.0.0.1:5001/\n Score:          POST  127.0.0.1:5001/score\n    \n Starting gunicorn 20.1.0\n Listening at: http://0.0.0.0:5001 (17478)\n Using worker: sync\n Booting worker with pid: 17483\n Initializing logger\n 2022-06-20 06:41:02,353 | root | INFO | Starting up app insights client\n logging socket not found. logging not available.\n logging socket not found. logging not available.\n 2022-06-20 06:41:02,358 | root | INFO | Starting up request id generator\n 2022-06-20 06:41:02,358 | root | INFO | Starting up app insight hooks\n 2022-06-20 06:41:02,358 | root | INFO | Invoking user's init function\n 2022-06-20 06:41:02,358 | root | ERROR | User's init function failed\n 2022-06-20 06:41:02,374 | root | ERROR | Encountered Exception Traceback (most recent call last):\n   File \"/anaconda/envs/azureml_py38/lib/python3.8/site-packages/azureml_inference_server_http/server/aml_blueprint.py\", line 201, in register\n     main.init()\n   File \"/score_aml_live.py\", line 41, in init\n     model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'aml_live_model_end.pkl')\n   File \"/lib/python3.8/posixpath.py\", line 76, in join\n     a = os.fspath(a)\n TypeError: expected str, bytes or os.PathLike object, not NoneType",
+                "Answer_comment_count": 1,
+                "Answer_has_accepted": false
+            },
+            {
+                "Answer_creation_date": "2022-06-20T07:39:14.62Z",
+                "Answer_upvote_count": 0,
+                "Answer_body": "@MihaiMunteanu-1542 Thanks for the details. Is your files (model) in local file system or in AzureML directory?. Here is document to check the model path fail to debug.\nAlso document to Advance entry script. Still facing an issue please share the notebook.",
+                "Answer_comment_count": 1,
+                "Answer_has_accepted": false
+            },
+            {
+                "Answer_creation_date": "2022-11-28T09:38:04.237Z",
+                "Answer_upvote_count": 0,
+                "Answer_body": "Hi @MihaiMunteanu-1542 @ramr-msft I am also facing the exactly same issue. Are there any tips that you can share with us? Thank you, Roxana.",
+                "Answer_comment_count": 0,
+                "Answer_has_accepted": false
+            }
+        ]
     },
     {
         "Question_title": "What's the best way to preserve Azure ML workspace so that it can be restored",
@@ -106,22 +286,6 @@
         ]
     },
     {
-        "Question_title": "Batchscoring on Batch Endpoint of AutoML model giving error - UserError: {\"NonCompliant\":\"Process",
-        "Question_creation_date": "2022-11-24T19:30:57.423Z",
-        "Question_link": "https://learn.microsoft.com/answers/questions/1103764/batchscoring-on-batch-endpoint-of-automl-model-giv.html",
-        "Question_tag": [
-            "azure-machine-learning",
-            "azure-batch"
-        ],
-        "Question_has_accepted_answer": false,
-        "Question_answer_count": 0,
-        "Question_comment_count": 1,
-        "Question_follower_count": 18,
-        "Question_upvote_count": 0,
-        "Question_body": "AutoML time-series model created from Sql Database data. - successful\nRegistered Model. - successful\nEndPoints creation - Deploy to Batch End Point. - successful\nCreating Batchscoring Jon in EndPoint - Fails with below error.\n\nError -\n{\"NonCompliant\":\"Process '/azureml-envs/azureml_c9e8754bdba5226a1ab803f256ee343b/bin/python' exited with code 1 and error message 'Execution failed. Process exited with status code 1. Error: Traceback (most recent call last):\\n File \\\"driver/amlbi_main.py\\\", line 184, in <module>\\n main()\\n File \\\"driver/amlbi_main.py\\\", line 126, in main\\n boot(driver_dir)\\n File \\\"driver/amlbi_main.py\\\", line 58, in boot\\n booter.start()\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot.py\\\", line 383, in start\\n self.start_sys_main()\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot.py\\\", line 269, in start_sys_main\\n self.run_sys_main(cmd)\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot_node.py\\\", line 111, in run_sys_main\\n self.check_run_result(proc=proc, stdout=stdout or \\\"\\\", stderr=stderr or \\\"\\\")\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot.py\\\", line 218, in check_run_result\\n BootResult().check_result(stdout)\\n File \\\"/mnt/azureml/cr/j/5abd1dee5bc441ae8d26b873695fdcf8/exe/wd/driver/azureml_user/parallel_run/boot_result.py\\\", line 36, in check_result\\n raise Exception(message) from cause\\nException: Run failed, please check logs for details. You can check logs/readme.txt for the layout of logs.\\n\\n'. Please check the log file 'user_logs/std_log_0.txt' for more details.\"}\n{\n\"code\": \"ExecutionFailed\",\n\"target\": \"\",\n\"category\": \"UserError\",\n\"error_details\": [\n{\n\"key\": \"exit_codes\",\n\"value\": \"1\"\n}\n]\n}",
-        "Answers": []
-    },
-    {
         "Question_title": "Best practice for model deployment (Real-time Endpoints vs Compute Inference Cluster)",
         "Question_creation_date": "2022-11-24T12:01:23.107Z",
         "Question_link": "https://learn.microsoft.com/answers/questions/1103168/best-practice-for-model-deployment-real-time-endpo.html",
@@ -163,21 +327,6 @@
                 "Answer_has_accepted": false
             }
         ]
-    },
-    {
-        "Question_title": "Values \"0\" azure prediction model",
-        "Question_creation_date": "2022-11-07T19:06:32.623Z",
-        "Question_link": "https://learn.microsoft.com/answers/questions/1078908/values-34034-azure-prediction-model.html",
-        "Question_tag": [
-            "azure-machine-learning"
-        ],
-        "Question_has_accepted_answer": false,
-        "Question_answer_count": 0,
-        "Question_comment_count": 2,
-        "Question_follower_count": 8,
-        "Question_upvote_count": 0,
-        "Question_body": "Hello, I'm new to using the Azure tool and I'm doing some prediction tests. When training a model and clicking on deploy webservice the sample request is sent the information of \"value\" equal to \"0\", could anyone tell me why?\n\nEX:\n\n\"Values\": [\n[\n\"0\",\n\"0\",\n\"0\",\n\"0\",\n\"0\",\n\"0\",\n\"0\",",
-        "Answers": []
     },
     {
         "Question_title": "Unable to import prophet",
@@ -331,22 +480,6 @@
                 "Answer_has_accepted": false
             }
         ]
-    },
-    {
-        "Question_title": "Disk Full Error When running Azure ML Jobs using Custom Environemnts",
-        "Question_creation_date": "2022-11-08T11:34:03.717Z",
-        "Question_link": "https://learn.microsoft.com/answers/questions/1080080/disk-full-error-when-running-azure-ml-jobs-using-c.html",
-        "Question_tag": [
-            "azure-machine-learning",
-            "azure-virtual-machines-images"
-        ],
-        "Question_has_accepted_answer": false,
-        "Question_answer_count": 0,
-        "Question_comment_count": 1,
-        "Question_follower_count": 15,
-        "Question_upvote_count": 0,
-        "Question_body": "I get a disk full error while running a Model training job using Azure ML SDK launched from Azure DevOps. I used a custom environment inside the Azure ML Workspace and used it.\n\nI am using azure CLI tasks in Azure DevOps to launch these training jobs. How can I resolve this?\n\nError Message:\n\"error\": {\n\"code\": \"UserError\",\n\"message\": \"{\\\"Compliant\\\":\\\"Disk full while running job. Please consider reducing amount of data accessed, or upgrading VM SKU. Total space: 14045 MB, available space: 1103 MB.\\\"}\\n{\\n \\\"code\\\": \\\"DiskFullError\\\",\\n \\\"target\\\": \\\"\\\",\\n \\\"category\\\": \\\"UserError\\\",\\n \\\"error_details\\\": []\\n}\",\n\"messageParameters\": {},\n\"details\": []\n},\n\n\n\n\nThe .runcoionfig file is as follows:\n\n framework: Python\n script: cnn_training.py\n communicator: None\n autoPrepareEnvironment: true\n maxRunDurationSeconds:\n nodeCount: 1\n environment:\n   name: cnn_training\n   python:\n     userManagedDependencies: true\n     interpreterPath: python\n   docker:\n     enabled: true\n     baseImage: 54646eeace594cf19143dad3c7f31661.azurecr.io/azureml/azureml_b17300b63a1c2abb86b2e774835153ee\n     sharedVolumes: true\n     gpuSupport: false\n     shmSize: 2g\n     arguments: []\n history:\n   outputCollection: true\n   snapshotProject: true\n   directoriesToWatch:\n   - logs\n dataReferences:\n   workspaceblobstore:\n     dataStoreName: workspaceblobstore\n     pathOnDataStore: dataname\n     mode: download\n     overwrite: true\n     pathOnCompute:",
-        "Answers": []
     },
     {
         "Question_title": "az ml workspace share command (v1) alternatives",
@@ -996,23 +1129,6 @@
                 "Answer_has_accepted": false
             }
         ]
-    },
-    {
-        "Question_title": "Error while depolying Whisper Model in batch pipeline",
-        "Question_creation_date": "2022-11-03T13:39:59.767Z",
-        "Question_link": "https://learn.microsoft.com/answers/questions/1074438/error-while-depolying-whisper-model-in-batch-pipli.html",
-        "Question_tag": [
-            "azure-machine-learning",
-            "azure-batch",
-            "azure-openai"
-        ],
-        "Question_has_accepted_answer": false,
-        "Question_answer_count": 0,
-        "Question_comment_count": 4,
-        "Question_follower_count": 17,
-        "Question_upvote_count": 0,
-        "Question_body": "I'm trying to deploy the OpenAI Whisper model with a batch pipeline, following the example notebook: https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/parallel-run/file-dataset-image-inference-mnist.ipynb\n\nI'm using the STANDARD_NC6S_V3 Machine.\n\nI keep getting the following error:\n\nError '/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/site-packages/torch/lib/../../nvidia/cublas/lib/libcublas.so.11: undefined symbol: cublasLtGetStatusString, version libcublasLt.so.11 File \"/mnt/azureml/cr/j/3f034c6e7a1b4166b24b196339e7b655/exe/wd/whisper_transcribe.py\", line 3, in <module>\nimport whisper\nFile \"/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/site-packages/whisper/init.py\", line 8, in <module>\nimport torch\nFile \"/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/site-packages/torch/init.py\", line 191, in <module>\nload_global_deps()\nFile \"/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/site-packages/torch/init.py\", line 153, in load_global_deps\nctypes.CDLL(lib_path, mode=ctypes.RTLD_GLOBAL)\nFile \"/azureml-envs/azureml_2b0a8ce0115582fe46e2aa65a9665d55/lib/python3.9/ctypes/init.py\", line 382, in init\nself._handle = _dlopen(self._name, mode)'\n\nI can't find what causes the error, but I think it has to do with the machine I'm deploying on, because with a different machine, the error did not appear.\nhelp will be much appreciated.",
-        "Answers": []
     },
     {
         "Question_title": "ML assisted data labeling completed the Training run phase, but how to start the Inference run?",
@@ -3369,29 +3485,6 @@
         ]
     },
     {
-        "Question_title": "allow_reuse in Azure ml sdk v2",
-        "Question_creation_date": "2022-06-28T17:54:17.84Z",
-        "Question_link": "https://learn.microsoft.com/answers/questions/906911/allow-reuse-in-azure-ml-sdk-v2.html",
-        "Question_tag": [
-            "azure-machine-learning"
-        ],
-        "Question_has_accepted_answer": false,
-        "Question_answer_count": 1,
-        "Question_comment_count": 0,
-        "Question_follower_count": 12,
-        "Question_upvote_count": 1,
-        "Question_body": "I am running a training pipeline on azure ml python sdk v2. It is running fine but when I am reinitiating it, it takes only 1 second to finish which I assume is taking previous step from last ran pipeline. In v1 sdk we have allow_reuse parameter to stop this behaviour. But how can we do that in ml python sdk v2.",
-        "Answers": [
-            {
-                "Answer_creation_date": "2022-06-29T05:54:50.887Z",
-                "Answer_upvote_count": 1,
-                "Answer_body": "Hello @rjtshrm ,\n\nThank you for posting query in Microsoft Q&A Platform.\n\nWe don't have allow_reuse flag in the v2. However, I would like to understand use case little more in details.\nDo you mind sharing why you want to rerun the step when everything is not changed (meaning the output would be exactly the same even if you rerun)?\nThere is a way to disable reuse behavior by setting \"is_deterministic: False\" for your component.\n\nRegards,\nPritee",
-                "Answer_comment_count": 5,
-                "Answer_has_accepted": false
-            }
-        ]
-    },
-    {
         "Question_title": "Databricks mlflow model serving networking",
         "Question_creation_date": "2022-09-06T16:11:56.897Z",
         "Question_link": "https://learn.microsoft.com/answers/questions/996163/databricks-mlflow-model-serving-networking.html",
@@ -3688,6 +3781,54 @@
                 "Answer_creation_date": "2022-08-23T11:52:22.877Z",
                 "Answer_upvote_count": 0,
                 "Answer_body": "@PedersenBjarke-7167 Yes, you could select the filter next to search and select Built-in to see the grouped components again.\nThe change allows users to view only the required modules or components and also filter then according to the available criteria. If you want to go back to the older view, simply select the built in assets only to group by functionality.\n\n\n\n\nIf an answer is helpful, please click on  or upvote  which might help other community members reading this thread.\n\n\n\n\n\nRef: https://docs.microsoft.com/en-us/answers/questions/972775/change-in-machine-learning-designer.html",
+                "Answer_comment_count": 0,
+                "Answer_has_accepted": false
+            }
+        ]
+    },
+    {
+        "Question_title": "Kubernetes / AKS cluster requirments for Azure ML Endpoints",
+        "Question_creation_date": "2022-08-17T07:15:23.597Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/970235/kubernetes-aks-cluster-requirments-for-azure-ml-en.html",
+        "Question_tag": [
+            "azure-machine-learning",
+            "azure-kubernetes-service"
+        ],
+        "Question_has_accepted_answer": false,
+        "Question_answer_count": 1,
+        "Question_comment_count": 4,
+        "Question_follower_count": 21,
+        "Question_upvote_count": 0,
+        "Question_body": "Hello,\n\nI'm trying to experiment with Azure ML Endpoints deployed to a Azure Kubernetes Service (AKS) cluster.\n\nRight now I'm able to attach AKS cluster(s) to Azure ML, from Compute / Inference Clusters.\n\nHowever, the no Kubernetes clusters are showing up nor in Endpoint Deployments, neither in the Attached Computes (see the screenshots bellow).\n\nI would like to now if there are any special requirements / additional steps needed for AKS cluster used with Azure ML endpoints. The AKS cluster I'm using is 3 nodes, each with 4 vCPU and 16 GB RAM.\n\nEndpoint(s):\n\n\nAttached Compute(s):\n\n\nThanks!",
+        "Answers": [
+            {
+                "Answer_creation_date": "2022-08-24T05:29:49.9Z",
+                "Answer_upvote_count": 0,
+                "Answer_body": "@Attila-3020 I feel the error is most likely an issue with the AKS cluster setup. I see the following in the log:\n\n \"aksAssignedIdentity\":null\n\n\n\nI don't have a lot of experience with AKS setup issues, but I feel this could be the issue here. As per AKS documentation there is an option to update to system assigned managed identity.\n\n az aks update -g <RGName> -n <AKSName> --enable-managed-identity\n\nIf this still does not work I think it would be easier to review the setup through a support case so the service team could advise what could be wrong with your subscription.\n\n\n\n\n\nIf an answer is helpful, please click on  or upvote  which might help other community members reading this thread.",
+                "Answer_comment_count": 2,
+                "Answer_has_accepted": false
+            }
+        ]
+    },
+    {
+        "Question_title": "In AzureML, start_logging will start asynchronous execution or synchronous execution?",
+        "Question_creation_date": "2022-08-08T18:21:44.493Z",
+        "Question_link": "https://learn.microsoft.com/answers/questions/959540/in-azureml-start-logging-will-start-asynchronous-e.html",
+        "Question_tag": [
+            "azure-machine-learning",
+            "azure-machine-learning-studio-classic"
+        ],
+        "Question_has_accepted_answer": false,
+        "Question_answer_count": 1,
+        "Question_comment_count": 1,
+        "Question_follower_count": 24,
+        "Question_upvote_count": 0,
+        "Question_body": "It was written in the Microsoft AzureML documentation, \"A run represents a single trial of an experiment. Runs are used to monitor the asynchronous execution of a trial\" and A Run object is also created when you submit or start_logging with the Experiment class.\"\n\nRelated to start_logging, as far as I know, when we have simply started the run by executing this start logging method. We have to stop, or complete by complete method when the run is completed. This is because start_logging is a synchronized way of creating an experiment. However, Run object created from start_logging is to monitor the asynchronous execution of a trial.\n\nCan anyone clarify whether start_logging will start asynchronous execution or synchronous execution?",
+        "Answers": [
+            {
+                "Answer_creation_date": "2022-08-09T06:55:25.043Z",
+                "Answer_upvote_count": 0,
+                "Answer_body": "@MoZein-9081 start_logging will create a run object similar to experiment.submit() but in the case of start_logging you can create an interactive logging session and create an interactive run in the specified experiment and in either case, the logging methods on the returned run object work the same.\n\nFor example,\n\n run = exp.start_logging() #Will give you the context of run object directly\n run_id = run.id # access the run id for use later\n Run = experiment.submit() \n run = Run.get_context() #To access the current run context of your code\n\n\n\n\nI think this notebook explains the usage of logging better in this context.\n\nIf an answer is helpful, please click on  or upvote  which might help other community members reading this thread.",
                 "Answer_comment_count": 0,
                 "Answer_has_accepted": false
             }
@@ -4104,7 +4245,7 @@
         "Question_has_accepted_answer": false,
         "Question_answer_count": 0,
         "Question_comment_count": 0,
-        "Question_follower_count": 79,
+        "Question_follower_count": 80,
         "Question_upvote_count": 10,
         "Question_body": "Are you a Microsoft Azure Technology Expert? Do you resonate with the idea of using your skills to help customers, create Impact and also get recognized?\n\nIf your answer is yes \u2013 you have an opportunity to be part of the Microsoft Azure Community Champions family! This is a thriving community of 100+ members made of Microsoft employees, MVPs, Suppliers, and other experts who enjoy solving latest customer problems in Microsoft Q&A technical site and thereby learn hands-on.\n\nFor your voluntary contributions you can also receive exciting rewards and recognitions which includes monthly $50 gift cards, being featured on Microsoft branded social media & leaderboards, considerations for Microsoft MVP award, Microsoft NDA with Private Preview access and more.\n\nVisit Microsoft Community Champions for Q&A | Microsoft Docs to learn more and become an Azure Community Champion!\n\nSee you on the other side!!\n\nSpecial invitation to:\n\n@Bruce-SqlWork @Prasad-MSFT @Chungsun-1776 @SrikanthRana @67603284 @LimitlessTechnology-2700 @Alexandre-4252 @ealmuneyeer-MSFT @Nivedipa MSFT-6619 @PriteeBhuyan-MSFT @DavidBristol-1279 @Sayali-MSFT-0291 @Yukimaru123 @Alexandre-2525 @AzureAaronHughes @sadomovalex @sidramadoss @ZoeHui-MSFT @32213614 @35247258 @54720164 @akiotatako-3558 @ChristopherGeckert-7726 @HarryArthur-7261 @HediaRiahi-4975 @ItaiNorman-6771 @JonPayne-8781 @Lawrence080-MSFT @lextm @maximebmsft @michael84 @MikeC-5683 @OlafHelper-2800 @psrsekhar @RyanAbbey-0701 @seanma @SubashriVasudevan-3801 @TKujala @tmm1 @Yufeishao-msft\n\nThank You to all the Microsoft Q&A Community Champions.\nThey are helping make Microsoft Q&A a vibrant place for learning.\n\n@AlbertoMorillo @ManuPhilip @DillonJS @martins-jackson @DavidBroggy-5270 @soysoliscarlos @KamleshKumar @JimmySalian-2011 @ricardosolisvillegas-4678 @NandanHegde-7720 @AndreasBaumgarten @AndyDavid @SubashriVasudevan-1752 @maserg @AndrewBlumhardt-1137 @AlanKinane @michev @SandervandeVelde42 @CristianSPIRIDON72 @BjoernPeters @BrunoLucas-9843 @MohammedAltamashKhan-3285 @msrini-MSFT @DSPatrick @ErlandSommarskog @Samy-7940 @AndriyBilous @shivapatpi-MSFT @stan @rbrundritt @TakahitoIwasa @pituach @Sam-Cogan @PratikSomaiya @sikumars @sreejukg",
         "Answers": []
@@ -7988,29 +8129,6 @@
         ]
     },
     {
-        "Question_title": "How to predict train model time",
-        "Question_creation_date": "2022-05-30T09:38:33.477Z",
-        "Question_link": "https://learn.microsoft.com/answers/questions/869641/how-to-predict-train-model-time.html",
-        "Question_tag": [
-            "azure-machine-learning"
-        ],
-        "Question_has_accepted_answer": false,
-        "Question_answer_count": 1,
-        "Question_comment_count": 0,
-        "Question_follower_count": 11,
-        "Question_upvote_count": 0,
-        "Question_body": "How to predict the time for train model for data with 10 millions lines and zero columns with decision tree?",
-        "Answers": [
-            {
-                "Answer_creation_date": "2022-05-30T20:34:28.677Z",
-                "Answer_upvote_count": 0,
-                "Answer_body": "Hello @Jack-1854\n\nI am a little bit confused about your zero columns. Let's say x columns.\n\nFirst, I don't think there is an official way to estimate the time for now, since the data and the algorithms will both effect it. But for your model, you can absolutely estimat it by reudce the dataset as a test to see the time, like, you can give 10k data first to see how long the studio takes to train it, then you can estimate the time.\n\nPlease let me know if you are doing something special since you are mentioning zero column.\n\nI hope this helps.\n\nRegards,\nYutong\n\n\n\n\n-Please kindly accept the answer if you feel helpful to help the community, thanks.",
-                "Answer_comment_count": 1,
-                "Answer_has_accepted": false
-            }
-        ]
-    },
-    {
         "Question_title": "Can't add modules to Pipeline Design (Azure)",
         "Question_creation_date": "2022-05-30T14:30:47.177Z",
         "Question_link": "https://learn.microsoft.com/answers/questions/869925/can39t-add-modules-to-pipeline-design-azure.html",
@@ -8538,29 +8656,6 @@
                 "Answer_upvote_count": 0,
                 "Answer_body": "Same issue for myself, cant run a compute instance even with an upgrade. It is also East coast. Any idea when it will be running properly?",
                 "Answer_comment_count": 1,
-                "Answer_has_accepted": false
-            }
-        ]
-    },
-    {
-        "Question_title": "The pre-built components of the pipeline designer in Azure ML studio don't appear",
-        "Question_creation_date": "2022-05-20T07:47:14.087Z",
-        "Question_link": "https://learn.microsoft.com/answers/questions/857398/the-pre-built-components-of-the-pipeline-designer.html",
-        "Question_tag": [
-            "azure-machine-learning"
-        ],
-        "Question_has_accepted_answer": false,
-        "Question_answer_count": 1,
-        "Question_comment_count": 2,
-        "Question_follower_count": 12,
-        "Question_upvote_count": 0,
-        "Question_body": "With allarming frequency, when I try to design a pipeline I don't have access to all the pre-built components/assets. In this case, the only components that are still available are the datasets, web input and output and the custom components. This problem reverts itself after some time without any input. What should I do to avoid it or at least revert it as fast as possible?\n\nEdit: I add a screenshot of the issue",
-        "Answers": [
-            {
-                "Answer_creation_date": "2022-05-25T11:19:16.43Z",
-                "Answer_upvote_count": 0,
-                "Answer_body": "Experiencing this as well, any update?",
-                "Answer_comment_count": 0,
                 "Answer_has_accepted": false
             }
         ]
@@ -26946,30 +27041,6 @@
                 "Answer_creation_date": "2021-02-24T13:59:00.253Z",
                 "Answer_upvote_count": 0,
                 "Answer_body": "@MengOonLee-5731 Thanks, Please follow the doc for protoc installation. We have tried from the AML Jupyter notebook compute instance (ex: Virtual machine size STANDARD_DS3_V2 CPU) we are able to follow the steps without the error that you are facing.\n\nThis is an underlying issue with shutil.copytree when doing dev install from mounted share to local conda env. https://bugs.python.org/issue24564\n\nMitigation is to use the disk rather than fileshare for dev installs.",
-                "Answer_comment_count": 0,
-                "Answer_has_accepted": false
-            }
-        ]
-    },
-    {
-        "Question_title": "'str' object has no attribute 'items'",
-        "Question_creation_date": "2021-02-15T04:21:12.313Z",
-        "Question_link": "https://learn.microsoft.com/answers/questions/272689/39str39-object-has-no-attribute-39items39.html",
-        "Question_tag": [
-            "azure-machine-learning",
-            "azure-webapps-content-deployment"
-        ],
-        "Question_has_accepted_answer": false,
-        "Question_answer_count": 1,
-        "Question_comment_count": 3,
-        "Question_follower_count": 7,
-        "Question_upvote_count": 0,
-        "Question_body": "I'm trying to consume a model that I deployed from Azure Machine Learning as a web service but I keep getting an error: 'str' object has no attribute 'items' Help: https://go.microsoft.com/fwlink/?linkid=2146748.\n\nI am following the Consume an Azure Machine Learning model deployed as a web service tutorial for calling the service using python.\n\nI followed the formatting as shown in the documentation but I still keep getting this error.\n\n import requests\n import json\n    \n # URL for the web service\n scoring_uri = 'http://00.00.00.00:00/api/v1/service/test/score'\n # If the service is authenticated, set the key or token\n    \n    \n # Two sets of data to score, so we get two results back\n data = {\"data\":\n         [\n             {'volume': 0.23, \n              'temp': 0.66, }\n         ]\n         }\n # Convert to JSON string\n input_data = json.dumps(data)\n print(input_data)\n    \n # Set the content type\n headers = {'Content-Type': 'application/json'}\n    \n    \n # Make the request and display the response\n resp = requests.post(scoring_uri, input_data, headers=headers)\n print(resp.text)\n\n\n\nAny ideas would be great, thanks!\n\nUPDATE:\nScoring script:\n\n import os\n import json\n    \n from azureml.studio.core.io.model_directory import ModelDirectory\n from pathlib import Path\n from azureml.studio.modules.ml.score.score_generic_module.score_generic_module import ScoreModelModule\n from azureml.designer.serving.dagengine.converter import create_dfd_from_dict\n from collections import defaultdict\n from azureml.designer.serving.dagengine.utils import decode_nan\n from azureml.studio.common.datatable.data_table import DataTable\n    \n    \n model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'trained_model_outputs')\n schema_file_path = Path(model_path) / '_schema.json'\n with open(schema_file_path) as fp:\n     schema_data = json.load(fp)\n    \n    \n def init():\n     global model\n     model = ModelDirectory.load(model_path).model\n    \n    \n def run(data):\n     data = json.loads(data)\n     input_entry = defaultdict(list)\n     for row in data:\n         for key, val in row.items():\n             input_entry[key].append(decode_nan(val))\n    \n     data_frame_directory = create_dfd_from_dict(input_entry, schema_data)\n     score_module = ScoreModelModule()\n     result, = score_module.run(\n         learner=model,\n         test_data=DataTable.from_dfd(data_frame_directory),\n         append_or_result_only=True)\n     return json.dumps({\"result\": result.data_frame.values.tolist()})",
-        "Answers": [
-            {
-                "Answer_creation_date": "2021-02-24T10:51:25.007Z",
-                "Answer_upvote_count": 0,
-                "Answer_body": "@yjay-4307 Thanks, Here is the example, for the Multiclass Classification - Letter Recognition sample, the inference results are as follows:",
                 "Answer_comment_count": 0,
                 "Answer_has_accepted": false
             }

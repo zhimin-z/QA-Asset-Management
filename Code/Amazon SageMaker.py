@@ -151,18 +151,18 @@ def get_url(driver, url):
 if __name__ == '__main__':
     driver = uc.Chrome()
 
-    res_dict = []
+    posts = []
     next_page_url = 'https://repost.aws/tags/TAT80swPyVRPKPcA0rsJYPuA/amazon-sage-maker'
 
     while True:
         cur_urls_lst, next_page_url = get_url(driver, next_page_url)
 
         for post_url in cur_urls_lst:
-            res_dict.append(get_data(driver, post_url))
+            posts.append(get_data(driver, post_url))
 
         if not next_page_url:
             break
 
-    res_json = json.dumps(res_dict)
+    posts_json = json.dumps(posts, indent='\t')
     with open(os.path.join('../Dataset/Raw', 'Amazon SageMaker.json'), 'w') as f:
-        f.write(res_json)
+        f.write(posts_json)

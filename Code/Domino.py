@@ -62,14 +62,14 @@ def get_data(driver, url, topic):
         answer = answers_lst[i]
         answer_date = answer.find_element(
             By.XPATH, './/li[@class="meta-data"]/time').get_attribute("datetime")
-        
+
         try:
             answer_upvote_count = answer.find_element(
                 By.XPATH, './/span[@class="vote-sum"]').text
             answer_upvote_count = convert2num(answer_upvote_count)
         except:
             answer_upvote_count = 0
-        
+
         answer_body = answer.find_element(By.XPATH, './/section[@class="comment-body"]').get_attribute(
             'innerText').strip()
 
@@ -119,13 +119,13 @@ if __name__ == '__main__':
     base_url = 'https://tickets.dominodatalab.com/hc/en-us/community/topics'
     communities_url, topics = get_topic(driver, base_url)
 
-    posts_dict = []
+    posts = []
     for community_url, topic in zip(communities_url, topics):
         posts_url = get_url(driver, community_url)
         for post_url in posts_url:
-            posts_dict.append(get_data(driver, post_url, topic))
+            posts.append(get_data(driver, post_url, topic))
             time.sleep(1)
 
-    posts_json = json.dumps(posts_dict)
+    posts_json = json.dumps(posts, indent='\t')
     with open(os.path.join('../Dataset/Raw', 'Domino.json'), 'w') as f:
         f.write(posts_json)

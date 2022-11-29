@@ -13,8 +13,8 @@ def convert2num(num):
             return int(num.split()[0])
         except:
             return 0
-        
-        
+
+
 def convert2date(date):
     try:
         return parser.parse(date.strip('‎')).isoformat()
@@ -144,27 +144,30 @@ def get_url(driver, url):
     for url_node in urls_lst:
         posts_url.append(url_node.get_attribute('href'))
 
-    return posts_url
+    return posts_url, driver.current_url
 
 
 if __name__ == '__main__':
     driver = uc.Chrome()
 
     index = 0
-    res_dict = []
+    posts = []
+    last_url = ''
     base_url = 'https://www.googlecloudcommunity.com/gc/AI-ML/bd-p/cloud-ai-ml/page/'
-    
+
     while True:
         index += 1
         cur_url = base_url + str(index)
-        posts_url = get_url(driver, cur_url)
+        posts_url, ref_url = get_url(driver, cur_url)
 
-        if not posts_url:
+        if ref_url == last_url:
             break
-        
-        for post_url in posts_url:
-            res_dict.append(get_data(driver, post_url))
 
-    res_json = json.dumps(res_dict)
+        last_url = cur_url
+
+        for post_url in posts_url:
+            posts.append(get_data(driver, post_url))
+
+    posts_json = json.dumps(posts, indent='\t')
     with open(os.path.join('../Dataset/Raw', 'Vertex AI.json'), 'w') as f:
-        f.write(res_json)
+        f.write(posts_json)
