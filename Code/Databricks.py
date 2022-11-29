@@ -1,11 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Keys
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
+import undetected_chromedriver as uc
 from dateutil import parser
 import time
 import json
+import os
 
 
 def convert2num(num):
@@ -20,7 +19,7 @@ def convert2num(num):
 
 def get_data(driver, url):
     driver.get(url)
-    time.sleep(20)
+    time.sleep(10)
 
     total_dict = {}
 
@@ -40,8 +39,7 @@ def get_data(driver, url):
 
     # question_creation_date
     date = driver.find_element(
-        By.XPATH, '//article[@data-type="QuestionPost"]/div[1]//div[@class="cuf-subPreamble slds-text-body--small"]').text
-
+        By.XPATH, '//article[@data-type="QuestionPost"]/div[1]//div[@class="cuf-subPreamble slds-text-body--small"]/a').get_attribute('title')
     date = parser.parse(date).isoformat()
     # print("date:", date)
 
@@ -67,7 +65,7 @@ def get_data(driver, url):
         upvote_count = driver.find_element(
             By.XPATH, '//a[@class="upvoters-card-target"]').text
     except:
-        pass
+        upvote_count = 0
     upvote_count = convert2num(upvote_count)
     # print("question_upvote_count:", upvote_count)
 
@@ -92,7 +90,7 @@ def get_data(driver, url):
     # other_answers
     answers_lst = driver.find_elements(
         By.XPATH, '//article[@class="cuf-commentItem slds-comment slds-media comment--threadedCommunity forceChatterComment"]')
-    if has_accepted == True:
+    if has_accepted:
         answers_lst = answers_lst[1:]
     answer_count = len(answers_lst)
     # print("answer_count:", answer_count)
@@ -120,15 +118,13 @@ def get_data(driver, url):
         answer_upvote_count = convert2num(answer_upvote_count)
 
         cur_has_accepted = False
-        if has_accepted == True:
+        if has_accepted:
             try:
                 answer.find_element(
                     By.XPATH, './/span[@title="Selected as Best by ahuarte"]')
                 cur_has_accepted = True
             except:
-                cur_has_accepted = False
-        else:
-            cur_has_accepted = False
+                pass
 
         # print("answer_date:", answer_date)
         # print("answer_upvote:", answer_upvote_count)
@@ -160,20 +156,20 @@ def get_url(driver, url):
         except:
             break
 
+    urls_lst = []
     urls_node_lst = driver.find_elements(
         By.XPATH, '//a[@class="cuf-feedElement-wrap"]')
-    urls_lst = []
+
     for urls_node in urls_node_lst:
-        url = urls_node.get_attribute('href')
-        if url.find("question") != -1:
-            urls_lst.append(url)
+        node_url = urls_node.get_attribute('href')
+        if node_url.find("question") != -1:
+            urls_lst.append(node_url)
 
     return urls_lst
 
 
-if __name__ == "__main__":
-    driver = webdriver.Chrome(service=ChromeService(
-        ChromeDriverManager().install()))
+if __name__ == '__main__':
+    driver = uc.Chrome()
 
     base_url = 'https://community.databricks.com/s/topic/0TO3f000000CiCIGA0/machine-learning'
     posts_url = get_url(driver, base_url)
@@ -182,6 +178,6 @@ if __name__ == "__main__":
     for url in posts_url:
         posts.append(get_data(driver, url))
 
-    res_json = json.dumps(posts)
-    with open('Databricks.json', 'w') as f:
-        f.write(res_json)
+    posts_json = json.dumps(posts)
+    with open(os.path.join('../Dataset/Raw', 'Databricks.json'), 'w') as f:
+        f.write(posts_json)

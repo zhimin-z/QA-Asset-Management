@@ -1,9 +1,18 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
+import undetected_chromedriver as uc
 import json
+import re
 import os
+
+
+def convert2num(num):
+    try:
+        return int(num)
+    except:
+        try:
+            return int(num.split()[0])
+        except:
+            return 0
 
 
 def get_data(driver, url):
@@ -24,6 +33,7 @@ def get_data(driver, url):
     # question_upvote_count
     upvote_count = driver.find_element(
         By.XPATH, '//div[@class="text-center discussion-vote-form position-relative"]//button').text
+    upvote_count = convert2num(upvote_count)
     # print("question_upvote_count:", upvote_count)
 
     # question_category
@@ -43,9 +53,10 @@ def get_data(driver, url):
     # question_issue
     issue_lst = driver.find_elements(
         By.XPATH, '//div[@class="discussion-sidebar-item"]')
-    issue = -1
-    if len(issue_lst) == 3:
-        issue = issue_lst[2].text
+    try:
+        issue = convert2num(re.findall(r'\d+', issue_lst[2].text)[0])
+    except:
+        issue = -1
     # print("question_issue:", issue)
 
     # question_body
@@ -65,7 +76,7 @@ def get_data(driver, url):
     total_dict["Question_label"] = label_lst
     total_dict["Question_converted_from_issues"] = issue
     total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_upvote_count"] = int(upvote_count)
+    total_dict["Question_upvote_count"] = upvote_count
     total_dict["Question_body"] = body
     total_dict["Answers"] = []
 
@@ -75,6 +86,7 @@ def get_data(driver, url):
             By.XPATH, './/relative-time').get_attribute('datetime')
         answer_upvote_count = answer.find_element(
             By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
+        answer_upvote_count = convert2num(answer_upvote_count)
         answer_body = answer.find_element(
             By.XPATH, './/table[@role="presentation"]').get_attribute('innerText').strip()
 
@@ -85,7 +97,7 @@ def get_data(driver, url):
 
         total_dict["Answers"].append({
             "Answer_creation_date": answer_date,
-            "Answer_upvote_count": int(answer_upvote_count),
+            "Answer_upvote_count": answer_upvote_count,
             "Answer_body": answer_body
         })
 
@@ -94,17 +106,19 @@ def get_data(driver, url):
 
 def get_url(driver, url):
     driver.get(url)
+
     posts_url = []
     post_list = driver.find_elements(
         By.XPATH, '//a[@class="discussion-Link--secondary markdown-title Link--primary no-underline text-bold f3"]')
+
     for post in post_list:
         posts_url.append(post.get_attribute('href'))
+
     return posts_url
 
 
 if __name__ == '__main__':
-    driver = webdriver.Chrome(service=ChromeService(
-        ChromeDriverManager().install()))
+    driver = uc.Chrome()
 
     posts = []
     index = 0
@@ -115,11 +129,11 @@ if __name__ == '__main__':
         page_url = base_url + str(index)
         posts_url = get_url(driver, page_url)
 
-        for url in posts_url:
-            posts.append(driver, get_data(url))
-
         if not posts_url:
             break
+
+        for url in posts_url:
+            posts.append(get_data(driver, url))
 
     posts_json = json.dumps(posts)
     with open(os.path.join('../Dataset/Raw', 'Polyaxon.json'), 'w') as f:

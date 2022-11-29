@@ -157,7 +157,7 @@
         "Question_label": [
             "area/datatile"
         ],
-        "Question_converted_from_issues": "Converted from issue\nThis discussion was converted from issue #1492 on April 18, 2022 15:32.",
+        "Question_converted_from_issues": 1492,
         "Question_answer_count": 2,
         "Question_upvote_count": 1,
         "Question_body": "Would it be reasonable to have a custom pickling magic method? Something like this:\n\nclass DataFrameSummary:\n    ...\n\n    def __getstate__(self):\n         return {'length': self.length, \n                 'column_stats': self.column_stats,\n                 'corr': self.corr}\n   \n    def __setstate__(self, state):\n        self.length = state['length']\n        self.column_stats = state['column_stats']\n        self.corr = state['corr']\n\nI guess that usually, you don't need to store df property because it is probably already stored somewhere. Or it could be an optional behavior depending on __init__ parameters.\n\nWhat do you think?",
@@ -539,7 +539,7 @@
         "Question_label": [
             "question"
         ],
-        "Question_converted_from_issues": "Converted from issue\nThis discussion was converted from issue #1458 on April 06, 2022 12:19.",
+        "Question_converted_from_issues": 1458,
         "Question_answer_count": 4,
         "Question_upvote_count": 1,
         "Question_body": "I have setup a community self-hosted polyaxon, and the config abourt ui is\n\nui:\n  enabled: true\n  offline: false\n  adminEnabled: true\n\n\naccording to the documentation, if I set adminEnabled to true, there should be an admin dashboard. But I did not find it, there is no difference to turn it on/off",
@@ -573,7 +573,7 @@
         "Question_label": [
             "area/datatile"
         ],
-        "Question_converted_from_issues": "Converted from issue\nThis discussion was converted from issue #1496 on April 18, 2022 15:39.",
+        "Question_converted_from_issues": 1496,
         "Question_answer_count": 0,
         "Question_upvote_count": 1,
         "Question_body": "",
@@ -635,7 +635,7 @@
         "Question_link": "https://github.com/orgs/polyaxon/discussions/1302",
         "Question_creation_date": "2021-04-27T02:56:19Z",
         "Question_label": [],
-        "Question_converted_from_issues": "Converted from issue\nThis discussion was converted from issue #1301 on April 27, 2021 08:08.",
+        "Question_converted_from_issues": 1301,
         "Question_answer_count": 2,
         "Question_upvote_count": 1,
         "Question_body": "Describe the bug\n\nI have two version for using component. One is directly uploading local code to each pod, this work fine that we could see the models artifact and metric curve. The other one use the same code as the first one, except for using private github to load the code. In this case, the \"dashboards\", \"artifacts\" and \"resources\" pages show only \"NO DATA\", and \"logs\" page shows training output message normally.\n\nTo reproduce\nAdd private code connection\nconnections:\n  - name: my-repo\n    kind: git\n    schema:\n      url: https://github.com/xxx/my-repo\n    secret:\n      name: \"github-secret-my-repo\"\n\nruning job config:\nrun:\n  kind: job\n  init:\n    - connection: my-repo\n\nHow we use log_metric and log_model\n# log metric\ntracking.log_metric(\"val_loss\", val_loss, step=epoch)\ntracking.log_metric(\"val_precision\", precision, step=epoch)\ntracking.log_metric(\"val_recall\", recall, step=epoch)\n\n# log model\nmodel_output_dir = tracking.get_outputs_path(\"models\", is_dir=True)\nckpt_file = os.path.join(model_output_dir, 'checkpoint.pth.tar')\ntorch.save({xxx}, ckpt_file)\ntracking.log_model(name=\"checkpoint\", path=ckpt_file, framework=\"pytorch\")\n\nExpected behavior\n\nShowing metric curve and saving models normally.\n\nEnvironment\n\nminikube: v1.15.1\npolyaxon ce: 1.7.5",
@@ -730,7 +730,7 @@
         "Question_link": "https://github.com/orgs/polyaxon/discussions/1303",
         "Question_creation_date": "2021-04-11T03:52:02Z",
         "Question_label": [],
-        "Question_converted_from_issues": "Converted from issue\nThis discussion was converted from issue #1271 on April 27, 2021 08:10.",
+        "Question_converted_from_issues": 1271,
         "Question_answer_count": 14,
         "Question_upvote_count": 1,
         "Question_body": "Describe the bug\n\nAttempting to deploy the docker image build yaml file available under https://github.com/polyaxon/polyaxon-examples/blob/master/in_cluster/build_image/build-ml.yaml using the polyaxon cli returns the following error:\n\n>polyaxon run -f build_docker_image.yaml -l\nPolyaxonfile is not valid.\nError message: The Polyaxonfile's version specified is not supported by your current CLI.Your CLI support Polyaxonfile versions between: 1.1 <= v <= 1.1.You can run `polyaxon upgrade` and check documentation for the specification..\n\nTo reproduce\n\nThe contents of build_docker_image.yaml\n\nversion: 1.1\nkind: operation\nname: build\nparams:\n  destination:\n    connection: localreg\n    value: polyaxon-examples:ml\nrunPatch:\n  init:\n  - dockerfile:\n      image: python:3.8.8-buster\n      run:\n      - 'pip3 install --no-cache-dir -U polyaxon[\"polyboard\"]'\n      - pip3 install scikit-learn xgboost matplotlib vega-datasets joblib lightgbm xgboost\n      langEnv: 'en_US.UTF-8'\nhubRef: kaniko\n\nExpected behavior\n\nA build operation should begin that results in an image being saved to the docker registry connected under destination: connection:\n\nEnvironment\n\nPolyaxon 1.8.0\nPolyaxon CLI 1.8.0",
@@ -812,7 +812,7 @@
         "Question_link": "https://github.com/orgs/polyaxon/discussions/1304",
         "Question_creation_date": "2020-06-29T14:29:34Z",
         "Question_label": [],
-        "Question_converted_from_issues": "Converted from issue\nThis discussion was converted from issue #865 on April 27, 2021 10:46.",
+        "Question_converted_from_issues": 865,
         "Question_answer_count": 0,
         "Question_upvote_count": 1,
         "Question_body": "Use case\n\nWe would like to use Vault for managing some connection's secrets.\n\nEDIT: Different use case where node scheduling can be also linked directly to a connection:\n\nWhen I need to iterate multiple times over the input data I would like to copy the data from the network storage to the SSD of the experiment machine as first step in my polyaxon file and then use that local copy to iterate on.\n\nIn this case we might want to always schedule a connection with a specific node or nodes(s).\n\nFeature description\nAllow annotations in connections.\nAllow node scheduling in connections.\nAlternatives\n\nI think these use-cases can be manged right now using RunProfile.\n\nN.B. the second issue was raised by a CE user, where the RunProfile is not accessible.\n\nConsiderations\n\nIf we provide annotations/node-scheduling and other meta-data in connections we need to think about:\n\nThe overlap between the RunProfile and Connection concepts. RunProfile concept still handles more logic, but we should not duplicate efforts\nIf both concepts provide overlapping logic it can result in unexpected behaviour.",
