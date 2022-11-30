@@ -1,0 +1,768 @@
+[
+	{
+		"Question_title": "Cluster setup for ML work for Pandas in Spark, and vanilla Python.",
+		"Question_creation_date": "2022-01-21T12:16:00",
+		"Question_tag": [
+			"Standard",
+			"Pandas",
+			"Python",
+			"Machine Learning",
+			"Cluster"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001dnSF4CAM/cluster-setup-for-ml-work-for-pandas-in-spark-and-vanilla-python",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 4,
+		"Question_view_count": 346,
+		"Question_has_accepted_answer": true,
+		"Question_body": "My setup:\n\nWorker type: Standard_D32d_v4, 128 GB Memory, 32 Cores, Min Workers: 2, Max Workers: 8\n\nDriver type: Standard_D32ds_v4, 128 GB Memory, 32 Cores\n\nDatabricks Runtime Version: 10.2 ML (includes Apache Spark 3.2.0, Scala 2.12)\n\n\u00a0\n\nI ran a snowflake query and pulled in two datasets 30 million rows and 7 columns. Saved them as pyspark.pandas.frame.DataFrame, call them df1, and df2 (the two dataframes)\n\n\u00a0\n\n1st column of each of these datasets is a household_id. I want to check how many household_id from df1 is not in df2.\n\n\u00a0\n\nI tried two different ways:\n\nlen(set(df1['household_id'].to_list).difference(df2['household_id'].to_list()))\n\n\u00a0\n\ndf1['household_id'].isin(df2['household_id'].to_list()).value_counts()\n\nThe above two fail because of out of memory issue.\n\n\u00a0\n\nMy questions are:\n\nWhere is the python list computation happening as in first code snippet? Is it on driver node or worker node? I believe that code is being run in a single node and not distributed?\nIs there a way to better debug out of memory issue? Such as which piece of code? Which node the code failed., etc.\nWhat is the best guidance on creating a cluster? This could depend on understanding how pieces of code will run such as distributed across worker nodes, or running on a single driver . node. Is there a general guidance if driver node should be beefier (larger memory and cores) as compared to worker nodes or vice-versa?",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-01-21T19:52:57.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi again! Thanks for this question also and for your patience. We'll be back after we give the members of the community a chance to respond. :)",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-01-21T20:00:55.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Python code runs on the driver. Distributed/Spark code runs on the workers.\n\n\u00a0\n\nHere are some cluster tips:\n\nIf you're doing ML, then use an ML runtime.\n\nIf you're not doing distributed stuff, use a single node cluster.\n\nDon't use autoscaling for ML.\n\nFor Deep Learning use GPUs\n\nTry to size the cluster for the data size.\n\n\u00a0\n\nExpand Post",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-03-07T17:33:38.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "@Vik (Customer)\u200b\u00a0- Does Joseph's answer help? If it does, would you be happy to mark it as best? If it doesn't, please tell us so we can help you.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-22T14:23:05.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hey there @Vik (Customer)\u200b\u00a0\n\n\u00a0\n\nChecking in. If Joseph's answer helped, would you let us know and mark the answer as best? \u00a0It would be really helpful for the other members to find the solution more quickly.\n\n\u00a0\n\nThanks!",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "No Module named 'mlflow'",
+		"Question_creation_date": "2022-07-28T15:06:00",
+		"Question_tag": [
+			"Module",
+			"MLFlow",
+			"Scalable Machine"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D58Y000090M98QSAS/no-module-named-mlflow",
+		"Question_upvote_count": 1,
+		"Question_answer_count": 4,
+		"Question_view_count": 341,
+		"Question_has_accepted_answer": true,
+		"Question_body": "I new to the scalable machine learning with apache spark course. I am in the notebook ML 00a - Install Datasets it includes one cell (attached) which throws an error 'no module named 'mlflow''. It attempts to run the Classroom-Setup file. Error is thrown on cmd 5 (attached). What can I do to remedy this?",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-07-29T09:50:47.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Please use Machine Learning Runtime for your cluster https://docs.databricks.com/runtime/mlruntime.html",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-07-29T20:42:27.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hubert is correct, make sure to use the ML Runtime. I attached a picture from the cluster creation page.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-08-01T22:51:11.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "We have ML DBR version to be used for ML related workloads. So it is adviced to use ml dbr instead of standard dbr.\u200b",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-08-03T18:11:52.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "@duck_butter123 (Customer)\u200b\u00a0I hope the suggestions above helped out! If so, please select one as 'best' for us!\n\n\u00a0\n\nIf you still need assistance, let us know! \ud83d\ude0a",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "mlflow RESOURCE_ALREADY_EXISTS",
+		"Question_creation_date": "2021-11-17T04:13:00",
+		"Question_tag": [
+			"AML",
+			"RESOURCE ALREADY EXISTS",
+			"MLflow Experiments",
+			"Mlflow tracking",
+			"MLFlow"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001UOu7rCAD/mlflow-resourcealreadyexists",
+		"Question_upvote_count": 3,
+		"Question_answer_count": 8,
+		"Question_view_count": 802,
+		"Question_has_accepted_answer": true,
+		"Question_body": "I tried to log some run in my Databricks Workspace and I'm facing the following error: RESOURCE_ALREADY_EXISTS when I try to log any run.\n\n\u00a0\n\nI could replicate the error with the following code:\n\nimport mlflow\nimport mlflow.sklearn\nfrom mlflow.tracking import MlflowClient\n\u00a0\nmlflow.set_experiment('/learning/Mlflow-Full-Example/test-mlflow')\n\u00a0\nwith mlflow.start_run(run_name='silly_run-test') as run:\n  mlflow.log_param('seed', 777)\n\nThe error is the following, I don't know what to do about the conflict with that AML experiment\n\nIn case the error image has not quality enough here is the full message:\n\nRestException: RESOURCE_ALREADY_EXISTS: Failed to create AML experiment for experiment id=1823487114958629, name=/learning/Mlflow-Full-Example/test-mlflow, artifactLocation=dbfs:/databricks/mlflow-tracking/1823487114958629. There is an existing AML experiment with id=fa0eed6c-afd5-458b-9835-88903b535e04 and name='/adb/6432554542138879/1823487114958629/learning/Mlflow-Full-Example/test-mlflow' and artifactLocation='' that is not compatible.",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-11-17T11:22:21.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @\u00a0mangeldfz! My name is Kaniz, and I'm the technical moderator here. Great to meet you, and thanks for your question! Let's see if your peers in the community have an answer to your question first. Or else I will get back to you soon. Thanks.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-11-17T11:43:28.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi Kaniz, thanks for your comment. I found another folk in the internet with the same problem starting a few days ago. So, I think it has nothing to do with my Workspace. Hope this will be solved soon, this is stopping all our machine learning developments.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-11-17T12:10:08.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "it seems like name conflict can you just rename to something different than test-mlflow.\n\nYou can also try to clean directories if there is nothing important (but I am not sure is/ adb on dbfs storage):\n\n\u00a0\n\ndbutils.fs.rm(\"/databricks/mlflow-tracking/1823487114958629\", recurse=True)\ndbutils.fs.rm(\"/adb/6432554542138879/1823487114958629/learning/Mlflow-Full-Example/test-mlflow\", recurse=True)\n\n\u00a0\n\n\u00a0\n\n\u00a0\n\nExpand Post",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-11-17T12:49:19.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "I tried renaming the experiment name and the run_name and it does not work, the error keeps the same. When I search for the experiment it is conflicting I can find the AML id using client.list_experiments(), this is the Experiment I have conflict, but it seems the conflict has to do with the AML part:\n\n\u00a0\n\nExperiment: artifact_location='dbfs:/databricks/mlflow-tracking/2288118769165005', experiment_id='2288118769165005', lifecycle_stage='active', name='/learning/Mlflow-Full-Example/test-mlflow-renamed2', tags={'mlflow.AML_EXPERIMENT_ID': '594197a2-c16e-4e14-8040-e398833198ff',\n\n'mlflow.experimentType': 'MLFLOW_EXPERIMENT',\n\n'mlflow.ownerEmail': '***.***@***.***',\n\n'mlflow.ownerId': 'YYYYYY'}\n\n\u00a0\n\nI can delete the whole experiment using the UI of Experiments if I try to delete any experiment using mlflow.delete_experiment() I get the same error of the beginning. Nevertheless, it does not work. Also, I can not find the /adb directory anywhere, it is not in the DBFS.\n\nExpand Post",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-11-17T13:01:43.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "It seems that for every experiment I create, mlflow creates also a AML experiment associated and all AML experiments are pointing to the same artifactLocation=\"\" by default. It does not matter if you delete all experiments using the UI, the garbage collector detects that there is (or there was) a experiment (an AML experiment) with artifactLocation=\"\", so there is a conflict for any new experiment you try to log things in.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-11-17T16:10:24.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @mangeldfz (Customer)\u200b\u00a0 it\u2019s not recommended to \u201clink\u201d the Databricks and AML workspaces, as we are seeing more problems.\u00a0You can refer to the instructions found below for using MLflow with AML.\u00a0\u00a0\u00a0https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-mlflow\n\n\u00a0\n\nYou can refer to https://github.com/MicrosoftDocs/azure-docs/issues/80298 to unlink.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-11-18T12:22:21.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi Prabakar, thank you so much for your response. Finally, we decided to delete the Azure Machine Learning service because the ARM in the reference that you provide throws the following error:\n\n\u00a0\n\n\u00a0\n\nI wonder if just redeploying the Azure Machine Learning service in the same resource group will be enough to set up both services properly or will be again a linking between them. I count with no mlflow communication between Databricks and the new Azure Machine Learning, of course.\n\nExpand Post",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-12-01T16:01:26.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi!\n\nI am facing the same problems with linked WS and wonder if you managed to find a solution to your problem by unlinking the spaces.",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "How can I use Databricks to \"automagically\" distribute scikit-learn model training?",
+		"Question_creation_date": "2021-06-24T16:29:00",
+		"Question_tag": [
+			"Machine Learning",
+			"Scikit-learn",
+			"Scikit",
+			"Scaling",
+			"Model Tuning",
+			"Model Training"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001GHVSiCAP/how-can-i-use-databricks-to-automagically-distribute-scikitlearn-model-training",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 1,
+		"Question_view_count": 171,
+		"Question_has_accepted_answer": false,
+		"Question_body": "Is there a way to automatically distribute training and model tuning across a Spark cluster, if I want to keep using scikit-learn?",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-06-24T20:42:11.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "It depends on what you mean by \"automagically.\"\n\n\u00a0\n\nIf you want to keep using scikit-learn, there are ways to distribute parts of training and tuning with minimal effort. However, there is no \"magic\" way to distribute training an individual model in scikit-learn; it is fundamentally a single-machine ML library, so training a model (e.g., a decision tree) in a distributed way requires a different implementation (like in Apache Spark MLlib).\n\n\u00a0\n\nYou can distribute some parts of the workflow easily:\n\nModel tuning and cross validation\nData prep and featurization\n\n\u00a0\n\nGood tools for distributing these workloads with scikit-learn include:\n\nHyperopt with SparkTrials: Hyperopt is a Python library for adaptive (smart & efficient) hyperparameter tuning, and there is a SparkTrials component which lets you scale tuning across a Spark cluster. See the Databricks docs (AWS, Azure, GCP) and the Hyperopt SparkTrials docs for more info.\njoblib-spark: Some algorithms in scikit-learn (especially the tuning and cross-validation tools) let you specify a parallel backend. You can use the joblib-spark backend to use Spark as that parallel backend. See the joblib-spark github page for an example.\nKoalas: This provides a Pandas API backed by Spark. Great for data prep. See the Koalas website for more info, and know that the Spark community plans to include this in future Spark releases.\nPandas UDFs in Spark DataFrames: These let you specify arbitrary code (such as scikit-learn featurization logic) in operations on distributed DataFrames. See these docs for more info (AWS, Azure, GCP).\n\n\u00a0\n\nExpand Post",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "What happens to my production jobs if the underlying Databricks Runtime is no longer supported? Will they fail?",
+		"Question_creation_date": "2021-09-23T20:53:00",
+		"Question_tag": [
+			"Databricks Runtime",
+			"Production Jobs",
+			"Production"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001LW0M1CAL/what-happens-to-my-production-jobs-if-the-underlying-databricks-runtime-is-no-longer-supported-will-they-fail",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 4,
+		"Question_view_count": 143,
+		"Question_has_accepted_answer": false,
+		"Question_body": "",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-09-24T05:36:05.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @\u00a0Will_Block! My name is Kaniz, and I'm the technical moderator here. Great to meet you, and thanks for your question! Let's see if your peers on the community have an answer to your question first. Or else I will follow up with my team and get back to you soon.Thanks.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-09-27T07:33:18.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "@Will_Block (Databricks)\u200b\u00a0, a while ago we had some jobs running on non-supported versions.\n\nWe did not notice it to be honest, because the jobs kept on working! That was however more than a year ago. The minute we noticed running on a non-supported version, we started migrating.\n\nSo chances are that they will keep on running for a while, but without support... I would not take the risk and start migrating/planning ASAP.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-10-04T10:52:59.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "@werners (Customer)\u200b you can think about the Databricks Runtime as a contract. It does and will change over time. However, we offer Long Term Support versions of the runtime which offer multi-year support. If you have production jobs, I would definitely consider running them on an LTS version. However, as the LTS version phases out of support, please consider migrating to a newer LTS so you can take advantage of the thousands of improvements we release every year.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-05-18T20:28:16.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @Will_Block (Databricks)\u200b\u00a0, Just a friendly follow-up. Do you still need help or the above responses help you to find the solution? Please let us know.",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "API limit on mlflow.tracking.client.MlflowClient.list_run_infos method?",
+		"Question_creation_date": "2022-09-06T09:37:00",
+		"Question_tag": [
+			"MLflow API Limit",
+			"Run Infos Method",
+			"API Limit",
+			"Api",
+			"Databricks Community",
+			"MLFlow"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D58Y00009AJ1zVSAT/api-limit-on-mlflowtrackingclientmlflowclientlistruninfos-method",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 2,
+		"Question_view_count": 61,
+		"Question_has_accepted_answer": false,
+		"Question_body": "I'm trying out managed MLflow on Databricks Community edition, with tracking data saved on Databricks and artifacts saved on my own AWS S3 bucket.\n\n\u00a0\n\nI created one experiment and logged 768 runs in the experiment. When I try to get the list of the runs with list_run_infos method, the return maxes out at 399 instead of 768. Is this a limit imposed on Community Edition?\n\n\u00a0\n\nCode:\n\nfrom mlflow.tracking import MlflowClient\nfrom mlflow.entities import ViewType\nclient = MlflowClient()   \nexp_id = client.get_experiment_by_name(\"exp_name\").experiment_id\nload_max = 10000\n\u00a0\nrun_list = client.list_run_infos(\n                          experiment_id=exp_id, \n                          run_view_type=ViewType.ACTIVE_ONLY, \n                          max_results=load_max\n) \nprint(len(run_list))\n399",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-09-19T22:28:40.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Are 768 of them 'active'? this lists only active runs, according to the method call here.\n\n\u00a0\n\nNote that you should get a paginated result from this method. I am not sure that's the issue here, but the result is not going to be all results.\n\nI don't believe there is otherwise a limit here.\n\n\u00a0\n\nFinally, related, this method is deprecated in favor of search_runs anyway, note.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-09-22T08:46:41.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @j_b (Customer)\u200b\u00a0\n\n\u00a0\n\nHope all is well! Just wanted to check in if you were able to resolve your issue and would you be happy to share the solution or mark an answer as best? Else please let us know if you need more help.\u00a0\n\n\u00a0\n\nWe'd love to hear from you.\n\n\u00a0\n\nThanks!\n\n\u00a0\n\n\u00a0\n\nExpand Post",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Can you deploy models that can be queried/called/inferred outside your organization?",
+		"Question_creation_date": "2022-01-07T12:49:00",
+		"Question_tag": [
+			"Model Deployment",
+			"Small Scale Experimentation",
+			"Deploy Models",
+			"MLFlow",
+			"Deploy"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001bg0ZcCAI/can-you-deploy-models-that-can-be-queriedcalledinferred-outside-your-organization",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 6,
+		"Question_view_count": 265,
+		"Question_has_accepted_answer": true,
+		"Question_body": "It looks like you can via MLflow but I wanted to check before diving deeper?\n\nAlso it seems like if it is possible, it's just for small scale experimentation?\n\nThank you!",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-01-07T17:57:28.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @\u00a0SeanB\u00a0! My name is Kaniz, and I'm the technical moderator here. Great to meet you, and thanks for your question! Let's see if your peers in the community have an answer to your question first. Or else I will get back to you soon. Thanks.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-01-12T04:22:21.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "@SeanB (Customer)\u200b\u00a0 just wanted to check from where actually you are trying to query ?",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-01-12T04:22:37.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Means - outside databricks",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-01-17T17:01:37.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Yes, outside databricks.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-01-12T10:33:38.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Yes, If somebody outside Databricks can query/use a model built in Databricks. I assume the answer must be yes?",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-01-31T08:52:49.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @SeanB (Customer)\u200b\u00a0, Model access rights are inherited from the Model Registry. Enabling or disabling the serving feature requires \u2018manage\u2019 permission on the registered model. Anyone with read rights can score any of the deployed versions. (Source)",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Can the HTML behind a SQL visualisations be accessed?",
+		"Question_creation_date": "2022-11-13T08:40:00",
+		"Question_tag": [
+			"Sql",
+			"SQL Visualizations",
+			"Self Service Notebooks",
+			"MLFlow",
+			"SQL Visualisations",
+			"Html",
+			"Visualization"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D58Y00009TbPyVSAV/can-the-html-behind-a-sql-visualisations-be-accessed",
+		"Question_upvote_count": 1,
+		"Question_answer_count": 1,
+		"Question_view_count": 36,
+		"Question_has_accepted_answer": false,
+		"Question_body": "We are using MLFlow to manage the usage of some self service notebooks. This involves logging parameters, tables and figures.\n\n\u00a0\n\nFigures are logged using:\n\nmlflow.log_figure(\n  figure=fig,\n  artifact_file=\"visual/fig.html\"\n)\n\nUsually the fig object is generated using seaborn, plotly or matplotlib. With the addition of the redash chart editor to notebooks we can use the inbuilt visualisation tool more.\n\n\u00a0\n\nIs there a way to access the HTML so the an image created using the in-built editor can be logged?\n\n\u00a0\n\nCheers",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-11-14T13:14:05.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "There is no way to access the html used. You can download the images. The editor uses redash, so you can try looking at that library for more information.",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "How does Databricks managed MLflow compare with open-source (OSS) MLflow?",
+		"Question_creation_date": "2021-06-14T17:38:00",
+		"Question_tag": [
+			"Machine Learning",
+			"MLFlow",
+			"OSS"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001GHVYhCAP/how-does-databricks-managed-mlflow-compare-with-opensource-oss-mlflow",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 1,
+		"Question_view_count": 147,
+		"Question_has_accepted_answer": false,
+		"Question_body": "",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-06-14T21:44:00.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "You can find a lot more info on this at this MLflow product page, including a comparison table at the bottom. I'd summarize that comparison as: Databricks provides three key things in its managed MLflow service.\n\nSecurity: MLflow experiments, models, model stages, and artifacts use the same access control models as other Databricks objects (clusters, jobs, etc.). This makes it much easier for admins to manage security in their holistic data platform, rather than implementing ACLs separately for ML.\nScalability: Our managed Tracking Server and Model Registry are hosted and scaled for you, and registries can support millions of models. You don't need to implement a highly available and scalable service yourself.\nIntegrations: Workspace integrations improve the MLflow user experience (e.g., notebook Runs sidebar). Workflow integrations simplify environment management (Databricks Runtimes + Libraries), compute resources (Clusters), and automation (Jobs, Model Registry webhooks). You don't need to build these integrations yourself in a DIY or piecemeal platform.\n\n\u00a0\n\nExpand Post",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Transfer files saved in filestore to either the workspace or to a repo",
+		"Question_creation_date": "2022-01-28T16:49:00",
+		"Question_tag": [
+			"Transfer Files",
+			"Files",
+			"Python",
+			"Model",
+			"Filestore",
+			"Machine Learning",
+			"Filename"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001eeT1jCAE/transfer-files-saved-in-filestore-to-either-the-workspace-or-to-a-repo",
+		"Question_upvote_count": 2,
+		"Question_answer_count": 3,
+		"Question_view_count": 0,
+		"Question_has_accepted_answer": true,
+		"Question_body": "I built a machine learning model:\n\nlr = LinearRegression()\nlr.fit(X_train, y_train)\n\nwhich I can save to the filestore by:\n\nfilename = \"/dbfs/FileStore/lr_model.pkl\"\nwith open(filename, 'wb') as f:\n    pickle.dump(lr, f)\n\nIdeally, I wanted to save the model directly to a workspace or a repo so I tried:\n\nfilename = \"/Users/user/lr_model.pkl\"\nos.makedirs(os.path.dirname(filename), exist_ok=True)\nwith open(filename, 'wb') as f:\n    pickle.dump(lr, f)\n\nbut it is not working because the file is not showing up in the workspace.\n\nThe only alternative I have now is to transfer the model from the filestore to the workspace or a repo, how do I go about that?",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-01-29T00:30:08.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "It's important to keep in mind that there are 2 file systems:\n\nThe file system on the local machines that are part of the cluster\nThe distributed file system https://docs.databricks.com/data/databricks-file-system.html\n\nWhen you use python w/out spark such as with sklearn, its only on the driver and local is local on the driver. That will go away when the cluster does.\n\nTry %sh ls / and %fs ls and see the differences",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-02-01T15:25:47.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Workspace and Repo is not full available via dbfs as they have separate access rights. It is better to use MLFlow for your models as it is like git but for ML. I think using MLOps you can than put your model also to git.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-02-04T21:10:11.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @MichaelO (Customer)\u200b\u00a0,\n\n\u00a0\n\nWhen you store the file in DBFS (/FileStore/...), it's in your account (data plane). While notebooks, etc. are in the Databricks account (control plane). By design, you can't import non-code objects into a workspace. But Repos now has support for\u00a0arbitrary files, although only one direction - you can access files in Repos from your cluster running in the data plane, you can't write into Repos (at least not now). You can:\n\nEither export model to your local disk & commit, then pull changes into Repos\nUse\u00a0Workspace API\u00a0to put files into Repos. Here is an answer that shows how to do that.\n\nBut really, you should use MLflow that is built-in into Azure Databricks, and it will help you by\u00a0logging the model file, hyper-parameters, and other information. And then you can work with this model using APIs, command tools, etc., for example, to\u00a0move the model between staging & production stages using Model Registry,\u00a0deploy the model to AzureML, etc.\n\nExpand Post",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Some of the older runtimes are leveraging deprecated Ubuntu versions. How do I understand which OS version is being used by the different runtimes?",
+		"Question_creation_date": "2021-06-14T11:57:00",
+		"Question_tag": [
+			"Databricks Runtime",
+			"Ubuntu",
+			"Ubuntu Versions"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001GHVYoCAP/some-of-the-older-runtimes-are-leveraging-deprecated-ubuntu-versions-how-do-i-understand-which-os-version-is-being-used-by-the-different-runtimes",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 1,
+		"Question_view_count": 64,
+		"Question_has_accepted_answer": false,
+		"Question_body": "",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-06-18T16:46:18.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "We list the OS version in the \"Environment\" section of each runtime version's release notes. See link to all the runtime release notes here: https://docs.databricks.com/release-notes/runtime/releases.html",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Two or more different ml model on one cluster.",
+		"Question_creation_date": "2022-10-05T04:28:00",
+		"Question_tag": [
+			"MLflow Experiment",
+			"Models",
+			"MLFlow",
+			"Ml"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D58Y00009IJFTPSA5/two-or-more-different-ml-model-on-one-cluster",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 3,
+		"Question_view_count": 80,
+		"Question_has_accepted_answer": false,
+		"Question_body": "Hi, have you already dealt with the situation that you would like to have two different ml models in one cluster? i.e: I have a project which contains two or more different models with more different pursposes. The goals is to have three different real-time ml endpoints but these models should be deployed only on one cluster.\n\nTomas",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-10-06T07:27:01.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi, @TomasP (Customer)\u200b\u00a0 you can go through the MLflow guide: https://docs.databricks.com/mlflow/index.html\n\n\u00a0\n\nIf I have understood it correctly, if you are running mlflow models in jobs runs in that case , each one of the jobs/job-runs gets a dedicated cluster that turns off right after the job finishes. It\u2019s possible running a lot of clusters in parallel in order to execute many independent jobs. In a job cluster a single job run deploys a single cluster which cannot be shared. Please correct me if I am wrong.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-10-07T06:55:32.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @debayan (Databricks)\u200b\u00a0 Thanks for answer.\u00a0Yes, I am familiar with the classical approach.\u00a0I'm more interested if there is any work around. For two model Im able to transfer one model to production stage and second model to staging.\u00a0Both of them have their own containers and have their own endpoints.\u00a0\u00a0it does not matter if one is designed in tensorflow and second one in pytorch. But I would like to find way how to deploy more models on one cluster.\u00a0I know it goes against mlflow concept but the aim is to save costs.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-11-13T06:27:23.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @TomasP (Customer)\u200b\u00a0\n\n\u00a0\n\nHope all is well! Just wanted to check in if you were able to resolve your issue and would you be happy to share the solution or mark an answer as best? Else please let us know if you need more help.\u00a0\n\n\u00a0\n\nWe'd love to hear from you.\n\n\u00a0\n\nThanks!\n\n\u00a0\n\n\u00a0\n\n\u00a0\n\nExpand Post",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "mlflow project train and validate - Control over the data used in the script?",
+		"Question_creation_date": "2021-07-21T08:41:00",
+		"Question_tag": [
+			"MLFlow",
+			"Mlflow project"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001HKIIPCA5/mlflow-project-train-and-validate-control-over-the-data-used-in-the-script",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 1,
+		"Question_view_count": 102,
+		"Question_has_accepted_answer": false,
+		"Question_body": "Hi there,\n\nTrying to decide if I am going to get started with ml and really enjoyed it so far.\n\nWhen going through the documentation, there was a blocker moment for me, as I feel the documentation doesn't mention much about the dataset used to train the model.\n\nModel = Data + (Algorithm & hyperparameters )\n\nI don't see an example in documentation where MLprojects is ran on different data (CSV ,SQL or code based etc..),\n\nThe code shown in the screenshot\n\n\"mlflow run sklearn_elasticnet_wine -P alpha = 0.5 would retrain a model with different hyperparameters, but on what data?\n\nHas it already been included in the project, and can you change it to train the model on different data.\n\nHow do you store and track the datasets being used?\n\nCan someone explain please?\n\nThanks,",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-09-03T07:37:36.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @\u00a0VirajV! My name is Kaniz, and I'm the technical moderator here. Great to meet you, and thanks for your question! Let's see if your peers on the Forum have an answer to your question first. Or else I will follow up shortly with a response.",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Trigger.AvailableNow does not support maxOffsetsPerTrigger in Databricks runtime 10.3",
+		"Question_creation_date": "2022-03-28T23:54:00",
+		"Question_tag": [
+			"Databricks Runtime",
+			"Spark Stream Job",
+			"Support",
+			"Trigger.AvailableNow",
+			"Job Run",
+			"Azure"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001oFzYjCAK/triggeravailablenow-does-not-support-maxoffsetspertrigger-in-databricks-runtime-103",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 3,
+		"Question_view_count": 372,
+		"Question_has_accepted_answer": true,
+		"Question_body": "Hello,\n\n\u00a0\n\nI ran a spark stream job to ingest data from kafka to test Trigger.AvailableNow.\n\n\u00a0\n\nWhat's environment the job run ?\n\n1: Databricks runtime 10.3\n\n2: Azure cloud\n\n3: 1 Driver node + 3 work nodes( 14GB, 4core)\n\n\u00a0\n\nval maxOffsetsPerTrigger = \"500\"\n\n\u00a0\n\nspark.conf.set(\"spark.databricks.delta.autoCompact.enabled\",\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\"auto\")\n\n\u00a0\n\n...\n\n\u00a0\n\nval rdf = spark\n\n\u00a0.readStream\n\n\u00a0.format(\"kafka\")\n\n\u00a0.option(\"kafka.security.protocol\", \"SASL_PLAINTEXT\")\n\n\u00a0.option(\"kafka.sasl.mechanism\",\u00a0\u00a0\"SCRAM-SHA-512\")\n\n\u00a0.option(\"kafka.sasl.jaas.config\",\u00a0\"<>\")\n\n\u00a0.option(\"kafka.bootstrap.servers\", servers)\n\n\u00a0.option(\"subscribe\",\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0topic)\n\n\u00a0.option(\"startingOffsets\",\u00a0\u00a0\u00a0\u00a0\u00a0\"earliest\")\u00a0\n\n\u00a0.option(\"maxOffsetsPerTrigger\",\u00a0\u00a0maxOffsetsPerTrigger)\n\n\u00a0.load()\n\n\u00a0\n\nrdf.writeStream\n\n\u00a0.format(\"delta\")\n\n\u00a0.outputMode(\"append\")\n\n\u00a0.option(\"mergeSchema\", \"true\")\n\n\u00a0.option(\"checkpointLocation\", ckpPath)\n\n\u00a0.trigger(Trigger.AvailableNow)\n\n\u00a0.start(tabPath)\n\n\u00a0.awaitTermination()\n\n\u00a0\n\nWhat I expected to see:\n\n\u00a0\n\n1: The spark stream job can read all data from Kafka and then quit\n\n2: The spark stream will apply maxOffsetsPerTrigger for each micro batch\n\n\u00a0\n\n\u00a0\n\nWhat I see:\n\n\u00a0\n\nthe Kafka topic has four partitions, it takes 5 hours to generate 4 huge data files.\n\n\u00a0\n\n\u00a0\n\npart-00000-89afacf1-f2e6-4904-b313-080d48034859-c000.snappy.parquet\n\n3/25/2022, 9:50:48 PM\n\nHot (Inferred)\n\nBlock blob\n\n14.39 GiB\n\nAvailable\n\n\u00a0\n\n\u00a0\n\npart-00001-cf932ee2-8535-4dd6-9dab-e94b9292a438-c000.snappy.parquet\n\n3/25/2022, 6:15:36 PM\n\nHot (Inferred)\n\nBlock blob\n\n14.38 GiB\n\nAvailable\n\n\u00a0\n\n\u00a0\n\npart-00002-7d481793-10dc-4739-8c20-972cb6f18fd6-c000.snappy.parquet\n\n3/25/2022, 6:15:22 PM\n\nHot (Inferred)\n\nBlock blob\n\n14.41 GiB\n\nAvailable\n\n\u00a0\n\n\u00a0\n\npart-00003-17c88f26-f152-4b27-80cf-5ae372662950-c000.snappy.parquet\n\n3/25/2022, 9:48:14 PM\n\nHot (Inferred)\n\nBlock blob\n\n14.43 GiB\n\nAvailable",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-03-28T05:19:47.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "We\u2019re constantly working to improve our features based on feedback like this, so I\u2019ll be sure to share your request to the API product team.\n\n\u00a0\n\nusps liteblue",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-03-29T03:57:11.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "@Eulaliasw (Customer)\u200b\u00a0, thanks for help. This issue has been fixed in databricks 10.4 and spark 3.3.\n\n\u00a0\n\n[SPARK-36649]\u00a0[SQL] Support\u00a0Trigger.AvailableNow\u00a0on Kafka data source\n\n\u00a0\n\nhttps://docs.databricks.com/release-notes/runtime/10.4.html\n\n\u00a0\n\n\u00a0\n\n\u00a0\n\nExpand Post",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-03-29T12:01:43.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "You'd be better off with 1 node with 12 cores than 3 nodes with 4 each. You're shuffles are going to be much better one 1 machine.",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "MLflow not logging metrics",
+		"Question_creation_date": "2021-06-25T12:21:00",
+		"Question_tag": [
+			"Metrics",
+			"MLflow Experiments",
+			"MLFlow",
+			"Autologging"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001GHVQtCAP/mlflow-not-logging-metrics",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 1,
+		"Question_view_count": 111,
+		"Question_has_accepted_answer": false,
+		"Question_body": "I have run a few MLflow experiments and I can see them in the experiment history, but none of the metrics have been logged along with them. I thought this was supposed to be automatically included. Any idea why they wouldn't be showing up?",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-09-03T07:36:31.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @\u00a0trevor.bishop! My name is Kaniz, and I'm the technical moderator here. Great to meet you, and thanks for your question! Let's see if your peers on the Forum have an answer to your question first. Or else I will follow up shortly with a response.",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Can we have multiple MLflo run in parallel ?",
+		"Question_creation_date": "2021-06-25T09:46:00",
+		"Question_tag": [
+			"Python",
+			"MLFlow",
+			"Runs"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001GHVRSCA5/can-we-have-multiple-mlflo-run-in-parallel-",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 1,
+		"Question_view_count": 151,
+		"Question_has_accepted_answer": true,
+		"Question_body": "",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-06-25T13:46:29.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "I think you cab find a solution on github page of ml flow - code examples here:\u00a0https://github.com/mlflow/mlflow/issues/3592",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "toPandas() causes IndexOutOfBoundsException in Apache Arrow",
+		"Question_creation_date": "2022-04-19T13:47:00",
+		"Question_tag": [
+			"Databricks Runtime",
+			"Apache",
+			"Apache Arrow"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001sJUheCAG/topandas-causes-indexoutofboundsexception-in-apache-arrow",
+		"Question_upvote_count": 1,
+		"Question_answer_count": 15,
+		"Question_view_count": 975,
+		"Question_has_accepted_answer": false,
+		"Question_body": "Using DBR 10.0\n\n\u00a0\n\nWhen calling toPandas() the worker fails with IndexOutOfBoundsException. It seems like ArrowWriter.sizeInBytes (which looks like a proprietary method since I can't find it in OSS) calls arrow's getBufferSizeFor which fails with this error. What is the root cause of this issue?\n\n\u00a0\n\nHere's a sample of the full stack trace:\n\n\u00a0\n\njava.lang.IndexOutOfBoundsException: index: 16384, length: 4 (expected: range(0, 16384))\nat org.apache.arrow.memory.ArrowBuf.checkIndexD(ArrowBuf.java:318)\nat org.apache.arrow.memory.ArrowBuf.chk(ArrowBuf.java:305)\nat org.apache.arrow.memory.ArrowBuf.getInt(ArrowBuf.java:424)\nat org.apache.arrow.vector.complex.BaseRepeatedValueVector.getBufferSizeFor(BaseRepeatedValueVector.java:229)\nat org.apache.arrow.vector.complex.ListVector.getBufferSizeFor(ListVector.java:621)\nat org.apache.spark.sql.execution.arrow.ArrowFieldWriter.getSizeInBytes(ArrowWriter.scala:165)\nat org.apache.spark.sql.execution.arrow.ArrowWriter.sizeInBytes(ArrowWriter.scala:118)\nat org.apache.spark.sql.execution.arrow.ArrowConverters$$anon$1.$anonfun$next$1(ArrowConverters.scala:224)\nat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)\nat org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1647)\nat org.apache.spark.sql.execution.arrow.ArrowConverters$$anon$1.next(ArrowConverters.scala:235)\nat org.apache.spark.sql.execution.arrow.ArrowConverters$$anon$1.next(ArrowConverters.scala:199)\nat scala.collection.Iterator$$anon$10.next(Iterator.scala:461)\nat scala.collection.Iterator.foreach(Iterator.scala:943)\nat scala.collection.Iterator.foreach$(Iterator.scala:943)",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-04-19T18:14:33.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "@ivanychev (Customer)\u200b\u00a0, I think it's trying to return too much data to pandas and overloading the memory. What are you trying to do? You shouldn't need to use pandas much anymore with the 3.2 introduction of pandas API for Spark https://databricks.com/blog/2021/10/04/pandas-api-on-upcoming-apache-spark-3-2.html",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-19T19:17:50.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "I'm feeding the DataFrame to the ML model. The `toPandas()` works perfectly fine with `spark.sql.execution.arrow.pyspark.enabled` set to `false`.\n\n\u00a0\n\nBut disabling arrow pipeline by pipeline is far from perfect. The error above doesn't explain a lot and the fail occurs in the proprietary code. At this point I don't know where to look for an error",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-19T19:21:39.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Weirdly, `getBufferSizeFor` is the cause of the failure. IMO the method with such a name shouldn't cause out of bounds error.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-19T19:28:00.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "to_pandas() is only for a small dataset.\n\n\u00a0\n\nPlease use instead:\n\nto_pandas_on_spark()\n\nIt is essential to use Pandas on Spark instead of ordinary Pandas so that it will work in a distributed way. Here is more info https://spark.apache.org/docs/latest/api/python/user_guide/pandas_on_spark/index.html\n\n\u00a0\n\nSo always import Pandas as:\n\nimport pyspark.pandas as ps",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-19T19:33:12.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "As I noted, `to_pandas()\u00a0` works great with `spark.sql.execution.arrow.pyspark.enabled` set to `false`. I understand that to_pandas_on_spark() is an option, but I need a Pandas DataFrame, not a Pandas-on-Spark DataFrame.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-19T19:50:18.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Turning arrow off is going to increase your execution time. It might be better to use something like applyinpandas. You might want to adjust the batch size https://spark.apache.org/docs/3.0.0/sql-pyspark-pandas-with-arrow.html#setting-arrow-batch-size",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-19T19:57:49.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Again, I can't use `applyinpandas` because I need to collect data to feed into an ML model. I need a *Pandas dataframe*.\n\n\u00a0\n\nI have enough memory on my driver (turning off arrow makes the code work).",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-19T20:23:19.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "applyinpandas takes a function argument, which can be an ML model.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-19T20:29:49.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "We train an ML model, not apply it. We need to fetch a batch of data as Pandas dataframe and feed it into a model for training.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-19T20:39:35.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Yes, the ml model training is done with a function such as model.fit().",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-04-20T08:29:32.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "I know that. Is my question not clear?",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-08-12T06:28:25.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "I have the similar situation.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-05-11T11:48:07.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @ivanychev (Customer)\u200b\u00a0 , Just a friendly follow-up. Do you still need help, or @Hubert Dudek (Customer)\u200b and @josephk (Databricks)\u200b\u00a0's response help you to find the solution? Please let us know.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-06-21T14:24:48.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Hi @ivanychev (Customer)\u200b\u00a0, We haven\u2019t heard from you on the last response from me, and I was checking back to see if you found a solution. Or else, If you have any solution, please share it with the community as it can be helpful to others. Otherwise, we will respond with more details and try to help.",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2022-09-19T22:41:56.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "This could be a Arrow version mismatch. Do you by chance try to install anything that could install a different arrow version? it can happen indirectly via other libs.",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Responsible AI on Databricks",
+		"Question_creation_date": "2022-09-20T04:23:00",
+		"Question_tag": [
+			"Ai",
+			"Explainable AI",
+			"Proven Practice",
+			"Interpretability",
+			"Lime",
+			"Shap",
+			"Responsible AI",
+			"Bias",
+			"MLFlow",
+			"Ml"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D58Y00009ETv8ISAT/responsible-ai-on-databricks",
+		"Question_upvote_count": 1,
+		"Question_answer_count": 1,
+		"Question_view_count": 78,
+		"Question_has_accepted_answer": false,
+		"Question_body": "Looking to learn how you can use responsible AI toolkits on Databricks? Interested in learning how you can incorporate open source tools like SHAP and Fairlearn with Databricks?\n\n\u00a0\n\nI would recommend checking out this blog: Mitigating Bias in Machine Learning With SHAP and Fairlearn from my colleague @sean.owen (Databricks)\u200b.\n\n\u00a0\n\nSHAP is a explainability framework used to determine the relative importance of features used in an ML model to give better transparency, especially when used with more complex models. Fairlearn is a framework to quantify and minimize bias inherit to datasets used an in ML model.\n\n\u00a0\n\nIn addition to leveraging these frameworks as discussed in the article, out of the box Databricks automatically logs SHAP explainability plots with most ml frameworks using mlflow autolog and SHAP plots are automatically generated as part of Databricks AutoML notebook output. You can learn more at our Explainable AI home page.\n\n\u00a0\n\nLet us know how you plan to add Responsible AI frameworks to your ML workflows in the chat!",
+		"Answers": [
+			{
+				"Answer_creation_date": "2022-09-30T06:21:42.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Awesome!",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Can I access Delta tables outside of Databricks Runtime?",
+		"Question_creation_date": "2021-06-15T12:06:00",
+		"Question_tag": [
+			"Delta",
+			"Databricks Runtime",
+			"OSS"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001GHVYACA5/can-i-access-delta-tables-outside-of-databricks-runtime",
+		"Question_upvote_count": 0,
+		"Question_answer_count": 2,
+		"Question_view_count": 651,
+		"Question_has_accepted_answer": false,
+		"Question_body": "Is it possible to write same table with Databricks and from OSS too, Also what if I want to read the data from Map redeuce or hive",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-06-15T16:06:23.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "There are two cases to consider: external writes and external reads.\n\nExternal writes: Delta Lake maintains additional metadata in the form of a transaction log to enable ACID transactions and snapshot isolation for readers. In order to ensure the transaction log is updated correctly and the proper validations are performed, writes must go through Databricks Runtime.\nExternal reads: Delta tables store data encoded in an open format (Parquet), allowing other tools that understand this format to read the data. For information on how to read Delta tables, see\u00a0Integrations.\n\n\u00a0\n\nExpand Post",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-06-17T18:11:45.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Yes. The Delta client is open source, and lets you read/write Delta tables if you add it to your external application. See https://docs.delta.io/latest/index.html",
+				"Answer_has_accepted": false
+			}
+		]
+	},
+	{
+		"Question_title": "Update Databricks Runtime",
+		"Question_creation_date": "2021-12-17T06:21:00",
+		"Question_tag": [
+			"Update",
+			"Databricks Runtime"
+		],
+		"Question_link": "https://community.databricks.com/s/question/0D53f00001YpDuwCAF/update-databricks-runtime",
+		"Question_upvote_count": 1,
+		"Question_answer_count": 4,
+		"Question_view_count": 157,
+		"Question_has_accepted_answer": true,
+		"Question_body": "Hy guys,\n\n\u00a0\n\nI need to upgrade my databricks runtime (current 8.0 \ud83d\ude2b )\n\n\u00a0\n\nWhat the precautions should I take ?\n\n\u00a0\n\nThank you very much",
+		"Answers": [
+			{
+				"Answer_creation_date": "2021-12-17T11:27:21.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "There is a lot of to read since 8.0 including libraries upgrades https://docs.databricks.com/release-notes/runtime/releases.html\n\n\u00a0\n\nFrom my experience spark functionality generally don't have breaking changes, regarding other libraries it is so much that it doesn't make sense to go through it. Maybe just test your notebooks under 10.1 and compare results with 8.0",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-12-20T11:08:32.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "thank you @Hubert Dudek (Customer)\u200b",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-12-20T10:11:27.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "If you want to know the version of Databricks runtime in Azure after creation:\u00a0Go to Azure Data bricks portal => Clusters => Interactive Clusters =>\u00a0here you can find the run time version. For more details, refer \"Azure Databricks Runtime versions\".\n\n\u00a0\n\n\u00a0\n\nRapidfs",
+				"Answer_has_accepted": false
+			},
+			{
+				"Answer_creation_date": "2021-12-20T11:08:43.000Z",
+				"Answer_upvote_count": 0,
+				"Answer_body": "Thank yoou @Steward475 (Customer)\u200b",
+				"Answer_has_accepted": false
+			}
+		]
+	}
+]

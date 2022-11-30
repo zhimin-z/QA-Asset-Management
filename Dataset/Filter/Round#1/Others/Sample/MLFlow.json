@@ -1,0 +1,416 @@
+[
+	{
+		"Question_title": "mlflow ui throws exception when using sqlite as backend_store_uri",
+		"Question_creation_date": "2020-01-26T11:33:36",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/qeRbVnClqSI",
+		"Question_answer_count": 1,
+		"Question_view_count": 18,
+		"Question_body": "I try to start the mlflow ui service using SQLite as a backend store and cannot get rid of this exception:\n\n\nTypeError: Invalid argument(s) 'pool_pre_ping' sent to create_engine(), using configuration SQLiteDialect_pysqlite/NullPool/Engine.\u00a0 Please check that the keyword arguments are appropriate for this combination of components.\n\n\n\ncommand:\n(mlflow_demo) netanel@netpy:~/git/mlflow/backend_store$ mlflow ui --backend-store-uri 'sqlite:///home/netanel/git/mlflow/backend_store/mlflow_tracker.db'\n\n\n\nI created the SQLite DB using the sqlite3 command line and initialize the schema using the latest_schema.sql script.\n\n\npython version:\u00a0Python 3.6.0 :: Anaconda 4.3.1 (64-bit)\nmlflow version: 1.5.0\n\n\nThanks.",
+		"Answers": [
+			{
+				"Answer_creation_time": "2020-01-28T00:53:17",
+				"Answer_body": "Someone can help me with that?\nThanks.\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "Model Branching",
+		"Question_creation_date": "2021-05-17T11:42:20",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/W3FwEcd31VI",
+		"Question_answer_count": 1,
+		"Question_view_count": 16,
+		"Question_body": "I am wondering if anyone here explored idea of tracking model branching in GIT branching sense.\n\n\n\n\nI.e.\u00a0 as model is been worked on and modified/updated/retrained it gets different versioning, but then someone decided to \"extend\" model to say adopt model for similar data.\u00a0 At this point we can \"branch\" model and keep versioning of each branch separate.",
+		"Answers": [
+			{
+				"Answer_creation_time": "2021-05-17T12:00:47",
+				"Answer_body": "Vadim,\n\n\nNot that I know\u00a0of but post this on the MLflow slack channel; model registry keeps track of each version per run but not in the sense of\nbranching as Git.\n\n\nCheers\nJules\n\n\n\n\n\n\n\u2013\u2013\n\nThe Best Ideas are Simple\n\nJules S. Damji\n\nSr. Developer Advocate\n\nDatabricks, Inc.\n\nju...@databricks.com\n\n(510) 304-7686\n\n\n\n\n\n\n\n\n\n\n\u00a0\u00a0\u00a0\n\n\n\n\n\n\n\n\nOn Mon, May 17, 2021 at 8:42 AM 'Vadim Kutsyy' via mlflow-users <mlflow...@googlegroups.com> wrote:\n\n\nI am wondering if anyone here explored idea of tracking model branching in GIT branching sense.\n\n\n\n\nI.e.\u00a0 as model is been worked on and modified/updated/retrained it gets different versioning, but then someone decided to \"extend\" model to say adopt model for similar data.\u00a0 At this point we can \"branch\" model and keep versioning of each branch separate.\n\n\n\n\n\u00a0\n\n\n\n\n\u00a0\n\n\n\n\n\u00a0\n\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/a4083de3-88b3-44a1-a836-28d525ff88dan%40googlegroups.com."
+			}
+		]
+	},
+	{
+		"Question_title": "Org Using MLflow - BRIDGEi2i Analytics",
+		"Question_creation_date": "2021-01-20T00:13:05",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/1ptDCEaHLZ0",
+		"Question_answer_count": 0,
+		"Question_view_count": 15,
+		"Question_body": "Hi all,\n\n\nWe at BRIDGEi2i Analytics Solutions\u00a0are extensively using MLFlow in most of our analytical products.\nWe would like to support and contribute to MLFlow, Please add our organization to the list on MLFlow website.\n\n\n\n\nThanks!!\n\n\n\n\nRegards,\n\nSaddam |\u00a0Manager |\u00a0AI Actions\u00a0\n\nBRIDGEi2i Analytics Solutions\n\nCell:\u00a0+91 - 8147171826\n\n\n\n\n\n\n\nThis e-mail (and any attachments), is confidential and may be privileged. It may be read, copied and used only by intended recipients. Unauthorized access to this e-mail (or attachments) and disclosure or copying of its contents or any action taken in reliance on it is unlawful. Unintended recipients must notify the sender immediately by e-mail or phone and delete it from their system without making any copies or disclosing it to a third person. BRIDGEi2i Analytics Solutions reserves the right to store, monitor and review the content of all messages sent to or from this email address.",
+		"Answers": []
+	},
+	{
+		"Question_title": "MLFlow Tracking server scalability",
+		"Question_creation_date": "2018-06-22T04:38:07",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/TQe7ATr8Wqw",
+		"Question_answer_count": 4,
+		"Question_view_count": 107,
+		"Question_body": "Hey Guys,\n\n\nFirst of all, great job with this effort. It's certainly something a lot of people are waiting for (or have tried to create themselves).\n\n\nI was wondering about the scalability of the tracking server. I see in the code there is an abstraction of for the tracking Store, which is currently a FileStore if I'm correct. What are the plans to support other stores for this (ElasticSearch, Kafka, S3, ...?)\n\n\nCheers,\nD.",
+		"Answers": [
+			{
+				"Answer_creation_time": "2018-06-23T19:06:44",
+				"Answer_body": "Hi Daan,\n\nWe do intend to add other ones. There are actually two elements here,\nthe metadata store and the artifact store (which can contain large\nfiles uploaded by the job). For the metadata part we'll probably add a\ndatabase option, and for the artifacts we'll support cloud storage\nsystems.\n\n\ue5d3\n> --\n> You received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\n> To unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\n> To post to this group, send email to mlflow...@googlegroups.com.\n> To view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/bd04aa5c-3197-4000-9acc-a1857783fcf2%40googlegroups.com.\n> For more options, visit https://groups.google.com/d/optout."
+			},
+			{
+				"Answer_creation_time": "2018-10-22T16:02:46",
+				"Answer_body": "Hi,\n\n\nIs there issues in github for these two stores? would be great to understand plans & participate\n\n\nThanks!\n\ue5d3"
+			},
+			{
+				"Answer_creation_time": "2018-11-08T18:36:23",
+				"Answer_body": "We\u2019ve already received pull requests for a few artifact store backends (Google Cloud Storage, Azure Storage, SFTP, and others). If you\u2019d like to work on another one, or if you\u2019d like to work on a database store for metadata, that would be awesome. There is an open pull request for a DynamoDB metadata store but we\u2019d prefer to use something like SQLAlchemy that can work with a variety of backend databases if possible.\n\nMatei\n\n\ue5d3\n> To view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/13a17d23-1fe1-4bd5-91a5-6f81d68e8178%40googlegroups.com.\n\n\ue5d3"
+			},
+			{
+				"Answer_creation_time": "2018-11-08T18:38:33",
+				"Answer_body": "BTW I\u2019ll also add that the MLflow team at Databricks will probably implement this at some point if we don\u2019t receive an external patch, but it might be a bit further down the line since we also have requests about the UI, model scoring, etc right now. In any case though we\u2019re happy to provide feedback to anyone interested in it. The metadata store has a clearly separated API already and it shouldn\u2019t be a huge amount of work to make a new one, though some care might need to be taken to make sure we can support database migrations, etc.\n\nMatei\n\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "request for help in loading the latest version of model from mlflow",
+		"Question_creation_date": "2021-05-28T17:59:05",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/n3WYjzCufuY",
+		"Question_answer_count": 3,
+		"Question_view_count": 14,
+		"Question_body": "Hello everyone , can someone help me how can i load the latest version of my model automatically in databricks ?",
+		"Answers": [
+			{
+				"Answer_creation_time": "2021-05-28T18:47:07",
+				"Answer_body": "You can load it via model URI, e.g.\u00a0\n\n\nmy_model = mlflow.pyfunc.load_model(\"models:/mymodel/Production\")\n\n\nTomas\n\n\n\ue5d3"
+			},
+			{
+				"Answer_creation_time": "2021-05-28T19:03:30",
+				"Answer_body": "how can i specify the latest version ?\n\ue5d3"
+			},
+			{
+				"Answer_creation_time": "2021-05-28T19:15:07",
+				"Answer_body": "mlflow.pyfunc.load_model(\"models:/mymodel/versionX\n\n\nTo get that latest version, use API\u00a0\n\n\nhttps://mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.get_latest_versions\n\n\n\n\nCheers\u00a0\nJules\u00a0\n\u2014\n\nSent from my iPhone\nPardon the dumb thumb typos :)\n\n\nOn May 28, 2021, at 4:03 PM, nadine ben harrath <nadinebe...@gmail.com> wrote:\n\n\n\ufeffhow can i specify the latest version ?\n\ue5d3\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/57be45e8-d140-4f08-b979-6ab995a977f1n%40googlegroups.com."
+			}
+		]
+	},
+	{
+		"Question_title": "MLflow 2.0.0rc0 release",
+		"Question_creation_date": "2022-11-01T01:00:53",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/khwIVANuAKI",
+		"Question_answer_count": 0,
+		"Question_view_count": 18,
+		"Question_body": "We're happy to announce a release candidate for MLflow 2.0:\nhttps://github.com/mlflow/mlflow/releases/tag/v2.0.0rc0\n\nInstallation:\n===================================\n# Make sure python version is >=3.8\npip install mlflow==2.0.0rc0\n===================================\n\n\nDocumentation:\nMLflow 2.0.0rc0 documentation\n\nPlease report any issues with the release candidate in the issue tracker.",
+		"Answers": []
+	},
+	{
+		"Question_title": "MLflow Release 0.3.0",
+		"Question_creation_date": "2018-07-23T15:25:49",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/oD6P1_dPotI",
+		"Question_answer_count": 1,
+		"Question_view_count": 20,
+		"Question_body": "Hi mlflow-users,\n\n\nMLflow Release 0.3.0 is ready",
+		"Answers": [
+			{
+				"Answer_creation_time": "2018-07-23T15:27:37",
+				"Answer_body": "Eep! Sorry for the prematue send.\n\n\nMLflow Release 0.3.0 is ready, released 2018-07-18. The release is available on PyPI and docs are updated. Here are the release notes:\n\n\n\nBreaking changes:\n\n[MLflow Server] Renamed\u00a0--artifact-root\u00a0parameter to\u00a0--default-artifact-root\u00a0in\u00a0mlflow server\u00a0to better reflect its purpose (#165, @aarondav)\n\nFeatures:\n\nSpark MLlib integration: we now support logging SparkML Models directly in the log_model API, model format, and serving APIs (#72, @tomasatdatabricks)\nGoogle Cloud Storage is now supported as an artifact storage root (#152, @bnekolny)\nSupport asychronous/parallel execution of MLflow runs (#82, @smurching)\n[SageMaker] Support for deleting, updating applications deployed via SageMaker (#145, @dbczumar)\n[SageMaker] Pushing the MLflow SageMaker container now includes the MLflow version that it was published with (#124, @sueann)\n[SageMaker] Simplify parameters to SageMaker deploy by providing sane defaults (#126, @sueann)\n[UI] One-element metrics are now displayed as a bar char (#118, @cryptexis)\n\nBug fixes:\n\nRequire gitpython>=2.1.0 (#98, @aarondav)\nFixed TensorFlow model loading so that columns match the output names of the exported model (#94, @smurching)\nFix SparkUDF when number of columns >= 10 (#97, @aarondav)\nMiscellaneous bug and documentation fixes from @emres, @dmatrix, @stbof, @gsganden, @dennyglee, @anabranch, @mikehuston, @andrewmchen, @juntai-zheng\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "Performance issue of UI with O(100) runs?",
+		"Question_creation_date": "2019-06-11T13:51:32",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/Nh23E3ncxzw",
+		"Question_answer_count": 6,
+		"Question_view_count": 67,
+		"Question_body": "Hi all,\n\nwe have been using MLFlow (only the tracking API) for some time now and\nhave recently upgraded to MLFlow 1.0.0 with a MySQL tracking store. Over\ntime, we have accumulated a (still moderate) number of runs in our\nlarger experiments, and the first signs of a performance issue start to\nshow up:\n\nWe have experiments with typically ~100 runs in them. This is enough so\nthat it takes the web UI several seconds (> 5s) to display the list of\nruns initially (before I can even add search queries). I have not done\nmore detailed profiling so far, but it seems strange to me to see such a\nresponse time in a still rather small setup.\n\nThus my question: Are there people around with large production setups\n(I would expect that larger databases with thousands of runs in a single\nexperiment could be quite common)? How well can MLFlow handle this? Or\nare you keeping single experiments small with only few runs (which does\nnot seem viable to me, since I cannot compare runs between different\nexperiments in the UI)?\n\nAny experience would be highly appreciated! Could well be that we just\nhave a badly configured SQL server, but I do not really know what to expect.\n\nThanks a lot!\n\nDa",
+		"Answers": [
+			{
+				"Answer_creation_time": "2019-06-22T04:15:32",
+				"Answer_body": "Is there really nobody who has used MLFlow at this scale? Maybe one of the developers can comment whether MLFlow is at all intended to be used like that? Any experience would be highly appreciated.\n\n\nThanks,\n\n\nDa\n\n\ue5d3"
+			},
+			{
+				"Answer_creation_time": "2019-06-26T01:50:00",
+				"Answer_body": "Hi Da,\n\n\nIt should definitely be able to handle hundreds of runs, and I\u2019ve seen installations that have many more. The UI only displays the first 1000 runs or so. Do you have a lot of metrics and parameters per run? How many? It would also be nice to do some profiling and figure out whether the issue is on the browser side or on the server side (maybe DB connection or something like that).\n\n\nMatei\n\n\n\n\ue5d3\n\ue5d3\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo post to this group, send email to mlflow...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/30e8cd64-75a7-4b3f-99b6-be97a5801c11%40googlegroups.com.\nFor more options, visit https://groups.google.com/d/optout."
+			},
+			{
+				"Answer_creation_time": "2019-06-30T05:37:10",
+				"Answer_body": "Hi Matei,\n\nwe have typically 10-20 parameters logged per run, and about 10\ndifferent metrics. Is this a number that you would expect to be handled\nsmoothly? And should the number of logged values per metric impact the\nperformance of the initial query for listing all runs, or only the\ndetailed graph display of a single run?\n\nI am happy to provide more detailed profiling information. Do you have a\nsuggestion how to profile this? So far, what I have seen is that while\nloading the MLFlow page in the browser, I see full CPU load by two\ngunicorn workers on the server, over basically the whole waiting time.\nThus I believe it is more likely a server than a browser issue.\n\nDoes MLFlow write any useful logging (and where?) that could help us\nfurther?\n\nThanks a lot,\nDa"
+			},
+			{
+				"Answer_creation_time": "2019-07-01T08:43:44",
+				"Answer_body": "This seems like it should work well. It\u2019s probably best to profile the gunicorn workers then. Are you using the file store or the database store? Switching to the database store will likely improve performance if you aren\u2019t using it already because it requires less I/O and less data parsing in the workers. I\u2019d probably start with that \u2014 see https://www.mlflow.org/docs/latest/tracking.html#mlflow-tracking-servers\u00a0for how to set it up using a SQLAlchemy URI.\n\n\nMatei\n\n\n\n\ue5d3\n\ue5d3\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo post to this group, send email to mlflow...@googlegroups.com.\n\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/6972f756-a56a-4e90-a698-3d7e33c1dd39%40googlegroups.com.\n\ue5d3"
+			},
+			{
+				"Answer_creation_time": "2019-07-01T13:47:00",
+				"Answer_body": "Thanks, Matei!\n\n\nWe are already using the database store with a MySQL database running on the same host as MLFlow. Do you have a suggestion how I could profile the gunicorn workers? I have very limited understanding about the inner workings of the MLFlow server so far...\n\n\nThanks again,\nDa\n\n\nAm Montag, 1. Juli 2019 14:43:44 UTC+2 schrieb Matei Zaharia:\nThis seems like it should work well. It\u2019s probably best to profile the gunicorn workers then. Are you using the file store or the database store? Switching to the database store will likely improve performance if you aren\u2019t using it already because it requires less I/O and less data parsing in the workers. I\u2019d probably start with that \u2014 see https://www.mlflow.org/docs/latest/tracking.html#mlflow-tracking-servers\u00a0for how to set it up using a SQLAlchemy URI.\n\n\nMatei\n\n\n\nOn Jun 30, 2019, at 11:37 AM, Da Joghurt <dajo...@gmail.com> wrote:\n\n\nHi Matei,\n\nwe have typically 10-20 parameters logged per run, and about 10\ndifferent metrics. Is this a number that you would expect to be handled\nsmoothly? And should the number of logged values per metric impact the\nperformance of the initial query for listing all runs, or only the\ndetailed graph display of a single run?\n\nI am happy to provide more detailed profiling information. Do you have a\nsuggestion how to profile this? So far, what I have seen is that while\nloading the MLFlow page in the browser, I see full CPU load by two\ngunicorn workers on the server, over basically the whole waiting time.\nThus I believe it is more likely a server than a browser issue.\n\nDoes MLFlow write any useful logging (and where?) that could help us\nfurther?\n\nThanks a lot,\nDa\n\n\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\n\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow...@googlegroups.com.\n\ue5d3"
+			},
+			{
+				"Answer_creation_time": "2019-07-02T07:30:36",
+				"Answer_body": "I think the easiest way would be to add some cProfile calls into the server code:\u00a0https://docs.python.org/3/library/profile.html\u00a0(for each request). There may also be modules to add profiling to Flask as a whole.\n\n\nMatei\n\n\n\n\ue5d3\n\ue5d3\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\n\nTo post to this group, send email to mlflow...@googlegroups.com.\n\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/2697cff6-b35f-40e0-b7cb-be1a4591612c%40googlegroups.com.\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "MLflow 0.2.1 release",
+		"Question_creation_date": "2018-07-03T12:52:45",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/pWpD1HQOf8U",
+		"Question_answer_count": 0,
+		"Question_view_count": 31,
+		"Question_body": "Hi everyone,\n\nAs a heads-up, we published MLflow 0.2.0 and 0.2.1 at the end of last week with a number of new features and fixes. This post details the biggest ones: https://databricks.com/blog/2018/07/03/mlflow-0-2-released.html (namely a TensorFlow integration package for saving and serving TF models, as well as improvements to the server, including the ability to store data on S3). You can also see a more detailed change log at https://github.com/databricks/mlflow/blob/master/CHANGELOG.rst.\n\nIt should be possible to upgrade to the new version using pip install --upgrade mlflow .\n\nMatei",
+		"Answers": []
+	},
+	{
+		"Question_title": "Deploy problems",
+		"Question_creation_date": "2019-05-13T15:16:42",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/mZCOZ5FCQaM",
+		"Question_answer_count": 2,
+		"Question_view_count": 27,
+		"Question_body": "Hi guys!\n\n\nI'm new with MLFlow and I would like to deploy a simple model on SageMaker but I got some problems.\n\n\n\nI have trained a model locally and successfully generated a docker image and uploaded it to AWS ECR but, when I called deploy method I got the following error:\u00a0MlflowException: Run '6b33f54c1b2541da8ec95152ab5f566b' not found\n\n\nI'm using MLFlow\u00a00.9.1 and I'm following this tutorial:\u00a0https://docs.databricks.com/_static/notebooks/mlflow/mlflow-quick-start-deployment-aws.html\n\n\nCould someone help me please =D S2\u00a0\n\n\nThanks a lot!",
+		"Answers": [
+			{
+				"Answer_creation_time": "2019-05-13T16:17:17",
+				"Answer_body": "Hi Rafael.\u00a0\n\n\nThe exception you got signals that MLflow was not able to access the run at the time you called the deploy. What is your mlflow set up? Do you run against a remote tracking server or the default file based one? The local file-based store will by default store the data on a relative path, so you need to make sure that you logged to the same location you are trying to read from when you deploy. You can look for mlruns directory and see if it has run you are trying to deploy. You can set location of the store data by setting MLFLOW_TRACKING_URI environment variable.\n\n\n\n\n\n\n\ue5d3\n\ue5d3\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo post to this group, send email to mlflow...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/68f260a8-ea05-4690-af08-b0796065d255%40googlegroups.com.\nFor more options, visit https://groups.google.com/d/optout."
+			},
+			{
+				"Answer_creation_time": "2019-05-16T12:27:48",
+				"Answer_body": "Hi Tomas\n\nI finally got to put the trained model on sagemaker, I was actually running the commands in the wrong folder, but there were some issues with the AWS configuration as well. Thanks a lot for\u00a0your help!\n\n\nNow that I got it I have different questions like how can I \"integrate\" my Jupyter Notebook experiments with MLFlow but I'll check the mail list history for that.\n\n\nThanks!\nAtenciosamente,\nRafael J. R. Novello\n\n\nSkype: rafael.novello\nBlog:\u00a0http://rafanovello.blogspot.com.br/\n\n\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "MLflow 1.21.0 released!",
+		"Question_creation_date": "2021-10-25T17:52:21",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/CSKBY9hL2bo",
+		"Question_answer_count": 1,
+		"Question_view_count": 19,
+		"Question_body": "We are happy to announce the availability of\u00a0MLflow\u00a01.21.0!\n\n\n\nMLflow 1.21.0 includes several major features and improvements:\n\nFeatures:\n\n[UI] Add a diff-only toggle to the runs table for filtering out columns with constant values (#4862,\u00a0@marijncv)\n[UI] Add a duration column to the runs table (#4840,\u00a0@marijncv)\n[UI] Display the default column sorting order in the runs table (#4847,\u00a0@marijncv)\n[UI] Add\u00a0start_time\u00a0and\u00a0duration\u00a0information to exported runs CSV (#4851,\u00a0@marijncv)\n[UI] Add lifecycle stage information to the run page (#4848,\u00a0@marijncv)\n[UI] Collapse run page sections by default for space efficiency, limit artifact previews to 50MB (#4917,\u00a0@dbczumar)\n[Tracking] Introduce autologging capabilities for PaddlePaddle model training (#4751,\u00a0@jinminhao)\n[Tracking] Add an optional tags field to the CreateExperiment API (#4788,\u00a0@dbczumar;\u00a0#4795,\u00a0@apurva-koti)\n[Tracking] Add support for deleting artifacts from SFTP stores via the\u00a0mlflow gc\u00a0CLI (#4670,\u00a0@afaul)\n[Tracking] Support AzureDefaultCredential for authenticating with Azure artifact storage backends (#4002,\u00a0@marijncv)\n[Models] Upgrade the fastai model flavor to support fastai V2 (>=2.4.1) (#4715,\u00a0@jinzhang21)\n[Models] Introduce an\u00a0mlflow.prophet\u00a0model flavor for Prophet time series models (#4773,\u00a0@BenWilson2)\n[Models] Introduce a CLI for publishing MLflow Models to the SageMaker Model Registry (#4669,\u00a0@jinnig)\n[Models] Print a warning when inferred model dependencies are not available on PyPI (#4891,\u00a0@dbczumar)\n[Models, Projects] Add\u00a0MLFLOW_CONDA_CREATE_ENV_CMD\u00a0for customizing Conda environment creation (#4746,\u00a0@giacomov)\n\nBug fixes and documentation updates:\n\n[UI] Fix an issue where column selections made in the runs table were persisted across experiments (#4926,\u00a0@sunishsheth2009)\n[UI] Fix an issue where the text\u00a0null\u00a0was displayed in the runs table column ordering dropdown (#4924,\u00a0@harupy)\n[UI] Fix a bug causing the metric plot view to display NaN values upon click (#4858,\u00a0@arpitjasa-db)\n[Tracking] Fix a model load failure for paths containing spaces or special characters on UNIX systems (#4890,\u00a0@BenWilson2)\n[Tracking] Correct a migration issue that impacted usage of MLflow Tracking with SQL Server (#4880,\u00a0@marijncv)\n[Tracking] Spark datasource autologging tags now respect the maximum allowable size for MLflow Tracking (#4809,\u00a0@dbczumar)\n[Model Registry] Add previously-missing certificate sources for Model Registry REST API requests (#4731,\u00a0@ericgosno91)\n[Model Registry] Throw an exception when users supply invalid Model Registry URIs for Databricks (#4877,\u00a0@yunpark93)\n[Scoring] Fix a schema enforcement error that incorrectly cast date-like strings to datetime objects (#4902,\u00a0@wentinghu)\n[Docs] Expand the documentation for the MLflow Skinny Client (#4113,\u00a0@eedeleon)\nFor a comprehensive list of changes, see the\u00a0release change log, and check out the latest documentation on\u00a0mlflow.org.",
+		"Answers": [
+			{
+				"Answer_creation_time": "2021-10-25T17:57:35",
+				"Answer_body": "Version 1.21.0 of the MLflow R package has not yet been released. It will be available on CRAN within the next week.\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "MLflow 0.8.2 Released!",
+		"Question_creation_date": "2019-01-30T18:30:19",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/pciLszBL2ig",
+		"Question_answer_count": 0,
+		"Question_view_count": 23,
+		"Question_body": "MLflow 0.8.2 has been released!\n\n\n\nMLflow 0.8.2 is a patch release on top of 0.8.1 containing bug fixes and documentation updates. Please see the release change log\u00a0for more information\u00a0about the fixes and updates introduced in this release. Also, check out the latest documentation on mlflow.org.",
+		"Answers": []
+	},
+	{
+		"Question_title": "Facing Problems in mlflow deployment on windows server",
+		"Question_creation_date": "2019-09-19T02:43:09",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/lovl7Ns6x0Y",
+		"Question_answer_count": 3,
+		"Question_view_count": 7,
+		"Question_body": "I am new to mlflow and finding its windows deployment extremely challenging. Has anyone been able to successfully deploy models with mlflow on windows machine ??",
+		"Answers": [
+			{
+				"Answer_creation_time": "2019-09-20T06:19:56",
+				"Answer_body": "Maybe you can use docker container .\n\n\nOn Thu, 19 Sep 2019, 12:13 babar ali, <bac...@gmail.com> wrote:\n\nI am new to mlflow and finding its windows deployment extremely challenging. Has anyone been able to successfully deploy models with mlflow on windows machine ??\n\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/5e8a0cee-7833-48d3-9fed-a61c3db8c349%40googlegroups.com."
+			},
+			{
+				"Answer_creation_time": "2019-09-20T12:45:11",
+				"Answer_body": "Hi Babar.\u00a0\n\n\nUnfortunately mlflow windows support is limited to experiment tracking for now (we would appreciate contributions).\n\ue5d3"
+			},
+			{
+				"Answer_creation_time": "2019-09-22T19:27:11",
+				"Answer_body": "Just to add to that, you may want to consider Docker on Windows as a way to run the packaged models. MLflow provides a command to package models as a Docker container already. The simple built-in model server in mlflow serve is not designed to run on Windows right now.\n\n\n\n\ue5d3\n\ue5d3\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\n\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/2c536152-711c-4be5-b79b-45530411ac14%40googlegroups.com."
+			}
+		]
+	},
+	{
+		"Question_title": "No module named pandas when \" mlflow run\"",
+		"Question_creation_date": "2018-06-19T10:40:55",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/QnASq7ITAoI",
+		"Question_answer_count": 1,
+		"Question_view_count": 57,
+		"Question_body": "Hi all,\n\u00a0\nI have pandas 0.22.0 installed in ubuntu16.04, it successfully run\u00a0python example/tutorial/train.py:\npython example/tutorial/train.py\u00a0\nElasticnet model (alpha=0.500000, l1_ratio=0.500000):\n\u00a0 RMSE: 0.82224284976\n\u00a0 MAE: 0.627876141016\n\u00a0 R2: 0.126787219728\n\n\nbut failed as below:\n\u00a0mlflow run example/tutorial -P alpha=0.5 --no-conda\n\n=== Fetching project from example/tutorial ===\n=== Work directory for this run: example/tutorial ===\n=== Created directory /tmp/tmpigdg385u for downloading remote URIs passed to arguments of type 'path' ===\n=== Running command: python train.py 0.5 0.1 ===\nTraceback (most recent call last):\n\u00a0 File \"train.py\", line 9, in <module>\n\u00a0 \u00a0 import pandas as pd\nImportError: No module named pandas\n=== Run failed ===\n\n\n\n\ndouble checked that pandas installed:\n$ python\nPython 3.5.1+ (default, Mar 30 2016, 22:46:26)\u00a0\n[GCC 5.3.1 20160330] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> import pandas as pd\n>>>\u00a0\n\n\n\n\nAny advice or work around?\n\n\nThanks,\nForest",
+		"Answers": [
+			{
+				"Answer_creation_time": "2018-06-19T13:47:51",
+				"Answer_body": "Hi Forest.\n\n\nI was not able to reproduce your issue unfortunately.\u00a0\nThe only thing that is different between the two runs is the working directory so my guess would be that your pandas is installed in a nonstandard location visible from the first directory and not visible from the second.\n\n\nTo verify, can you please try:\n\n\n```\ncd example/tutorial\n\npython -c \"import pandas as pd; print(pd.__version__)\"\n\n```\n\n\nBest,\n\n\nTomas\n\n\n\n\n\ue5d3\n\ue5d3\n\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users+unsubscribe@googlegroups.com.\nTo post to this group, send email to mlflow...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/2773f0ed-67bd-4cdd-aacd-a9a0448a2ac0%40googlegroups.com.\nFor more options, visit https://groups.google.com/d/optout."
+			}
+		]
+	},
+	{
+		"Question_title": "Dropping Python 3.5 support in the upcoming release (1.14.0)",
+		"Question_creation_date": "2021-01-20T20:52:35",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/po594D8-90g",
+		"Question_answer_count": 1,
+		"Question_view_count": 10,
+		"Question_body": "Hi all,\n\n\nWe're planning to drop Python 3.5 support in the upcoming release (1.14.0):\nhttps://github.com/mlflow/mlflow/issues/3984\n\n\nPlease let us know if you have any issues with this plan.\n\n\n\nBest regards,\nHarutaka",
+		"Answers": [
+			{
+				"Answer_creation_time": "2021-01-21T22:27:36",
+				"Answer_body": "Hi all,\n\n\n\nWe internally discussed the Python 3.5 deprecation & drop schedule again. Here's the new one:\n- MLflow 1.14.0: Deprecate Python 3.5 support (the last version that supports Python 3.5)\n- MLflow 1.15.0: Drop Python 3.5 support\n\nBest regards,\nHarutaka\n\n\n\ue5d3\n\ue5d3\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/c8e163f6-ba79-4b85-bd6e-5378f837f5f1n%40googlegroups.com."
+			}
+		]
+	},
+	{
+		"Question_title": "Evaluating MLFlow on Kubernetes",
+		"Question_creation_date": "2018-08-22T15:33:06",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/vx1uqw2GsFk",
+		"Question_answer_count": 1,
+		"Question_view_count": 411,
+		"Question_body": "Hi,\n\n\nI meet Matei and Mani during spark summit. We are currently evaluating MLFlow on Kubernetes and had some questions about it.\u00a0\n\n\nScenario: We have MLFlow Tracking server deployed in Kubernetes we also have a Jupyter notebook to run MLFlow Training.\u00a0\n\n\nHowever, if we don't provide s3 credentials in Jupyter Notebook container it sends an error. Is it required for both Jupyter Notebook and MLFlow Tracking Server to have s3 credentials in the container?\u00a0\n\n\nApache Spark allows for us to specify an non s3 endpoint other than aws. That way we can use systems like Ceph to store our models. Is this something that will work for MLFlow.\u00a0\n\n\n\n\nThanks,\u00a0\n\nZak Hassan\n\nEngineer - Artificial Intelligence -\u00a0 Center Of Excellence, CTO Office\nhttp://radanalytics.io/ - Machine Learning On OpenShift",
+		"Answers": [
+			{
+				"Answer_creation_time": "2018-08-23T15:12:05",
+				"Answer_body": "Hi Zak,\n\n\nCan you describe where and how these notebooks are hosted (locally or in a container) and how are the ACLs set up to talk to container hosting MLflow tracking server? Also can you share the error you are seeing in the notebooks?\n\n\nIf you would like to open an issue on github, we can help debug that.\u00a0\n\n\nThanks.\n\n--\u00a0\n\n\nMani Parkhe\n\nma...@databricks.com\n\n\n\n\n\n\n\n\n\n\n\n\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "java api serve model",
+		"Question_creation_date": "2020-05-07T04:06:21",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/Cl2cPlQhy98",
+		"Question_answer_count": 0,
+		"Question_view_count": 19,
+		"Question_body": "Hey. is there a possibility to serve a model with java api",
+		"Answers": []
+	},
+	{
+		"Question_title": "Step by step instructions for running MLflow Projects in EKS",
+		"Question_creation_date": "2022-04-26T18:20:19",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/r-XDGcqb4Qg",
+		"Question_answer_count": 0,
+		"Question_view_count": 17,
+		"Question_body": "Folks - as you might know, MLflow includes preliminary support for running MLflow Projects in kubernetes. if you are interested in doing so, specifically on EKS, I wrote a medium article with step by step instructions.\n\n\nhttps://medium.com/infinstor/run-mlflow-project-in-eks-b0906e04c273\n\n\n\nCheers!\nJagane",
+		"Answers": []
+	},
+	{
+		"Question_title": "Not able to get expected output while serving the model using \"mlflow model serve\" while using sklearn-crfsuite",
+		"Question_creation_date": "2019-09-13T01:54:00",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/l7sPjsCx9dQ",
+		"Question_answer_count": 1,
+		"Question_view_count": 7,
+		"Question_body": "I am not able to get the expected response when calling api served with \"mlflow model serve\" command. It is working with other sklearn libraries but not with sklearn-crfsuite. Need help.",
+		"Answers": [
+			{
+				"Answer_creation_time": "2019-09-16T18:09:30",
+				"Answer_body": "Can you open an issue on GitHub with the inputs / sample code to reproduce this? It might be that your model didn\u2019t specify a Conda environment with the sklearn-crfsuite dependency but it\u2019s hard to tell without seeing the error message.\n\n\n\nOn Sep 12, 2019, at 10:54 PM, vikash kumar <vikash....@gmail.com> wrote:\n\n\nI am not able to get the expected response when calling api served with \"mlflow model serve\" command. It is working with other sklearn libraries but not with sklearn-crfsuite. Need help.\n\n\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/380176cf-d733-4e6f-b516-dddde25e607f%40googlegroups.com."
+			}
+		]
+	},
+	{
+		"Question_title": "[RFC] Extended Search and Pagination functionality",
+		"Question_creation_date": "2019-05-08T13:55:29",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/IdVF99MAgyM",
+		"Question_answer_count": 0,
+		"Question_view_count": 8,
+		"Question_body": "Overview\n\nSearch is one of the most used APIs in MLflow to read logged experiment and run data. As organizations and projects scale and an increasing number of ML runs are logged, users have a need to severely limit the search results returned. In addition to selecting specific rows, there may be needs to limit the number of parameters, metrics, tags, and run attributes returned with searches. In cases where a large number of runs are produced from a search, there is a need to paginate the results at server-side and return only a limited set of runs at a time.\n\nIn this RFC, we present proposals to extend search functionality for advanced use cases along with some optimizations. We also discuss proposed solution for server-side pagination of results.\n\n\n\nRequest for comment\n\nFull RFC for these 2 features is in this google doc\u00a0(which has comment access). We are looking forward to your feedback directly in this document.Thank you!\n\n\n\n\nMani Parkhe\n\nma...@databricks.com",
+		"Answers": []
+	},
+	{
+		"Question_title": "MLflow workflows",
+		"Question_creation_date": "2020-02-13T10:09:26",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/w4BGI5qcFzE",
+		"Question_answer_count": 0,
+		"Question_view_count": 26,
+		"Question_body": "Hi all,\n\n\u00a0\n\nI am new to mlflow and I'd like to ask for MLflow workflows capabilities. In April 2019 (SPARK+AI) two new components were announced for feature releases: MLflow workflows and MLflow Model registry. Afterwards, MLflow Model registry has been added (ver.1.4) but MLflow workflows has not till now (as far as I know). Does anyone know if MLflow workflows will be released and when (in which release)?\n\n\u00a0\n\nThanks,\n\n\u00a0\n\nDimitris",
+		"Answers": []
+	},
+	{
+		"Question_title": "MLFlow integration with Kubeflow",
+		"Question_creation_date": "2019-09-06T20:21:57",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/b8WLoMLFtmo",
+		"Question_answer_count": 2,
+		"Question_view_count": 30,
+		"Question_body": "Hello,\nCan anyone point me to docs that talks about integration of how MLFlow can be integrated to use Kubeflow. As per my understanding by looking at the code of MLFlow, code has to be written to integrate it with Kubeflow. By default support does not exist.\n\n\nPlease advise.\n\n\n-Sid",
+		"Answers": [
+			{
+				"Answer_creation_time": "2019-09-12T18:17:04",
+				"Answer_body": "Hi Sid,\n\n\nKubeflow is more of a deployment framework and MLflow is an API you can use in your Python code, so you can just use them side by side. For example, your code running on Kubeflow can connect to an MLflow tracking server to keep track of experiments and models. You can also export MLflow models as Docker containers or load them into Seldon (see\u00a0https://docs.seldon.io/projects/seldon-core/en/latest/examples/mlflow.html for the latter). One thing missing now is an easy way to deploy the MLflow tracking server itself on Kubernetes, but we\u2019d love to accept that as a contribution (just Helm would be fine for this).\n\n\nMatei\n\n\n\n\ue5d3\n\ue5d3\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/8396cb7a-6b9d-4d1e-b0d1-5a122d100353%40googlegroups.com."
+			},
+			{
+				"Answer_creation_time": "2019-09-26T16:22:15",
+				"Answer_body": "Matei - Thanks for your insight. Now, it looks like MLFlow has direct integration with Kubernetes:\nCode:\nhttps://github.com/mlflow/mlflow/blob/master/mlflow/projects/kubernetes.py\n\n\n\nBut it still looks like it is experimental:\nhttps://mlflow.org/docs/latest/projects.html#kubernetes-execution\n\n\n\nSo, do we still need to use Kubeflow or we can just use MLFlow directly on Kubernetes.\n\n\n-Sid\n\n\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "ML flow and Airflow Integration",
+		"Question_creation_date": "2019-09-24T02:08:27",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/nuxDrEAXseg",
+		"Question_answer_count": 2,
+		"Question_view_count": 18,
+		"Question_body": "Hi\n\n\nIs there any\u00a0 integration of airflow and mlflow\u00a0 for scheduling\n\n\n\nThank you and Warm Regards",
+		"Answers": [
+			{
+				"Answer_creation_time": "2019-09-24T16:17:18",
+				"Answer_body": "Hey Preetam,\n\n\nDo you mind sharing more about your use-case with airflow? Do you hope to schedule model training, deployment, or something else?\n\n\nWe plan to develop some airflow scripts that pull metrics from MLFlow into a data warehouse, to enable analytics in other tools (BI dashboards, etc..). Happy to contribute that to open source once we're done.\n\n\n-Adam\n\n\n\ue5d3\n\ue5d3\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/CAH1WR8rOR%2B8tfWMGBSqaMCo2%3DG1PATSQpD4b5R%2Bp8izwaKLHEw%40mail.gmail.com."
+			},
+			{
+				"Answer_creation_time": "2019-09-27T06:52:11",
+				"Answer_body": "Sounds good, thanks! with respect to airflow scripts that pull metrics from Ml-flow into a data warehouse. I am definitely looking at this use case.\u00a0\u00a0\n\n\n\nCurrently I am looking at model training and deployment .\u00a0\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "MLflow remote tracking",
+		"Question_creation_date": "2020-01-22T00:00:56",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/9wmaxy3no30",
+		"Question_answer_count": 4,
+		"Question_view_count": 37,
+		"Question_body": "Hi folks,\n\n\nI am using mlflow 'version 1.1.0' in a model written in python for tracking purpose. I have created a project for the same with MLproject file inside it. I want to store the tracking details in a remote server and hence I am making use of set_tracking_uri() function. Below is the sample code;\n\n\nset_tracking_uri('172.16.0.80:5000')\n\ntry:\n\u00a0 \u00a0 \u00a0 \u00a0 create_experiment(\"SampleExp\")\nexcept:\n\u00a0 \u00a0 \u00a0 \u00a0 set_experiment(\"SampleExp\")\nset_tag(\"Script\", \"SampleExp1\")\n\n\nThe mlflow server is running in the remote server. When I execute the model with 'mlflow run' command, only the experiment name gets created in the remote server path but mlruns directory and other tracking data gets stored in the path from where mlflow run command is getting executed locally. Kindly help me in resolving this issue.",
+		"Answers": [
+			{
+				"Answer_creation_time": "2020-01-22T13:22:29",
+				"Answer_body": "Hi Shwetha,\n\n\nyou need to include scheme such as http(s) in your uri, e.g. http://172.16.0.80\"5000.\u00a0\nWithout scheme, the filstore defaults to local filesystem. So e.g. in your case it would create a local directory with relative path of \"172.16.0.80\"5000\".\n\n\n\nHope this helps.\n\n\n\n\n\ue5d3\n\ue5d3\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/60f8955b-47e8-43d4-832d-4c992d8bdc2b%40googlegroups.com."
+			},
+			{
+				"Answer_creation_time": "2020-01-27T02:24:57",
+				"Answer_body": "Hi Tomas,\n\n\nThanks for your response.\u00a0\n\n\nI am including 'http' scheme in the model script and somehow it was missed in the sample code above. Tracking happens in the remote server when I run the project file using 'python' run command and issue is only when the 'mlflow run' command is used for executing the project.\n\n\nPlease let me know if any configuration is being missed with respect to mlflow run command.\n\nOn Wednesday, January 22, 2020 at 11:52:29 PM UTC+5:30, Tomas Nykodym wrote:\nHi Shwetha,\n\n\nyou need to include scheme such as http(s) in your uri, e.g. http://172.16.0.80\"5000.\u00a0\nWithout scheme, the filstore defaults to local filesystem. So e.g. in your case it would create a local directory with relative path of \"172.16.0.80\"5000\".\n\n\n\nHope this helps.\n\n\n\n\nOn Tue, Jan 21, 2020 at 9:00 PM Shwetha Karkala <shwet...@gmail.com> wrote:\n\nHi folks,\n\n\nI am using mlflow 'version 1.1.0' in a model written in python for tracking purpose. I have created a project for the same with MLproject file inside it. I want to store the tracking details in a remote server and hence I am making use of set_tracking_uri() function. Below is the sample code;\n\n\nset_tracking_uri('172.16.0.80:5000')\n\ntry:\n\u00a0 \u00a0 \u00a0 \u00a0 create_experiment(\"SampleExp\")\nexcept:\n\u00a0 \u00a0 \u00a0 \u00a0 set_experiment(\"SampleExp\")\nset_tag(\"Script\", \"SampleExp1\")\n\n\nThe mlflow server is running in the remote server. When I execute the model with 'mlflow run' command, only the experiment name gets created in the remote server path but mlruns directory and other tracking data gets stored in the path from where mlflow run command is getting executed locally. Kindly help me in resolving this issue.\n\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\n\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow...@googlegroups.com.\n\ue5d3"
+			},
+			{
+				"Answer_creation_time": "2020-01-27T04:56:47",
+				"Answer_body": "Hi Shewha,\u00a0\n\n\ncan you share your MLproject file and the python code you run?\n\n\n\ue5d3\n\ue5d3\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/32009a16-c8a6-451c-bc53-68f09003418c%40googlegroups.com."
+			},
+			{
+				"Answer_creation_time": "2020-01-28T01:45:28",
+				"Answer_body": "Hi Tomas,\n\n\nPlease find the attached sample MLproject and python code.\n\n\nOn Monday, January 27, 2020 at 3:26:47 PM UTC+5:30, Tomas Nykodym wrote:\nHi Shewha,\u00a0\n\n\ncan you share your MLproject file and the python code you run?\n\n\n\ue5d3\n\ue5d3\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/32009a16-c8a6-451c-bc53-68f09003418c%40googlegroups.com."
+			}
+		]
+	},
+	{
+		"Question_title": "Train and deploy H2O model using MLFlow spark",
+		"Question_creation_date": "2019-10-29T01:05:54",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/RJBzJjxPl0w",
+		"Question_answer_count": 1,
+		"Question_view_count": 9,
+		"Question_body": "Hi,\n\n\nI want to train and deploy a h2o model using mlfow spark as mentioned in the diagram:\u00a0https://res.infoq.com/presentations/mlflow-databricks/en/slides/sl21-1566324281761.jpg\nI am training the model using below link:\nhttps://docs.databricks.com/_static/notebooks/h2o-sparkling-water-python.html\nThen after training when I try to deploy the model using mlflow spark, it throws an error \"MLFlow can only save descendants of pyspark.ml.Model which implement MLReadable and MLWritable\".\nCan anyone help and let me know what I am doing wrong.",
+		"Answers": [
+			{
+				"Answer_creation_time": "2019-11-28T22:22:06",
+				"Answer_body": "If you are unable to save due to custom transformer maybe you can check this\u00a0saving spark custom transformer\n\ue5d3"
+			}
+		]
+	},
+	{
+		"Question_title": "MLflow 1.25.1 released",
+		"Question_creation_date": "2022-04-13T13:06:51",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/SkE-AKXBQxE",
+		"Question_answer_count": 0,
+		"Question_view_count": 9,
+		"Question_body": "MLflow 1.25.1 is a patch release containing the following bug fixes:\n\n\n[Models] Fix a `pyfunc` artifact overwrite bug when multiple artifacts are saved in sub-directories (#5657, @kyle-jarvis)\n[Scoring] Fix permissions issue for Spark workers accessing model artifacts from a temp directory created by the driver (#5684, @WeichenXu123)\n\nNote: Version 1.25.1 of the MLflow R package has not yet been released. It will be available on CRAN within the next week.",
+		"Answers": []
+	},
+	{
+		"Question_title": "What's the purpose of mlflow.models.FlavorBackend.serve API ?",
+		"Question_creation_date": "2019-07-24T06:30:54",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/O_w-8r1UVmg",
+		"Question_answer_count": 1,
+		"Question_view_count": 7,
+		"Question_body": "Hi,\n\nI was looking into the\u00a0mlflow.models.FlavorBackend.serve API. What is the purpose of this API? Has anyone used it?",
+		"Answers": [
+			{
+				"Answer_creation_time": "2019-07-24T13:53:57",
+				"Answer_body": "Hi Shevy, the purpose of the serve api is to start a (local) rest api server that can score model on user input. Flavors can define backend to implement or override model serving.\nYou can look at PyFuncBackend for an example of FlavorBackend implementation.\u00a0\n\n\n\n\n\n\n\n\nOn Wed, Jul 24, 2019 at 3:30 AM Shevy Mittal <shevy....@gslab.com> wrote:\n\nHi,\n\nI was looking into the\u00a0mlflow.models.FlavorBackend.serve API. What is the purpose of this API? Has anyone used it?\n\n\nConfidentiality Notice and Disclaimer: This email (including any attachments) contains information that may be confidential, privileged and/or copyrighted. If you are not the intended recipient, please notify the sender immediately and destroy this email. Any unauthorized use of the contents of this email in any manner whatsoever, is strictly prohibited. If improper activity is suspected, all available information may be used by the sender for possible disciplinary action, prosecution, civil claim or any remedy or lawful purpose. Email transmission cannot be guaranteed to be secure or error-free, as information could be intercepted, lost, arrive late, or contain viruses. The sender is not liable whatsoever for damage resulting from the opening of this message and/or the use of the information contained in this message and/or attachments. Expressions in this email cannot be treated as opined by the sender company management \u2013 they are solely expressed by the sender unless authorized.\n\n--\nYou received this message because you are subscribed to the Google Groups \"mlflow-users\" group.\nTo unsubscribe from this group and stop receiving emails from it, send an email to mlflow-users...@googlegroups.com.\nTo view this discussion on the web visit https://groups.google.com/d/msgid/mlflow-users/93952dc6-ef9b-4fe1-a340-d3c945dd05f7%40googlegroups.com."
+			}
+		]
+	},
+	{
+		"Question_title": "MLFlow Usage and Contribution",
+		"Question_creation_date": "2021-12-01T07:30:26",
+		"Question_link": "https://groups.google.com/g/mlflow-users/c/B2ndpXthx10",
+		"Question_answer_count": 0,
+		"Question_view_count": 36,
+		"Question_body": "Hi all,\n\n\nGiniMachine is using MLFlow as the key MLOps tool. We are also looking for ways to contribute to your product growth.\n\n\nPlease let me know how to place our logo on your homepage.\u00a0\n\n\nI'll attach the hi-resolution logo to\u00a0this email.\n\n\nThank you,\n\n\n\nMark Rudak \n\nmark....@ginimachine.com\n\nSenior Machine Learning Engineer\n\nWebsite:\u00a0ginimachine.com",
+		"Answers": []
+	}
+]
