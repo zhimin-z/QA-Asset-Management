@@ -165,5 +165,5 @@ if __name__ == '__main__':
             break
 
     posts_json = json.dumps(posts, indent='\t')
-    with open(os.path.join('../Dataset/Raw', 'Amazon SageMaker.json'), 'w') as f:
+    with open(os.path.join('..\Dataset\Tool-specific Others\Round#1\Raw', 'Amazon SageMaker.json'), 'w') as f:
         f.write(posts_json)
