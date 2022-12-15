@@ -2,7 +2,7 @@ Tool,#Stack Overflow Posts,#Tool-specific Posts,%Stack Overflow Posts,%Tool-spec
 Amazon SageMaker,2233,528,80.88,19.12,328,223
 Azure Machine Learning,1530,1435,51.6,48.4,308,304
 ClearML,40,0,100,0,37,0
-Comet,10,0,100,0,10,
+Comet,10,0,100,0,10,0
 DVC,91,315,22.41,77.59,74,174
 Databricks,12,154,7.23,92.77,12,111
 LakeFS,4,0,100,0,4,0
