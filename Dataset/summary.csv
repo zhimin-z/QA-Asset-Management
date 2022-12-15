@@ -1,0 +1,13 @@
+Tool,#Stack Overflow Posts,#Tool-specific Posts,%Stack Overflow Posts,%Tool-specific Posts
+Amazon SageMaker,2233,528,80.88,19.12
+Azure Machine Learning,1530,1435,51.6,48.4
+ClearML,40,0,100.0,0.0
+Comet,10,0,100.0,0.0
+DVC,91,315,22.41,77.59
+Databricks,12,154,7.23,92.77
+LakeFS,4,0,100.0,0.0
+MLFlow,551,280,66.31,33.69
+Neptune,8,0,100.0,0.0
+Pachyderm,7,0,100.0,0.0
+Vertex AI,341,297,53.45,46.55
+Weights & Biases,77,583,11.67,88.33
