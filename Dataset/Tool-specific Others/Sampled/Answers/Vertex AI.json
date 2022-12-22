@@ -1,7 +1,7 @@
 [
     {
         "Question_title":"How does google cloud speech to text api deals with invalid inputs ?",
-        "Question_creation_date":"2022-09-25T10:32:00",
+        "Question_creation_time":1664101920000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/How-does-google-cloud-speech-to-text-api-deals-with-invalid\/td-p\/470810\/jump-to\/first-unread-message",
         "Question_topic":[
             "Speech-to-Text"
@@ -14,13 +14,13 @@
         "Question_body":"I am using google cloud stream(AsyncStreamingRecognize) for speech to text conversion in my applications. I have gone through the below link to understand the structure of response returned by the apis :StreamingRecognizeResponse  I can have various scenarios where I can end up with various invalid scenarios and I do not understand what could be the responses. I can invalid scenarios like :- User speaks in a different language than what is passed in configuration .- User does not speak anything \/ no input- Only noise gets passed \/ Data lossIs there any parameter inside my response which can point to above scenarios ?",
         "Answers":[
             {
-                "Answer_creation_date":"2022-09-27T14:56:00",
+                "Answer_creation_time":"2022-09-27T14:56:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"1.- If a user speaks a different language you can use language recognition in audio requests. Speech-to-Text supports alternative language codes for all speech recognition methods. Also, one good practice is to show a phrase that can be used or advice on what language you select to be recognized by Speech-to-Text.\u00a0\n\n2.- There are multiple ways that Speech to text can return an empty response. The source of the problem could be the RecognitionConfig\u00a0or the audio itself.\n\n3.-To avoid that only the noise gets passed and the data is lost you can pre-process the audio just as the best practices doc\u00a0mentions.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-09-27T14:56:00",
+                "Answer_creation_time":"2022-09-27T14:56:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"1.- If a user speaks a different language you can use language recognition in audio requests. Speech-to-Text supports alternative language codes for all speech recognition methods. Also, one good practice is to show a phrase that can be used or advice on what language you select to be recognized by Speech-to-Text.\u00a0\n\n2.- There are multiple ways that Speech to text can return an empty response. The source of the problem could be the RecognitionConfig\u00a0or the audio itself.\n\n3.-To avoid that only the noise gets passed and the data is lost you can pre-process the audio just as the best practices doc\u00a0mentions."
@@ -33,7 +33,7 @@
     },
     {
         "Question_title":"Vertex AI Training: Auto-packaged Custom Training Job Yields Very Large Docker Image",
-        "Question_creation_date":"2022-02-27T02:57:00",
+        "Question_creation_time":1645930620000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Vertex-AI-Training-Auto-packaged-Custom-Training-Job-Yields-Very\/td-p\/397685\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI Platform"
@@ -46,19 +46,19 @@
         "Question_body":"Hello,I am trying to run a Custom Training Job in the Vertex AI Training service.The job is based on a tutorial for that fine-tuning a pre-trained BERT model (from HuggingFace).When I use the `gcloud` CLI tool to auto-package my training code into a Docker image and deploy it to the Vertex AI Training service like so:$BASE_GPU_IMAGE=\"us-docker.pkg.dev\/vertex-ai\/training\/pytorch-gpu.1-7:latest\"\n$BUCKET_NAME = \"my-bucket\"gcloud ai custom-jobs create `\n--region=us-central1 `\n--display-name=fine_tune_bert `\n--args=\"--job_dir=$BUCKET_NAME,--num-epochs=2,--model-name=finetuned-bert-classifier\" `\n--worker-pool-spec=\"machine-type=n1-standard-4,replica-count=1,accelerator-type=NVIDIA_TESLA_V100,executor-image-uri=$BASE_GPU_IMAGE,local-package-path=.,python-module=trainer.task\"... I end up with a Docker image that is roughly 18GB (!) and takes a very long time to upload to the GCP registry.Granted the base image is around 6.5GB but where do the additional >10GB come from? Is there a way for me to avoid incurring the added size increase?Please note that my job loads the training data using the `datasets` Python package at run time and AFAIK does not include it in the auto-packaged docker image. Thanks,\nurig",
         "Answers":[
             {
-                "Answer_creation_date":"2022-04-17T08:03:00",
+                "Answer_creation_time":"2022-04-17T08:03:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hello Ismail,\n\n\u00a0\n\nThank you for your help.\n\nI've checked and to the best of my knowledge there are no data or log files being picked up into my custom docker image.\n\nAccording to an answer that I've received on stackoverflow.com, it's likely that the 18GB size that I'm seeing is the size of my image after extraction. Apparently the ~6.8GB size is for the image compressed.\n\n\u00a0\n\nCheers,\n\n@urig\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-04-07T10:36:00",
+                "Answer_creation_time":"2022-04-07T10:36:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi Urig,\n\nIs it possible that you have local files in the current directory such as data or log files that are getting picked up, specifically this line local-package-path=.\n\nIf this persists, I highly recommend for you to file a Public Issue\u00a0as you can high a private thread created to you and we would be able to further support you there."
             },
             {
-                "Answer_creation_date":"2022-04-17T08:03:00",
+                "Answer_creation_time":"2022-04-17T08:03:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hello Ismail,\n\n\u00a0\n\nThank you for your help.\n\nI've checked and to the best of my knowledge there are no data or log files being picked up into my custom docker image.\n\nAccording to an answer that I've received on stackoverflow.com, it's likely that the 18GB size that I'm seeing is the size of my image after extraction. Apparently the ~6.8GB size is for the image compressed.\n\n\u00a0\n\nCheers,\n\n@urig"
@@ -71,7 +71,7 @@
     },
     {
         "Question_title":"Mount gcsfuse in gcloud ai custom-jobs local-run",
-        "Question_creation_date":"2022-09-28T00:51:00",
+        "Question_creation_time":1664326260000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Mount-gcsfuse-in-gcloud-ai-custom-jobs-local-run\/td-p\/471834\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI ML General",
@@ -85,13 +85,13 @@
         "Question_body":"When locally testing my custom-job through \"gcloud ai custom-jobs local-run\" command, I would like to have access to a bucket mounted though gcsFuse as it happens when I launch the same containerized job from GCloud console. Is there the option to have the same access locally?Thank you for helping",
         "Answers":[
             {
-                "Answer_creation_date":"2022-09-30T08:43:00",
+                "Answer_creation_time":"2022-09-30T08:43:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"What you could do is use cloud storage as a file system within ai training, since while using fuse your training jobs on both of the platforms can access your data that is stored on Cloud Storage as files on your local file system, also the documentation I shared provides you useful information as the problems you might encounter, permissions, a brief description of cloud storage fuse, performance related information, the restrictions this method has and also how you can make use of the logs.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-09-30T08:43:00",
+                "Answer_creation_time":"2022-09-30T08:43:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"What you could do is use cloud storage as a file system within ai training, since while using fuse your training jobs on both of the platforms can access your data that is stored on Cloud Storage as files on your local file system, also the documentation I shared provides you useful information as the problems you might encounter, permissions, a brief description of cloud storage fuse, performance related information, the restrictions this method has and also how you can make use of the logs."
@@ -104,7 +104,7 @@
     },
     {
         "Question_title":"Google Cloud Translate API",
-        "Question_creation_date":"2022-11-14T02:52:00",
+        "Question_creation_time":1668394320000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Google-Cloud-Translate-API\/td-p\/489124\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Translation API"
@@ -117,19 +117,19 @@
         "Question_body":"Hi,i am use free trails of Google Cloud Translate send request on this URL  https:\/\/translation.googleapis.com\/language\/translate\/v2 with API key with body rowget error response kindly see below\"code\": 403,\n\"message\": \"The request is missing a valid API key.\",\n\"errors\":\n\n\"message\": \"The request is missing a valid API key.\",\n\"domain\": \"global\",\n\"reason\": \"forbidden\"\n\"status\": \"PERMISSION_DENIED\"",
         "Answers":[
             {
-                "Answer_creation_date":"2022-11-15T09:16:00",
+                "Answer_creation_time":"2022-11-15T09:16:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi, mjunaid,\n\nThe key you're using might not have the permission to use Translate APIs.\n\nTo fix this:\n\nGo to the Google Cloud Platform console\nChoose your project from the drop-down menu in the top bar\nGo to API & Services > Library\nSearch for Cloud Translation API and click on it\nEnable it\n\nGo to API & Services > Credentials\nSelect the key you are using in your Android App\nFrom the menu called Restrict key, choose Cloud Translation API\nSave your edit.\n\nNow the APIs should work properly.\n\nAdditionally, please note that the documentation\u00a0mentions that the structure of the HTTP method should be something like:\n\nhttps:\/\/translation.googleapis.com\/language\/translate\/v2?key=[yourAPIkey]&target=language\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-11-15T09:16:00",
+                "Answer_creation_time":"2022-11-15T09:16:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi, mjunaid,\n\nThe key you're using might not have the permission to use Translate APIs.\n\nTo fix this:\n\nGo to the Google Cloud Platform console\nChoose your project from the drop-down menu in the top bar\nGo to API & Services > Library\nSearch for Cloud Translation API and click on it\nEnable it\n\nGo to API & Services > Credentials\nSelect the key you are using in your Android App\nFrom the menu called Restrict key, choose Cloud Translation API\nSave your edit.\n\nNow the APIs should work properly.\n\nAdditionally, please note that the documentation\u00a0mentions that the structure of the HTTP method should be something like:\n\nhttps:\/\/translation.googleapis.com\/language\/translate\/v2?key=[yourAPIkey]&target=language"
             },
             {
-                "Answer_creation_date":"2022-11-15T22:20:00",
+                "Answer_creation_time":"2022-11-15T22:20:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Thanks"
@@ -142,7 +142,7 @@
     },
     {
         "Question_title":"How to determin which GCP VM do I need for ML",
-        "Question_creation_date":"2022-07-26T13:29:00",
+        "Question_creation_time":1658842140000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/How-to-determin-which-GCP-VM-do-I-need-for-ML\/td-p\/447075\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI ML General",
@@ -156,19 +156,19 @@
         "Question_body":"Hi to allIm trying to run a procedure looking to reduce the number of features for a model.The first try was with google Colab pro+ but it keep crashing and nver run the entire process, then I got a VM n1-highmem-8 that has: GPUs1 x NVIDIA Tesla V100  +  n1-highmem-8 (vCPUs: 8, RAM: 52GB)and still not getting the process done.The question is how to determin which type of machine should I use? Can I get any metric from the cell that is runing in colab and be able to determin the Type of VM that I need?",
         "Answers":[
             {
-                "Answer_creation_date":"2022-08-01T10:31:00",
+                "Answer_creation_time":"2022-08-01T10:31:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"There are a few things to take in consideration:\n\nHave you installed all the necessary drivers for the GPU? Here is a complete guide that you can follow.\nI do not see any Python wrapper for CUDA in your code. The way you specify when to use the GPU for specific tasks is through this wrapper, it seems to me that you are using the CPU instead and that is why the task keeps crashing. Now, converting your code to a CUDA version is not a trivial task, and it involves a deeper knowledge on how a GPU works. If you are in a hurry, you could try the Py2CUDA github project, but I would strongly recommend taking a look at the Getting Started Blogs.\u00a0\u00a0\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-08-01T10:31:00",
+                "Answer_creation_time":"2022-08-01T10:31:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"There are a few things to take in consideration:\n\nHave you installed all the necessary drivers for the GPU? Here is a complete guide that you can follow.\nI do not see any Python wrapper for CUDA in your code. The way you specify when to use the GPU for specific tasks is through this wrapper, it seems to me that you are using the CPU instead and that is why the task keeps crashing. Now, converting your code to a CUDA version is not a trivial task, and it involves a deeper knowledge on how a GPU works. If you are in a hurry, you could try the Py2CUDA github project, but I would strongly recommend taking a look at the Getting Started Blogs."
             },
             {
-                "Answer_creation_date":"2022-08-03T06:39:00",
+                "Answer_creation_time":"2022-08-03T06:39:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"I sincerely appreciate your response, you cannot imagine how important and valuable your help has been"
@@ -181,7 +181,7 @@
     },
     {
         "Question_title":"Unable to create model",
-        "Question_creation_date":"2022-08-04T02:08:00",
+        "Question_creation_time":1659578880000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Unable-to-create-model\/td-p\/450348\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI ML General",
@@ -196,13 +196,13 @@
         "Question_body":"I am working on demand forecasting where my timestamp duration is 15 minutes and i have attached sample output to below documents.The issue i am facing is despite setting DATA_FREQUENCY = [AUTO_FREQUENCY].ii am getting the error \"Invalid time series: the finest data frequency supported is PER_MINUTE. All input time intervals must be at least one minute\" and the query for create model is given below  ",
         "Answers":[
             {
-                "Answer_creation_date":"2022-08-08T15:48:00",
+                "Answer_creation_time":"2022-08-08T15:48:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"What is happening is that using \u201cAUTO_FREQUENCY\u201d is trying to send the Information as \u201cPER_MINUTE\u201d because of your data, and this needs to have an interval value per minute in each HOUR. You could try with \u201cHOURLY\u201d instead of \u201cAUTO_FREQUENCY\u201d, and it should work.\n\nInstead of:\nDATA_FREQUENCY = 'AUTO_FREQUENCY'\n\nUse \u201cHOURLY\u201d or any other DATA_FREQUENCY:\u00a0\n\nDATA_FREQUENCY = 'HOURLY'\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-08-08T15:48:00",
+                "Answer_creation_time":"2022-08-08T15:48:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"What is happening is that using \u201cAUTO_FREQUENCY\u201d is trying to send the Information as \u201cPER_MINUTE\u201d because of your data, and this needs to have an interval value per minute in each HOUR. You could try with \u201cHOURLY\u201d instead of \u201cAUTO_FREQUENCY\u201d, and it should work.\n\nInstead of:\nDATA_FREQUENCY = 'AUTO_FREQUENCY'\n\nUse \u201cHOURLY\u201d or any other DATA_FREQUENCY:\u00a0\n\nDATA_FREQUENCY = 'HOURLY'"
@@ -215,7 +215,7 @@
     },
     {
         "Question_title":"is there any list of brands\/logos supported by google vision api?",
-        "Question_creation_date":"2021-11-10T21:01:00",
+        "Question_creation_time":1636578060000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/is-there-any-list-of-brands-logos-supported-by-google-vision-api\/td-p\/175425\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Vision API"
@@ -228,13 +228,13 @@
         "Question_body":"is there anyplace i can see the list of brands\/logos that are currently supported by the google vision api's logo recognition service?",
         "Answers":[
             {
-                "Answer_creation_date":"2021-11-23T11:41:00",
+                "Answer_creation_time":"2021-11-23T11:41:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"The product team does not currently publish such a list. I recommend for you to submit a Feature Request to the Vision API product team.\u00a0\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2021-11-23T11:41:00",
+                "Answer_creation_time":"2021-11-23T11:41:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"The product team does not currently publish such a list. I recommend for you to submit a Feature Request to the Vision API product team."
@@ -247,7 +247,7 @@
     },
     {
         "Question_title":"Google Translate API",
-        "Question_creation_date":"2021-12-30T10:46:00",
+        "Question_creation_time":1640861160000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Google-Translate-API\/td-p\/181620\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Translation API"
@@ -260,25 +260,25 @@
         "Question_body":"Hi,I would like to use Google Translate API in plain javascript.As far as I understand from this guide, the supported languages are : ... and some additional languages :Does translate API is supported for Javascript as well? If so, where is the guide?Thanks in advance.",
         "Answers":[
             {
-                "Answer_creation_date":"2022-01-10T14:09:00",
+                "Answer_creation_time":"2022-01-10T14:09:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Here is a third-party solution you may find useful [1].\u00a0You may also report it to the Public Issue Tracker (PIT) [2]\u00a0 as well as feature request.\n\n[1]\u00a0 https:\/\/github.com\/topics\/javascript-translate\n\n[2]\u00a0https:\/\/cloud.google.com\/support\/docs\/issue-trackers\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2021-12-30T17:04:00",
+                "Answer_creation_time":"2021-12-30T17:04:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"I could not find any official documentation\/tutorial on Google Translate API for plain JavaScript. It looks like the previously used \"Google Transliterate API\" which was officially deprecated as of May 26, 2011 had support for plain JavaScript [1].\nThe client libraries are currently available for seven popular programming languages \u2013 C#, Go, Java, Node.js, PHP, Python, and Ruby.\n\nHowever, the following un-official link [2] (July 20, 2021) may help.\n\n[1] https:\/\/developers.google.com\/transliterate\/v1\/getting_started\n[2] https:\/\/rapidapi.com\/blog\/google-translate-api-tutorial\/"
             },
             {
-                "Answer_creation_date":"2021-12-31T05:36:00",
+                "Answer_creation_time":"2021-12-31T05:36:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Thanks for the reply sf.\u00a0\n\nHow can it be that there is not documentation for one of the most popular programming languages such as Javascript?"
             },
             {
-                "Answer_creation_date":"2022-01-10T14:09:00",
+                "Answer_creation_time":"2022-01-10T14:09:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Here is a third-party solution you may find useful [1].\u00a0You may also report it to the Public Issue Tracker (PIT) [2]\u00a0 as well as feature request.\n\n[1]\u00a0 https:\/\/github.com\/topics\/javascript-translate\n\n[2]\u00a0https:\/\/cloud.google.com\/support\/docs\/issue-trackers"
@@ -291,7 +291,7 @@
     },
     {
         "Question_title":"The new languages are missing",
-        "Question_creation_date":"2022-05-17T01:43:00",
+        "Question_creation_time":1652751780000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/The-new-languages-are-missing\/td-p\/423648\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Translation API"
@@ -304,19 +304,19 @@
         "Question_body":"Google cloud translation have added new languages. About 24 new languages has been added to Google Translate. Very good job, well done. But they are not listed on this link.\nhttps:\/\/cloud.google.com\/translate\/docs\/languages\n\nI tried to access it using basic v2 API code, but no response came to my translation request. When will this new languages be available to be accessed by v2 APIs? ",
         "Answers":[
             {
-                "Answer_creation_date":"2022-05-18T16:00:00",
+                "Answer_creation_time":"2022-05-18T16:00:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"These are the new 24 languages[1].\n\nIn that post there is a research paper[2] where you can see the codes it begins on page 57.\n\nThe document that you shared it is in an internal Work in Progress with no launch date yet.\n\n[1]https:\/\/blog.google\/products\/translate\/24-new-languages\/\u00a0\n\n[2]https:\/\/arxiv.org\/pdf\/2205.03983.pdf\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-05-18T16:00:00",
+                "Answer_creation_time":"2022-05-18T16:00:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"These are the new 24 languages[1].\n\nIn that post there is a research paper[2] where you can see the codes it begins on page 57.\n\nThe document that you shared it is in an internal Work in Progress with no launch date yet.\n\n[1]https:\/\/blog.google\/products\/translate\/24-new-languages\/\u00a0\n\n[2]https:\/\/arxiv.org\/pdf\/2205.03983.pdf"
             },
             {
-                "Answer_creation_date":"2022-05-22T09:33:00",
+                "Answer_creation_time":"2022-05-22T09:33:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Thank you for the update. I hope they do it soon. That would be good."
@@ -329,7 +329,7 @@
     },
     {
         "Question_title":"WARN BlockManager: Block rdd_6_0 already exists on this machine; not re-adding it",
-        "Question_creation_date":"2022-08-04T06:45:00",
+        "Question_creation_time":1659595500000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/WARN-BlockManager-Block-rdd-6-0-already-exists-on-this-machine\/td-p\/450462\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI Platform"
@@ -342,19 +342,19 @@
         "Question_body":"Hi there.\nI am working with Vertex AI Jupyterlab Notebook.\nThere were a few such warningson this as the model was getting trained.\nMay I know if we are safe to ignore this?\nWhat do they mean actually?\nThanks in advance.",
         "Answers":[
             {
-                "Answer_creation_date":"2022-08-23T10:20:00",
+                "Answer_creation_time":"2022-08-23T10:20:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"No, you should not worry since this is just a warning that tells you that those two blocks will not be re added to your notebook.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-08-23T10:20:00",
+                "Answer_creation_time":"2022-08-23T10:20:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"No, you should not worry since this is just a warning that tells you that those two blocks will not be re added to your notebook."
             },
             {
-                "Answer_creation_date":"2022-08-23T11:51:00",
+                "Answer_creation_time":"2022-08-23T11:51:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Thanks for confirming."
@@ -367,7 +367,7 @@
     },
     {
         "Question_title":"Make deep learning VM JupyterLab publicly available?",
-        "Question_creation_date":"2022-01-27T11:02:00",
+        "Question_creation_time":1643281320000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Make-deep-learning-VM-JupyterLab-publicly-available\/td-p\/386576\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI ML General"
@@ -380,25 +380,25 @@
         "Question_body":"I was able to create a deep learning VM from the marketplace and when I open up the VM instance in the Console I see a metadata tag called `proxy-url` which has a format like `https:\/\/[alphanumeric string]-dot-us-central1.notebooks.googleusercontent.com\/lab`\n\nClicking on that link takes me to a JupyterLab UI that is running on my VM. Amazing! Unfortunately, when I try opening that link on an incognito window, I'm asked to sign in. If I sign in, I get a 403 forbidden.\n\nMy question now is, how can I make that link available to someone else?",
         "Answers":[
             {
-                "Answer_creation_date":"",
+                "Answer_creation_time":"",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi gopalv\n\nAs far as I understand, it sounds like your Jupyter Notebook isn't configured for remote access. since it doesn't work when trying to access it from the incognito window with a 403 error.\n\nYou can try looking here and here for details on how to set up a publicly accessible\/remote access notebook. There are additional troubleshooting steps in our documentation here as well.\n\nHope this helps!\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"",
+                "Answer_creation_time":"",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"I think the problem was that I had selected the option to enable access via URL and this only grants access to users who are Editors or Owners in the workspace (step 9 here)\u00a0\n\n\u00a0\n\nhttps:\/\/cloud.google.com\/deep-learning-vm\/docs\/tensorflow_start_instance#creating_ainstance_from_the\n\u00a0\n\n\nWhen I created a new VM and left this option unchecked, I was able to use my public SSH cert to get access.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-01-31T13:58:00",
+                "Answer_creation_time":"2022-01-31T13:58:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi gopalv\n\nAs far as I understand, it sounds like your Jupyter Notebook isn't configured for remote access. since it doesn't work when trying to access it from the incognito window with a 403 error.\n\nYou can try looking here and here for details on how to set up a publicly accessible\/remote access notebook. There are additional troubleshooting steps in our documentation here as well.\n\nHope this helps!"
             },
             {
-                "Answer_creation_date":"2022-01-31T14:09:00",
+                "Answer_creation_time":"2022-01-31T14:09:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"I think the problem was that I had selected the option to enable access via URL and this only grants access to users who are Editors or Owners in the workspace (step 9 here)\u00a0\n\n\u00a0\n\nhttps:\/\/cloud.google.com\/deep-learning-vm\/docs\/tensorflow_start_instance#creating_ainstance_from_the\n\u00a0\n\n\nWhen I created a new VM and left this option unchecked, I was able to use my public SSH cert to get access."
@@ -411,7 +411,7 @@
     },
     {
         "Question_title":"Version 2 model in natural language API",
-        "Question_creation_date":"2022-11-01T11:25:00",
+        "Question_creation_time":1667301900000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Version-2-model-in-natural-language-API\/td-p\/484641\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Natural Language API"
@@ -424,13 +424,13 @@
         "Question_body":"Hi, could anyone share the python code on how to get  natural language API to use version 2 classify text  categories?I can get it working well with the default (version 1) categories but can't figure out where to adapt the standard code (as here: https:\/\/cloud.google.com\/natural-language\/docs\/samples\/language-classify-text-tutorial-classify?hl=e...)  to  use model version 2.Many thanks ",
         "Answers":[
             {
-                "Answer_creation_date":"2022-11-02T16:27:00",
+                "Answer_creation_time":"2022-11-02T16:27:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"From the Classifying Content guide, you can include classification_model_options\u00a0within the request\u00a0dictionary argument to the classify_text()\u00a0function. In these options, you can define the model and version to use for content categories.\n\n\/\/ ...\ncontent_categories_version = (\n        language_v1.ClassificationModelOptions.V2Model.ContentCategoriesVersion.V2) \/\/ Assigning the v2 model type\n    response = client.classify_text(request = {\n        \"document\": document,\n        \"classification_model_options\": {\n            \"v2_model\": {\n                \"content_categories_version\": content_categories_version\n            }\n        }\n    })\n\/\/ ...\n\n\nYou can also check ClassificationModelOptions\u00a0reference for available options.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-11-02T16:27:00",
+                "Answer_creation_time":"2022-11-02T16:27:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"From the Classifying Content guide, you can include classification_model_options\u00a0within the request\u00a0dictionary argument to the classify_text()\u00a0function. In these options, you can define the model and version to use for content categories.\n\n\/\/ ...\ncontent_categories_version = (\n        language_v1.ClassificationModelOptions.V2Model.ContentCategoriesVersion.V2) \/\/ Assigning the v2 model type\n    response = client.classify_text(request = {\n        \"document\": document,\n        \"classification_model_options\": {\n            \"v2_model\": {\n                \"content_categories_version\": content_categories_version\n            }\n        }\n    })\n\/\/ ...\n\n\nYou can also check ClassificationModelOptions\u00a0reference for available options."
@@ -443,7 +443,7 @@
     },
     {
         "Question_title":"Google translate API gave a mixed language translation result?",
-        "Question_creation_date":"2022-07-11T00:23:00",
+        "Question_creation_time":1657498980000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Google-translate-API-gave-a-mixed-language-translation-result\/td-p\/440841\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Translation API"
@@ -456,19 +456,19 @@
         "Question_body":"I am using Google Translate API for translating a Japanese sentence to Portuguese.On July 6 to 8, the translation result was a sentence of mixed English and Portuguese words, but on July 9 the result seems to be a correct Portuguese sentence.Was there any event on July 6 to 8 such that Google Translate API gave a mixed language translation result?Thank you for your time. ",
         "Answers":[
             {
-                "Answer_creation_date":"2022-07-13T15:33:00",
+                "Answer_creation_time":"2022-07-13T15:33:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"The issue was generated due our service update and multiple service languages including Portuguese were affected. Our Translate API engineer team detected the root cause of the issue, and it was mitigated by a roll back recently performed.\n\nOur engineers confirmed that the issue is officially mitigated and you should not be experiencing any service misbehavior at this point.\n\nWe apologize for any inconvenience this may have caused on your operation.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-07-13T15:33:00",
+                "Answer_creation_time":"2022-07-13T15:33:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"The issue was generated due our service update and multiple service languages including Portuguese were affected. Our Translate API engineer team detected the root cause of the issue, and it was mitigated by a roll back recently performed.\n\nOur engineers confirmed that the issue is officially mitigated and you should not be experiencing any service misbehavior at this point.\n\nWe apologize for any inconvenience this may have caused on your operation."
             },
             {
-                "Answer_creation_date":"2022-07-31T06:46:00",
+                "Answer_creation_time":"2022-07-31T06:46:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Dear josequtierrez,\n\nThank you very much for your response and explanation.\n\nWe really appreciate it.\n\nThank you and best regards,\n\nIvan"
@@ -481,7 +481,7 @@
     },
     {
         "Question_title":"Google Translate API and Serbian Latin script",
-        "Question_creation_date":"2022-10-11T02:26:00",
+        "Question_creation_time":1665455160000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Google-Translate-API-and-Serbian-Latin-script\/td-p\/476723\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Translation API"
@@ -494,25 +494,25 @@
         "Question_body":"Hi there,In Serbia we are using 2 scripts side by side - Cyrillic and Latin script.I am heaving an issue with translation to Serbian Latin.\nBy default Google translate offer translation to Serbian Cyrillic , but bellow that default translation there is a translation to Serbian Latin.\nTake a look at this example:\nhttps:\/\/translate.google.com\/?sl=en&tl=sr&text=Hello%20world!&op=translateI have found this post from early 2019.\nhttps:\/\/support.google.com\/translate\/thread\/1836538?hl=enLike in that post my question is the same:\nI need it to support Serbian Latin, for some projects I don`t use the Cyrillic script. Also there is a problem with translating pages or similar plugins, e.g.: Google Language Translator for WordPress and some others CMS system like Kopage you can translate only to Serbian Cyrillic script.As I found this post on stackoverflow:\nhttps:\/\/stackoverflow.com\/questions\/73699065\/google-cloud-translate-serbian-latin-not-workingIt seems, according to the poster of that article, that there was a workaround.\nInstead of \"sr\" ISO-639 code you can put \"sr_Latn\" - and you will get translation into Serbian Latin script.\nBut that workaround stop working several weeks ago - according to the poster.Is there a workaround to translate into Serbian Latin characters rather into Serbian Cyrillic characters?Regards,\nBranislav",
         "Answers":[
             {
-                "Answer_creation_date":"2022-10-12T08:12:00",
+                "Answer_creation_time":"2022-10-12T08:12:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"It appears that translation to the Serbian Latin Alphabet is not officially supported by the Cloud Translate API, as discussed in this recent issue. Therefore it\u2019s not assured that any possible workaround will be functional or reliable. You can see the list of supported language codes for translation here.\n\nYou can, however, submit a Feature Request to the public Google issue tracker for Cloud Translation API. The higher the number of users who bring attention to this request, the more likely it is for it to be eventually built into the API.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-10-19T12:17:00",
+                "Answer_creation_time":"2022-10-19T12:17:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"You can just used a rules-based local library to reliably transliterate the sr-Cyrl that Google produces to sr-Latn.\n\nGoogle Translate never supported\u00a0translation\u00a0to sr-Latn.\u00a0 The feature you see at translate.google.com and in the mobile app is rules-based transliteration.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-10-12T08:12:00",
+                "Answer_creation_time":"2022-10-12T08:12:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"It appears that translation to the Serbian Latin Alphabet is not officially supported by the Cloud Translate API, as discussed in this recent issue. Therefore it\u2019s not assured that any possible workaround will be functional or reliable. You can see the list of supported language codes for translation here.\n\nYou can, however, submit a Feature Request to the public Google issue tracker for Cloud Translation API. The higher the number of users who bring attention to this request, the more likely it is for it to be eventually built into the API."
             },
             {
-                "Answer_creation_date":"2022-10-19T12:17:00",
+                "Answer_creation_time":"2022-10-19T12:17:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"You can just used a rules-based local library to reliably transliterate the sr-Cyrl that Google produces to sr-Latn.\n\nGoogle Translate never supported\u00a0translation\u00a0to sr-Latn.\u00a0 The feature you see at translate.google.com and in the mobile app is rules-based transliteration."
@@ -525,7 +525,7 @@
     },
     {
         "Question_title":"Voice\/language options during conversion of long text files to speech",
-        "Question_creation_date":"2021-08-02T19:55:00",
+        "Question_creation_time":1627934100000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Voice-language-options-during-conversion-of-long-text-files-to\/td-p\/165947\/jump-to\/first-unread-message",
         "Question_topic":[
             "Text-to-Speech"
@@ -538,13 +538,13 @@
         "Question_body":"The voice\/language options during conversion of long text files to speech. Can anyone help with the doc\/sample for the same.",
         "Answers":[
             {
-                "Answer_creation_date":"2021-08-03T15:53:00",
+                "Answer_creation_time":"2021-08-03T15:53:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Howdy Ram56.\u00a0 Could you perhaps elaborate on what you are looking for?\u00a0 We'll be delighted to try and assist.\u00a0\u00a0\n\nHere is the home page for the GCP Text To Speech materials with links to docs:\n\nhttps:\/\/cloud.google.com\/text-to-speech\n\nI fully realize that is a fluffy response ... so if you can add a little more detail to the voice\/language query in your question, we'll get back to you ASAP.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2021-08-03T15:53:00",
+                "Answer_creation_time":"2021-08-03T15:53:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Howdy Ram56.\u00a0 Could you perhaps elaborate on what you are looking for?\u00a0 We'll be delighted to try and assist.\u00a0\u00a0\n\nHere is the home page for the GCP Text To Speech materials with links to docs:\n\nhttps:\/\/cloud.google.com\/text-to-speech\n\nI fully realize that is a fluffy response ... so if you can add a little more detail to the voice\/language query in your question, we'll get back to you ASAP."
@@ -557,7 +557,7 @@
     },
     {
         "Question_title":"AutoML Vision - Error type - No valid preprocessed examples",
-        "Question_creation_date":"2022-01-11T13:55:00",
+        "Question_creation_time":1641909300000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/AutoML-Vision-Error-type-No-valid-preprocessed-examples\/td-p\/183067\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI Platform",
@@ -571,13 +571,13 @@
         "Question_body":"I have set up an Image classification (Single-label).The model trained for 18 min 25 sec before I recieved the following error:Due to one or more errors, this training job was canceled on Jan 11, 2022 at 07:34AM Batch prediction job GAF-prediction-test encountered the following errors: No valid preprocessed examples.There is no documentation that I could find that explains this error type. Anyone with any ideas what this means?",
         "Answers":[
             {
-                "Answer_creation_date":"",
+                "Answer_creation_time":"",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi, Thank you for reporting this behavior.\u00a0 \u00a0\n\nPlease note that\u00a0Groups is reserved for general product discussions. If you require further technical support it is recommended to post your detailed question on Stack Overflow which i can see that you have correctly did. [1].\n\n\u00a0\n\n[1]:https:\/\/stackoverflow.com\/questions\/70673890\/automl-vision-error-no-valid-preprocessed-examples\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-01-12T13:24:00",
+                "Answer_creation_time":"2022-01-12T13:24:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi, Thank you for reporting this behavior.\u00a0 \u00a0\n\nPlease note that\u00a0Groups is reserved for general product discussions. If you require further technical support it is recommended to post your detailed question on Stack Overflow which i can see that you have correctly did. [1].\n\n\u00a0\n\n[1]:https:\/\/stackoverflow.com\/questions\/70673890\/automl-vision-error-no-valid-preprocessed-examples"
@@ -590,7 +590,7 @@
     },
     {
         "Question_title":"Action Needed | OAuth Google Cloud platform | multiple unique domains",
-        "Question_creation_date":"2022-04-04T02:55:00",
+        "Question_creation_time":1649040900000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Action-Needed-OAuth-Google-Cloud-platform-multiple-unique\/td-p\/410024\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI ML General",
@@ -604,13 +604,13 @@
         "Question_body":"Hi,I am carrying out the OAuth verification in Google Cloud Platform, I received an email that said:\n\"Thanks for your patience while we reviewed your project.Your project pc-api-XXXXXXXXXXXXXXX-XX has multiple unique domains in the redirect URI and origin URLs, many of which have unrelated applications. This is in direct violation of the Google API Services: User Data Policy, which requires that projects accurately represent their identity and intent to Google and to our users when they request access to Google user data.Please follow the instructions on the Google API Console to:You can find more information in the OAuth Application Verification FAQ.  To make sure we don't miss your messages, respond directly to this email to continue with the verification process.\"I have a web server, which checks the validity (domain-1.com) in-app purchases, and I also have a site with a different domain containing: privacy-policy and terms-of-service (domain-2.com).My settings are as follows:OAuth consent screen:\n- Home page application: https:\/\/www.domain-2.com\/\n- Privacy Policy: https:\/\/www.domain-2.com\/privacy-policy\/\n- Terms of Service: https:\/\/www.domain-2.com\/terms-of-service\/\n\nAuthorized domains:\n- domain-2.com\n- domain-1.comID client OAuth 2.0 -> Authorized Redirect URIs:\n- https:\/\/game.domain-1.com:8443I have a working service account.\nI have successfully verified all 2 domains.Where is the mistake?",
         "Answers":[
             {
-                "Answer_creation_date":"2022-04-04T21:08:00",
+                "Answer_creation_time":"2022-04-04T21:08:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"I have found the solution:\n\nI had 2 Google Cloud Platform projects for the same application.\n\nI deleted a Google Cloud Platform.\nI implemented all the configurations of the deleted project in the other project, and it worked!\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-04-04T21:08:00",
+                "Answer_creation_time":"2022-04-04T21:08:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"I have found the solution:\n\nI had 2 Google Cloud Platform projects for the same application.\n\nI deleted a Google Cloud Platform.\nI implemented all the configurations of the deleted project in the other project, and it worked!"
@@ -623,7 +623,7 @@
     },
     {
         "Question_title":"Do Training Jobs Run in Parallel? (VERTEX AI)",
-        "Question_creation_date":"2022-11-15T07:56:00",
+        "Question_creation_time":1668498960000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Do-Training-Jobs-Run-in-Parallel-VERTEX-AI\/td-p\/489639\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI Platform",
@@ -638,25 +638,25 @@
         "Question_body":"I am wondering if training jobs on vertex AI run in parallel, based on my tests it seems they do but wondering if anyone can confirm this is true as the number of concurrent jobs grows past say 1000. Thanks! ",
         "Answers":[
             {
-                "Answer_creation_date":"2022-11-15T11:57:00",
+                "Answer_creation_time":"2022-11-15T11:57:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Yes training jobs run in parallel but the concurrency is subject to quota. See Vertex AI quota document.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-11-15T11:57:00",
+                "Answer_creation_time":"2022-11-15T11:57:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Yes training jobs run in parallel but the concurrency is subject to quota. See Vertex AI quota document."
             },
             {
-                "Answer_creation_date":"2022-11-16T06:58:00",
+                "Answer_creation_time":"2022-11-16T06:58:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Cool thanks,\n\nAre those quotas liftable or are they the hard cap.\n\n\u00a0\n\nThanks!"
             },
             {
-                "Answer_creation_date":"2022-11-16T09:06:00",
+                "Answer_creation_time":"2022-11-16T09:06:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Yes it is possible but is subject to approval. Kindly see this document on how to request a quota increase."
@@ -669,7 +669,7 @@
     },
     {
         "Question_title":"Should I custom split my image data?",
-        "Question_creation_date":"2021-07-05T04:26:00",
+        "Question_creation_time":1625459160000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Should-I-custom-split-my-image-data\/td-p\/163031\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI Platform",
@@ -683,19 +683,19 @@
         "Question_body":"Even with auto Ml, should carefully custom split my data to my satisfaction or just leave it to AutoML? And what difference does it make?",
         "Answers":[
             {
-                "Answer_creation_date":"2021-07-14T06:16:00",
+                "Answer_creation_time":"2021-07-14T06:16:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi Ayoola\n\nIf your data is large enough and have wide representation of each category, you may go with the automated split in AutoML. That would save time and perform well.\n\nIf you have some specific needs, such as the representation of certain observations in a specific category is important and limited within the data, you may want to make sure that it is well distributed for validation and test. And custom split would help for that. Another reason of using custom split could be for comparison of your model performance with external models so you use exactly the same training\/test datasets and make an apples to apples comparison.\n\nHere are some tips I find useful in this doc:\n\nhttps:\/\/cloud.google.com\/vision\/automl\/docs\/beginners-guide#distribute_examples_equally_across_categ...\n\nCheers\n\nTuba.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2021-07-14T06:16:00",
+                "Answer_creation_time":"2021-07-14T06:16:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi Ayoola\n\nIf your data is large enough and have wide representation of each category, you may go with the automated split in AutoML. That would save time and perform well.\n\nIf you have some specific needs, such as the representation of certain observations in a specific category is important and limited within the data, you may want to make sure that it is well distributed for validation and test. And custom split would help for that. Another reason of using custom split could be for comparison of your model performance with external models so you use exactly the same training\/test datasets and make an apples to apples comparison.\n\nHere are some tips I find useful in this doc:\n\nhttps:\/\/cloud.google.com\/vision\/automl\/docs\/beginners-guide#distribute_examples_equally_across_categ...\n\nCheers\n\nTuba."
             },
             {
-                "Answer_creation_date":"2021-07-15T23:26:00",
+                "Answer_creation_time":"2021-07-15T23:26:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Thanks so much for the response."
@@ -708,7 +708,7 @@
     },
     {
         "Question_title":"Using RegEx Entity with other entitiy in Traning Phrase gives empty value for the parameter",
-        "Question_creation_date":"2022-10-19T02:16:00",
+        "Question_creation_time":1666145760000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Using-RegEx-Entity-with-other-entitiy-in-Traning-Phrase-gives\/td-p\/479671\/jump-to\/first-unread-message",
         "Question_topic":[
             "Dialogflow CX"
@@ -721,31 +721,31 @@
         "Question_body":"n Dialogflow ES I am using a Regular Expression for the date format (DD\/MM\/YYYY) validation. If I have the training phrase as 22\/05\/2021 it works perfectly.But I need to have the training phrase as 22\/05\/2021 sample@sample.com. When I use like that, for the date it gives empty value.Not even for this mydate validation, this is not working if I use any RegEx entity along with other entity in the same training phrase.myDigit RegEx is ^[0-9]$So can't it be used Regex entity along with other entity in the same training phrase in Dialogflow?",
         "Answers":[
             {
-                "Answer_creation_date":"2022-10-26T10:18:00",
+                "Answer_creation_time":"2022-10-26T10:18:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Sorry for the delay in replying, I see that your regular expression is matching the end of the line with \u201c$\u201d after the digit (^[0-9]$). This would explain why you are able to capture the data when the training phrase contains only the digit, but not when additional data is located after (for example, \u201c2 sample@sample.com\u201d does not contain the EOL metacharacter after \u201c2\u201d, but having only \u201c2\u201d as the training phrase does).\n\nIf your date regular expression matches the end of the line as well, you\u2019d see the same behavior. I made a quick intent using this expression to match \u201cDD\/MM\/YYYY\u201d: ^[0-9]{2}\\\/[0-9]{2}\\\/[0-9]{4}. As shown below, it captures both the date and Email:\n\n\u00a0\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-10-20T11:08:00",
+                "Answer_creation_time":"2022-10-20T11:08:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Do you experience this problem when adding multiple entities of any kind into a single phrase? Do you also see any difference if you edit the regular expression?"
             },
             {
-                "Answer_creation_date":"2022-10-20T20:12:00",
+                "Answer_creation_time":"2022-10-20T20:12:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Yes. I only face this issue when adding RegExp entity with multiple other entities in single training phrase. It works fine if I have only this RegExp entity in the training phrase. I tried changing the regular expression; but the issue remains the same."
             },
             {
-                "Answer_creation_date":"2022-10-26T10:18:00",
+                "Answer_creation_time":"2022-10-26T10:18:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Sorry for the delay in replying, I see that your regular expression is matching the end of the line with \u201c$\u201d after the digit (^[0-9]$). This would explain why you are able to capture the data when the training phrase contains only the digit, but not when additional data is located after (for example, \u201c2 sample@sample.com\u201d does not contain the EOL metacharacter after \u201c2\u201d, but having only \u201c2\u201d as the training phrase does).\n\nIf your date regular expression matches the end of the line as well, you\u2019d see the same behavior. I made a quick intent using this expression to match \u201cDD\/MM\/YYYY\u201d: ^[0-9]{2}\\\/[0-9]{2}\\\/[0-9]{4}. As shown below, it captures both the date and Email:"
             },
             {
-                "Answer_creation_date":"2022-10-26T22:23:00",
+                "Answer_creation_time":"2022-10-26T22:23:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Thank you very much for your solution. It worked perfectly when I removed $ from my Regular Expression.\n\nI am posting the RegExp used in case someone else needs it (only get the valid dates only, avoid dates like 31\/02\/2022, 35\/18\/2022). Got it from https:\/\/stackoverflow.com\/a\/20773444\/1719133\n\n(^(((0[1-9]|1[0-9]|2[0-8])[\\\/](0[1-9]|1[012]))|((29|30|31)[\\\/](0[13578]|1[02]))|((29|30)[\\\/](0[4,6,9]|11)))[\\\/](19|[2-9][0-9])\\d\\d)|(^29[\\\/]02[\\\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96))"
@@ -758,7 +758,7 @@
     },
     {
         "Question_title":"Issues with importing aiplatform",
-        "Question_creation_date":"2022-11-14T01:10:00",
+        "Question_creation_time":1668388200000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Issues-with-importing-aiplatform\/td-p\/489087\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI Platform"
@@ -771,25 +771,25 @@
         "Question_body":"Hi, I am following this tutorial on model deployment (https:\/\/codelabs.developers.google.com\/vertex-image-deploy#6), but I ran into a issue when importing the aiplatform library.When running \"from google.cloud import aiplatform\", I get the following error message:The versions of the concerned libraries are shown below.I have tried grpcio versions 1.26, 1.27.2, and even the latest 1.50, but all of them had import errors (concerning importing of aio module for 1.26 and 127.2 and AbortError module for 1.50). Are there any additional steps or libraries that I need to take to avoid these import errors?Thank you!",
         "Answers":[
             {
-                "Answer_creation_date":"2022-11-14T17:15:00",
+                "Answer_creation_time":"2022-11-14T17:15:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi, thank you for your reply. I am running the code on Vertex AI.\n\nI realised I had to restart the kernel to refresh the package after updating grpcio, and I could then import aiplatform without any issues as shown below:\n\nfrom google.cloud import aiplatform\nprint(\"aiplatform version: \", aiplatform.__version__)\n\naiplatform version:  1.17.0\n\nThanks again for your help!\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-11-14T15:37:00",
+                "Answer_creation_time":"2022-11-14T15:37:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi,\n\nI tried the code labs link and I did not encounter your error.\u00a0 I ran the code in a \"Managed Notebook\" as shown in the labs. Here are the versions of the libraries in my notebook:\n\ngoogle-api-core ==\u00a02.8.0\ngoogle-api-python-client ==\u00a02.65.0\ngoogle-cloud-aiplatform == 1.18.2\ngrpcio == 1.50.0\ngrpcio-gcp == 0.2.2\ngrpcio-status == 1.48.2\n\nJust to confirm, where did you run the code?"
             },
             {
-                "Answer_creation_date":"2022-11-14T17:15:00",
+                "Answer_creation_time":"2022-11-14T17:15:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi, thank you for your reply. I am running the code on Vertex AI.\n\nI realised I had to restart the kernel to refresh the package after updating grpcio, and I could then import aiplatform without any issues as shown below:\n\nfrom google.cloud import aiplatform\nprint(\"aiplatform version: \", aiplatform.__version__)\n\naiplatform version:  1.17.0\n\nThanks again for your help!"
             },
             {
-                "Answer_creation_date":"2022-11-15T08:18:00",
+                "Answer_creation_time":"2022-11-15T08:18:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"You can mark this as solved so future readers can easily determine the solution."
@@ -802,7 +802,7 @@
     },
     {
         "Question_title":"Vertex AI explain with a custom trained scikit-learn classification model",
-        "Question_creation_date":"2022-06-30T09:32:00",
+        "Question_creation_time":1656581520000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Vertex-AI-explain-with-a-custom-trained-scikit-learn\/td-p\/436711\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI ML General",
@@ -816,19 +816,19 @@
         "Question_body":"Hi Google Community,I was wondering, has anyone been able to successfully train and deploy a custom trained scikit-learn classification model and deploy it to a vertex endpoint with the feature attribution through the explain endpoint working?Every time i define my instances, predictions and explanation_spec while uploading my model, i get errors on the endpoint for the :explain method. Specifically, i get '400 bad request' with no information on why it was a bad request.I am using the v1beta1 ai platform python SDK and also am using a custom basic serving container. The custom container works for :predict but :explain does not work. Is there some example code out there? Is scikit-learn not supported for feature attribution? Thanks! Ryan",
         "Answers":[
             {
-                "Answer_creation_date":"2022-07-14T16:51:00",
+                "Answer_creation_time":"2022-07-14T16:51:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"For anyone looking back on this, i was able to use the following notebook to solve my problem. It seems we need to use encoding BAG_OF_FEATURES. I am not to sure why this is required, but it seems to have done the trick for me.\n\nhttps:\/\/github.com\/GoogleCloudPlatform\/vertex-ai-samples\/blob\/main\/notebooks\/community\/ml_ops\/stage4...\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-07-06T13:32:00",
+                "Answer_creation_time":"2022-07-06T13:32:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"The easiest (and recommended) way to create a training application package uses gcloud to package and upload the application when you submit your training job.\n\nHere\u00a0you can see documentation that will guide you through all of the steps that you need to follow to implement your scikit trained model."
             },
             {
-                "Answer_creation_date":"2022-07-14T16:51:00",
+                "Answer_creation_time":"2022-07-14T16:51:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"For anyone looking back on this, i was able to use the following notebook to solve my problem. It seems we need to use encoding BAG_OF_FEATURES. I am not to sure why this is required, but it seems to have done the trick for me.\n\nhttps:\/\/github.com\/GoogleCloudPlatform\/vertex-ai-samples\/blob\/main\/notebooks\/community\/ml_ops\/stage4..."
@@ -841,7 +841,7 @@
     },
     {
         "Question_title":"enhanced speech feature",
-        "Question_creation_date":"2021-08-19T01:34:00",
+        "Question_creation_time":1629336840000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/enhanced-speech-feature\/td-p\/167747\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Natural Language API",
@@ -856,13 +856,13 @@
         "Question_body":"Hi I have a queryIn Dailogflow if we enable enhanced speech feature, specifically, credit card info (i.e. number), if that is spoken by user, is that stored by Google. Please help",
         "Answers":[
             {
-                "Answer_creation_date":"",
+                "Answer_creation_time":"",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hello,\n\nI understand you are looking to use the enhanced model in Dialogflow and you are looking to understand the Data Security. Please let me know if my understanding is wrong.\n\nIf that is what you are looking for, then I think you should read this section of this article[0] which addresses this concern. As explained in the doc[0], Google uses the data sent to Dialogflow on the project with data logging enabled. Google uses this data solely to train and improve Google products and services. So, while you'll maintain full ownership of all data that you upload to a project with data logging enabled, there are some terms[1] which I think you should be aware of.\n\n[0]https:\/\/cloud.google.com\/dialogflow\/es\/docs\/speech-enhanced-models#data-security\n[1]https:\/\/cloud.google.com\/dialogflow\/docs\/data-logging-terms\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2021-08-20T06:59:00",
+                "Answer_creation_time":"2021-08-20T06:59:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hello,\n\nI understand you are looking to use the enhanced model in Dialogflow and you are looking to understand the Data Security. Please let me know if my understanding is wrong.\n\nIf that is what you are looking for, then I think you should read this section of this article[0] which addresses this concern. As explained in the doc[0], Google uses the data sent to Dialogflow on the project with data logging enabled. Google uses this data solely to train and improve Google products and services. So, while you'll maintain full ownership of all data that you upload to a project with data logging enabled, there are some terms[1] which I think you should be aware of.\n\n[0]https:\/\/cloud.google.com\/dialogflow\/es\/docs\/speech-enhanced-models#data-security\n[1]https:\/\/cloud.google.com\/dialogflow\/docs\/data-logging-terms"
@@ -875,7 +875,7 @@
     },
     {
         "Question_title":"cloud vision API",
-        "Question_creation_date":"2022-05-23T08:14:00",
+        "Question_creation_time":1653293640000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/cloud-vision-API\/td-p\/425445\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Vision API"
@@ -888,19 +888,19 @@
         "Question_body":"Hello everyone,\nMy question is really hypothetical.  I am right now using Cloud vision api with feature web detection. Desc: Detect topical entities such as news, events, or celebrities within the image, and find similar images on the web using the power of Google Image Search.Does profile login effects the results that web detection will return. For example if I type in google search python, I will get python programming language, while my mum will snake. Does the same logic works for cloud vision API web detection ? \n\nWhy this question even raised, because same image executed from 2 different profiles ( I have 2 accounts on cloud Vision API) the model return different probabilities. ",
         "Answers":[
             {
-                "Answer_creation_date":"2022-05-30T10:25:00",
+                "Answer_creation_time":"2022-05-30T10:25:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Yes, it is indeed an intended behavior getting different results even if you use the same image.\n\nThe API returns matching results with their respective scores. The scenario you are experiencing would entail that the scores are relatively close to one another and the API cannot properly select which is a better representation of the image being provided. For more accurate results, we would advise using product reference images with bounding poly coordinates[1].\n\n[1]https:\/\/cloud.google.com\/vision\/product-search\/docs\/tutorial#5_create_a_products_reference_image\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-05-30T10:25:00",
+                "Answer_creation_time":"2022-05-30T10:25:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Yes, it is indeed an intended behavior getting different results even if you use the same image.\n\nThe API returns matching results with their respective scores. The scenario you are experiencing would entail that the scores are relatively close to one another and the API cannot properly select which is a better representation of the image being provided. For more accurate results, we would advise using product reference images with bounding poly coordinates[1].\n\n[1]https:\/\/cloud.google.com\/vision\/product-search\/docs\/tutorial#5_create_a_products_reference_image"
             },
             {
-                "Answer_creation_date":"2022-05-30T23:47:00",
+                "Answer_creation_time":"2022-05-30T23:47:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Grateful for your answer Jose !"
@@ -913,7 +913,7 @@
     },
     {
         "Question_title":"exporting a google autoML translate model",
-        "Question_creation_date":"2022-09-27T12:12:00",
+        "Question_creation_time":1664280720000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/exporting-a-google-autoML-translate-model\/td-p\/471646\/jump-to\/first-unread-message",
         "Question_topic":[
             "AutoML"
@@ -926,25 +926,25 @@
         "Question_body":"",
         "Answers":[
             {
-                "Answer_creation_date":"",
+                "Answer_creation_time":"",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"1.- No.\n\n2.- You can create a Feature Request at\u00a0Issue Tracker\u00a0and\u00a0add a description about the feature you want(Export Translation Models), and the engineer team will look at it. You can see here how it is more likely that the team prioritize the work of the Feature Request\/Issues.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-09-29T08:57:00",
+                "Answer_creation_time":"2022-09-29T08:57:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"At the moment AutoML Translation does not support ML model exporting. If you are using AutoML Tables, you may export your ML Model."
             },
             {
-                "Answer_creation_date":"2022-09-30T02:17:00",
+                "Answer_creation_time":"2022-09-30T02:17:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"I see, thank you so much for your reply. If I'm not using AutoML tables, is there a way to convert my model to AutoML tables?\n\nAlso, is exporting AutoML Tranlsation models a feature you would consider adding some time in the near future?"
             },
             {
-                "Answer_creation_date":"2022-09-30T15:57:00",
+                "Answer_creation_time":"2022-09-30T15:57:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"1.- No.\n\n2.- You can create a Feature Request at\u00a0Issue Tracker\u00a0and\u00a0add a description about the feature you want(Export Translation Models), and the engineer team will look at it. You can see here how it is more likely that the team prioritize the work of the Feature Request\/Issues."
@@ -957,7 +957,7 @@
     },
     {
         "Question_title":"What's the order for the labels in txt file after I have exported my tflite model from Vertex AI",
-        "Question_creation_date":"2022-10-21T12:13:00",
+        "Question_creation_time":1666354380000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/What-s-the-order-for-the-labels-in-txt-file-after-I-have\/td-p\/480804\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI ML General",
@@ -973,25 +973,25 @@
         "Question_body":"I have exported my trained tflite model. But I noticed the order of the labels in the txt file matters. I'm using image classification models. The ones with only two labels, it's an easy fix. I just switch the two. But when I have more than two labels, I notice the predictions are way off. Does it say in Vertex AI or is there a general rule to what label should go first, second, third..etc in the txt file that we create on our own? ",
         "Answers":[
             {
-                "Answer_creation_date":"",
+                "Answer_creation_time":"",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"After reviewing more about Export AutoML Edge models, you can see the following TensorFlow documentation to learn more about extracting this information.\n\nTensorFlow Lite inference with metadata\nGenerate model interfaces with TensorFlow Lite code generator\nAdding metadata to TensorFlow Lite models\n\nThe documentation that might help more for your question is the last one \u201cAdding metadata to TensorFlow Lite Models\u201d.\n\nBut what I can suggest to you is to send an email to tensorflow-enterprise-support@google.com with your question, and hopefully they can give you a direct solution to your concerns.\n\nAdditionally, I found this Stack Overflow question to create labels.txt manually.\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-10-25T10:25:00",
+                "Answer_creation_time":"2022-10-25T10:25:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"I am still reviewing documentation to determine if there is one way to create a rule.\n\nAs soon as I collect more information about your main concern, I will share it with you as soon as possible."
             },
             {
-                "Answer_creation_date":"2022-10-25T15:27:00",
+                "Answer_creation_time":"2022-10-25T15:27:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"After reviewing more about Export AutoML Edge models, you can see the following TensorFlow documentation to learn more about extracting this information.\n\nTensorFlow Lite inference with metadata\nGenerate model interfaces with TensorFlow Lite code generator\nAdding metadata to TensorFlow Lite models\n\nThe documentation that might help more for your question is the last one \u201cAdding metadata to TensorFlow Lite Models\u201d.\n\nBut what I can suggest to you is to send an email to tensorflow-enterprise-support@google.com with your question, and hopefully they can give you a direct solution to your concerns.\n\nAdditionally, I found this Stack Overflow question to create labels.txt manually."
             },
             {
-                "Answer_creation_date":"2022-10-25T17:31:00",
+                "Answer_creation_time":"2022-10-25T17:31:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Thanks! I was able to use unzip command in my terminal and extract the label file."
@@ -1004,7 +1004,7 @@
     },
     {
         "Question_title":"Can anyone tell what is the approximate SLOC of Google Vertex AI? For my comparative analysis study.",
-        "Question_creation_date":"2021-11-28T16:13:00",
+        "Question_creation_time":1638115980000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Can-anyone-tell-what-is-the-approximate-SLOC-of-Google-Vertex-AI\/td-p\/176629\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI ML General",
@@ -1018,13 +1018,13 @@
         "Question_body":"I am doing a comparative analysis of predictive analytics software for my Project. I am looking for approximate lines of code for the Google Vertex AI product.",
         "Answers":[
             {
-                "Answer_creation_date":"",
+                "Answer_creation_time":"",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hello,\u00a0\n\nSLOC will be different depending on your specific use case, and you should be in the best position to figure out the approximate SLOC for your scenarios. That being said, you might look into the sample code and notebooks for Vertex AI, the end-to-end machine learning platform on Google Cloud at [1].\n\n[1]\u00a0https:\/\/github.com\/GoogleCloudPlatform\/vertex-ai-samples\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2021-11-29T12:59:00",
+                "Answer_creation_time":"2021-11-29T12:59:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hello,\u00a0\n\nSLOC will be different depending on your specific use case, and you should be in the best position to figure out the approximate SLOC for your scenarios. That being said, you might look into the sample code and notebooks for Vertex AI, the end-to-end machine learning platform on Google Cloud at [1].\n\n[1]\u00a0https:\/\/github.com\/GoogleCloudPlatform\/vertex-ai-samples"
@@ -1037,7 +1037,7 @@
     },
     {
         "Question_title":"Cloud Translation Permission",
-        "Question_creation_date":"2022-11-15T07:38:00",
+        "Question_creation_time":1668497880000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Cloud-Translation-Permission\/td-p\/489632\/jump-to\/first-unread-message",
         "Question_topic":[
             "Cloud Translation API"
@@ -1050,13 +1050,13 @@
         "Question_body":"So I'm pulling my hair out over this and reaching out here for help. I'm trying to set up a service account with Cloud Translation, and Text-to-speech enabled, but we keep getting this response:I have confirmed that the service account has the \"cloudtranslate.generalModels.predict\" permission, and showing the \"Cloud Translation API User\" role. We've also confirmed that it works with a different Service account that my colleague set up in his personal Google console profile. But, we need this setup with an account through our org. I did verify that the service account has the permission from the https:\/\/console.cloud.google.com\/iam-admin\/troubleshooter so and that my organization's admin sees that the service account is granted access through ancestor policies.  So what else can we check? ",
         "Answers":[
             {
-                "Answer_creation_date":"2022-11-15T08:30:00",
+                "Answer_creation_time":"2022-11-15T08:30:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Ok, turned out we had a hard-coded value for resource location, which was set to the wrong project. So of course it was coming back as permission denied.\u00a0\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-11-15T08:30:00",
+                "Answer_creation_time":"2022-11-15T08:30:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Ok, turned out we had a hard-coded value for resource location, which was set to the wrong project. So of course it was coming back as permission denied."
@@ -1069,7 +1069,7 @@
     },
     {
         "Question_title":"How can I explicitly authenticate to the ai-platform using the java PredictionServiceClient",
-        "Question_creation_date":"2022-11-21T14:42:00",
+        "Question_creation_time":1669041720000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/How-can-I-explicitly-authenticate-to-the-ai-platform-using-the\/td-p\/491537\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI Platform"
@@ -1082,19 +1082,19 @@
         "Question_body":"I have a model hosted on a Google Cloud endpoint and I would like to access it via the Java client.  I've created a service account and a key for that service account with the , when I run my client code with the GOOGLE_APPLICATION_CREDENTIALS env var pointed to the key, I am able to call the service.  When I try to authenticate explicitly using FixedCredentialProvider, it fails with an \"unauthenticated\" message.  The code is as follows`````` ",
         "Answers":[
             {
-                "Answer_creation_date":"2022-11-22T09:27:00",
+                "Answer_creation_time":"2022-11-22T09:27:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi,\n\nUpon checking your code, FixedCredentialsProvider.create()\u00a0accepts\u00a0com.google.auth.Credentials\u00a0as a parameter. Can you try a Credentials object to\u00a0FixedCredentialsProvider.create()? See code below:\n\nGoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(\"\/Users\/ME\/Downloads\/XYZ.json\")).createScoped(Lists.newArrayList(\"https:\/\/www.googleapis.com\/auth\/cloud-platform\"));\n\n\u00a0If code above did not work, can you provide the stack trace of the error? Also what roles did you assign on your service account?\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-11-22T09:27:00",
+                "Answer_creation_time":"2022-11-22T09:27:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi,\n\nUpon checking your code, FixedCredentialsProvider.create()\u00a0accepts\u00a0com.google.auth.Credentials\u00a0as a parameter. Can you try a Credentials object to\u00a0FixedCredentialsProvider.create()? See code below:\n\nGoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(\"\/Users\/ME\/Downloads\/XYZ.json\")).createScoped(Lists.newArrayList(\"https:\/\/www.googleapis.com\/auth\/cloud-platform\"));\n\n\u00a0If code above did not work, can you provide the stack trace of the error? Also what roles did you assign on your service account?"
             },
             {
-                "Answer_creation_date":"2022-11-22T13:31:00",
+                "Answer_creation_time":"2022-11-22T13:31:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"This worked. Thank you!"
@@ -1107,7 +1107,7 @@
     },
     {
         "Question_title":"Deep Reinforcement Learning",
-        "Question_creation_date":"2022-04-13T06:56:00",
+        "Question_creation_time":1649832960000,
         "Question_link":"https:\/\/www.googlecloudcommunity.com\/gc\/AI-ML\/Deep-Reinforcement-Learning\/td-p\/413277\/jump-to\/first-unread-message",
         "Question_topic":[
             "AI ML General",
@@ -1122,13 +1122,13 @@
         "Question_body":"Hi is it possible to implement Deep Reinforcement Learning for structured data frames? If son can someone help me with an example?",
         "Answers":[
             {
-                "Answer_creation_date":"2022-04-20T13:38:00",
+                "Answer_creation_time":"2022-04-20T13:38:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Deep Learning delivers a seamless notebook experience with integrated support for JupyterLab[1], so you can load data frames as a normal notebook. Additionally, it depends on what instance you are using Deep Learning.\u00a0\n\nIf you are using TensorFlow, you can see this[2] to know how to load a data frame to TensorFlow.\n\nIf you are using Pytorch tensor, you can see this[3] example of how to load the data frame.\n\n\u00a0\n\n[1] https:\/\/cloud.google.com\/deep-learning-vm\/docs\/jupyter\u00a0\n\n[2] https:\/\/www.tensorflow.org\/tutorials\/load_data\/pandas_dataframe\u00a0\n\n[3] https:\/\/stackoverflow.com\/a\/50308132\/16929358\u00a0\n\n\nView solution in original post"
             },
             {
-                "Answer_creation_date":"2022-04-20T13:38:00",
+                "Answer_creation_time":"2022-04-20T13:38:00",
                 "Answer_accepted":true,
                 "Answer_upvote_count":0,
                 "Answer_body":"Deep Learning delivers a seamless notebook experience with integrated support for JupyterLab[1], so you can load data frames as a normal notebook. Additionally, it depends on what instance you are using Deep Learning.\u00a0\n\nIf you are using TensorFlow, you can see this[2] to know how to load a data frame to TensorFlow.\n\nIf you are using Pytorch tensor, you can see this[3] example of how to load the data frame.\n\n\u00a0\n\n[1] https:\/\/cloud.google.com\/deep-learning-vm\/docs\/jupyter\u00a0\n\n[2] https:\/\/www.tensorflow.org\/tutorials\/load_data\/pandas_dataframe\u00a0\n\n[3] https:\/\/stackoverflow.com\/a\/50308132\/16929358"

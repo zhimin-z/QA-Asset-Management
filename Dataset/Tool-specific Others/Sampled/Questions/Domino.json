@@ -1,7 +1,7 @@
 [
     {
         "Question_title":"redirect() function Flask",
-        "Question_creation_date":"2021-09-09T09:02:37Z",
+        "Question_creation_time":1631178157000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4406572640916-redirect-function-Flask",
         "Question_topic":"Apps",
         "Question_tag":null,
@@ -20,7 +20,7 @@
     },
     {
         "Question_title":"Where can I find API documentation and examples?",
-        "Question_creation_date":"2021-05-12T21:26:41Z",
+        "Question_creation_time":1620854801000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/360078036672-Where-can-I-find-API-documentation-and-examples-",
         "Question_topic":"CLI and API",
         "Question_tag":null,
@@ -39,7 +39,7 @@
     },
     {
         "Question_title":"Overview of the resumable workspaces",
-        "Question_creation_date":"2021-06-29T02:56:30Z",
+        "Question_creation_time":1624935390000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4402871565076-Overview-of-the-resumable-workspaces-",
         "Question_topic":"Workspaces",
         "Question_tag":null,
@@ -50,7 +50,7 @@
         "Question_body":"Domino 4.4 introduced Resumable Workspaces. In our environment the maximum number of workspaces per user is limited to 8. When this limit is reached, I have to delete one of my workspaces first, so that I can create a new one.\u00a0\n\nA user asked the following question in our legacy community system:\n\nI would have expected to see, for example, in the project overview or in the Control Center in which projects my 8 user workspaces are, so that I can specifically archive workspaces that are no longer needed. So I have to go through all my projects and manually check where workspaces exist.\u00a0\n\nDid I miss something? Is there a place where I as a Data Scientist can see in which projects I currently have how many workspaces?\n\nAnswering below.\u00a0\n\nThank you very much for your feedback.",
         "Answers":[
             {
-                "Answer_creation_date":"2021-06-29T02:57:02Z",
+                "Answer_creation_time":"2021-06-29T02:57:02Z",
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi and thanks for using our community! Apologies for the delayed response here. The ability to see your workspaces in a central location has been added in Domino v 4.5 -- each project will display the number of active workspaces on your projects homepage, so you can see at a glance which projects contain workspaces that you may want to revisit or delete\/retire."
             }
@@ -62,7 +62,7 @@
     },
     {
         "Question_title":"Domino API - Dataset snapshot details",
-        "Question_creation_date":"2021-07-15T06:31:40Z",
+        "Question_creation_time":1626330700000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4403644052244-Domino-API-Dataset-snapshot-details",
         "Question_topic":"CLI and API",
         "Question_tag":null,
@@ -73,12 +73,12 @@
         "Question_body":"Hello Everyone,\n\nI would like if there is a Domino API to query dataset snapshot size. If not what are the other ways we could get this information?\u00a0\n\nThank you",
         "Answers":[
             {
-                "Answer_creation_date":"2021-08-03T01:22:51Z",
+                "Answer_creation_time":"2021-08-03T01:22:51Z",
                 "Answer_upvote_count":0,
                 "Answer_body":"Hi Tasneem,\u00a0\n\nIt looks like our support team addressed your question in a ticket, but in case anyone else has a similar question:\u00a0\n\nThere is an undocumented API that may work for your use case:\u00a0\n\nhttps:\/\/<your_domino_base_url>\/v4\/datasetUi\/<your_snapshot_id>\n\nWhich you can CURL as:\u00a0\n\ncurl -X GET \"https:\/\/<your_domino_base_url>\/v4\/datasetUi\/<your_snapshot_id>\" -H  \"accept: application\/json\" -H  \"X-Domino-Api-Key: <your_API_key>\" \n\nBecause this is an undocumented API for retrieving this information, it is subject to change.\u00a0 If this is something that is needed and being frequently used, please let our support team know so that we can share that information with our product and engineering team.\u00a0\u00a0\n\nIf you have any further questions or suggestions, please feel free to post them here or send them to our support team (support@dominodatalab.com) for more urgent matters.\u00a0 Thank you!"
             },
             {
-                "Answer_creation_date":"2021-08-03T13:43:19Z",
+                "Answer_creation_time":"2021-08-03T13:43:19Z",
                 "Answer_upvote_count":0,
                 "Answer_body":"Thanks Katie. I asked my question in the community first but as I didnt not get reply I asked in the support area.\u00a0\n\nI have another question. How do i check the size of the project ?"
             }
@@ -90,7 +90,7 @@
     },
     {
         "Question_title":"Access RStudio from Jupyterlab",
-        "Question_creation_date":"2022-01-29T14:25:07Z",
+        "Question_creation_time":1643466307000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4417672395924-Access-RStudio-from-Jupyterlab",
         "Question_topic":"Workspaces",
         "Question_tag":null,
@@ -109,7 +109,7 @@
     },
     {
         "Question_title":"Providing Practitioner license to user [Reposted]",
-        "Question_creation_date":"2021-06-29T02:47:25Z",
+        "Question_creation_time":1624934845000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4402871497108-Providing-Practitioner-license-to-user-Reposted-",
         "Question_topic":"Users and organizations",
         "Question_tag":null,
@@ -128,7 +128,7 @@
     },
     {
         "Question_title":"Workflows in Domino",
-        "Question_creation_date":"2022-03-14T21:55:19Z",
+        "Question_creation_time":1647294919000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4785089958932-Workflows-in-Domino",
         "Question_topic":"Workspaces",
         "Question_tag":null,
@@ -147,7 +147,7 @@
     },
     {
         "Question_title":"Using Dask with Domino",
-        "Question_creation_date":"2021-08-19T19:56:53Z",
+        "Question_creation_time":1629403013000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4405449644308-Using-Dask-with-Domino",
         "Question_topic":"Apps",
         "Question_tag":null,
@@ -166,7 +166,7 @@
     },
     {
         "Question_title":"Unrestricted Model API returns OAuth error",
-        "Question_creation_date":"2021-08-12T16:47:01Z",
+        "Question_creation_time":1628786821000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4405090153364-Unrestricted-Model-API-returns-OAuth-error",
         "Question_topic":"CLI and API",
         "Question_tag":null,
@@ -185,7 +185,7 @@
     },
     {
         "Question_title":"Version of JuypterLab",
-        "Question_creation_date":"2021-06-29T03:05:21Z",
+        "Question_creation_time":1624935921000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4402865086740-Version-of-JuypterLab",
         "Question_topic":"Workspaces",
         "Question_tag":null,
@@ -196,7 +196,7 @@
         "Question_body":"We received the following question from a user in our legacy community:\n\nHi All,\n\nIs it possible to install the latest version of JuypterLab on Domino?\u00a0 I'm trying to install the\u00a0@kiteco\/jupyterlab-kite\u00a0extension but I'm getting the following message:\n\nError: 500 ()\n\nI'd thought installing a newer version of JuypterLab might help.\n\nAnswering below, as our legacy community is being retired this evening.",
         "Answers":[
             {
-                "Answer_creation_date":"2021-06-29T03:11:37Z",
+                "Answer_creation_time":"2021-06-29T03:11:37Z",
                 "Answer_upvote_count":1,
                 "Answer_body":"We have some new versions of the Domino Analytics Distribution in the past few months, and a new version coming out relatively soon, which may have newer versions of JupyterLab. If they don't have the version you're looking for, you can install on your own on top of the Domino Analytics Distribution or Domino Minimal Distribution.\u00a0 See our docs and more info on these images here:\u00a0\n\nhttps:\/\/docs.dominodatalab.com\/en\/latest\/reference\/environments\/Domino_4_standard_environments.html?highlight=domino%20analytics%20distribution#domino-analytics-distribution-dad\n\nhttps:\/\/github.com\/dominodatalab\/Domino_Base_Images\/tree\/master\/Domino_Analytics_Distribution"
             }
@@ -208,7 +208,7 @@
     },
     {
         "Question_title":"sparklyR and Domino",
-        "Question_creation_date":"2021-06-29T03:15:58Z",
+        "Question_creation_time":1624936558000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4402871661332-sparklyR-and-Domino",
         "Question_topic":"Environments",
         "Question_tag":null,
@@ -219,7 +219,7 @@
         "Question_body":"A user asked the following question on our legacy community:\u00a0\n\nHi All, Has anyone tried running sparklyR on Domino?\u00a0\n\nAnswering below.",
         "Answers":[
             {
-                "Answer_creation_date":"2021-06-29T03:19:28Z",
+                "Answer_creation_time":"2021-06-29T03:19:28Z",
                 "Answer_upvote_count":1,
                 "Answer_body":"It should be possible to set up SparklyR in a Domino environment using the general method for installing SparklyR on Linux.\u00a0 Local mode instructions like those found here should get you up and running on a single instance: https:\/\/spark.rstudio.com\/guides\/connections\/\n\nThen if you want to connect to an existing external Spark cluster, you can follow instructions linked from those guides.\u00a0 If you are looking to use SparklyR with a Domino ephemeral Spark cluster and need assistance, some additional configuration may be required in the Spark environment used by the workers.\u00a0 If you have an urgent need, please reach out to support@dominodatalab.com or your account team.\u00a0 When we do have general instructions prepared for SparklyR and Domino ephemeral clusters, we'll make sure to share those.\u00a0\u00a0\n\nThanks!"
             }
@@ -231,7 +231,7 @@
     },
     {
         "Question_title":"SQL database",
-        "Question_creation_date":"2022-03-21T01:52:16Z",
+        "Question_creation_time":1647827536000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4947267182996-SQL-database",
         "Question_topic":"Apps",
         "Question_tag":null,
@@ -250,7 +250,7 @@
     },
     {
         "Question_title":"FAQ: How should I upload my very large datasets into Domino?",
-        "Question_creation_date":"2021-04-06T19:01:48Z",
+        "Question_creation_time":1617735708000,
         "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/360077537531-FAQ-How-should-I-upload-my-very-large-datasets-into-Domino-",
         "Question_topic":"CLI and API",
         "Question_tag":null,
