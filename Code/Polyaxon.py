@@ -74,8 +74,8 @@ def get_data(driver, url):
     total_dict["Question_title"] = title
     total_dict["Question_link"] = url
     total_dict["Question_creation_date"] = date
-    total_dict["Question_label"] = label_lst
-    total_dict["Question_converted_from_issues"] = issue
+    total_dict["Question_tag"] = label_lst
+    total_dict["Question_converted_from_issue"] = issue
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_upvote_count"] = upvote_count
     total_dict["Question_body"] = body

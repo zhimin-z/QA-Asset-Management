@@ -79,8 +79,8 @@ def get_data(driver, url):
 
     answer_count = len(answers_lst)
 
-    total_dict["Questiont_title"] = title
-    total_dict["Question_creation_time"] = date
+    total_dict["Question_title"] = title
+    total_dict["Question_creation_date"] = date
     total_dict["Question_link"] = url
     total_dict["Question_topic"] = topic_lst
     total_dict["Question_tag"] = tag_lst

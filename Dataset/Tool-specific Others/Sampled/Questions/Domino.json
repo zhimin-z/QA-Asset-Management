@@ -1,0 +1,270 @@
+[
+    {
+        "Question_title":"redirect() function Flask",
+        "Question_creation_date":"2021-09-09T09:02:37Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4406572640916-redirect-function-Flask",
+        "Question_topic":"Apps",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":0,
+        "Question_has_accepted_answer":null,
+        "Question_body":"Hello, Domino Community.\n\nWe have a URL from our Domino deployment, and we I try to use the \"redirect()\" function from flask apps to redirect the users to other page after the\n\nWe need to use the \"redirect()\" function from Flask after submitting a form in our web app, but the function not work because we use the URL from our Domino deployment. Is there a way to know the url we are working on the project to pass manually to the function?\n\nThank you.",
+        "Answers":[
+
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"Where can I find API documentation and examples?",
+        "Question_creation_date":"2021-05-12T21:26:41Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/360078036672-Where-can-I-find-API-documentation-and-examples-",
+        "Question_topic":"CLI and API",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":0,
+        "Question_has_accepted_answer":null,
+        "Question_body":"Where can I find help with using the Domino API to interact with Domino programmatically?",
+        "Answers":[
+
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"Overview of the resumable workspaces",
+        "Question_creation_date":"2021-06-29T02:56:30Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4402871565076-Overview-of-the-resumable-workspaces-",
+        "Question_topic":"Workspaces",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":1,
+        "Question_has_accepted_answer":null,
+        "Question_body":"Domino 4.4 introduced Resumable Workspaces. In our environment the maximum number of workspaces per user is limited to 8. When this limit is reached, I have to delete one of my workspaces first, so that I can create a new one.\u00a0\n\nA user asked the following question in our legacy community system:\n\nI would have expected to see, for example, in the project overview or in the Control Center in which projects my 8 user workspaces are, so that I can specifically archive workspaces that are no longer needed. So I have to go through all my projects and manually check where workspaces exist.\u00a0\n\nDid I miss something? Is there a place where I as a Data Scientist can see in which projects I currently have how many workspaces?\n\nAnswering below.\u00a0\n\nThank you very much for your feedback.",
+        "Answers":[
+            {
+                "Answer_creation_date":"2021-06-29T02:57:02Z",
+                "Answer_upvote_count":0,
+                "Answer_body":"Hi and thanks for using our community! Apologies for the delayed response here. The ability to see your workspaces in a central location has been added in Domino v 4.5 -- each project will display the number of active workspaces on your projects homepage, so you can see at a glance which projects contain workspaces that you may want to revisit or delete\/retire."
+            }
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"Domino API - Dataset snapshot details",
+        "Question_creation_date":"2021-07-15T06:31:40Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4403644052244-Domino-API-Dataset-snapshot-details",
+        "Question_topic":"CLI and API",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":2,
+        "Question_has_accepted_answer":null,
+        "Question_body":"Hello Everyone,\n\nI would like if there is a Domino API to query dataset snapshot size. If not what are the other ways we could get this information?\u00a0\n\nThank you",
+        "Answers":[
+            {
+                "Answer_creation_date":"2021-08-03T01:22:51Z",
+                "Answer_upvote_count":0,
+                "Answer_body":"Hi Tasneem,\u00a0\n\nIt looks like our support team addressed your question in a ticket, but in case anyone else has a similar question:\u00a0\n\nThere is an undocumented API that may work for your use case:\u00a0\n\nhttps:\/\/<your_domino_base_url>\/v4\/datasetUi\/<your_snapshot_id>\n\nWhich you can CURL as:\u00a0\n\ncurl -X GET \"https:\/\/<your_domino_base_url>\/v4\/datasetUi\/<your_snapshot_id>\" -H  \"accept: application\/json\" -H  \"X-Domino-Api-Key: <your_API_key>\" \n\nBecause this is an undocumented API for retrieving this information, it is subject to change.\u00a0 If this is something that is needed and being frequently used, please let our support team know so that we can share that information with our product and engineering team.\u00a0\u00a0\n\nIf you have any further questions or suggestions, please feel free to post them here or send them to our support team (support@dominodatalab.com) for more urgent matters.\u00a0 Thank you!"
+            },
+            {
+                "Answer_creation_date":"2021-08-03T13:43:19Z",
+                "Answer_upvote_count":0,
+                "Answer_body":"Thanks Katie. I asked my question in the community first but as I didnt not get reply I asked in the support area.\u00a0\n\nI have another question. How do i check the size of the project ?"
+            }
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"Access RStudio from Jupyterlab",
+        "Question_creation_date":"2022-01-29T14:25:07Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4417672395924-Access-RStudio-from-Jupyterlab",
+        "Question_topic":"Workspaces",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":0,
+        "Question_has_accepted_answer":null,
+        "Question_body":"Hi,\n\nis it possible to launch RStudio from a Jupyterlab tile just like VS Code is in this tutorial? https:\/\/docs.dominodatalab.com\/en\/latest\/reference\/workspaces\/Accessing_multiple_hosted_applications_in_one_Workspace_session.html#\n\n\n\nthank you",
+        "Answers":[
+
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"Providing Practitioner license to user [Reposted]",
+        "Question_creation_date":"2021-06-29T02:47:25Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4402871497108-Providing-Practitioner-license-to-user-Reposted-",
+        "Question_topic":"Users and organizations",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":0,
+        "Question_has_accepted_answer":null,
+        "Question_body":"A user posted the following question on our legacy community:\u00a0\n\nHello,\n\nI would like to know if it is possible to give a practitioner license to the user using Domino REST API in Domino V4.2 or higher.\n\nAnswering here since we are retiring the legacy community this evening.\u00a0\u00a0\n\nAnswer: Granting license types is not officially supported via REST API.\u00a0 Our engineering team recommends configuring role synchronization via SAML attributes passed to Keycloak: https:\/\/admin.dominodatalab.com\/en\/latest\/keycloak.html?highlight=role%20synchronization#role-synchronization If this is not a workable solution for your team, we recommend submitting a support ticket or asking your CSM\/account team for a solution that fits your needs.\u00a0 Please let us know if there's anything else you need, thanks!",
+        "Answers":[
+
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"Workflows in Domino",
+        "Question_creation_date":"2022-03-14T21:55:19Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4785089958932-Workflows-in-Domino",
+        "Question_topic":"Workspaces",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":0,
+        "Question_has_accepted_answer":null,
+        "Question_body":"Hello,\n\nI am interested in using workflow management frameworks within Domino, including Nextflow and Snakemake. Both frameworks support Kubernetes, so I expect this is possible. I\u2019m looking for something like the Apache Airflow with Domino documentation:\n\nhttps:\/\/docs.dominodatalab.com\/en\/4.6\/reference\/runs\/advanced\/Using_Apache_Airflow_with_Domino.html\n\nMy collaborators specifically use Nextflow and Snakemake, so I would like to avoid switching to a new framework.",
+        "Answers":[
+
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"Using Dask with Domino",
+        "Question_creation_date":"2021-08-19T19:56:53Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4405449644308-Using-Dask-with-Domino",
+        "Question_topic":"Apps",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":0,
+        "Question_has_accepted_answer":null,
+        "Question_body":"Recently at Coiled, we've been working with the great folks at Domino and have\u00a0received some questions on behalf of Domino users about how to use Dask with Domino (which make a great combination!). In working with users over the last few months, we'd generally recommend one of the following options\/levels for using Dask within Domino, depending on your needs and specific use case:\n\n1. Use Dask (either with the default multithreaded\/multiprocessing scheduler, or with the distributed scheduler) within your Domino workspace, which will use as much of the cores\/RAM that are available within your workspace VM. You might also find some of the JupyterLab extensions for working with Dask to be useful.\n\n2. Use the distributed-compute-operator provided by Domino to provision a Dask cluster in Kubernetes. This is a great way to spin up a Dask cluster on the same Kubernetes cluster where you are already working with Domino workspaces and deployments, and it offers the possibility of requesting additional CPU\/RAM outside of the scope of your Domino workspace\n\n3. Create a Dask cluster with Coiled on your preferred cloud provider and drive your Dask computations from your existing Domino Workspaces or Jobs. Because Coiled is designed to make it easy to work with remote Dask clusters, you can easily ask for additional CPU\/RAM\/GPUs to get more compute power for ETL jobs, exploratory data analysis, or one of the many other use cases familiar to Dask users.\n\n# Create a Coiled cluster\nimport coiled\ncluster = coiled.Cluster(n_workers=10, name=\"dask-from-domino\")\n\n# Connect Dask to Coiled cluster\nfrom dask.distributed import Client\nclient = Client(cluster)\nprint('Dashboard:', client.dashboard_link)\n\n# Use\u00a0Dask\u00a0as\u00a0usual!\nimport dask.dataframe as dd\ndf = dd.read_csv('s3:\/\/...\/data.csv')\ndf.groupby(df.account_id).balance.sum()\n\nLet us know how you're using Dask in Domino and any followup questions that you might have!",
+        "Answers":[
+
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"Unrestricted Model API returns OAuth error",
+        "Question_creation_date":"2021-08-12T16:47:01Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4405090153364-Unrestricted-Model-API-returns-OAuth-error",
+        "Question_topic":"CLI and API",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":0,
+        "Question_has_accepted_answer":null,
+        "Question_body":"Client: Bayer Crop Science\/Science at Scale\n\nIssue: Our process calls a Model API (R) with unrestricted access using CURL. When we manually run it, we observe no issue; however, automation returns below error since July 14, 2021.\n\nMissing OAuth provider. The service may not have been assigned a provider.\n\nWhat condition in an unrestricted Model API can give this error?",
+        "Answers":[
+
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"Version of JuypterLab",
+        "Question_creation_date":"2021-06-29T03:05:21Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4402865086740-Version-of-JuypterLab",
+        "Question_topic":"Workspaces",
+        "Question_tag":null,
+        "Question_upvote_count":1.0,
+        "Question_view_count":null,
+        "Question_answer_count":1,
+        "Question_has_accepted_answer":null,
+        "Question_body":"We received the following question from a user in our legacy community:\n\nHi All,\n\nIs it possible to install the latest version of JuypterLab on Domino?\u00a0 I'm trying to install the\u00a0@kiteco\/jupyterlab-kite\u00a0extension but I'm getting the following message:\n\nError: 500 ()\n\nI'd thought installing a newer version of JuypterLab might help.\n\nAnswering below, as our legacy community is being retired this evening.",
+        "Answers":[
+            {
+                "Answer_creation_date":"2021-06-29T03:11:37Z",
+                "Answer_upvote_count":1,
+                "Answer_body":"We have some new versions of the Domino Analytics Distribution in the past few months, and a new version coming out relatively soon, which may have newer versions of JupyterLab. If they don't have the version you're looking for, you can install on your own on top of the Domino Analytics Distribution or Domino Minimal Distribution.\u00a0 See our docs and more info on these images here:\u00a0\n\nhttps:\/\/docs.dominodatalab.com\/en\/latest\/reference\/environments\/Domino_4_standard_environments.html?highlight=domino%20analytics%20distribution#domino-analytics-distribution-dad\n\nhttps:\/\/github.com\/dominodatalab\/Domino_Base_Images\/tree\/master\/Domino_Analytics_Distribution"
+            }
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"sparklyR and Domino",
+        "Question_creation_date":"2021-06-29T03:15:58Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4402871661332-sparklyR-and-Domino",
+        "Question_topic":"Environments",
+        "Question_tag":null,
+        "Question_upvote_count":1.0,
+        "Question_view_count":null,
+        "Question_answer_count":1,
+        "Question_has_accepted_answer":null,
+        "Question_body":"A user asked the following question on our legacy community:\u00a0\n\nHi All, Has anyone tried running sparklyR on Domino?\u00a0\n\nAnswering below.",
+        "Answers":[
+            {
+                "Answer_creation_date":"2021-06-29T03:19:28Z",
+                "Answer_upvote_count":1,
+                "Answer_body":"It should be possible to set up SparklyR in a Domino environment using the general method for installing SparklyR on Linux.\u00a0 Local mode instructions like those found here should get you up and running on a single instance: https:\/\/spark.rstudio.com\/guides\/connections\/\n\nThen if you want to connect to an existing external Spark cluster, you can follow instructions linked from those guides.\u00a0 If you are looking to use SparklyR with a Domino ephemeral Spark cluster and need assistance, some additional configuration may be required in the Spark environment used by the workers.\u00a0 If you have an urgent need, please reach out to support@dominodatalab.com or your account team.\u00a0 When we do have general instructions prepared for SparklyR and Domino ephemeral clusters, we'll make sure to share those.\u00a0\u00a0\n\nThanks!"
+            }
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"SQL database",
+        "Question_creation_date":"2022-03-21T01:52:16Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/4947267182996-SQL-database",
+        "Question_topic":"Apps",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":0,
+        "Question_has_accepted_answer":null,
+        "Question_body":"Hi All,\n\nI was just wondering if it is possible to host a SQL database on Domino rather than setting up a connection to an externally hosted database?",
+        "Answers":[
+
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    },
+    {
+        "Question_title":"FAQ: How should I upload my very large datasets into Domino?",
+        "Question_creation_date":"2021-04-06T19:01:48Z",
+        "Question_link":"https:\/\/tickets.dominodatalab.com\/hc\/en-us\/community\/posts\/360077537531-FAQ-How-should-I-upload-my-very-large-datasets-into-Domino-",
+        "Question_topic":"CLI and API",
+        "Question_tag":null,
+        "Question_upvote_count":0.0,
+        "Question_view_count":null,
+        "Question_answer_count":0,
+        "Question_has_accepted_answer":null,
+        "Question_body":"When working with our customers, I often receive questions about how to upload large datasets into Domino.\u00a0 There are a few ways to do this, and it depends on what your desired destination and usage of the data will be, but one popular approach is to use the Domino CLI to upload data to a Dataset in one of your Domino projects.",
+        "Answers":[
+
+        ],
+        "Tool":"Domino",
+        "Question_comment_count":null,
+        "Question_follower_count":null,
+        "Question_converted_from_issue":null
+    }
+]
