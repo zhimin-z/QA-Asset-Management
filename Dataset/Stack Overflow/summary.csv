@@ -4,6 +4,7 @@ Azure Machine Learning,1530,586,308,233
 ClearML,40,20,37,20
 Comet,10,4,10,4
 DVC,91,49,74,44
+Kedro,149,60,108,53
 MLFlow,551,129,227,97
 Neptune,8,3,8,3
 Pachyderm,7,2,7,2
