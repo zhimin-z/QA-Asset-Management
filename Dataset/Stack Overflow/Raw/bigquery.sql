@@ -40,7 +40,7 @@ FROM (
   FROM
     `bigquery-public-data.stackoverflow.posts_questions`
   WHERE
-    REGEXP_CONTAINS(tags, r'azure-machine-learning|clearml|comet-ml|dvc|kedro|mlflow|mlrun|neptune|pachyderm|python-sacred|sagemaker|vertex-ai|wandb')) Questions
+    REGEXP_CONTAINS(tags, r'azure-machine-learning|clearml|comet-ml|dvc|kedro|mlflow|mlrun|neptune|python-sacred|sagemaker|vertex-ai|wandb')) Questions
 JOIN (
   SELECT
     id,
