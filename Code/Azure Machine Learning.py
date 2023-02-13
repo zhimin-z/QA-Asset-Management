@@ -38,7 +38,7 @@ def get_data(driver, url):
         has_accepted = False
     # print("has_acceted:", has_accepted)
 
-    # question_upvote_count
+    # Question_score
     upvote_count = driver.find_element(
         By.XPATH, '//div[@class="vote-widget"]/span/span[2]').text
     upvote_count = convert2num(upvote_count)
@@ -80,15 +80,15 @@ def get_data(driver, url):
     total_dict["Question_title"] = title
     total_dict["Question_creation_date"] = date
     total_dict["Question_link"] = url
-    total_dict["Question_tag"] = tag_lst
+    total_dict["Question_tags"] = tag_lst
     total_dict["Question_has_accepted_answer"] = has_accepted
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_comment_count"] = comment_count
     total_dict["Question_follower_count"] = follower_count
-    total_dict["Question_upvote_count"] = upvote_count
+    total_dict["Question_score"] = upvote_count
     total_dict["Question_body"] = body
 
-    total_dict["Answers"] = []
+    total_dict["Answer_list"] = []
 
     accepted_answer_lst = driver.find_elements(
         By.XPATH, '//div[@class="post-container answer-container  accepted-answer"]')
@@ -96,9 +96,9 @@ def get_data(driver, url):
         ac_answer = accepted_answer_lst[0]
         ac_answer_date = ac_answer.find_element(
             By.XPATH, './/time[@role="presentation"]').get_attribute("datetime")
-        ac_answer_upvote_count = ac_answer.find_element(
+        ac_Answer_score = ac_answer.find_element(
             By.XPATH, './/div[@class="vote-widget"]/span/span[2]').text
-        ac_answer_upvote_count = convert2num(ac_answer_upvote_count)
+        ac_Answer_score = convert2num(ac_Answer_score)
         ac_answer_body = ac_answer.find_element(
             By.XPATH, './/div[@class="answer-body"]').get_attribute('innerText').strip()
         ac_answer_comment_count = ac_answer.find_element(
@@ -106,14 +106,14 @@ def get_data(driver, url):
         ac_answer_comment_count = convert2num(ac_answer_comment_count)
 
         # print("ac_answer_date:", ac_answer_date)
-        # print("ac_answer_upvote:", ac_answer_upvote_count)
+        # print("ac_answer_upvote:", ac_Answer_score)
         # print("ac_anaswer_body:", ac_answer_body)
         # print("ac_answer_comment_count:", ac_answer_comment_count)
         # print("ac_answer_has_accepted:", True)
 
-        total_dict["Answers"].append({
+        total_dict["Answer_list"].append({
             "Answer_creation_date": ac_answer_date,
-            "Answer_upvote_count": ac_answer_upvote_count,
+            "Answer_score": ac_Answer_score,
             "Answer_body": ac_answer_body,
             "Answer_comment_count": ac_answer_comment_count,
             "Answer_has_accepted": True
@@ -128,9 +128,9 @@ def get_data(driver, url):
         answer = answers_lst[i]
         answer_date = answer.find_element(
             By.XPATH, './/time[@role="presentation"]').get_attribute("datetime")
-        answer_upvote_count = answer.find_element(
+        Answer_score = answer.find_element(
             By.XPATH, './/div[@class="vote-widget"]/span/span[2]').text
-        answer_upvote_count = convert2num(answer_upvote_count)
+        Answer_score = convert2num(Answer_score)
         answer_body = answer.find_element(
             By.XPATH, './/div[@class="answer-body"]').get_attribute('innerText').strip()
         answer_comment_count = answer.find_element(
@@ -138,14 +138,14 @@ def get_data(driver, url):
         answer_comment_count = convert2num(answer_comment_count)
 
         # print("answer_date:", answer_date)
-        # print("answer_upvote:", answer_upvote_count)
+        # print("answer_upvote:", Answer_score)
         # print("anaswer_body:", answer_body)
         # print("answer_comment_count:", answer_comment_count)
         # print("answer_has_accepted:", False)
 
-        total_dict["Answers"].append({
+        total_dict["Answer_list"].append({
             "Answer_creation_date": answer_date,
-            "Answer_upvote_count": answer_upvote_count,
+            "Answer_score": Answer_score,
             "Answer_body": answer_body,
             "Answer_comment_count": answer_comment_count,
             "Answer_has_accepted": False

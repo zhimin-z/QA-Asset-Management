@@ -31,11 +31,11 @@ def get_data(driver, url):
         By.XPATH, '//relative-time[@class="no-wrap"]').get_attribute("datetime")
     # print("date:", date)
 
-    # question_upvote_count
+    # Question_score
     upvote_count = driver.find_element(
         By.XPATH, '//div[@class="text-center discussion-vote-form position-relative"]//button').text
     upvote_count = convert2num(upvote_count)
-    # print("question_upvote_count:", upvote_count)
+    # print("Question_score:", upvote_count)
 
     # question_category
     category_lst = driver.find_elements(
@@ -74,31 +74,31 @@ def get_data(driver, url):
     total_dict["Question_title"] = title
     total_dict["Question_link"] = url
     total_dict["Question_creation_date"] = date
-    total_dict["Question_tag"] = label_lst
+    total_dict["Question_tags"] = label_lst
     total_dict["Question_converted_from_issue"] = issue
     total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_upvote_count"] = upvote_count
+    total_dict["Question_score"] = upvote_count
     total_dict["Question_body"] = body
-    total_dict["Answers"] = []
+    total_dict["Answer_list"] = []
 
     for i in range(len(answers_node_lst)):
         answer = answers_node_lst[i]
         answer_date = answer.find_element(
             By.XPATH, './/relative-time').get_attribute('datetime')
-        answer_upvote_count = answer.find_element(
+        Answer_score = answer.find_element(
             By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
-        answer_upvote_count = convert2num(answer_upvote_count)
+        Answer_score = convert2num(Answer_score)
         answer_body = answer.find_element(
             By.XPATH, './/table[@role="presentation"]').get_attribute('innerText').strip()
 
         # print("answer_date:", answer_date)
-        # print("answer_upvote:", answer_upvote_count)
+        # print("answer_upvote:", Answer_score)
         # print("anaswer_body:", answer_body)
         # print("answer_has_accepted:", cur_has_accepted)
 
-        total_dict["Answers"].append({
+        total_dict["Answer_list"].append({
             "Answer_creation_date": answer_date,
-            "Answer_upvote_count": answer_upvote_count,
+            "Answer_score": Answer_score,
             "Answer_body": answer_body
         })
 

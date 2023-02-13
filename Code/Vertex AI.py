@@ -46,7 +46,7 @@ def get_data(driver, url):
         has_accepted = False
     # print("has_acceted:", has_accepted)
 
-    # question_upvote_count
+    # Question_score
     upvote_count = driver.find_element(
         By.XPATH, '//span[@class="message-stat kudos-stat"]').text
     upvote_count = convert2num(upvote_count)
@@ -93,10 +93,10 @@ def get_data(driver, url):
     total_dict["Question_topic"] = topic_lst
     total_dict["Question_has_accepted_answer"] = has_accepted
     total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_upvote_count"] = upvote_count
+    total_dict["Question_score"] = upvote_count
     total_dict["Question_view_count"] = view_count
     total_dict["Question_body"] = body
-    total_dict["Answers"] = []
+    total_dict["Answer_list"] = []
 
     for i in range(len(answers_lst)):
         answer = answers_lst[i]
@@ -105,11 +105,11 @@ def get_data(driver, url):
         answer_date = convert2date(answer_date)
 
         try:
-            answer_upvote_count = answer.find_element(
+            Answer_score = answer.find_element(
                 By.XPATH, './/div[@class="lia-button-image-kudos-count"]/span/span[1]').text
-            answer_upvote_count = convert2num(answer_upvote_count)
+            Answer_score = convert2num(Answer_score)
         except:
-            answer_upvote_count = 0
+            Answer_score = 0
         answer_body = answer.find_element(
             By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
 
@@ -122,13 +122,13 @@ def get_data(driver, url):
             except:
                 pass
         # print("answer_date:", answer_date)
-        # print("answer_upvote:", answer_upvote_count)
+        # print("answer_upvote:", Answer_score)
         # print("anaswer_body:", answer_body)
 
-        total_dict["Answers"].append({
+        total_dict["Answer_list"].append({
             "Answer_creation_date": answer_date,
             "Answer_accepted": cur_has_accepted,
-            "Answer_upvote_count": answer_upvote_count,
+            "Answer_score": Answer_score,
             "Answer_body": answer_body
         })
 

@@ -47,11 +47,11 @@ def get_data(driver, url):
     view_count = convert2num(view_count)
     # print("question_view_count:", view_count)
 
-    # question_upvote_count
+    # Question_score
     upvote_count = driver.find_element(
         By.XPATH, '//div[@class="Vote_textContainer__5bmNJ"]').text
     upvote_count = convert2num(upvote_count)
-    # print("question_upvote_count:", upvote_count)
+    # print("Question_score:", upvote_count)
 
     # question_topics
     topic_lst = driver.find_elements(
@@ -83,21 +83,21 @@ def get_data(driver, url):
     total_dict["Question_creation_date"] = date
     total_dict["Question_link"] = url
     total_dict["Question_topic"] = topic_lst
-    total_dict["Question_tag"] = tag_lst
-    total_dict["Question_upvote_count"] = upvote_count
+    total_dict["Question_tags"] = tag_lst
+    total_dict["Question_score"] = upvote_count
     total_dict["Question_view_count"] = view_count
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_has_accepted_answer"] = has_accepted
     total_dict["Question_body"] = body
 
-    total_dict["Answers"] = []
+    total_dict["Answer_list"] = []
     for i in range(len(answers_lst)):
         answer = answers_lst[i]
         # answer_date = answer.find_element(By.XPATH, './/div[@class="ant-typography ant-typography-ellipsis ant-typography-single-line ant-typography-ellipsis-single-line Avatar_age___5eSl"]').text
         answer_date = data_dict["props"]["pageProps"]["question"]["answers"][i]["createdAt"]
-        answer_upvote_count = answer.find_element(
+        Answer_score = answer.find_element(
             By.XPATH, './/div[@class="Vote_textContainer__5bmNJ"]').text
-        answer_upvote_count = convert2num(answer_upvote_count)
+        Answer_score = convert2num(Answer_score)
         answer_body = answer.find_element(
             By.XPATH, './/div[@class="custom-md-style"]').get_attribute('innerText').strip()
 
@@ -113,13 +113,13 @@ def get_data(driver, url):
             cur_has_accepted = False
 
         # print("answer_date:", answer_date)
-        # print("answer_upvote:", answer_upvote_count)
+        # print("answer_upvote:", Answer_score)
         # print("anaswer_body:", answer_body)
         # print("answer_has_accepted:", cur_has_accepted)
 
-        total_dict["Answers"].append({
+        total_dict["Answer_list"].append({
             "Answer_creation_date": answer_date,
-            "Answer_upvote_count": answer_upvote_count,
+            "Answer_score": Answer_score,
             "Answer_body": answer_body,
             "Answer_has_accepted": cur_has_accepted
         })
