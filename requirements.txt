@@ -1,9 +1,5 @@
-bertopic==0.13.0
-contextualized-topic-models==2.4.2
-gensim==4.3.0
 openai==0.26.5
 pandas==1.5.2
 python-dateutil==2.8.2
 selenium==4.7.2
 undetected-chromedriver==3.1.7
-wandb==0.13.10
