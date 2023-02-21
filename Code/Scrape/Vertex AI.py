@@ -127,7 +127,7 @@ def get_data(driver, url):
 
         total_dict["Answer_list"].append({
             "Answer_creation_date": answer_date,
-            "Answer_accepted": cur_has_accepted,
+            "Answer_has_accepted": cur_has_accepted,
             "Answer_score": Answer_score,
             "Answer_body": answer_body
         })
