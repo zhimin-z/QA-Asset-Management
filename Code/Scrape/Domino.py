@@ -51,7 +51,7 @@ def get_data(driver, url, topic):
     total_dict["Question_link"] = url
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_score"] = upvote_count
-    total_dict["Question_topic"] = topic
+    # total_dict["Question_topic"] = topic
     total_dict["Question_body"] = body
 
     total_dict["Answer_list"] = []

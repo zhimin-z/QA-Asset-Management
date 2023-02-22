@@ -44,12 +44,12 @@ def get_data(driver, url):
         category_lst[i] = category_lst[i].text
     # print("question_category:", category_lst)
 
-    # qustion_label
-    label_lst = driver.find_elements(
-        By.XPATH, '//div[@class="d-flex flex-wrap"]/a')
-    for i in range(len(label_lst)):
-        label_lst[i] = label_lst[i].text
-    # print("qustion_label:", label_lst)
+    # # qustion_label
+    # label_lst = driver.find_elements(
+    #     By.XPATH, '//div[@class="d-flex flex-wrap"]/a')
+    # for i in range(len(label_lst)):
+    #     label_lst[i] = label_lst[i].text
+    # # print("qustion_label:", label_lst)
 
     # question_issue
     issue_lst = driver.find_elements(
@@ -74,7 +74,7 @@ def get_data(driver, url):
     total_dict["Question_title"] = title
     total_dict["Question_link"] = url
     total_dict["Question_creation_date"] = date
-    total_dict["Question_tags"] = label_lst
+    # total_dict["Question_tags"] = label_lst
     total_dict["Question_converted_from_issue"] = issue
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_score"] = upvote_count

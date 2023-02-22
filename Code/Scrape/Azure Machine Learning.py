@@ -65,12 +65,12 @@ def get_data(driver, url):
     # print("answer_count:", answer_count)
     answer_count = convert2num(answer_count)
 
-    # # qustion_tags
-    tag_lst = driver.find_elements(
-        By.XPATH, '//span[@class="tags"]/a[@class="tag"]')
-    for i in range(len(tag_lst)):
-        tag_lst[i] = tag_lst[i].find_element(By.XPATH, './a').text
-    # print("tags:", tag_lst)
+    # # # qustion_tags
+    # tag_lst = driver.find_elements(
+    #     By.XPATH, '//span[@class="tags"]/a[@class="tag"]')
+    # for i in range(len(tag_lst)):
+    #     tag_lst[i] = tag_lst[i].find_element(By.XPATH, './a').text
+    # # print("tags:", tag_lst)
 
     # question_body
     body = driver.find_element(
@@ -80,7 +80,7 @@ def get_data(driver, url):
     total_dict["Question_title"] = title
     total_dict["Question_creation_date"] = date
     total_dict["Question_link"] = url
-    total_dict["Question_tags"] = tag_lst
+    # total_dict["Question_tags"] = tag_lst
     total_dict["Question_has_accepted_answer"] = has_accepted
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_comment_count"] = comment_count

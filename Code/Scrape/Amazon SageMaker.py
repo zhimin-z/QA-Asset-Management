@@ -53,19 +53,19 @@ def get_data(driver, url):
     upvote_count = convert2num(upvote_count)
     # print("Question_score:", upvote_count)
 
-    # question_topics
-    topic_lst = driver.find_elements(
-        By.XPATH, '//div[@class="Metadata_container__SrVEy"]/div[1]/div[2]/a')
-    for i in range(len(topic_lst)):
-        topic_lst[i] = topic_lst[i].find_element(By.XPATH, './/span').text
-    # print("topics:", topic_lst)
+    # # question_topics
+    # topic_lst = driver.find_elements(
+    #     By.XPATH, '//div[@class="Metadata_container__SrVEy"]/div[1]/div[2]/a')
+    # for i in range(len(topic_lst)):
+    #     topic_lst[i] = topic_lst[i].find_element(By.XPATH, './/span').text
+    # # print("topics:", topic_lst)
 
-    # qustion_tags
-    tag_lst = driver.find_elements(
-        By.XPATH, '//div[@class="Metadata_container__SrVEy"]/div[2]/div[2]/a')
-    for i in range(len(tag_lst)):
-        tag_lst[i] = tag_lst[i].find_element(By.XPATH, './/span').text
-    # print("tags:", tag_lst)
+    # # qustion_tags
+    # tag_lst = driver.find_elements(
+    #     By.XPATH, '//div[@class="Metadata_container__SrVEy"]/div[2]/div[2]/a')
+    # for i in range(len(tag_lst)):
+    #     tag_lst[i] = tag_lst[i].find_element(By.XPATH, './/span').text
+    # # print("tags:", tag_lst)
 
     # question_body
     body = driver.find_element(
@@ -82,8 +82,8 @@ def get_data(driver, url):
     total_dict["Question_title"] = title
     total_dict["Question_creation_date"] = date
     total_dict["Question_link"] = url
-    total_dict["Question_topic"] = topic_lst
-    total_dict["Question_tags"] = tag_lst
+    # total_dict["Question_topic"] = topic_lst
+    # total_dict["Question_tags"] = tag_lst
     total_dict["Question_score"] = upvote_count
     total_dict["Question_view_count"] = view_count
     total_dict["Question_answer_count"] = answer_count

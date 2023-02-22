@@ -1,3 +1,4 @@
+revChatGPT==2.3.5
 openai==0.26.5
 pandas==1.5.2
 python-dateutil==2.8.2

@@ -64,12 +64,12 @@ def get_data(driver, url):
     view_count = convert2num(view_count)
     # print("view_count", view_count)
 
-    # qustion_topic
-    topic_lst = driver.find_elements(
-        By.XPATH, '//*[@class="label-link lia-link-navigation lia-custom-event"]')
-    for i in range(len(topic_lst)):
-        topic_lst[i] = topic_lst[i].text
-    # print("topic:", topic_lst)
+    # # qustion_topic
+    # topic_lst = driver.find_elements(
+    #     By.XPATH, '//*[@class="label-link lia-link-navigation lia-custom-event"]')
+    # for i in range(len(topic_lst)):
+    #     topic_lst[i] = topic_lst[i].text
+    # # print("topic:", topic_lst)
 
     # question_body
     body_lst = driver.find_elements(By.XPATH, '//*[@id="bodyDisplay"]/div/p')
@@ -90,7 +90,7 @@ def get_data(driver, url):
     total_dict["Question_title"] = title
     total_dict["Question_creation_date"] = date
     total_dict["Question_link"] = url
-    total_dict["Question_topic"] = topic_lst
+    # total_dict["Question_topic"] = topic_lst
     total_dict["Question_has_accepted_answer"] = has_accepted
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_score"] = upvote_count
