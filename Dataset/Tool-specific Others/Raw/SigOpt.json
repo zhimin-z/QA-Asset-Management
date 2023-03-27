@@ -12,7 +12,6 @@
             {
                 "Answer_creation_time":"2022-01-11T10:40:14.953Z",
                 "Answer_body":"",
-                "Answer_score":1.0,
                 "Answer_has_accepted":false
             }
         ]
@@ -43,7 +42,6 @@
             {
                 "Answer_creation_time":"2022-09-28T19:42:04.217Z",
                 "Answer_body":"<p>Hi there,<\/p>\n<p>Thanks for checking out our examples\u2026we will keep your request in mind as we continue to improve and update elements of SigOpt!<br>\nIn case you missed it, we\u2019ve re-enabled the classic SigOpt experience for users, now rebranded as the \u201ccore module.\u201d Check out the differences between the core module (original SigOpt), and the AI module <a href=\"https:\/\/docs.sigopt.com\/intro\/sigopt-api-modules\">here!<\/a><\/p>",
-                "Answer_score":0.2,
                 "Answer_has_accepted":false
             }
         ]
@@ -61,7 +59,6 @@
             {
                 "Answer_creation_time":"2022-08-03T19:37:19.233Z",
                 "Answer_body":"<p>At present, we do not support any sense of \u201cstopping\u201d or \u201cclosing\u201d an experiment beyond archival.  Depending on how you are running you may be able to modify the experiment budget to match the current number of completed runs (which would then have the effect of treating the experiment as completed).  We would recommend using the <code>get_best_runs<\/code> command that you are referencing to enforce the logic that you suggest here.<\/p>\n<p>Beyond that, we will take your feedback under consideration for future product improvements.  Thanks for contributing to the SigOpt community.<\/p>",
-                "Answer_score":1.0,
                 "Answer_has_accepted":false
             }
         ]
@@ -79,7 +76,6 @@
             {
                 "Answer_creation_time":"2022-03-31T12:05:48.236Z",
                 "Answer_body":"<p>What that particular graph is showing is the best seen value, or trace, so far for all the completed iterations. This means that the graph will only go up when a new and better run has been found.<\/p>\n<p>The fact that there can be multiple runs in between improvements might seem a bit counter intuitive. However, this is a product of Bayesian optimization relaying on both exploration and exploitation to find a good optimum.<\/p>\n<p>To be the most efficient at finding a good optimum the optimization algorithms both need to explorer the search space, while also exploiting the optimums that we already know.<\/p>\n<p>So whenever we are not seeing a better run for a given iteration, so does not mean that the iteration has been wasted, this just means that we have learned that a given run is not a better optimum - this information is just as valuable for the algorithm.<\/p>",
-                "Answer_score":46.0,
                 "Answer_has_accepted":false
             }
         ]
@@ -97,25 +93,21 @@
             {
                 "Answer_creation_time":"2022-02-11T18:18:51.389Z",
                 "Answer_body":"<p>The <code>sigopt.xgboost<\/code> API was designed to follow the <a href=\"https:\/\/xgboost.readthedocs.io\/en\/latest\/python\/python_api.html#module-xgboost.training\"><code>xgboost.train<\/code><\/a> API. If you want to use a custom CV procedure, you will need to use <code>sigopt.create_experiment<\/code>. As you point out, this requires you defining the parameter space. If you are looking for guidance on how to construct the parameter space, you can reuse the defaults of <code>sigopt.xgboost<\/code> by accessing <a href=\"https:\/\/github.com\/sigopt\/sigopt-python\/blob\/master\/sigopt\/xgboost\/constants.py\">constants from sigopt.xgboost<\/a>.<\/p>",
-                "Answer_score":21.4,
                 "Answer_has_accepted":false
             },
             {
                 "Answer_creation_time":"2022-02-11T19:23:51.889Z",
                 "Answer_body":"<p>Eddie-SigOpt, thanks for the feedback.<\/p>\n<p>While the ability to do a \u201ccustom CV procedure\u201d would be nice, the ability to do <em>any<\/em> form of cross-validation (or other subsampling\/validation technique) seems important.  Otherwise it seems like the auto-tuning (HPO) will just maximize the training score, which will likely lead to overfitting.  Unless the experiment has some form of model validation happening behind the hood that I missed in the documentation?<\/p>\n<p>I guess I am thinking of something like <a href=\"https:\/\/xgboost.readthedocs.io\/en\/latest\/python\/python_api.html#xgboost.cv\" rel=\"noopener nofollow ugc\">xgboost.cv<\/a>, except it could auto-tune instead of using a single set of hyperparameters.<\/p>",
-                "Answer_score":6.4,
                 "Answer_has_accepted":false
             },
             {
                 "Answer_creation_time":"2022-02-11T19:56:58.693Z",
                 "Answer_body":"<p>Yes, good point. If you do not provide any validation datasets in the <code>evals<\/code> argument, you will be optimizing for metrics computed on the training dataset which increases the likelihood of producing an overfit model. If you include entries in the <code>evals<\/code> argument of <a href=\"https:\/\/xgboost.readthedocs.io\/en\/latest\/python\/python_api.html#xgboost.train\"><code>xgboost.train<\/code><\/a>, the first entry of the list will be the dataset used for optimization metric(s).<\/p>\n<p>On another note, if you would like to have a chat about the possibility of extending the existing <code>sigopt.xgboost<\/code> calls (which work with <code>xgboost.train<\/code>) to include <code>xgboost.cv<\/code>or more general CV workflows please reach me at <a href=\"mailto:eddie.mattia@intel.com\">eddie.mattia@intel.com<\/a> and we can schedule some time to discuss.<\/p>",
-                "Answer_score":21.2,
                 "Answer_has_accepted":false
             },
             {
                 "Answer_creation_time":"2022-02-23T05:25:54.527Z",
                 "Answer_body":"<p><code>evals<\/code>, I forgot about that one, that should definitely improve things over just maxing the training score.  Thanks for the tip.<\/p>\n<p>I think adding CV would be helpful.  Either something similar to the xgboost.cv, or perhaps allowing a callable to be passed into <code>dtrain<\/code> or <code>evals<\/code> which can be used to get splits\u2026 probably too much of hack.  I\u2019ll reach out if I get a chance.<br>\nThanks again!<\/p>",
-                "Answer_score":45.8,
                 "Answer_has_accepted":false
             }
         ]
@@ -146,7 +138,6 @@
             {
                 "Answer_creation_time":"2022-02-11T18:31:56.673Z",
                 "Answer_body":"<p>You can execute the process that generates run and optimization data on any device with internet access. As depicted in the below image, SigOpt interacts with your modeling environment through API requests that pass modeling artifacts like parameters and metrics.<\/p>\n<p><div class=\"lightbox-wrapper\"><a class=\"lightbox\" href=\"https:\/\/global.discourse-cdn.com\/business5\/uploads\/sigopt\/original\/1X\/de54cf477686020abf1906d570f8516e88fbaa60.jpeg\" data-download-href=\"\/uploads\/short-url\/vIPHxPGojhkqGexuNYR6pOE7Cak.jpeg?dl=1\" title=\"image\"><img src=\"https:\/\/global.discourse-cdn.com\/business5\/uploads\/sigopt\/optimized\/1X\/de54cf477686020abf1906d570f8516e88fbaa60_2_690x368.jpeg\" alt=\"image\" data-base62-sha1=\"vIPHxPGojhkqGexuNYR6pOE7Cak\" width=\"690\" height=\"368\" srcset=\"https:\/\/global.discourse-cdn.com\/business5\/uploads\/sigopt\/optimized\/1X\/de54cf477686020abf1906d570f8516e88fbaa60_2_690x368.jpeg, https:\/\/global.discourse-cdn.com\/business5\/uploads\/sigopt\/optimized\/1X\/de54cf477686020abf1906d570f8516e88fbaa60_2_1035x552.jpeg 1.5x, https:\/\/global.discourse-cdn.com\/business5\/uploads\/sigopt\/original\/1X\/de54cf477686020abf1906d570f8516e88fbaa60.jpeg 2x\" data-small-upload=\"https:\/\/global.discourse-cdn.com\/business5\/uploads\/sigopt\/optimized\/1X\/de54cf477686020abf1906d570f8516e88fbaa60_2_10x10.png\"><div class=\"meta\">\n<svg class=\"fa d-icon d-icon-far-image svg-icon\" aria-hidden=\"true\"><use href=\"#far-image\"><\/use><\/svg><span class=\"filename\">image<\/span><span class=\"informations\">1286\u00d7686 124 KB<\/span><svg class=\"fa d-icon d-icon-discourse-expand svg-icon\" aria-hidden=\"true\"><use href=\"#discourse-expand\"><\/use><\/svg>\n<\/div><\/a><\/div><\/p>",
-                "Answer_score":61.0,
                 "Answer_has_accepted":false
             }
         ]
@@ -190,7 +181,6 @@
             {
                 "Answer_creation_time":"2022-01-21T10:22:17.422Z",
                 "Answer_body":"<p>Check out this <a href=\"https:\/\/sigopt.com\/blog\/simple-neural-architecture-search-nas-intel-sigopt\/\" rel=\"noopener nofollow ugc\">blog post<\/a> for a quick example using SigOpt and <a href=\"https:\/\/docs.ray.io\/en\/master\/tune\/index.html\" rel=\"noopener nofollow ugc\">Ray Tune<\/a> to perform a simple NAS!<\/p>",
-                "Answer_score":1.0,
                 "Answer_has_accepted":false
             }
         ]
