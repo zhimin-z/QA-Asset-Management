@@ -51,7 +51,7 @@ def get_data(driver, url):
         follower_count = convert2num(follower_count)
     except:
         follower_count = 0
-    # print("question_follower_count", follower_count)
+    # print("Question_favorite_count", follower_count)
 
     # question_comment_count
     comment_count = driver.find_element(By.XPATH, '//div[@class="control-bar"]').find_element(
@@ -84,7 +84,7 @@ def get_data(driver, url):
     total_dict["Question_has_accepted_answer"] = has_accepted
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_comment_count"] = comment_count
-    total_dict["Question_follower_count"] = follower_count
+    total_dict["Question_favorite_count"] = follower_count
     total_dict["Question_score"] = upvote_count
     total_dict["Question_body"] = body
 
