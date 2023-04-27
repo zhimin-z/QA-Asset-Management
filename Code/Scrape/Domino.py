@@ -24,7 +24,7 @@ def get_data(driver, url, topic):
     title = driver.find_element(By.XPATH, '//div[@class="post-title"]').text
     #print("Title:", title)
 
-    # question_creation_date
+    # Question_created_time
     date = driver.find_element(
         By.XPATH, '//div[@class="post-meta"]//time').get_attribute("datetime")
     #print("date:", date)
@@ -47,7 +47,7 @@ def get_data(driver, url, topic):
     # print("answer_count:", len(answers_lst))
 
     total_dict["Question_title"] = title
-    total_dict["Question_creation_date"] = date
+    total_dict["Question_created_time"] = date
     total_dict["Question_link"] = url
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_score"] = upvote_count
@@ -76,7 +76,7 @@ def get_data(driver, url, topic):
         #print("anaswer_body:", answer_body)
 
         total_dict["Answer_list"].append({
-            "Answer_creation_date": answer_date,
+            "Answer_created_time": answer_date,
             "Answer_score": Answer_score,
             "Answer_body": answer_body
         })

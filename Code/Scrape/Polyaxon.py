@@ -26,7 +26,7 @@ def get_data(driver, url):
         By.XPATH, '//span[@class="js-issue-title markdown-title"]').text
     # print("Title:", title)
 
-    # question_creation_date
+    # Question_created_time
     date = driver.find_element(
         By.XPATH, '//relative-time[@class="no-wrap"]').get_attribute("datetime")
     # print("date:", date)
@@ -73,7 +73,7 @@ def get_data(driver, url):
 
     total_dict["Question_title"] = title
     total_dict["Question_link"] = url
-    total_dict["Question_creation_date"] = date
+    total_dict["Question_created_time"] = date
     # total_dict["Question_tags"] = label_lst
     # total_dict["Question_converted_from_issue"] = issue
     total_dict["Question_answer_count"] = answer_count
@@ -97,7 +97,7 @@ def get_data(driver, url):
         # print("answer_has_accepted:", cur_has_accepted)
 
         total_dict["Answer_list"].append({
-            "Answer_creation_date": answer_date,
+            "Answer_created_time": answer_date,
             "Answer_score": Answer_score,
             "Answer_body": answer_body
         })

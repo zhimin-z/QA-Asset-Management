@@ -4,7 +4,7 @@ SELECT
   Question_body,
   Question_answer_count,
   Question_comment_count,
-  Question_creation_time,
+  Question_created_time,
   Question_favorite_count,
   Question_last_edit_time,
   Question_score,
@@ -12,7 +12,7 @@ SELECT
   Question_view_count,
   Answer_body,
   Answer_comment_count,
-  Answer_creation_time,
+  Answer_created_time,
   Answer_last_edit_time,
   Answer_score
 FROM (
@@ -23,7 +23,7 @@ FROM (
     accepted_answer_id,
     answer_count Question_answer_count,
     comment_count Question_comment_count,
-    creation_date Question_creation_time,
+    creation_date Question_created_time,
     favorite_count Question_favorite_count,
     last_edit_date Question_last_edit_time,
     score Question_score,
@@ -38,7 +38,7 @@ LEFT JOIN (
     id,
     body Answer_body,
     comment_count Answer_comment_count,
-    creation_date Answer_creation_time,
+    creation_date Answer_created_time,
     last_edit_date Answer_last_edit_time,
     score Answer_score
   FROM

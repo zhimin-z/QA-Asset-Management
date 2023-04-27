@@ -45,7 +45,7 @@ def get_data(driver, url):
 
         if i < 1:
             total_dict["Question_title"] = title
-            total_dict["Question_creation_date"] = date
+            total_dict["Question_created_time"] = date
             total_dict["Question_link"] = url
             total_dict["Question_answer_count"] = len(section_lst) - 1
             total_dict["Question_view_count"] = view_count
@@ -55,7 +55,7 @@ def get_data(driver, url):
             # print("question_body:", answer_body)
         else:
             total_dict["Answer_list"].append({
-                "Answer_creation_time": date,
+                "Answer_created_time": date,
                 "Answer_body": body
             })
             # print("answer_time:", answer_time)

@@ -25,7 +25,7 @@ def get_data(driver, url):
         By.XPATH, '//div[@class="QuestionView_title__C_38B"]/h1').text
     # print("Title:", title)
 
-    # question_creation_date
+    # Question_created_time
     data_json = driver.find_element(
         By.XPATH, '//script[@id="__NEXT_DATA__"]').get_attribute("innerText")
     data_dict = json.loads(data_json)
@@ -80,7 +80,7 @@ def get_data(driver, url):
     answer_count = len(answers_lst)
 
     total_dict["Question_title"] = title
-    total_dict["Question_creation_date"] = date
+    total_dict["Question_created_time"] = date
     total_dict["Question_link"] = url
     # total_dict["Question_topic"] = topic_lst
     # total_dict["Question_tags"] = tag_lst
@@ -118,7 +118,7 @@ def get_data(driver, url):
         # print("answer_has_accepted:", cur_has_accepted)
 
         total_dict["Answer_list"].append({
-            "Answer_creation_date": answer_date,
+            "Answer_created_time": answer_date,
             "Answer_score": Answer_score,
             "Answer_body": answer_body,
             "Answer_has_accepted": cur_has_accepted

@@ -24,7 +24,7 @@ def get_data(driver, url):
     title = driver.find_element(By.XPATH, '//h2[@class="question-title"]').text
     # print("Title:", title)
 
-    # question_creation_date
+    # Question_created_time
     date = driver.find_element(
         By.XPATH, '//span[contains(@class, "action-date")]/time[@role="presentation"]').get_attribute("datetime")
     # print("date:", date)
@@ -78,7 +78,7 @@ def get_data(driver, url):
     # print("body:", body)
 
     total_dict["Question_title"] = title
-    total_dict["Question_creation_date"] = date
+    total_dict["Question_created_time"] = date
     total_dict["Question_link"] = url
     # total_dict["Question_tags"] = tag_lst
     total_dict["Question_has_accepted_answer"] = has_accepted
@@ -112,7 +112,7 @@ def get_data(driver, url):
         # print("ac_answer_has_accepted:", True)
 
         total_dict["Answer_list"].append({
-            "Answer_creation_date": ac_answer_date,
+            "Answer_created_time": ac_answer_date,
             "Answer_score": ac_Answer_score,
             "Answer_body": ac_answer_body,
             "Answer_comment_count": ac_answer_comment_count,
@@ -144,7 +144,7 @@ def get_data(driver, url):
         # print("answer_has_accepted:", False)
 
         total_dict["Answer_list"].append({
-            "Answer_creation_date": answer_date,
+            "Answer_created_time": answer_date,
             "Answer_score": Answer_score,
             "Answer_body": answer_body,
             "Answer_comment_count": answer_comment_count,

@@ -30,7 +30,7 @@ def get_data(driver, url):
         By.XPATH, '//div[@class="lia-message-subject"]').text
     # print("Title:", title)
 
-    # question_creation_date
+    # Question_created_time
     date = driver.find_element(
         By.XPATH, '//span[@class="local-friendly-date"]').get_attribute('title')
     date = convert2date(date)
@@ -88,7 +88,7 @@ def get_data(driver, url):
     # print("len:", len(answers_lst))
 
     total_dict["Question_title"] = title
-    total_dict["Question_creation_date"] = date
+    total_dict["Question_created_time"] = date
     total_dict["Question_link"] = url
     # total_dict["Question_topic"] = topic_lst
     total_dict["Question_has_accepted_answer"] = has_accepted
@@ -126,7 +126,7 @@ def get_data(driver, url):
         # print("anaswer_body:", answer_body)
 
         total_dict["Answer_list"].append({
-            "Answer_creation_date": answer_date,
+            "Answer_created_time": answer_date,
             "Answer_has_accepted": cur_has_accepted,
             "Answer_score": Answer_score,
             "Answer_body": answer_body
