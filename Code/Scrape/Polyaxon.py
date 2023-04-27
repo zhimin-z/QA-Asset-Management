@@ -52,12 +52,12 @@ def get_data(driver, url):
     # # print("qustion_label:", label_lst)
 
     # question_issue
-    issue_lst = driver.find_elements(
-        By.XPATH, '//div[@class="discussion-sidebar-item"]')
-    try:
-        issue = convert2num(re.findall(r'\d+', issue_lst[2].text)[0])
-    except:
-        issue = -1
+    # issue_lst = driver.find_elements(
+    #     By.XPATH, '//div[@class="discussion-sidebar-item"]')
+    # try:
+    #     issue = convert2num(re.findall(r'\d+', issue_lst[2].text)[0])
+    # except:
+    #     issue = -1
     # print("question_issue:", issue)
 
     # question_body
@@ -75,7 +75,7 @@ def get_data(driver, url):
     total_dict["Question_link"] = url
     total_dict["Question_creation_date"] = date
     # total_dict["Question_tags"] = label_lst
-    total_dict["Question_converted_from_issue"] = issue
+    # total_dict["Question_converted_from_issue"] = issue
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_score"] = upvote_count
     total_dict["Question_body"] = body
