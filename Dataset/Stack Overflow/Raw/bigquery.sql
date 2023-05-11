@@ -1,4 +1,5 @@
 SELECT
+  Question_id,
   Question_title,
   Question_body,
   Question_answer_count,
@@ -35,6 +36,7 @@ SELECT
 FROM (
   SELECT
     owner_user_id,
+    id Question_id,
     title Question_title,
     body Question_body,
     accepted_answer_id,
@@ -50,7 +52,7 @@ FROM (
     `bigquery-public-data.stackoverflow.posts_questions`
   WHERE
     REGEXP_CONTAINS(tags, r'azure-machine-learning|clearml|comet-ml|dvc|kedro|mlflow|mlrun|neptune|optuna|python-sacred|sagemaker|vertex-ai|wandb')) Questions
-JOIN (
+LEFT JOIN (
   SELECT
     id Poster_id,
     creation_date Poster_created_time,
@@ -78,7 +80,7 @@ LEFT JOIN (
     `bigquery-public-data.stackoverflow.posts_answers`) Answers
 ON
   Answers.id = Questions.accepted_answer_id
-JOIN (
+LEFT JOIN (
   SELECT
     id Answerer_id,
     creation_date Answerer_created_time,
