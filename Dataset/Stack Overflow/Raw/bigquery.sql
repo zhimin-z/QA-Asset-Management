@@ -16,8 +16,6 @@ SELECT
   Poster_age,
   Poster_location,
   Poster_reputation,
-  Poster_up_votes,
-  Poster_down_votes,
   Poster_views,
   Answer_body,
   Answer_comment_count,
@@ -30,8 +28,6 @@ SELECT
   Answerer_age,
   Answerer_location,
   Answerer_reputation,
-  Answerer_up_votes,
-  Answerer_down_votes,
   Answerer_views,
 FROM (
   SELECT
@@ -60,8 +56,6 @@ LEFT JOIN (
     age Poster_age,
     location Poster_location,
     reputation Poster_reputation,
-    up_votes Poster_up_votes,
-    down_votes Poster_down_votes,
     views Poster_views
   FROM
     `bigquery-public-data.stackoverflow.users`) Posters
@@ -88,8 +82,6 @@ LEFT JOIN (
     age Answerer_age,
     location Answerer_location,
     reputation Answerer_reputation,
-    up_votes Answerer_up_votes,
-    down_votes Answerer_down_votes,
     views Answerer_views
   FROM
     `bigquery-public-data.stackoverflow.users`) Answerers
