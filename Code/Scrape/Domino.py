@@ -29,11 +29,11 @@ def get_data(driver, url, topic):
         By.XPATH, '//div[@class="post-meta"]//time').get_attribute("datetime")
     #print("date:", date)
 
-    # Question_score
+    # Question_score_count
     upvote_count = driver.find_element(
         By.XPATH, '//div[@class="post-vote vote"]//span').text
     upvote_count = convert2num(upvote_count)
-    #print("Question_score:", upvote_count)
+    #print("Question_score_count:", upvote_count)
 
     # question_body
     body = driver.find_element(
@@ -50,7 +50,7 @@ def get_data(driver, url, topic):
     total_dict["Question_created_time"] = date
     total_dict["Question_link"] = url
     total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_score"] = upvote_count
+    total_dict["Question_score_count"] = upvote_count
     # total_dict["Question_topic"] = topic
     total_dict["Question_body"] = body
 

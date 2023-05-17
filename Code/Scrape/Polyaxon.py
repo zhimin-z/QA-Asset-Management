@@ -31,11 +31,11 @@ def get_data(driver, url):
         By.XPATH, '//relative-time[@class="no-wrap"]').get_attribute("datetime")
     # print("date:", date)
 
-    # Question_score
+    # Question_score_count
     upvote_count = driver.find_element(
         By.XPATH, '//div[@class="text-center discussion-vote-form position-relative"]//button').text
     upvote_count = convert2num(upvote_count)
-    # print("Question_score:", upvote_count)
+    # print("Question_score_count:", upvote_count)
 
     # question_category
     category_lst = driver.find_elements(
@@ -77,7 +77,7 @@ def get_data(driver, url):
     # total_dict["Question_tags"] = label_lst
     # total_dict["Question_converted_from_issue"] = issue
     total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_score"] = upvote_count
+    total_dict["Question_score_count"] = upvote_count
     total_dict["Question_body"] = body
     total_dict["Answer_list"] = []
 

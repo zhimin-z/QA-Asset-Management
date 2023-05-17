@@ -7,7 +7,7 @@ SELECT
   Question_created_time,
   Question_favorite_count,
   Question_last_edit_time,
-  Question_score,
+  Question_score_count,
   Question_tags,
   Question_view_count,
   Poster_id,
@@ -41,7 +41,7 @@ FROM (
     creation_date Question_created_time,
     favorite_count Question_favorite_count,
     last_edit_date Question_last_edit_time,
-    score Question_score,
+    score Question_score_count,
     tags Question_tags,
     view_count Question_view_count
   FROM

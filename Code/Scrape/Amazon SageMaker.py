@@ -47,11 +47,11 @@ def get_data(driver, url):
     view_count = convert2num(view_count)
     # print("question_view_count:", view_count)
 
-    # Question_score
+    # Question_score_count
     upvote_count = driver.find_element(
         By.XPATH, '//div[@class="Vote_textContainer__5bmNJ"]').text
     upvote_count = convert2num(upvote_count)
-    # print("Question_score:", upvote_count)
+    # print("Question_score_count:", upvote_count)
 
     # # question_topics
     # topic_lst = driver.find_elements(
@@ -84,7 +84,7 @@ def get_data(driver, url):
     total_dict["Question_link"] = url
     # total_dict["Question_topic"] = topic_lst
     # total_dict["Question_tags"] = tag_lst
-    total_dict["Question_score"] = upvote_count
+    total_dict["Question_score_count"] = upvote_count
     total_dict["Question_view_count"] = view_count
     total_dict["Question_answer_count"] = answer_count
     total_dict["Question_has_accepted_answer"] = has_accepted

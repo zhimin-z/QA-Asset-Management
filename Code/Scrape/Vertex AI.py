@@ -46,7 +46,7 @@ def get_data(driver, url):
         has_accepted = False
     # print("has_acceted:", has_accepted)
 
-    # Question_score
+    # Question_score_count
     upvote_count = driver.find_element(
         By.XPATH, '//span[@class="message-stat kudos-stat"]').text
     upvote_count = convert2num(upvote_count)
@@ -93,7 +93,7 @@ def get_data(driver, url):
     # total_dict["Question_topic"] = topic_lst
     total_dict["Question_has_accepted_answer"] = has_accepted
     total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_score"] = upvote_count
+    total_dict["Question_score_count"] = upvote_count
     total_dict["Question_view_count"] = view_count
     total_dict["Question_body"] = body
     total_dict["Answer_list"] = []
