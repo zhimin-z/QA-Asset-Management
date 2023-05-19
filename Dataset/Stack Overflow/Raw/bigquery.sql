@@ -21,7 +21,7 @@ SELECT
   Answer_comment_count,
   Answer_created_time,
   Answer_last_edit_time,
-  Answer_score,
+  Answer_score_count,
   Answerer_id,
   Answerer_created_time,
   Answerer_last_access_time,
@@ -69,7 +69,7 @@ LEFT JOIN (
     comment_count Answer_comment_count,
     creation_date Answer_created_time,
     last_edit_date Answer_last_edit_time,
-    score Answer_score
+    score Answer_score_count
   FROM
     `bigquery-public-data.stackoverflow.posts_answers`) Answers
 ON

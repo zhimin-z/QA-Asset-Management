@@ -113,7 +113,7 @@ def get_data(driver, url):
 
         total_dict["Answer_list"].append({
             "Answer_created_time": ac_answer_date,
-            "Answer_score": ac_Answer_score,
+            "Answer_score_count": ac_Answer_score,
             "Answer_body": ac_answer_body,
             "Answer_comment_count": ac_answer_comment_count,
             "Answer_has_accepted": True
@@ -128,9 +128,9 @@ def get_data(driver, url):
         answer = answers_lst[i]
         answer_date = answer.find_element(
             By.XPATH, './/time[@role="presentation"]').get_attribute("datetime")
-        Answer_score = answer.find_element(
+        Answer_score_count = answer.find_element(
             By.XPATH, './/div[@class="vote-widget"]/span/span[2]').text
-        Answer_score = convert2num(Answer_score)
+        Answer_score_count = convert2num(Answer_score_count)
         answer_body = answer.find_element(
             By.XPATH, './/div[@class="answer-body"]').get_attribute('innerText').strip()
         answer_comment_count = answer.find_element(
@@ -138,14 +138,14 @@ def get_data(driver, url):
         answer_comment_count = convert2num(answer_comment_count)
 
         # print("answer_date:", answer_date)
-        # print("answer_upvote:", Answer_score)
+        # print("answer_upvote:", Answer_score_count)
         # print("anaswer_body:", answer_body)
         # print("answer_comment_count:", answer_comment_count)
         # print("answer_has_accepted:", False)
 
         total_dict["Answer_list"].append({
             "Answer_created_time": answer_date,
-            "Answer_score": Answer_score,
+            "Answer_score_count": Answer_score_count,
             "Answer_body": answer_body,
             "Answer_comment_count": answer_comment_count,
             "Answer_has_accepted": False

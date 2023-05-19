@@ -62,22 +62,22 @@ def get_data(driver, url, topic):
             By.XPATH, './/li[@class="meta-data"]/time').get_attribute("datetime")
 
         try:
-            Answer_score = answer.find_element(
+            Answer_score_count = answer.find_element(
                 By.XPATH, './/span[@class="vote-sum"]').text
-            Answer_score = convert2num(Answer_score)
+            Answer_score_count = convert2num(Answer_score_count)
         except:
-            Answer_score = 0
+            Answer_score_count = 0
 
         answer_body = answer.find_element(By.XPATH, './/section[@class="comment-body"]').get_attribute(
             'innerText').strip()
 
         #print("answer_date:", answer_date)
-        #print("answer_upvote:", Answer_score)
+        #print("answer_upvote:", Answer_score_count)
         #print("anaswer_body:", answer_body)
 
         total_dict["Answer_list"].append({
             "Answer_created_time": answer_date,
-            "Answer_score": Answer_score,
+            "Answer_score_count": Answer_score_count,
             "Answer_body": answer_body
         })
 

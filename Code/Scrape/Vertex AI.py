@@ -105,11 +105,11 @@ def get_data(driver, url):
         answer_date = convert2date(answer_date)
 
         try:
-            Answer_score = answer.find_element(
+            Answer_score_count = answer.find_element(
                 By.XPATH, './/div[@class="lia-button-image-kudos-count"]/span/span[1]').text
-            Answer_score = convert2num(Answer_score)
+            Answer_score_count = convert2num(Answer_score_count)
         except:
-            Answer_score = 0
+            Answer_score_count = 0
         answer_body = answer.find_element(
             By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
 
@@ -122,13 +122,13 @@ def get_data(driver, url):
             except:
                 pass
         # print("answer_date:", answer_date)
-        # print("answer_upvote:", Answer_score)
+        # print("answer_upvote:", Answer_score_count)
         # print("anaswer_body:", answer_body)
 
         total_dict["Answer_list"].append({
             "Answer_created_time": answer_date,
             "Answer_has_accepted": cur_has_accepted,
-            "Answer_score": Answer_score,
+            "Answer_score_count": Answer_score_count,
             "Answer_body": answer_body
         })
 

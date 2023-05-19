@@ -85,20 +85,20 @@ def get_data(driver, url):
         answer = answers_node_lst[i]
         answer_date = answer.find_element(
             By.XPATH, './/relative-time').get_attribute('datetime')
-        Answer_score = answer.find_element(
+        Answer_score_count = answer.find_element(
             By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
-        Answer_score = convert2num(Answer_score)
+        Answer_score_count = convert2num(Answer_score_count)
         answer_body = answer.find_element(
             By.XPATH, './/table[@role="presentation"]').get_attribute('innerText').strip()
 
         # print("answer_date:", answer_date)
-        # print("answer_upvote:", Answer_score)
+        # print("answer_upvote:", Answer_score_count)
         # print("anaswer_body:", answer_body)
         # print("answer_has_accepted:", cur_has_accepted)
 
         total_dict["Answer_list"].append({
             "Answer_created_time": answer_date,
-            "Answer_score": Answer_score,
+            "Answer_score_count": Answer_score_count,
             "Answer_body": answer_body
         })
 
