@@ -169,5 +169,5 @@ if __name__ == '__main__':
             posts.append(get_data(driver, post_url))
 
     posts_json = json.dumps(posts, indent='\t')
-    with open(os.path.join('..\Dataset\Tool-specific\Round#1\Raw', 'Vertex AI.json'), 'w') as f:
+    with open(os.path.join('..\Dataset\Tool-specific\Raw', 'Vertex AI.json'), 'w') as f:
         f.write(posts_json)
