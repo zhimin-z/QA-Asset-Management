@@ -16,7 +16,6 @@ def convert2num(num):
 
 def get_data(driver, url):
     driver.get(url)
-    driver.implicitly_wait(1)
 
     total_dict = {}
 
@@ -129,7 +128,6 @@ def get_data(driver, url):
 
 def get_url(driver, url):
     driver.get(url)
-    driver.implicitly_wait(1)
 
     posts_url = []
     urls_lst = driver.find_elements(
@@ -151,6 +149,7 @@ def get_url(driver, url):
 
 if __name__ == '__main__':
     driver = uc.Chrome()
+    driver.implicitly_wait(2)
 
     posts = []
     next_page_url = 'https://repost.aws/tags/TAT80swPyVRPKPcA0rsJYPuA/amazon-sage-maker'

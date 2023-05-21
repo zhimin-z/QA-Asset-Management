@@ -149,6 +149,7 @@ def get_url(driver, url):
 
 if __name__ == '__main__':
     driver = uc.Chrome()
+    driver.implicitly_wait(1)
 
     index = 0
     posts = []

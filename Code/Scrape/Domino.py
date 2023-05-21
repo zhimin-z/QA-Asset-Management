@@ -16,7 +16,6 @@ def convert2num(num):
 
 def get_data(driver, url, topic):
     driver.get(url)
-    driver.implicitly_wait(1)
 
     total_dict = {}
 
@@ -113,6 +112,7 @@ def get_topic(driver, url):
 
 if __name__ == '__main__':
     driver = uc.Chrome()
+    driver.implicitly_wait(2)
 
     base_url = 'https://tickets.dominodatalab.com/hc/en-us/community/topics'
     communities_url, topics = get_topic(driver, base_url)

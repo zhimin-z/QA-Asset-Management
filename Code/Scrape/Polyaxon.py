@@ -17,7 +17,6 @@ def convert2num(num):
 
 def get_data(driver, url):
     driver.get(url)
-    driver.Manage().Timeouts().ImplicitWait
 
     total_dict = {}
 
@@ -107,7 +106,6 @@ def get_data(driver, url):
 
 def get_url(driver, url):
     driver.get(url)
-    driver.Manage().Timeouts().ImplicitWait
 
     posts_url = []
     post_list = driver.find_elements(
@@ -121,6 +119,7 @@ def get_url(driver, url):
 
 if __name__ == '__main__':
     driver = uc.Chrome()
+    driver.implicitly_wait(10)
 
     posts = []
     index = 0

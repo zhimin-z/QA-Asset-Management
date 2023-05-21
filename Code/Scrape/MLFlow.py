@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 from dateutil import parser
-import time
 import json
 import os
+import re
 
 
 def convert2num(num):
@@ -18,7 +18,6 @@ def convert2num(num):
 
 def get_data(driver, url):
     driver.get(url)
-    driver.implicitly_wait(1)
 
     total_dict = {}
 
@@ -37,9 +36,16 @@ def get_data(driver, url):
     # print("list_number:", len(section_lst))
 
     for i in range(len(section_lst)):
-        date = section_lst[i].find_element(
-            By.XPATH, './/span[@class="zX2W9c"]').text
+        try:
+            date = section_lst[i].find_element(
+                By.XPATH, './/span[@class="zX2W9c"]').text
+        except:
+            print(url, i)
+            continue
+        
+        date = re.sub(r'\(.+\)', '', date)
         date = parser.parse(date).isoformat()
+            
         body = section_lst[i].find_element(
             By.XPATH, './/div[@class="ptW7te"]').get_attribute("innerText").strip()
 
@@ -66,38 +72,37 @@ def get_data(driver, url):
 
 def get_url(driver):
     posts_url = []
-    urls_lst = driver.find_elements(By.XPATH, '//div[@jscontroller="MAWgde"]')
+    urls_lst = driver.find_elements(By.XPATH, './/a[@class="ZLl54 Dysyo"]')
 
     for url_node in urls_lst:
-        post_url = url_node.find_element(
-            By.XPATH, './/a[@class="ZLl54"]').get_attribute('href')
+        post_url = url_node.get_attribute('href')
         posts_url.append(post_url)
 
     return posts_url
 
 
 if __name__ == '__main__':
-    driver = uc.Chrome()
-
     posts_url = []
-    last_page = ''
     base_url = 'https://groups.google.com/g/mlflow-users'
+    
+    driver = uc.Chrome()
+    driver.implicitly_wait(3)
     driver.get(base_url)
 
     while True:
         posts_url.extend(get_url(driver))
-        if last_page == '-1':
-            break
-
+        
         next_button = driver.find_element(
             By.XPATH, '//div[@role="button" and @aria-label="Next page"]')
+        
+        next_page = next_button.get_attribute('tabindex')
+        if next_page == '-1':
+            break
+        
         next_button.click()
 
-        time.sleep(1)
-
-        last_page = next_button.get_attribute('tabindex')
-
     posts = []
+    # posts_url = ['https://groups.google.com/g/mlflow-users/c/CQ7-suqwKo0']
     for post_url in posts_url:
         posts.append(get_data(driver, post_url))
 

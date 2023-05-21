@@ -16,7 +16,6 @@ def convert2num(num):
 
 def get_data(driver, url):
     driver.get(url)
-    driver.implicitly_wait(1)
 
     total_dict = {}
 
@@ -156,6 +155,7 @@ def get_data(driver, url):
 
 def get_url(driver, url):
     driver.get(url)
+    driver.implicitly_wait(2)
 
     urls_lst = []
     urls_node_lst = driver.find_elements(By.XPATH, '//h2[@class="title"]/a')
