@@ -138,5 +138,5 @@ if __name__ == '__main__':
             posts.append(get_data(driver, url))
 
     posts_json = json.dumps(posts, indent='\t')
-    with open(os.path.join('..\Dataset\Tool-specific Others\Round#1\Raw', 'Polyaxon.json'), 'w') as f:
+    with open(os.path.join('..\Dataset\Tool-specific\Round#1\Raw', 'Polyaxon.json'), 'w') as f:
         f.write(posts_json)
