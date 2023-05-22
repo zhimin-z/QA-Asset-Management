@@ -42,14 +42,15 @@ def get_data(driver, url):
     # print("body:", body)
 
     # question_answer_count
-    answers_node_lst = driver.find_elements(
-        By.XPATH, '//div[@class="TimelineItem discussion-timeline-item mx-0 js-comment-container"]')
+    answer_count = driver.find_element(
+        By.XPATH, '//h2[@id="discussion-comment-count"]/span[2]')
+    answer_count = convert2num(answer_count)
     # print("answer_count:", len(answers_lst))
 
     post["Question_title"] = title
     post["Question_link"] = url
     post["Question_created_time"] = date
-    post["Question_answer_count"] = len(answers_node_lst)
+    post["Question_answer_count"] = answer_count
     post["Question_score_count"] = upvote_count
     post["Question_body"] = body
     post['Question_closed_time'] = np.nan
@@ -57,27 +58,16 @@ def get_data(driver, url):
     post['Answer_comment_count'] = np.nan
     post['Answer_body'] = np.nan
     
-    # question_has_accepted_answer
     try:
-        driver.find_element(By.XPATH, '//svg[@class="octicon octicon-check-circle-fill color-fg-success"]')
-        has_accepted = True
+        answer = driver.find_element(By.XPATH, '//section[@class="width-full" and @aria-label="Marked as Answer"]')
+        post['Question_closed_time'] = answer.find_element(By.XPATH, './/relative-time').get_attribute('datetime')
+        Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
+        post['Answer_score_count'] = convert2num(Answer_score_count)
+        post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
+        Answer_comment_count = answer.find_element(By.XPATH, './/span[@class="color-fg-muted no-wrap"]').text
+        post['Answer_comment_count'] = convert2num(Answer_comment_count)
     except:
-        has_accepted = False
-    # print("has_acceted:", has_accepted)
-    
-    if has_accepted:
-        for answer in answers_node_lst:
-            try:
-                answer.find_element(By.XPATH, './/button[@aria-label="Marked as answer"]')
-                post['Question_closed_time'] = answer.find_element(By.XPATH, './/relative-time').get_attribute('datetime')
-                Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
-                post['Answer_score_count'] = convert2num(Answer_score_count)
-                post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
-                Answer_comment_count = answer.find_element(By.XPATH, './/span[@class="color-fg-muted no-wrap"]').text
-                post['Answer_comment_count'] = convert2num(Answer_comment_count)
-                break
-            except:
-                continue
+        pass
 
     return post
 
@@ -87,7 +77,7 @@ def get_url(driver, url):
 
     posts_url = []
     post_list = driver.find_elements(
-        By.XPATH, '//a[@class="discussion-Link--secondary markdown-title Link--primary no-underline text-bold f3"]')
+        By.XPATH, '//div[@class="lh-condensed pl-2 pr-3 flex-1"]/h3/a')
 
     for post in post_list:
         posts_url.append(post.get_attribute('href'))
@@ -97,7 +87,7 @@ def get_url(driver, url):
 
 if __name__ == '__main__':
     driver = uc.Chrome()
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
 
     base_url = 'https://github.com/orgs/polyaxon/discussions?page='
     posts_url_lst = []
@@ -113,10 +103,10 @@ if __name__ == '__main__':
         
         posts_url_lst.extend(posts_url)
 
-    posts = pd.Dataframe()
+    posts = pd.DataFrame()
     for url in posts_url_lst:
         post = get_data(driver, url)
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Polyaxon.json'), orient='records', indent=4)
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Polyaxon.json'), orient='records', indent=4)

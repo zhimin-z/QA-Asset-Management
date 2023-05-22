@@ -50,14 +50,14 @@ def get_data(driver, url):
     # print("view_count", view_count)
 
     # question_answer_count
-    answer_count = driver.find_elements(
-        By.XPATH, '//div[@class="message-stat replies-stat"]').text
+    answer_count = driver.find_element(
+        By.XPATH, '//span[@class="message-stat replies-stat"]').text
     answer_count = convert2num(answer_count)
     # print("len:", len(answers_lst))
 
     # question_body
     comments = driver.find_elements(By.XPATH, '//div[@class="lia-quilt lia-quilt-forum-message lia-quilt-layout-custom-message"]')
-    body = comments[0].get_attribute('innerText').strip()
+    body = comments[0].find_element(By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
     # print("body:", body)
 
     post = {}
@@ -72,23 +72,17 @@ def get_data(driver, url):
     post['Answer_score_count'] = np.nan
     post['Answer_body'] = np.nan
     
-    # question_has_accepted_answer
-    has_accepted = False
     try:
         driver.find_element(
             By.XPATH, '//div[@class="custom-google-accepted-solution root"]')
-        has_accepted = True
-    except:
-        has_accepted = False
-    # print("has_acceted:", has_accepted)
-    
-    if has_accepted:
         post['Question_closed_time'] = comments[1].find_element(
             By.XPATH, './/span[@class="local-friendly-date"]').get_attribute('title')
         Answer_score_count = comments[1].find_element(
-                By.XPATH, './/div[@class="message-stat kudos-stat').text
+                By.XPATH, './/span[@itemprop="upvoteCount"]').text
         post['Answer_score_count'] = convert2num(Answer_score_count)
-        post['Answer_body'] = comments[1].get_attribute('innerText').strip()
+        post['Answer_body'] = comments[1].find_element(By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
+    except:
+        pass
 
     return post
 
@@ -107,7 +101,7 @@ def get_url(driver, url):
 
 if __name__ == '__main__':
     driver = uc.Chrome()
-    driver.implicitly_wait(1)
+    driver.implicitly_wait(2)
 
     base_url = 'https://www.googlecloudcommunity.com/gc/AI-ML/bd-p/cloud-ai-ml/page/'
     posts_url_lst = []
@@ -126,9 +120,9 @@ if __name__ == '__main__':
         last_url = cur_url
 
     posts = pd.DataFrame()
-    for post_url in posts_url:
+    for post_url in posts_url_lst:
         post = get_data(driver, post_url)
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
 
-    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Vertex AI.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Vertex AI.json'), indent=4, orient='records')

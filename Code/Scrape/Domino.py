@@ -22,24 +22,20 @@ def get_data(driver, url):
     #print("Title:", title)
 
     # Question_created_time
-    date = driver.find_element(
-        By.XPATH, '//div[@class="post-meta"]//time').get_attribute("datetime")
+    date = driver.find_element(By.XPATH, '//div[@class="post-meta"]//time').get_attribute("datetime")
     #print("date:", date)
 
     # Question_score_count
-    upvote_count = driver.find_element(
-        By.XPATH, '//div[@class="post-vote vote"]//span').text
+    upvote_count = driver.find_element(By.XPATH, '//div[@class="post-vote vote"]//span').text
     upvote_count = convert2num(upvote_count)
     #print("Question_score_count:", upvote_count)
 
     # question_body
-    body = driver.find_element(
-        By.XPATH, '//div[@class="post-body"]').get_attribute("innerText").strip()
+    body = driver.find_element(By.XPATH, '//div[@class="post-body"]').get_attribute("innerText").strip()
     #print("body:", body)
 
     # answers
-    answers_lst = driver.find_elements(
-        By.XPATH, '//div[contains(@class,"comment-wrapper")]')
+    answers_lst = driver.find_elements(By.XPATH, '//div[contains(@class,"comment-wrapper")]')
     # print("answer_count:", len(answers_lst))
 
     post = {}
@@ -57,8 +53,7 @@ def get_url(driver, url):
     driver.get(url)
 
     posts_url = []
-    urls_lst = driver.find_elements(
-        By.XPATH, '//span[@class="striped-list-info"]/a')
+    urls_lst = driver.find_elements(By.XPATH, '//span[@class="striped-list-info"]/a')
     for post_url in urls_lst:
         posts_url.append(post_url.get_attribute('href'))
 
@@ -68,8 +63,7 @@ def get_url(driver, url):
 def get_topic(driver, url):
     driver.get(url)
 
-    community_urls_lst = driver.find_elements(
-        By.XPATH, '//li[contains(@class, "topics-item")]/a')
+    community_urls_lst = driver.find_elements(By.XPATH, '//li[contains(@class, "topics-item")]/a')
 
     topics = []
     communities_url = []
@@ -98,4 +92,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Domino.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Domino.json'), indent=4, orient='records')

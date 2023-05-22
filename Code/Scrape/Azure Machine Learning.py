@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 import pandas as pd
+import numpy as np
+import json
 import os
 
 
@@ -17,117 +19,57 @@ def convert2num(num):
 def get_data(driver, url):
     driver.get(url)
 
-    # question_title
-    title = driver.find_element(By.XPATH, '//h1[@class="title is-2"]').text
-    # print("Title:", title)
-
     # Question_created_time
-    date = driver.find_element(
-        By.XPATH, '//div[@class="level-right margin-top-none")]/span[@class="font-size-xs"]').get_attribute("datetime")
+    date = driver.find_element(By.XPATH, '//local-time[@format="datetime"]').get_attribute("datetime")
     # print("date:", date)
 
-    # question_has_accepted_answer
-    try:
-        driver.find_element(By.XPATH, '//span[@value="Accepted answer"]')
-        has_accepted = True
-    except:
-        has_accepted = False
-    # print("has_acceted:", has_accepted)
-
-    # Question_score_count
-    upvote_count = driver.find_element(
-        By.XPATH, '//span[@class="vote-count"]').text
-    upvote_count = convert2num(upvote_count)
-    # print("upvote_count", upvote_count)
-
     # question_comment_count
-    comment_count = driver.find_element(By.XPATH, '//div[@class="buttons margin-block-xxs margin-top-xs"]/span/span[2]').text
+    comment_count = driver.find_element(By.XPATH, '//span[@class="font-size-sm is-visually-hidden-mobile"]').text
     comment_count = convert2num(comment_count)
     # print("comment_count", comment_count)
+    
+    data_json = driver.find_element(
+        By.XPATH, '//script[@type="application/ld+json"]').get_attribute("innerText")
+    data_dict = json.loads(data_json)
+
+    # question_title
+    title = data_dict["mainEntity"]["name"]
+    # print("Title:", title)
 
     # question_answer_count
-    answer_count = driver.find_element(By.XPATH, '//span[@itemprop="answerCount"]').text
+    answer_count = data_dict["mainEntity"]["answerCount"]
     # print("answer_count:", answer_count)
-    answer_count = convert2num(answer_count)
+
+    # question_score_count
+    score_count = data_dict["mainEntity"]["upvoteCount"]
+    # print("score_count:", score_count)
 
     # question_body
-    body = driver.find_element(
-        By.XPATH, '//div[@class="question-body post-body"]').get_attribute("innerText").strip()
+    body = data_dict["mainEntity"]["text"]
     # print("body:", body)
 
     post = {}
     post["Question_title"] = title
     post["Question_created_time"] = date
     post["Question_link"] = url
-    post["Question_has_accepted_answer"] = has_accepted
+    post["Question_score_count"] = score_count
     post["Question_answer_count"] = answer_count
     post["Question_comment_count"] = comment_count
-    post["Question_score_count"] = upvote_count
     post["Question_body"] = body
+    post["Question_closed_time"] = np.nan
+    post["Answer_score_count"] = np.nan
+    post["Answer_comment_count"] = np.nan
+    post["Answer_body"] = np.nan
 
-    post["Answer_list"] = []
-
-    accepted_answer_lst = driver.find_elements(
-        By.XPATH, '//div[@class="post-container answer-container  accepted-answer"]')
-    if accepted_answer_lst:
-        ac_answer = accepted_answer_lst[0]
-        ac_answer_date = ac_answer.find_element(
-            By.XPATH, './/time[@role="presentation"]').get_attribute("datetime")
-        ac_Answer_score = ac_answer.find_element(
-            By.XPATH, './/div[@class="vote-widget"]/span/span[2]').text
-        ac_Answer_score = convert2num(ac_Answer_score)
-        ac_answer_body = ac_answer.find_element(
-            By.XPATH, './/div[@class="answer-body"]').get_attribute('innerText').strip()
-        ac_answer_comment_count = ac_answer.find_element(
-            By.XPATH, './/span[@class="control-score-counter comment-count"]').get_attribute("innerText")
-        ac_answer_comment_count = convert2num(ac_answer_comment_count)
-
-        # print("ac_answer_date:", ac_answer_date)
-        # print("ac_answer_upvote:", ac_Answer_score)
-        # print("ac_anaswer_body:", ac_answer_body)
-        # print("ac_answer_comment_count:", ac_answer_comment_count)
-        # print("ac_answer_has_accepted:", True)
-
-        post["Answer_list"].append({
-            "Answer_created_time": ac_answer_date,
-            "Answer_score_count": ac_Answer_score,
-            "Answer_body": ac_answer_body,
-            "Answer_comment_count": ac_answer_comment_count,
-            "Answer_has_accepted": True
-        })
-
-    # other_answers
-    answers_lst = driver.find_elements(
-        By.XPATH, '//div[@class="widget widget-nopad answer-list"]/div[@class="widget-content"]/div[@class="post-container answer-container "]')
-    # print("len:", len(answers_lst))
-
-    for i in range(len(answers_lst)):
-        answer = answers_lst[i]
-        answer_date = answer.find_element(
-            By.XPATH, './/time[@role="presentation"]').get_attribute("datetime")
-        Answer_score_count = answer.find_element(
-            By.XPATH, './/div[@class="vote-widget"]/span/span[2]').text
-        Answer_score_count = convert2num(Answer_score_count)
-        answer_body = answer.find_element(
-            By.XPATH, './/div[@class="answer-body"]').get_attribute('innerText').strip()
-        answer_comment_count = answer.find_element(
-            By.XPATH, './/span[@class="control-score-counter comment-count"]').get_attribute("innerText")
-        answer_comment_count = convert2num(answer_comment_count)
-
-        # print("answer_date:", answer_date)
-        # print("answer_upvote:", Answer_score_count)
-        # print("anaswer_body:", answer_body)
-        # print("answer_comment_count:", answer_comment_count)
-        # print("answer_has_accepted:", False)
-
-        post["Answer_list"].append({
-            "Answer_created_time": answer_date,
-            "Answer_score_count": Answer_score_count,
-            "Answer_body": answer_body,
-            "Answer_comment_count": answer_comment_count,
-            "Answer_has_accepted": False
-        })
-
+    acceptedAnswer = data_dict["mainEntity"]["acceptedAnswer"]
+    if acceptedAnswer:
+        post["Answer_body"] = acceptedAnswer["text"]
+        post["Answer_score_count"] = acceptedAnswer["upvoteCount"]
+        answer = driver.find_element(By.XPATH, '//div[@class="card-content padding-none margin-none"]')
+        post["Question_closed_time"] = answer.find_element(By.XPATH, './/local-time[@format="datetime"]').get_attribute("datetime")
+        Answer_comment_count = answer.find_element(By.XPATH, './/span[@class="font-size-sm is-visually-hidden-mobile"]').text
+        post["Answer_comment_count"] = convert2num(Answer_comment_count)
+        
     return post
 
 
@@ -169,4 +111,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Azure Machine Learning.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Azure Machine Learning.json'), indent=4, orient='records')

@@ -24,8 +24,7 @@ def get_data(driver, url):
     # print("question_title:", title)
 
     # question_view_count
-    view_count = driver.find_element(
-        By.XPATH, '//div[@class="Nadu4b"]').get_attribute('innerText')
+    view_count = driver.find_element(By.XPATH, '//div[@class="Nadu4b"]').get_attribute('innerText')
     view_count = convert2num(view_count)
     # print("question_view_count:", view_count)
 
@@ -35,15 +34,13 @@ def get_data(driver, url):
     # print("answer_count:", answer_count)
     
     # date
-    date = section_lst[0].find_element(
-                By.XPATH, './/span[@class="zX2W9c"]').text
+    date = section_lst[0].find_element(By.XPATH, './/span[@class="zX2W9c"]').text
     date = re.sub(r'\(.+\)', '', date)
     date = parser.parse(date).isoformat()
     # print("date:", date)
     
     #body
-    body = section_lst[0].find_element(
-            By.XPATH, './/div[@class="ptW7te"]').get_attribute("innerText").strip()
+    body = section_lst[0].find_element(By.XPATH, './/div[@class="ptW7te"]').get_attribute("innerText").strip()
     #print("body:", body)
 
     post = {}            
@@ -69,23 +66,21 @@ def get_url(driver):
 
 
 if __name__ == '__main__':
-    posts_url_lst = []
-    base_url = 'https://groups.google.com/g/mlflow-users'
-    
     driver = uc.Chrome()
     driver.implicitly_wait(2)
+    
+    base_url = 'https://groups.google.com/g/mlflow-users'
     driver.get(base_url)
+    posts_url_lst = []
 
     while True:
         posts_url = get_url(driver)
         posts_url_lst.extend(posts_url)
         
-        next_button = driver.find_element(
-            By.XPATH, '//div[@role="button" and @aria-label="Next page"]')
+        next_button = driver.find_element(By.XPATH, '//div[@role="button" and @aria-label="Next page"]')
         
         next_page = next_button.get_attribute('tabindex')
         if next_page == '-1':
-            print("End of page")
             break
         
         next_button.click()
@@ -95,7 +90,5 @@ if __name__ == '__main__':
         post = get_data(driver, post_url)
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
-
-    print("Total number of posts:", len(posts))
     
-    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'MLflow.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'MLflow.json'), indent=4, orient='records')
