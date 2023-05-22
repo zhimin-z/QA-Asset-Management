@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
-import json
+import pandas as pd
 import os
 
 
@@ -14,10 +14,8 @@ def convert2num(num):
             return 0
 
 
-def get_data(driver, url, topic):
+def get_data(driver, url):
     driver.get(url)
-
-    total_dict = {}
 
     # question_title
     title = driver.find_element(By.XPATH, '//div[@class="post-title"]').text
@@ -42,45 +40,17 @@ def get_data(driver, url, topic):
     # answers
     answers_lst = driver.find_elements(
         By.XPATH, '//div[contains(@class,"comment-wrapper")]')
-    answer_count = len(answers_lst)
     # print("answer_count:", len(answers_lst))
 
-    total_dict["Question_title"] = title
-    total_dict["Question_created_time"] = date
-    total_dict["Question_link"] = url
-    total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_score_count"] = upvote_count
-    # total_dict["Question_topic"] = topic
-    total_dict["Question_body"] = body
+    post = {}
+    post["Question_title"] = title
+    post["Question_created_time"] = date
+    post["Question_link"] = url
+    post["Question_answer_count"] = len(answers_lst)
+    post["Question_score_count"] = upvote_count
+    post["Question_body"] = body
 
-    total_dict["Answer_list"] = []
-
-    for i in range(len(answers_lst)):
-        answer = answers_lst[i]
-        answer_date = answer.find_element(
-            By.XPATH, './/li[@class="meta-data"]/time').get_attribute("datetime")
-
-        try:
-            Answer_score_count = answer.find_element(
-                By.XPATH, './/span[@class="vote-sum"]').text
-            Answer_score_count = convert2num(Answer_score_count)
-        except:
-            Answer_score_count = 0
-
-        answer_body = answer.find_element(By.XPATH, './/section[@class="comment-body"]').get_attribute(
-            'innerText').strip()
-
-        #print("answer_date:", answer_date)
-        #print("answer_upvote:", Answer_score_count)
-        #print("anaswer_body:", answer_body)
-
-        total_dict["Answer_list"].append({
-            "Answer_created_time": answer_date,
-            "Answer_score_count": Answer_score_count,
-            "Answer_body": answer_body
-        })
-
-    return total_dict
+    return post
 
 
 def get_url(driver, url):
@@ -116,13 +86,16 @@ if __name__ == '__main__':
 
     base_url = 'https://tickets.dominodatalab.com/hc/en-us/community/topics'
     communities_url, topics = get_topic(driver, base_url)
+    posts_url_lst = [] 
 
-    posts = []
     for community_url, topic in zip(communities_url, topics):
         posts_url = get_url(driver, community_url)
-        for post_url in posts_url:
-            posts.append(get_data(driver, post_url, topic))
-
-    posts_json = json.dumps(posts, indent='\t')
-    with open(os.path.join('../Dataset/Tool-specific/Raw', 'Domino.json'), 'w') as f:
-        f.write(posts_json)
+        posts_url_lst.extend(posts_url)
+        
+    posts = pd.DataFrame()
+    for post_url in posts_url:
+        post = get_data(driver, post_url)
+        post = pd.DataFrame([post])
+        posts = pd.concat([posts, post], ignore_index=True)
+    
+    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Domino.json'), indent=4, orient='records')

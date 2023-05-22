@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 from dateutil import parser
-import json
+import pandas as pd
+import numpy as np
 import os
 
 
@@ -36,6 +37,41 @@ def get_data(driver, url):
     date = convert2date(date)
     # print("date:", date)
 
+    # Question_score_count
+    upvote_count = driver.find_element(
+        By.XPATH, '//span[@class="message-stat kudos-stat"]').text
+    upvote_count = convert2num(upvote_count)
+    # print("upvote_count", upvote_count)
+
+    # question_view_count
+    view_count = driver.find_element(
+        By.XPATH, '//span[@class="message-stat views-stat"]').text
+    view_count = convert2num(view_count)
+    # print("view_count", view_count)
+
+    # question_answer_count
+    answer_count = driver.find_elements(
+        By.XPATH, '//div[@class="message-stat replies-stat"]').text
+    answer_count = convert2num(answer_count)
+    # print("len:", len(answers_lst))
+
+    # question_body
+    comments = driver.find_elements(By.XPATH, '//div[@class="lia-quilt lia-quilt-forum-message lia-quilt-layout-custom-message"]')
+    body = comments[0].get_attribute('innerText').strip()
+    # print("body:", body)
+
+    post = {}
+    post["Question_title"] = title
+    post["Question_created_time"] = date
+    post["Question_link"] = url
+    post["Question_answer_count"] = answer_count
+    post["Question_score_count"] = upvote_count
+    post["Question_view_count"] = view_count
+    post["Question_body"] = body
+    post['Question_closed_time'] = np.nan
+    post['Answer_score_count'] = np.nan
+    post['Answer_body'] = np.nan
+    
     # question_has_accepted_answer
     has_accepted = False
     try:
@@ -45,94 +81,16 @@ def get_data(driver, url):
     except:
         has_accepted = False
     # print("has_acceted:", has_accepted)
-
-    # Question_score_count
-    upvote_count = driver.find_element(
-        By.XPATH, '//span[@class="message-stat kudos-stat"]').text
-    upvote_count = convert2num(upvote_count)
-    # print("upvote_count", upvote_count)
-
-    # question_answer_count
-    answer_count = driver.find_element(
-        By.XPATH, '//span[@class="message-stat replies-stat"]').text
-    answer_count = convert2num(answer_count)
-    # print("question_answer_count", answer_count)
-
-    # question_view_count
-    view_count = driver.find_element(
-        By.XPATH, '//span[@class="message-stat views-stat"]').text
-    view_count = convert2num(view_count)
-    # print("view_count", view_count)
-
-    # # qustion_topic
-    # topic_lst = driver.find_elements(
-    #     By.XPATH, '//*[@class="label-link lia-link-navigation lia-custom-event"]')
-    # for i in range(len(topic_lst)):
-    #     topic_lst[i] = topic_lst[i].text
-    # # print("topic:", topic_lst)
-
-    # question_body
-    body_lst = driver.find_elements(By.XPATH, '//*[@id="bodyDisplay"]/div/p')
-    for i in range(len(body_lst)):
-        body_lst[i] = body_lst[i].text
-    body = ''.join(body_lst)
-    # print("body:", body)
-
-    total_dict = {}
-
-    # answers
-    answers_lst = driver.find_elements(
-        By.XPATH, '//div[@class="lia-quilt lia-quilt-forum-message lia-quilt-layout-custom-message"]')
-    if len(answers_lst) > 1:
-        answers_lst = answers_lst[1:]
-    # print("len:", len(answers_lst))
-
-    total_dict["Question_title"] = title
-    total_dict["Question_created_time"] = date
-    total_dict["Question_link"] = url
-    # total_dict["Question_topic"] = topic_lst
-    total_dict["Question_has_accepted_answer"] = has_accepted
-    total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_score_count"] = upvote_count
-    total_dict["Question_view_count"] = view_count
-    total_dict["Question_body"] = body
-    total_dict["Answer_list"] = []
-
-    for i in range(len(answers_lst)):
-        answer = answers_lst[i]
-        answer_date = answer.find_element(
+    
+    if has_accepted:
+        post['Question_closed_time'] = comments[1].find_element(
             By.XPATH, './/span[@class="local-friendly-date"]').get_attribute('title')
-        answer_date = convert2date(answer_date)
+        Answer_score_count = comments[1].find_element(
+                By.XPATH, './/div[@class="message-stat kudos-stat').text
+        post['Answer_score_count'] = convert2num(Answer_score_count)
+        post['Answer_body'] = comments[1].get_attribute('innerText').strip()
 
-        try:
-            Answer_score_count = answer.find_element(
-                By.XPATH, './/div[@class="lia-button-image-kudos-count"]/span/span[1]').text
-            Answer_score_count = convert2num(Answer_score_count)
-        except:
-            Answer_score_count = 0
-        answer_body = answer.find_element(
-            By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
-
-        cur_has_accepted = False
-        if has_accepted:
-            try:
-                driver.find_element(
-                    By.XPATH, './/div[@class="custom-google-accepted-solution root"]')
-                cur_has_accepted = True
-            except:
-                pass
-        # print("answer_date:", answer_date)
-        # print("answer_upvote:", Answer_score_count)
-        # print("anaswer_body:", answer_body)
-
-        total_dict["Answer_list"].append({
-            "Answer_created_time": answer_date,
-            "Answer_has_accepted": cur_has_accepted,
-            "Answer_score_count": Answer_score_count,
-            "Answer_body": answer_body
-        })
-
-    return total_dict
+    return post
 
 
 def get_url(driver, url):
@@ -151,10 +109,10 @@ if __name__ == '__main__':
     driver = uc.Chrome()
     driver.implicitly_wait(1)
 
-    index = 0
-    posts = []
-    last_url = ''
     base_url = 'https://www.googlecloudcommunity.com/gc/AI-ML/bd-p/cloud-ai-ml/page/'
+    posts_url_lst = []
+    last_url = ''
+    index = 0
 
     while True:
         index += 1
@@ -164,11 +122,13 @@ if __name__ == '__main__':
         if ref_url == last_url:
             break
 
+        posts_url_lst.extend(posts_url)
         last_url = cur_url
 
-        for post_url in posts_url:
-            posts.append(get_data(driver, post_url))
+    posts = pd.DataFrame()
+    for post_url in posts_url:
+        post = get_data(driver, post_url)
+        post = pd.DataFrame([post])
+        posts = pd.concat([posts, post], ignore_index=True)
 
-    posts_json = json.dumps(posts, indent='\t')
-    with open(os.path.join('../Dataset/Tool-specific/Raw', 'Vertex AI.json'), 'w') as f:
-        f.write(posts_json)
+    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Vertex AI.json'), indent=4, orient='records')

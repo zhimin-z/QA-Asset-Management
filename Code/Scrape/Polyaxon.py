@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
-import json
-import re
+import pandas as pd
+import numpy as np
 import os
 
 
@@ -18,7 +18,7 @@ def convert2num(num):
 def get_data(driver, url):
     driver.get(url)
 
-    total_dict = {}
+    post = {}
 
     # question_title
     title = driver.find_element(
@@ -36,72 +36,50 @@ def get_data(driver, url):
     upvote_count = convert2num(upvote_count)
     # print("Question_score_count:", upvote_count)
 
-    # question_category
-    category_lst = driver.find_elements(
-        By.XPATH, '//div[@class="discussion-sidebar-item"]/a')
-    for i in range(len(category_lst)):
-        category_lst[i] = category_lst[i].text
-    # print("question_category:", category_lst)
-
-    # # qustion_label
-    # label_lst = driver.find_elements(
-    #     By.XPATH, '//div[@class="d-flex flex-wrap"]/a')
-    # for i in range(len(label_lst)):
-    #     label_lst[i] = label_lst[i].text
-    # # print("qustion_label:", label_lst)
-
-    # question_issue
-    # issue_lst = driver.find_elements(
-    #     By.XPATH, '//div[@class="discussion-sidebar-item"]')
-    # try:
-    #     issue = convert2num(re.findall(r'\d+', issue_lst[2].text)[0])
-    # except:
-    #     issue = -1
-    # print("question_issue:", issue)
-
     # question_body
     body = driver.find_element(
-        By.XPATH, '//div[@class="flex-shrink-0 col-12 col-md-9 mb-4 mb-md-0"]//task-lists').get_attribute("innerText").strip()
+        By.XPATH, '//td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute("innerText").strip()
     # print("body:", body)
 
-    # other_answers
+    # question_answer_count
     answers_node_lst = driver.find_elements(
         By.XPATH, '//div[@class="TimelineItem discussion-timeline-item mx-0 js-comment-container"]')
-    answer_count = len(answers_node_lst)
     # print("answer_count:", len(answers_lst))
 
-    total_dict["Question_title"] = title
-    total_dict["Question_link"] = url
-    total_dict["Question_created_time"] = date
-    # total_dict["Question_tags"] = label_lst
-    # total_dict["Question_converted_from_issue"] = issue
-    total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_score_count"] = upvote_count
-    total_dict["Question_body"] = body
-    total_dict["Answer_list"] = []
+    post["Question_title"] = title
+    post["Question_link"] = url
+    post["Question_created_time"] = date
+    post["Question_answer_count"] = len(answers_node_lst)
+    post["Question_score_count"] = upvote_count
+    post["Question_body"] = body
+    post['Question_closed_time'] = np.nan
+    post['Answer_score_count'] = np.nan
+    post['Answer_comment_count'] = np.nan
+    post['Answer_body'] = np.nan
+    
+    # question_has_accepted_answer
+    try:
+        driver.find_element(By.XPATH, '//svg[@class="octicon octicon-check-circle-fill color-fg-success"]')
+        has_accepted = True
+    except:
+        has_accepted = False
+    # print("has_acceted:", has_accepted)
+    
+    if has_accepted:
+        for answer in answers_node_lst:
+            try:
+                answer.find_element(By.XPATH, './/button[@aria-label="Marked as answer"]')
+                post['Question_closed_time'] = answer.find_element(By.XPATH, './/relative-time').get_attribute('datetime')
+                Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
+                post['Answer_score_count'] = convert2num(Answer_score_count)
+                post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
+                Answer_comment_count = answer.find_element(By.XPATH, './/span[@class="color-fg-muted no-wrap"]').text
+                post['Answer_comment_count'] = convert2num(Answer_comment_count)
+                break
+            except:
+                continue
 
-    for i in range(len(answers_node_lst)):
-        answer = answers_node_lst[i]
-        answer_date = answer.find_element(
-            By.XPATH, './/relative-time').get_attribute('datetime')
-        Answer_score_count = answer.find_element(
-            By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
-        Answer_score_count = convert2num(Answer_score_count)
-        answer_body = answer.find_element(
-            By.XPATH, './/table[@role="presentation"]').get_attribute('innerText').strip()
-
-        # print("answer_date:", answer_date)
-        # print("answer_upvote:", Answer_score_count)
-        # print("anaswer_body:", answer_body)
-        # print("answer_has_accepted:", cur_has_accepted)
-
-        total_dict["Answer_list"].append({
-            "Answer_created_time": answer_date,
-            "Answer_score_count": Answer_score_count,
-            "Answer_body": answer_body
-        })
-
-    return total_dict
+    return post
 
 
 def get_url(driver, url):
@@ -121,9 +99,9 @@ if __name__ == '__main__':
     driver = uc.Chrome()
     driver.implicitly_wait(10)
 
-    posts = []
-    index = 0
     base_url = 'https://github.com/orgs/polyaxon/discussions?page='
+    posts_url_lst = []
+    index = 0
 
     while True:
         index += 1
@@ -132,10 +110,13 @@ if __name__ == '__main__':
 
         if not posts_url:
             break
+        
+        posts_url_lst.extend(posts_url)
 
-        for url in posts_url:
-            posts.append(get_data(driver, url))
-
-    posts_json = json.dumps(posts, indent='\t')
-    with open(os.path.join('../Dataset/Tool-specific/Raw', 'Polyaxon.json'), 'w') as f:
-        f.write(posts_json)
+    posts = pd.Dataframe()
+    for url in posts_url_lst:
+        post = get_data(driver, url)
+        post = pd.DataFrame([post])
+        posts = pd.concat([posts, post], ignore_index=True)
+    
+    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Polyaxon.json'), orient='records', indent=4)

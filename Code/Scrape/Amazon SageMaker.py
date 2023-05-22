@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
+import pandas as pd
+import numpy as np
 import json
 import os
 
@@ -17,11 +19,9 @@ def convert2num(num):
 def get_data(driver, url):
     driver.get(url)
 
-    total_dict = {}
-
     # question_title
     title = driver.find_element(
-        By.XPATH, '//div[@class="QuestionView_title__C_38B"]/h1').text
+        By.XPATH, '//div[@data-test="question-title"]/h1').text
     # print("Title:", title)
 
     # Question_created_time
@@ -30,15 +30,6 @@ def get_data(driver, url):
     data_dict = json.loads(data_json)
     date = data_dict["props"]["pageProps"]["question"]["createdAt"]
     # print("date:", date)
-
-    # question_has_accepted_answer
-    try:
-        driver.find_element(
-            By.XPATH, '//div[@class="AnswerView_acceptedTag__MIxHg"]')
-        has_accepted = True
-    except:
-        has_accepted = False
-    # print("has_acceted:", has_accepted)
 
     # question_view_count
     view_count = driver.find_element(
@@ -52,20 +43,6 @@ def get_data(driver, url):
     upvote_count = convert2num(upvote_count)
     # print("Question_score_count:", upvote_count)
 
-    # # question_topics
-    # topic_lst = driver.find_elements(
-    #     By.XPATH, '//div[@class="Metadata_container__SrVEy"]/div[1]/div[2]/a')
-    # for i in range(len(topic_lst)):
-    #     topic_lst[i] = topic_lst[i].find_element(By.XPATH, './/span').text
-    # # print("topics:", topic_lst)
-
-    # # qustion_tags
-    # tag_lst = driver.find_elements(
-    #     By.XPATH, '//div[@class="Metadata_container__SrVEy"]/div[2]/div[2]/a')
-    # for i in range(len(tag_lst)):
-    #     tag_lst[i] = tag_lst[i].find_element(By.XPATH, './/span').text
-    # # print("tags:", tag_lst)
-
     # question_body
     body = driver.find_element(
         By.XPATH, '//div[@class="QuestionView_container__37ZXp"]//div[@class="custom-md-style"]').get_attribute("innerText").strip()
@@ -78,52 +55,40 @@ def get_data(driver, url):
 
     answer_count = len(answers_lst)
 
-    total_dict["Question_title"] = title
-    total_dict["Question_created_time"] = date
-    total_dict["Question_link"] = url
-    # total_dict["Question_topic"] = topic_lst
-    # total_dict["Question_tags"] = tag_lst
-    total_dict["Question_score_count"] = upvote_count
-    total_dict["Question_view_count"] = view_count
-    total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_has_accepted_answer"] = has_accepted
-    total_dict["Question_body"] = body
+    post = {}
+    post["Question_title"] = title
+    post["Question_created_time"] = date
+    post["Question_link"] = url
+    post["Question_score_count"] = upvote_count
+    post["Question_view_count"] = view_count
+    post["Question_answer_count"] = answer_count
+    post["Question_body"] = body
+    post['Question_closed_time'] = np.nan
+    post['Answer_score_count'] = np.nan
+    post['Answer_body'] = np.nan
 
-    total_dict["Answer_list"] = []
-    for i in range(len(answers_lst)):
-        answer = answers_lst[i]
-        # answer_date = answer.find_element(By.XPATH, './/div[@class="ant-typography ant-typography-ellipsis ant-typography-single-line ant-typography-ellipsis-single-line Avatar_age___5eSl"]').text
-        answer_date = data_dict["props"]["pageProps"]["question"]["answers"][i]["createdAt"]
-        Answer_score_count = answer.find_element(
-            By.XPATH, './/div[@class="Vote_textContainer__5bmNJ"]').text
-        Answer_score_count = convert2num(Answer_score_count)
-        answer_body = answer.find_element(
-            By.XPATH, './/div[@class="custom-md-style"]').get_attribute('innerText').strip()
-
-        cur_has_accepted = False
-        if has_accepted:
+    # question_has_accepted_answer
+    try:
+        driver.find_element(
+            By.XPATH, '//div[@class="AnswerView_acceptedTag__MIxHg"]')
+        has_accepted = True
+    except:
+        has_accepted = False
+    # print("has_acceted:", has_accepted)
+    
+    if has_accepted:
+        for i in range(answer_count):
             try:
-                answer.find_element(
-                    By.XPATH, './/div[@class="AnswerView_acceptedTag__MIxHg"]')
-                cur_has_accepted = True
+                answers_lst[i].find_element(By.XPATH, './/div[@class="AnswerView_acceptedTag__MIxHg"]')
+                post['Question_closed_time'] = data_dict["props"]["pageProps"]["question"]["answers"][i]["createdAt"]
+                Answer_score_count = answers_lst[i].find_element(By.XPATH, './/div[@class="Vote_textContainer__5bmNJ"]').text
+                post['Answer_score_count'] = convert2num(Answer_score_count)
+                post['Answer_body'] = answers_lst[i].find_element(By.XPATH, './/div[@class="custom-md-style"]').get_attribute('innerText').strip()
+                break
             except:
-                cur_has_accepted = False
-        else:
-            cur_has_accepted = False
+                continue
 
-        # print("answer_date:", answer_date)
-        # print("answer_upvote:", Answer_score_count)
-        # print("anaswer_body:", answer_body)
-        # print("answer_has_accepted:", cur_has_accepted)
-
-        total_dict["Answer_list"].append({
-            "Answer_created_time": answer_date,
-            "Answer_score_count": Answer_score_count,
-            "Answer_body": answer_body,
-            "Answer_has_accepted": cur_has_accepted
-        })
-
-    return total_dict
+    return post
 
 
 def get_url(driver, url):
@@ -151,18 +116,21 @@ if __name__ == '__main__':
     driver = uc.Chrome()
     driver.implicitly_wait(2)
 
-    posts = []
     next_page_url = 'https://repost.aws/tags/TAT80swPyVRPKPcA0rsJYPuA/amazon-sage-maker'
+    cur_urls_lst = []
 
     while True:
-        cur_urls_lst, next_page_url = get_url(driver, next_page_url)
-
-        for post_url in cur_urls_lst:
-            posts.append(get_data(driver, post_url))
+        cur_urls, next_page_url = get_url(driver, next_page_url)
+        cur_urls_lst.extend(cur_urls)
 
         if not next_page_url:
             break
-
-    posts_json = json.dumps(posts, indent='\t')
-    with open(os.path.join('../Dataset/Tool-specific/Raw', 'Amazon SageMaker.json'), 'w') as f:
-        f.write(posts_json)
+    
+    posts = pd.DataFrame()
+    for post_url in cur_urls_lst:
+        post = get_data(driver, post_url)
+        post = pd.DataFrame([post])
+        posts = pd.concat([posts, post], ignore_index=True)
+        
+    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Amazon SageMaker.json'), indent=4, orient='records')
+    

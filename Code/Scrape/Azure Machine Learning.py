@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
-import json
+import pandas as pd
 import os
 
 
@@ -17,21 +17,18 @@ def convert2num(num):
 def get_data(driver, url):
     driver.get(url)
 
-    total_dict = {}
-
     # question_title
-    title = driver.find_element(By.XPATH, '//h2[@class="question-title"]').text
+    title = driver.find_element(By.XPATH, '//h1[@class="title is-2"]').text
     # print("Title:", title)
 
     # Question_created_time
     date = driver.find_element(
-        By.XPATH, '//span[contains(@class, "action-date")]/time[@role="presentation"]').get_attribute("datetime")
+        By.XPATH, '//div[@class="level-right margin-top-none")]/span[@class="font-size-xs"]').get_attribute("datetime")
     # print("date:", date)
 
     # question_has_accepted_answer
-    has_accepted = False
     try:
-        driver.find_element(By.XPATH, '//span[@aria-label="Best Answer"]')
+        driver.find_element(By.XPATH, '//span[@value="Accepted answer"]')
         has_accepted = True
     except:
         has_accepted = False
@@ -39,55 +36,36 @@ def get_data(driver, url):
 
     # Question_score_count
     upvote_count = driver.find_element(
-        By.XPATH, '//div[@class="vote-widget"]/span/span[2]').text
+        By.XPATH, '//span[@class="vote-count"]').text
     upvote_count = convert2num(upvote_count)
     # print("upvote_count", upvote_count)
 
-    # question_follower_count
-    try:
-        follower_count = driver.find_element(
-            By.XPATH, '//div[@class="widget-content"]/p/strong').text
-        follower_count = convert2num(follower_count)
-    except:
-        follower_count = 0
-    # print("Question_favorite_count", follower_count)
-
     # question_comment_count
-    comment_count = driver.find_element(By.XPATH, '//div[@class="control-bar"]').find_element(
-        By.XPATH, '//span[@class="control-score-counter comment-count"]').text
+    comment_count = driver.find_element(By.XPATH, '//div[@class="buttons margin-block-xxs margin-top-xs"]/span/span[2]').text
     comment_count = convert2num(comment_count)
     # print("comment_count", comment_count)
 
     # question_answer_count
-    answer_count = driver.find_element(
-        By.XPATH, '//span[@itemprop="answerCount"]').text
+    answer_count = driver.find_element(By.XPATH, '//span[@itemprop="answerCount"]').text
     # print("answer_count:", answer_count)
     answer_count = convert2num(answer_count)
-
-    # # # qustion_tags
-    # tag_lst = driver.find_elements(
-    #     By.XPATH, '//span[@class="tags"]/a[@class="tag"]')
-    # for i in range(len(tag_lst)):
-    #     tag_lst[i] = tag_lst[i].find_element(By.XPATH, './a').text
-    # # print("tags:", tag_lst)
 
     # question_body
     body = driver.find_element(
         By.XPATH, '//div[@class="question-body post-body"]').get_attribute("innerText").strip()
     # print("body:", body)
 
-    total_dict["Question_title"] = title
-    total_dict["Question_created_time"] = date
-    total_dict["Question_link"] = url
-    # total_dict["Question_tags"] = tag_lst
-    total_dict["Question_has_accepted_answer"] = has_accepted
-    total_dict["Question_answer_count"] = answer_count
-    total_dict["Question_comment_count"] = comment_count
-    total_dict["Question_favorite_count"] = follower_count
-    total_dict["Question_score_count"] = upvote_count
-    total_dict["Question_body"] = body
+    post = {}
+    post["Question_title"] = title
+    post["Question_created_time"] = date
+    post["Question_link"] = url
+    post["Question_has_accepted_answer"] = has_accepted
+    post["Question_answer_count"] = answer_count
+    post["Question_comment_count"] = comment_count
+    post["Question_score_count"] = upvote_count
+    post["Question_body"] = body
 
-    total_dict["Answer_list"] = []
+    post["Answer_list"] = []
 
     accepted_answer_lst = driver.find_elements(
         By.XPATH, '//div[@class="post-container answer-container  accepted-answer"]')
@@ -110,7 +88,7 @@ def get_data(driver, url):
         # print("ac_answer_comment_count:", ac_answer_comment_count)
         # print("ac_answer_has_accepted:", True)
 
-        total_dict["Answer_list"].append({
+        post["Answer_list"].append({
             "Answer_created_time": ac_answer_date,
             "Answer_score_count": ac_Answer_score,
             "Answer_body": ac_answer_body,
@@ -142,7 +120,7 @@ def get_data(driver, url):
         # print("answer_comment_count:", answer_comment_count)
         # print("answer_has_accepted:", False)
 
-        total_dict["Answer_list"].append({
+        post["Answer_list"].append({
             "Answer_created_time": answer_date,
             "Answer_score_count": Answer_score_count,
             "Answer_body": answer_body,
@@ -150,43 +128,45 @@ def get_data(driver, url):
             "Answer_has_accepted": False
         })
 
-    return total_dict
+    return post
 
 
 def get_url(driver, url):
     driver.get(url)
-    driver.implicitly_wait(2)
 
     urls_lst = []
-    urls_node_lst = driver.find_elements(By.XPATH, '//h2[@class="title"]/a')
+    urls_node_lst = driver.find_elements(By.XPATH, '//h2[@class="title is-6 margin-bottom-xxs"]/a')
 
     for urls_node in urls_node_lst:
-        # the marker post for out-of-bound pages
-        if urls_node.text == 'Your question goes here':
-            break
         urls_lst.append(urls_node.get_attribute('href'))
 
-    return urls_lst
+    return urls_lst, driver.current_url
 
 
 if __name__ == '__main__':
     driver = uc.Chrome()
+    driver.implicitly_wait(3)
 
-    base_url = 'https://learn.microsoft.com/en-us/answers/topics/25447/azure-machine-learning.html?page='
-    posts = []
+    base_url = 'https://learn.microsoft.com/en-us/answers/tags/75/azure-machine-learning?page='
+    posts_url_lst = []
+    last_url = ''
     index = 0
 
     while True:
         index += 1
-        page_url = base_url + str(index)
-        posts_url = get_url(driver, page_url)
-
-        if not posts_url:
+        cur_url = base_url + str(index)
+        posts_url, ref_url = get_url(driver, cur_url)
+        
+        if ref_url == last_url:
             break
-
-        for post_url in posts_url:
-            posts.append(get_data(driver, post_url))
-
-    posts_json = json.dumps(posts, indent='\t')
-    with open(os.path.join('../Dataset/Tool-specific/Raw', 'Azure Machine Learning.json'), 'w') as f:
-        f.write(posts_json)
+        
+        posts_url_lst.extend(posts_url)
+        last_url = cur_url
+        
+    posts = pd.DataFrame()
+    for post_url in posts_url_lst:
+        post = get_data(driver, post_url)
+        post = pd.DataFrame([post])
+        posts = pd.concat([posts, post], ignore_index=True)
+    
+    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Azure Machine Learning.json'), indent=4, orient='records')
