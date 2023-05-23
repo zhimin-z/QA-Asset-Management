@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 from dateutil import parser
 import pandas as pd
+import time
 import os
 import re
 
@@ -29,18 +30,18 @@ def get_data(driver, url):
     # print("question_view_count:", view_count)
 
     # question_answer_count
-    section_lst = driver.find_elements(By.XPATH, '//div[@role="list"]/section')
+    section_lst = driver.find_elements(By.XPATH, '//div[@class="ptW7te"]')
     answer_count = len(section_lst) - 1
     # print("answer_count:", answer_count)
     
     # date
-    date = section_lst[0].find_element(By.XPATH, './/span[@class="zX2W9c"]').text
+    date = driver.find_element(By.XPATH, '//span[@class="zX2W9c"]').text
     date = re.sub(r'\(.+\)', '', date)
     date = parser.parse(date).isoformat()
     # print("date:", date)
     
     #body
-    body = section_lst[0].find_element(By.XPATH, './/div[@class="ptW7te"]').get_attribute("innerText").strip()
+    body = section_lst[0].get_attribute("innerText").strip()
     #print("body:", body)
 
     post = {}            
@@ -56,10 +57,10 @@ def get_data(driver, url):
 
 def get_url(driver):
     posts_url = []
-    urls_lst = driver.find_elements(By.XPATH, './/a[@class="ZLl54 Dysyo"]')
+    urls_lst = driver.find_elements(By.XPATH, '//div[@class="yhgbKd"]')
 
     for url_node in urls_lst:
-        post_url = url_node.get_attribute('href')
+        post_url = url_node.get_attribute('data-rowid')
         posts_url.append(post_url)
 
     return posts_url
@@ -78,17 +79,19 @@ if __name__ == '__main__':
         posts_url_lst.extend(posts_url)
         
         next_button = driver.find_element(By.XPATH, '//div[@role="button" and @aria-label="Next page"]')
-        
         next_page = next_button.get_attribute('tabindex')
         if next_page == '-1':
             break
         
+        next_button = next_button.find_element(By.XPATH, './/span[@class="DPvwYc sm8sCf"]')
         next_button.click()
-    print(posts_url_lst)
+        time.sleep(5)
+        
     posts = pd.DataFrame()
-    # for post_url in posts_url:
-    #     post = get_data(driver, post_url)
-    #     post = pd.DataFrame([post])
-    #     posts = pd.concat([posts, post], ignore_index=True)
+    for post_url in posts_url_lst:
+        post_url = base_url + '/c/' + post_url
+        post = get_data(driver, post_url)
+        post = pd.DataFrame([post])
+        posts = pd.concat([posts, post], ignore_index=True)
     
-    # posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'MLflow.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'MLflow.json'), indent=4, orient='records')
