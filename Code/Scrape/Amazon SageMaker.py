@@ -22,50 +22,52 @@ def get_data(driver, url):
     data_json = driver.find_element(
         By.XPATH, '//script[@id="__NEXT_DATA__"]').get_attribute("innerText")
     data_dict = json.loads(data_json)
+    
+    question = data_dict["props"]["pageProps"]["question"]
 
     # question_title
-    title = data_dict["props"]["pageProps"]["question"]["title"]
+    title = question["title"]
     # print("Title:", title)
 
     # Question_created_time
-    date = data_dict["props"]["pageProps"]["question"]["createdAt"]
+    date = question["createdAt"]
     # print("date:", date)
 
     # Question_created_time
-    date_update = data_dict["props"]["pageProps"]["question"]["updatedAt"]
+    date_update = question["updatedAt"]
     # print("date:", date)
 
     # question_view_count
-    view_count = data_dict["props"]["pageProps"]["question"]["views"]
+    view_count = question["views"]
     # print("view_count:", view_count)
     
     # question_follower_count
-    follower_count = data_dict["props"]["pageProps"]["question"]["totalFollowers"]
+    follower_count = question["totalFollowers"]
     # print("follower_count:", follower_count)
 
     # Question_score_count
-    upvote_count = data_dict["props"]["pageProps"]["question"]["votes"]
+    upvote_count = question["votes"]
     # print("Question_score_count:", upvote_count)
 
     # Question_comment_count
-    comments = data_dict["props"]["pageProps"]["question"]["comments"]
+    comments = question["comments"]
     comment_count = len(comments)
     # print("Question_comment_count:", comment_count)
 
     # question_body
-    body = data_dict["props"]["pageProps"]["question"]["description"]
+    body = question["description"]
     # print("body:", body)
 
     # answers
-    answers_lst = data_dict["props"]["pageProps"]["question"]["answers"]
+    answers_lst = question["answers"]
     # print("answer_count:", answer_count)
     
     # author
-    author = data_dict["props"]["pageProps"]["question"]["author"]
-    isAwsEmployee = author["isAwsEmployee"]
-    isModerator = author["isModerator"]
-    isExpert = author["isExpert"]
-    isCse = author["isCse"]
+    author_q = question["author"]
+    isAwsEmployee = author_q["isAwsEmployee"]
+    isModerator = author_q["isModerator"]
+    isExpert = author_q["isExpert"]
+    isCse = author_q["isCse"]
     # print("isAwsEmployee:", isAwsEmployee)
     # print("isModerator:", isModerator)
     # print("isExpert:", isExpert)
@@ -96,7 +98,7 @@ def get_data(driver, url):
     post["Answerer_isExpert"] = np.nan
     post["Answerer_isCse"] = np.nan
                 
-    if data_dict["props"]["pageProps"]["question"]["accepted"]:
+    if question["accepted"]:
         for answer in answers_lst:
             if answer["accepted"]:
                 post['Question_closed_time'] = answer["createdAt"]
@@ -104,11 +106,12 @@ def get_data(driver, url):
                 post['Answer_comment_count'] = len(answer["comments"])
                 post['Answer_score_count'] = answer["votes"]
                 post['Answer_body'] = answer["body"]
-                author = answer["author"]
-                post["Answerer_isAwsEmployee"] = author["isAwsEmployee"]
-                post["Answerer_isModerator"] = author["isModerator"]
-                post["Answerer_isExpert"] = author["isExpert"]
-                post["Answerer_isCse"] = author["isCse"]
+                author_a = answer["author"]
+                post["Answerer_isAwsEmployee"] = author_a["isAwsEmployee"]
+                post["Answerer_isModerator"] = author_a["isModerator"]
+                post["Answerer_isExpert"] = author_a["isExpert"]
+                post["Answerer_isCse"] = author_a["isCse"]
+                post["Question_self_resolution"] = author_a["id"] == author_q["id"]
                 break
 
     return post

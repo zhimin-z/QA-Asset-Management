@@ -31,21 +31,23 @@ def get_data(driver, url):
     data_json = driver.find_element(
         By.XPATH, '//script[@type="application/ld+json"]').get_attribute("innerText")
     data_dict = json.loads(data_json)
+    
+    question = data_dict["mainEntity"]
 
     # question_title
-    title = data_dict["mainEntity"]["name"]
+    title = question["name"]
     # print("Title:", title)
 
     # question_answer_count
-    answer_count = data_dict["mainEntity"]["answerCount"]
+    answer_count = question["answerCount"]
     # print("answer_count:", answer_count)
 
     # question_score_count
-    score_count = data_dict["mainEntity"]["upvoteCount"]
+    score_count = question["upvoteCount"]
     # print("score_count:", score_count)
 
     # question_body
-    body = data_dict["mainEntity"]["text"]
+    body = question["text"]
     # print("body:", body)
 
     post = {}
@@ -61,7 +63,7 @@ def get_data(driver, url):
     post["Answer_comment_count"] = np.nan
     post["Answer_body"] = np.nan
 
-    acceptedAnswer = data_dict["mainEntity"]["acceptedAnswer"]
+    acceptedAnswer = question["acceptedAnswer"]
     if acceptedAnswer:
         post["Answer_body"] = acceptedAnswer["text"]
         post["Answer_score_count"] = acceptedAnswer["upvoteCount"]
@@ -69,6 +71,7 @@ def get_data(driver, url):
         post["Question_closed_time"] = answer.find_element(By.XPATH, './/local-time[@format="datetime"]').get_attribute("datetime")
         Answer_comment_count = answer.find_element(By.XPATH, './/span[@class="font-size-sm is-visually-hidden-mobile"]').text
         post["Answer_comment_count"] = convert2num(Answer_comment_count)
+        post["Question_self_resolution"] = acceptedAnswer["authorId"] == question["authorId"]
         
     return post
 
