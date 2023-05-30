@@ -74,8 +74,7 @@ def get_data(driver, url):
     post["Question_self_resolution"] = np.nan
     
     try:
-        driver.find_element(
-            By.XPATH, '//div[@class="custom-google-accepted-solution root"]')
+        comments[1].find_element(By.XPATH, './/div[@class="solved"]')
         post['Question_closed_time'] = comments[1].find_elements(
             By.XPATH, './/span[@class="local-friendly-date"]')[1].get_attribute('title')
         Answer_score_count = comments[1].find_element(
@@ -129,4 +128,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
         
-    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Vertex AI.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Vertex AI.json'), indent=4, orient='records')

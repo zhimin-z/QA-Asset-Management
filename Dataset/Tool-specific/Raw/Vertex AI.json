@@ -2750,7 +2750,7 @@
         "Question_score_count":0,
         "Question_view_count":142,
         "Question_body":"Hi , i'm trying to use Google Document API to parse invoices using invoice parser. Followed the doc and imported 10 invoices to train the parser. Used Auto Labeling option. While trying to mark the imported invoices as \"Mark as Labeled\" after few corrections, Im getting an error saying \"The caller does not have permission\". The user trying to mark is the owner of the project. The owner of the project has all permissions to the parser and storage. Can some one please help.",
-        "Question_closed_time":"\u200e--\/--\/---- --:-- AM",
+        "Question_closed_time":"02-27-2023 04:25 PM",
         "Answer_score_count":0.0,
         "Answer_body":"Howdy\u00a0ganeshsarathi,\nWhat an awesome post.\u00a0 THANK YOU for providing all these details.\u00a0 I used the post content as search arguments inside Google to see if other customers have had similar problems.\u00a0 I immediately got lucky and found a report (for my records\u00a0b\/266677102).\u00a0 This report had exactly the same symptoms and was reported on 2023-01-25 which means that it is recent.\u00a0 The problem (for that client) was that the GCS bucket that was being used to host the documents had a \"retention policy\" defined on it.\u00a0 As I understand retention policies, they effectively mean that once an object has been written into the bucket, it may not be deleted or updated.\u00a0 Retention policies are used to prevent accidental deletion and mean that the content becomes immutable for the period of time that the documents are being retained.\u00a0 We can read more about buckets with retention policies here.\n\nWhat I'd like you to do is examine your environment as it relates to Document AI.\u00a0 Let's see which Google Cloud Storage buckets may be in play (i.e. where the documents may be living) and whether or not they have retention policies applied.\u00a0 If the answer is yes, then we have an exact match.\u00a0 If no, then we will have to look for other reasons ... but we'll start here.\n\nThe other customer switched to using a bucket that did not have a retention policy.\u00a0 However, the ticket remains open while Google considers what this means in terms of retaining documents while at the same time allowing HITL processing.\u00a0 Looking forward to hearing back.\n\nView solution in original post",
         "Question_self_resolution":false
@@ -3634,7 +3634,7 @@
         "Question_score_count":0,
         "Question_view_count":44,
         "Question_body":"Today March 24 between 9-10 AM EST I found that for some reason the streamingrecognize api became very slow.\u00a0 For instance, after starting a streaming transcribe and saying \"no\" I got no transcripts back for 14 seconds.\u00a0 I then called WritesDone() on my\u00a0\n\ngrpc::ClientReaderWriterInterface<StreamingRecognizeRequest, StreamingRecognizeResponse> object and it took a full 40 seconds to complete getting a final transcript which did have the \"no\".\n\u00a0\nWas there an issue with the service at this time does anyone know?",
-        "Question_closed_time":"\u200e--\/--\/---- --:-- AM",
+        "Question_closed_time":"03-28-2023 06:54 AM",
         "Answer_score_count":0.0,
         "Answer_body":"Upon checking the service health dashboard, there has been no recent issue. If you're experiencing the same, I would recommend reaching out to Google Cloud support for further assistance.\n\nView solution in original post",
         "Question_self_resolution":false
@@ -5753,7 +5753,7 @@
         "Question_score_count":0,
         "Question_view_count":277,
         "Question_body":"I am using Google Translate API for translating a Japanese sentence to Portuguese.\n\nOn July 6 to 8, the translation result was a sentence of mixed English and Portuguese words, but on July 9 the result seems to be a correct Portuguese sentence.\n\nWas there any event on July 6 to 8 such that Google Translate API gave a mixed language translation result?\n\nThank you for your time.",
-        "Question_closed_time":"\u200e--\/--\/---- --:-- AM",
+        "Question_closed_time":"07-13-2022 03:33 PM",
         "Answer_score_count":1.0,
         "Answer_body":"The issue was generated due our service update and multiple service languages including Portuguese were affected. Our Translate API engineer team detected the root cause of the issue, and it was mitigated by a roll back recently performed.\n\nOur engineers confirmed that the issue is officially mitigated and you should not be experiencing any service misbehavior at this point.\n\nWe apologize for any inconvenience this may have caused on your operation.\n\nView solution in original post",
         "Question_self_resolution":false
