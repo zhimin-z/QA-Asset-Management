@@ -97,6 +97,7 @@ def get_data(driver, url):
     post["Answerer_isModerator"] = np.nan
     post["Answerer_isExpert"] = np.nan
     post["Answerer_isCse"] = np.nan
+    post["Question_self_resolution"] = np.nan
                 
     if question["accepted"]:
         for answer in answers_lst:
@@ -125,9 +126,11 @@ def get_url(driver, url):
         By.XPATH, '//a[@class="QuestionCard_cardLink__7XTIk"]')
     for url_node in urls_lst:
         posts_url.append(url_node.get_attribute('href'))
-
-    next_page_url = driver.find_element(
-        By.XPATH, '//li[@title="Next Page"]/a').get_attribute('href')
+    
+    next_page_url = ''
+    next_page = driver.find_element(By.XPATH, '//li[@title="Next Page"]')
+    if next_page.get_attribute('aria-disabled') == 'false':
+        next_page_url = next_page.find_element(By.XPATH, './/a').get_attribute('href')
 
     return posts_url, next_page_url
 
@@ -142,7 +145,7 @@ if __name__ == '__main__':
     while True:
         cur_urls, next_page_url = get_url(driver, next_page_url)
 
-        if next_page_url == driver.current_url:
+        if not next_page_url:
             break
         
         cur_urls_lst.extend(cur_urls)
@@ -153,5 +156,5 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
         
-    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Amazon SageMaker.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Amazon SageMaker.json'), indent=4, orient='records')
     

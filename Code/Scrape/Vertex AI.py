@@ -71,6 +71,7 @@ def get_data(driver, url):
     post['Question_closed_time'] = np.nan
     post['Answer_score_count'] = np.nan
     post['Answer_body'] = np.nan
+    post["Question_self_resolution"] = np.nan
     
     try:
         driver.find_element(
@@ -81,6 +82,9 @@ def get_data(driver, url):
                 By.XPATH, './/span[@itemprop="upvoteCount"]').text
         post['Answer_score_count'] = convert2num(Answer_score_count)
         post['Answer_body'] = comments[1].find_element(By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
+        poster = comments[0].find_element(By.XPATH, './/a[@class="lia-link-navigation lia-page-link lia-user-name-link"]').get_attribute('innerText').strip()
+        answerer = comments[1].find_element(By.XPATH, './/a[@class="lia-link-navigation lia-page-link lia-user-name-link"]').get_attribute('innerText').strip()
+        post['Question_self_resolution'] = poster == answerer
     except:
         pass
 
@@ -125,4 +129,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
 
-    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Vertex AI.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Vertex AI.json'), indent=4, orient='records')

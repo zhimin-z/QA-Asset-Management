@@ -9,7 +9,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"Issue installing polyaxon python client urllib3.exceptions.ProtocolError: OSError",
@@ -21,7 +22,8 @@
         "Question_closed_time":"2022-11-08T13:34:15Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"Sometimes the CA bundle is not up-to date and needs to be installed manually, especially if it's a new Python version. Please run the following commands:\n\ncd \/Applications\/Python\\ 3.8\/\n\nthen\n\n.\/Install\\ Certificates.command"
+        "Answer_body":"Sometimes the CA bundle is not up-to date and needs to be installed manually, especially if it's a new Python version. Please run the following commands:\n\ncd \/Applications\/Python\\ 3.8\/\n\nthen\n\n.\/Install\\ Certificates.command",
+        "Question_self_resolution":1.0
     },
     {
         "Question_title":"Can I add Component Tags via Input Params?",
@@ -33,7 +35,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"How to using client to upload data\/artifacts to s3 bucket?",
@@ -45,7 +48,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"How to start a tensorboard for all runs that are part of a hyperparameter tuning operation",
@@ -57,7 +61,8 @@
         "Question_closed_time":"2022-05-05T10:51:36Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"You do not have to manually select the runs for a hyperparameter operation, you can use the pipeline operation's uuid to query all, or a subset, runs belonging to that matrix operation:\n\nversion: 1.1\nkind: operation\nhubRef: tensorboard:multi-runs\njoins:\n- query: \"pipeline: MATRIX_UUID\"\n  params:\n    uuids: {value: \"globals.uuid\"}\n\nTo filter further by a specific condition, for example loss metric:\n\nversion: 1.1\nkind: operation\nhubRef: tensorboard:multi-runs\njoins:\n- query: \"pipeline: MATRIX_UUID, metrics.loss: < 0.02\"\n  sort: metrics.loss\n  limit: 60\n  params:\n    uuids: {value: \"globals.uuid\"}"
+        "Answer_body":"You do not have to manually select the runs for a hyperparameter operation, you can use the pipeline operation's uuid to query all, or a subset, runs belonging to that matrix operation:\n\nversion: 1.1\nkind: operation\nhubRef: tensorboard:multi-runs\njoins:\n- query: \"pipeline: MATRIX_UUID\"\n  params:\n    uuids: {value: \"globals.uuid\"}\n\nTo filter further by a specific condition, for example loss metric:\n\nversion: 1.1\nkind: operation\nhubRef: tensorboard:multi-runs\njoins:\n- query: \"pipeline: MATRIX_UUID, metrics.loss: < 0.02\"\n  sort: metrics.loss\n  limit: 60\n  params:\n    uuids: {value: \"globals.uuid\"}",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How to patch a multi-run downstream operation, for example tensorboard:multi-run",
@@ -69,7 +74,8 @@
         "Question_closed_time":"2022-05-05T10:43:55Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"You can add the following runPatch:\n\n...\npatchStrategy: replace\nrunPatch:\n  container:\n    command: [\"bash\", \"-c\"]\n    args:\n      - \"pip install -U tensorboard-plugin-profile && tensorboard --logdir={{globals.artifacts_path}} --port={{globals.ports[0]}} --path_prefix={{globals.base_url}} --host=0.0.0.0\"\n\nFor the specific case of tensorboard, we will add a new input plugins of type List[str] to the tensorboard component versions , so instead of patching the component, users can pass a parameter:\n\nparams:\n  plugins: { value: [tensorboard-plugin-profile, tensorboard-plugin-custom, ...] }"
+        "Answer_body":"You can add the following runPatch:\n\n...\npatchStrategy: replace\nrunPatch:\n  container:\n    command: [\"bash\", \"-c\"]\n    args:\n      - \"pip install -U tensorboard-plugin-profile && tensorboard --logdir={{globals.artifacts_path}} --port={{globals.ports[0]}} --path_prefix={{globals.base_url}} --host=0.0.0.0\"\n\nFor the specific case of tensorboard, we will add a new input plugins of type List[str] to the tensorboard component versions , so instead of patching the component, users can pass a parameter:\n\nparams:\n  plugins: { value: [tensorboard-plugin-profile, tensorboard-plugin-custom, ...] }",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How to stop all runs attached to a specific queue",
@@ -81,7 +87,8 @@
         "Question_closed_time":"2022-04-23T13:12:57Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"Under all runs, you can just filter the table by that queue and then stop the runs using the selection and multi-run action:\n\nIf you use the same name for your queues in all agents you can additionally select the specific agent using the filter:"
+        "Answer_body":"Under all runs, you can just filter the table by that queue and then stop the runs using the selection and multi-run action:\n\nIf you use the same name for your queues in all agents you can additionally select the specific agent using the filter:",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How to persist custom job runs table",
@@ -93,7 +100,8 @@
         "Question_closed_time":"2022-04-22T14:12:42Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"There\u2019s a save button next to the query search, it persist everything configured in the dashboard: https:\/\/polyaxon.com\/docs\/management\/organizations\/searches\/"
+        "Answer_body":"There\u2019s a save button next to the query search, it persist everything configured in the dashboard: https:\/\/polyaxon.com\/docs\/management\/organizations\/searches\/",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Artifacts lineage is tracked but the Dashboard and Artifacts tabs are empty",
@@ -105,7 +113,8 @@
         "Question_closed_time":"2022-04-20T08:04:02Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"You are probably deploying Polyaxon with the default artifacts store and you are using multiple nodes.\n\nIf that's the case you will need to upgrade your deployment with one if the artifacts stores that supports multi-node deployment: https:\/\/polyaxon.com\/integrations\/#Artifacts\n\nMore info about the artifacts store default behavior: https:\/\/polyaxon.com\/docs\/setup\/connections\/#artifactsstore\n\nAlso, when I'm running a training job (MNIST) on the CPU it tracks the metrics and I can see the charts in the Dashboard, but when I configure the polyaxonfile to use GPU, the logs are indeed saying that the GPU is being used, but the metrics charts are empty.\n\nYour GPU is on different node that's why it shows the metrics and artifacts when running with CPU, note that even with CPU if it's on a different node nothing will show up, so you will need a PVC \/ blob storage accessible to all nodes."
+        "Answer_body":"You are probably deploying Polyaxon with the default artifacts store and you are using multiple nodes.\n\nIf that's the case you will need to upgrade your deployment with one if the artifacts stores that supports multi-node deployment: https:\/\/polyaxon.com\/integrations\/#Artifacts\n\nMore info about the artifacts store default behavior: https:\/\/polyaxon.com\/docs\/setup\/connections\/#artifactsstore\n\nAlso, when I'm running a training job (MNIST) on the CPU it tracks the metrics and I can see the charts in the Dashboard, but when I configure the polyaxonfile to use GPU, the logs are indeed saying that the GPU is being used, but the metrics charts are empty.\n\nYour GPU is on different node that's why it shows the metrics and artifacts when running with CPU, note that even with CPU if it's on a different node nothing will show up, so you will need a PVC \/ blob storage accessible to all nodes.",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Pickle support?",
@@ -117,7 +126,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"How to filter all jobs that accessed a connection, a dataset, or an artifact",
@@ -129,7 +139,8 @@
         "Question_closed_time":"2022-04-11T11:35:09Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"V1.18 the following filters, or any combination, will be possible:\n\nBy connection name connections.name: CONNECTION1 | CONNECTION2\nBy connection tag connections.tags: TAG1 | TAG2\nBy connection kind connections.kind: git or connections.kind: KIND1 | KIND2\nBy artifact name artifacts.name: LINEAGE1 | LINEAGE2\nBy artifact kind artifacts.kind: model or artifacts.kind: KIND1 | KIND2\nBy artifact path artifacts.path: foo\/bar\nBy artifact state artifacts.state: STATE"
+        "Answer_body":"V1.18 the following filters, or any combination, will be possible:\n\nBy connection name connections.name: CONNECTION1 | CONNECTION2\nBy connection tag connections.tags: TAG1 | TAG2\nBy connection kind connections.kind: git or connections.kind: KIND1 | KIND2\nBy artifact name artifacts.name: LINEAGE1 | LINEAGE2\nBy artifact kind artifacts.kind: model or artifacts.kind: KIND1 | KIND2\nBy artifact path artifacts.path: foo\/bar\nBy artifact state artifacts.state: STATE",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How to retrieve all the artifacts lineage for a set of runs, based on both the name of the run, and the name of the artifact?",
@@ -141,7 +152,8 @@
         "Question_closed_time":"2022-04-08T09:35:06Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"To filter all artifacts lineage directly by run name and artifact name:\n\nfrom polyaxon.client import RunClient\n\nRunClient.client.runs_v1.get_runs_artifacts_lineage(project=\"PROJECT_NAME\", query=\"run.name: RUN_NAME, kind: ARTIFACT_KIND, name: ARTIFACT_NAME\")"
+        "Answer_body":"To filter all artifacts lineage directly by run name and artifact name:\n\nfrom polyaxon.client import RunClient\n\nRunClient.client.runs_v1.get_runs_artifacts_lineage(project=\"PROJECT_NAME\", query=\"run.name: RUN_NAME, kind: ARTIFACT_KIND, name: ARTIFACT_NAME\")",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How to get model references logged by a specific run?",
@@ -153,7 +165,8 @@
         "Question_closed_time":"2022-04-08T09:30:38Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"To get the logged model refs:\n\nfrom polyaxon.client import RunClient\n\nrun_client = RunClient(project=\"PROJECT_NAME\", run_uuid=\"RUN_UUID\")\n\n# Query the lineage information\nlineages = run_client.get_artifacts_lineage(query=\"kind: model\").results\n\n# Download the lineage assets\nfor lineage in lineages:\n    run_client.download_artifact_for_lineage(lineage=lineage)\n\nYou can restrict the ref to specific lineage by filtering further by name:\n\nlineages = run_client.get_artifacts_lineage(query=\"kind: model, name: best_auc\").results"
+        "Answer_body":"To get the logged model refs:\n\nfrom polyaxon.client import RunClient\n\nrun_client = RunClient(project=\"PROJECT_NAME\", run_uuid=\"RUN_UUID\")\n\n# Query the lineage information\nlineages = run_client.get_artifacts_lineage(query=\"kind: model\").results\n\n# Download the lineage assets\nfor lineage in lineages:\n    run_client.download_artifact_for_lineage(lineage=lineage)\n\nYou can restrict the ref to specific lineage by filtering further by name:\n\nlineages = run_client.get_artifacts_lineage(query=\"kind: model, name: best_auc\").results",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"I would like to configure Polyaxon in a way to avoid asking data-scientists to configure pre-emptible node-pools or request TPUs on their own",
@@ -165,7 +178,8 @@
         "Question_closed_time":"2022-04-07T13:14:34Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"We have already shared a resource on how to configure the environments in this guide\n\nif you are using multiple git repos and you do not want to replicate the yaml files in all repos you can register those files as presets:\n\nUsers will be able to use --presets machine1 or --presets=env1\n\nNote that in the example in that link, it shows that it defines a queue but you do not have to define a queue, a preset is just any YAML file that can be used with the override operator -f main.yaml -f override1.yaml -f override2.yaml in this case override1.yaml and override2.yaml it can be saved as organization presets using the UI.\n\nMore info from the intro section about presets and the UI section\n\nAlso, when you define presets you can use them directly on the operation or component\n\npresets: [preset1, preset2]\n\nThis is similar to the CLI command\n\npolyaxon run -f polyaxon.yaml --presets preset1,preset2"
+        "Answer_body":"We have already shared a resource on how to configure the environments in this guide\n\nif you are using multiple git repos and you do not want to replicate the yaml files in all repos you can register those files as presets:\n\nUsers will be able to use --presets machine1 or --presets=env1\n\nNote that in the example in that link, it shows that it defines a queue but you do not have to define a queue, a preset is just any YAML file that can be used with the override operator -f main.yaml -f override1.yaml -f override2.yaml in this case override1.yaml and override2.yaml it can be saved as organization presets using the UI.\n\nMore info from the intro section about presets and the UI section\n\nAlso, when you define presets you can use them directly on the operation or component\n\npresets: [preset1, preset2]\n\nThis is similar to the CLI command\n\npolyaxon run -f polyaxon.yaml --presets preset1,preset2",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How can I start a Tensorboard for the top 5 experiments",
@@ -177,7 +191,8 @@
         "Question_closed_time":"2022-04-07T12:59:37Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"From the UI or using a YAML file, you can run:\n\nversion: 1.1\nkind: operation\nhubRef: tensorboard:multi-run\njoins:\n- query: \"name: GROUP_NAME, metrics.loss:<0.002,  kind:job\"  \n  sort: \"metrics.loss\"\n  limit: 5\n  params:\n    uuids: {value: \"globals.uuid\"}\n\nNote that in the UI if create a filter \/ sort configuration, you can automatically create a multi-run Tensorboard based on that query, for example:"
+        "Answer_body":"From the UI or using a YAML file, you can run:\n\nversion: 1.1\nkind: operation\nhubRef: tensorboard:multi-run\njoins:\n- query: \"name: GROUP_NAME, metrics.loss:<0.002,  kind:job\"  \n  sort: \"metrics.loss\"\n  limit: 5\n  params:\n    uuids: {value: \"globals.uuid\"}\n\nNote that in the UI if create a filter \/ sort configuration, you can automatically create a multi-run Tensorboard based on that query, for example:",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Are Tensorboad services preventing CPU nodes to scale down?",
@@ -189,7 +204,8 @@
         "Question_closed_time":"2022-04-07T12:47:05Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"By default, Tensorboard service does not use any node scheduling, so it probably uses the default nodes.\nIf you need to use a different node selectors or attach presets. When you click start tensorboard or run downstreamOp, the modal shows an editor which is basically prefilled a polyaxonfile:\n\nyou can just assign a preset if you have one:\n\npresets: [tensorboard-cpu-preset]\n\nOr patch the run with a node selector:\n\nrunPatch:\n  environment:\n    nodeSelector:\n      polyaxon_pool_type: polyaxon-tensorboard\n\nNote that for Tensorboad, by default it loads the component from here: Tensorboard Component\nYou can create your own Tensorboad component by following this tutorial\nIn that case you will use:\n\nhubRef: ORG\/tensorboard:VERSION\n\nFinally you can add this preset if you think that you might forget about a services running forever: https:\/\/polyaxon.com\/docs\/core\/scheduling-presets\/services-timeout\/\n\nOr adding it before clicking start:\n\ntermination:\n  timeout: 86400 # 24 hours"
+        "Answer_body":"By default, Tensorboard service does not use any node scheduling, so it probably uses the default nodes.\nIf you need to use a different node selectors or attach presets. When you click start tensorboard or run downstreamOp, the modal shows an editor which is basically prefilled a polyaxonfile:\n\nyou can just assign a preset if you have one:\n\npresets: [tensorboard-cpu-preset]\n\nOr patch the run with a node selector:\n\nrunPatch:\n  environment:\n    nodeSelector:\n      polyaxon_pool_type: polyaxon-tensorboard\n\nNote that for Tensorboad, by default it loads the component from here: Tensorboard Component\nYou can create your own Tensorboad component by following this tutorial\nIn that case you will use:\n\nhubRef: ORG\/tensorboard:VERSION\n\nFinally you can add this preset if you think that you might forget about a services running forever: https:\/\/polyaxon.com\/docs\/core\/scheduling-presets\/services-timeout\/\n\nOr adding it before clicking start:\n\ntermination:\n  timeout: 86400 # 24 hours",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How can I send Slack alert on failure ?",
@@ -201,7 +217,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"How to configured S3 connection to upload\/download artifacts programmatically",
@@ -213,7 +230,8 @@
         "Question_closed_time":"2022-04-07T12:11:52Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"We have to update that section, those services are deprecated, I would use the new implementation:\n\nfrom polyaxon.fs.fs import get_fs_from_name\n\nfs = get_fs_from_name(\"model-registry-s3\")\n\nThis will return a fully resolved s3fs object. More information about how to use the fs object: https:\/\/s3fs.readthedocs.io\/en\/latest\/#examples.\n\nNote 1: The s3 rquirement is not installed by default, you wiil need pip install \"polyaxon[s3]\"\n\nNote2: You will have to request the connection:\n\nrun:\n  connections: [\"model-registry-s3\"]\n\nAlso by requesting the connection, the secret\/config will be available in the container, so you can also use boto3 automatically if you do not like the to the s3fs implementation.\n\nThe docs for:\n\nGCS\nS3\nAzure"
+        "Answer_body":"We have to update that section, those services are deprecated, I would use the new implementation:\n\nfrom polyaxon.fs.fs import get_fs_from_name\n\nfs = get_fs_from_name(\"model-registry-s3\")\n\nThis will return a fully resolved s3fs object. More information about how to use the fs object: https:\/\/s3fs.readthedocs.io\/en\/latest\/#examples.\n\nNote 1: The s3 rquirement is not installed by default, you wiil need pip install \"polyaxon[s3]\"\n\nNote2: You will have to request the connection:\n\nrun:\n  connections: [\"model-registry-s3\"]\n\nAlso by requesting the connection, the secret\/config will be available in the container, so you can also use boto3 automatically if you do not like the to the s3fs implementation.\n\nThe docs for:\n\nGCS\nS3\nAzure",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How to show all active runs without selecting the status manually",
@@ -225,7 +243,8 @@
         "Question_closed_time":"2022-04-07T12:01:37Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"It's directly under statuses, we consolidated some flags\/config options:"
+        "Answer_body":"It's directly under statuses, we consolidated some flags\/config options:",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Update jobs status from CLI or Client",
@@ -237,7 +256,8 @@
         "Question_closed_time":"2022-04-07T11:58:53Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"The first thing is the check the release notes with this kind of problems, as the issue could have been solved in subsequent releases.\n\nNow going back to the solution, It's better to use client to iterate over the runs and mark them as finished:\n\nfrom polyaxon.client import ProjectClient\n\npclient = ProjectClient(project=\"PROJECT_NAME\")\nfor r in pclient.list_runs(query=\"status: stopping\").results:\n    print(\"cleaning {}\".format(r.uuid)\n    RunClient(\"PROJECT_NAME\", run_uuid=r.uuid).log_stopped(message=\"manual cleaning\")"
+        "Answer_body":"The first thing is the check the release notes with this kind of problems, as the issue could have been solved in subsequent releases.\n\nNow going back to the solution, It's better to use client to iterate over the runs and mark them as finished:\n\nfrom polyaxon.client import ProjectClient\n\npclient = ProjectClient(project=\"PROJECT_NAME\")\nfor r in pclient.list_runs(query=\"status: stopping\").results:\n    print(\"cleaning {}\".format(r.uuid)\n    RunClient(\"PROJECT_NAME\", run_uuid=r.uuid).log_stopped(message=\"manual cleaning\")",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How to use boolean params as string values without converting to a boolean values",
@@ -249,7 +269,8 @@
         "Question_closed_time":"2022-04-07T11:24:08Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"To force the string value, you should use double quotation to avoid Yaml\/Json interpreting the value as bool \"...\":\n\n- {name: add_noise, type: str, isOptional: true, value: '\"False\"'}"
+        "Answer_body":"To force the string value, you should use double quotation to avoid Yaml\/Json interpreting the value as bool \"...\":\n\n- {name: add_noise, type: str, isOptional: true, value: '\"False\"'}",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Programmatic upload and start an operation without CLI",
@@ -261,7 +282,8 @@
         "Question_closed_time":"2022-04-07T11:19:11Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"To start the operation and remove the pending state, you need to call client.approve().\n\nTo correct creation process with an upload should be:\n\nfrom polyaxon.schemas import V1RunPending\nfrom polyaxon.constants.globals import DEFAULT_UPLOADS_PATH\nfrom polyaxon.constants.metadata import META_UPLOAD_ARTIFACTS\n\nmeta_info = {}\nmeta_info[META_UPLOAD_ARTIFACTS] =  DEFAULT_UPLOADS_PATH  # or a custom path if you pass a custom upload to path \n# 1. Create\nclient.create(content=operation, meta_info=meta_info, pending=V1RunPending.UPLOAD)\n# 2. Upload\nclient.upload_artifacts_dir('.\/')\n# 3. Approve\nclient.approve()"
+        "Answer_body":"To start the operation and remove the pending state, you need to call client.approve().\n\nTo correct creation process with an upload should be:\n\nfrom polyaxon.schemas import V1RunPending\nfrom polyaxon.constants.globals import DEFAULT_UPLOADS_PATH\nfrom polyaxon.constants.metadata import META_UPLOAD_ARTIFACTS\n\nmeta_info = {}\nmeta_info[META_UPLOAD_ARTIFACTS] =  DEFAULT_UPLOADS_PATH  # or a custom path if you pass a custom upload to path \n# 1. Create\nclient.create(content=operation, meta_info=meta_info, pending=V1RunPending.UPLOAD)\n# 2. Upload\nclient.upload_artifacts_dir('.\/')\n# 3. Approve\nclient.approve()",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Make references dynamic in DAGs",
@@ -273,7 +295,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"Auto-resume for deep learning training is not working",
@@ -285,7 +308,8 @@
         "Question_closed_time":"2022-04-07T11:11:51Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"Polyaxon provides several strategies to restart, restrat with copy mode, and resumes jobs. The auto-resume behavior is enabled by default\n\nNote that resuming a job can only work if your code supports loading the last checkpoint.\n\nHere's a quick debugging logic to check that the resuming process works as expected:\n\nmain.py\ndef main():\n    tracking.init()\n    checkpoint_path = tracking.get_outputs_path(\"checkpoint.json\")\n    checkpoint_path_exists = os.path.exists(checkpoint_path)\n    print(\"[CHECKPOINT] path found: {}\".format(checkpoint_path_exists))\n    if checkpoint_path_exists:\n        with open(checkpoint_path, \"r\") as checkpoint_file:\n            checkpoint = json.loads(checkpoint_file.read())\n            print(\"[CHECKPOINT] last content: {}\".format(checkpoint))\n    else:\n      print(\"[CHECKPOINT] init ...\")\n      checkpoint = {\n        \"last_time\": time.time(),\n        \"last_index\": 0,\n        \"array\": [],\n      }\n    for i in range(checkpoint[\"last_index\"] + 1, 300):\n      print(\"[CHECKPOINT] step {}\".format(i))\n      tracking.log_progress((i + 1)\/300)\n      tracking.log_metric(name=\"index\", value=i, step=i)\n      checkpoint[\"array\"].append(i)\n      checkpoint[\"last_index\"] = i\n      checkpoint[\"last_time\"] = time.time()\n      if i in [10, 50]:\n        print(\"[CHECKPOINT] Saving last content ...\")\n        with open(checkpoint_path, \"w\") as checkpoint_file:\n          checkpoint_file.write(json.dumps(checkpoint))\n        raise ValueError(\"Error was raised at {}\".format(i))\n      time.sleep(1)\npolyaxonfile.yaml\nversion: 1.1\nkind: component\ntermination:\n  maxRetries: 3\nrun:\n  kind: job\n  container:\n    image: polyaxon\/polyaxon-examples:artifacts\n    workingDir: \"{{ globals.run_artifacts_path }}\/uploads\"\n    command: [\"\/bin\/bash\", -c]\n    args: [\"pip install -U polyaxon --no-cache && python3 main.py\"]\nLogged a dummy metric that resumes from last checkpoint and (apart from the warning regression that I mentioned) the job succeeds after after two failures (you can see the first chart where the x-axis is the time that there's gap time)"
+        "Answer_body":"Polyaxon provides several strategies to restart, restrat with copy mode, and resumes jobs. The auto-resume behavior is enabled by default\n\nNote that resuming a job can only work if your code supports loading the last checkpoint.\n\nHere's a quick debugging logic to check that the resuming process works as expected:\n\nmain.py\ndef main():\n    tracking.init()\n    checkpoint_path = tracking.get_outputs_path(\"checkpoint.json\")\n    checkpoint_path_exists = os.path.exists(checkpoint_path)\n    print(\"[CHECKPOINT] path found: {}\".format(checkpoint_path_exists))\n    if checkpoint_path_exists:\n        with open(checkpoint_path, \"r\") as checkpoint_file:\n            checkpoint = json.loads(checkpoint_file.read())\n            print(\"[CHECKPOINT] last content: {}\".format(checkpoint))\n    else:\n      print(\"[CHECKPOINT] init ...\")\n      checkpoint = {\n        \"last_time\": time.time(),\n        \"last_index\": 0,\n        \"array\": [],\n      }\n    for i in range(checkpoint[\"last_index\"] + 1, 300):\n      print(\"[CHECKPOINT] step {}\".format(i))\n      tracking.log_progress((i + 1)\/300)\n      tracking.log_metric(name=\"index\", value=i, step=i)\n      checkpoint[\"array\"].append(i)\n      checkpoint[\"last_index\"] = i\n      checkpoint[\"last_time\"] = time.time()\n      if i in [10, 50]:\n        print(\"[CHECKPOINT] Saving last content ...\")\n        with open(checkpoint_path, \"w\") as checkpoint_file:\n          checkpoint_file.write(json.dumps(checkpoint))\n        raise ValueError(\"Error was raised at {}\".format(i))\n      time.sleep(1)\npolyaxonfile.yaml\nversion: 1.1\nkind: component\ntermination:\n  maxRetries: 3\nrun:\n  kind: job\n  container:\n    image: polyaxon\/polyaxon-examples:artifacts\n    workingDir: \"{{ globals.run_artifacts_path }}\/uploads\"\n    command: [\"\/bin\/bash\", -c]\n    args: [\"pip install -U polyaxon --no-cache && python3 main.py\"]\nLogged a dummy metric that resumes from last checkpoint and (apart from the warning regression that I mentioned) the job succeeds after after two failures (you can see the first chart where the x-axis is the time that there's gap time)",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Polyaxon CE fresh deployment never finishes",
@@ -297,7 +321,8 @@
         "Question_closed_time":"2022-04-07T11:02:58Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"The firts step is to cehck if you are using the --wait flag with Helm, if yes the deployment will not pass because there's helm hook.\n\nThe reason of the deadlock: helm waits forever for API to be healthy and the API is waiting for the hook to initialize the database.\n\nMore info about the helm deadlock issue: helm\/helm#5118\n\nFor ArgoCD, the flag is set to true automatically: argoproj\/argo-cd#6880\n\nFor the Terraform provider for helm release, the flag is set to true by default: https:\/\/registry.terraform.io\/providers\/hashicorp\/helm\/latest\/docs\/resources\/release#wait and should be set it to false."
+        "Answer_body":"The firts step is to cehck if you are using the --wait flag with Helm, if yes the deployment will not pass because there's helm hook.\n\nThe reason of the deadlock: helm waits forever for API to be healthy and the API is waiting for the hook to initialize the database.\n\nMore info about the helm deadlock issue: helm\/helm#5118\n\nFor ArgoCD, the flag is set to true automatically: argoproj\/argo-cd#6880\n\nFor the Terraform provider for helm release, the flag is set to true by default: https:\/\/registry.terraform.io\/providers\/hashicorp\/helm\/latest\/docs\/resources\/release#wait and should be set it to false.",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"How to debug my init git container",
@@ -309,7 +334,8 @@
         "Question_closed_time":"2022-04-07T10:51:48Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"Before updating the connections or changing anything about your current deployment, please perform the following debugging steps:\n\nEnable logs from all containers:\n\n\n\nYou can also inspect the operations from the statuses page to get more information (for distributed runs you can select the correct pod)\n\n\nYou can suspend the init container using :\n\n  - connection: my-connection\n    git: {...}\n    container:\n      command: [\"\/bin\/bash\", \"-c\"]\n      args: [\"sleep 3600\"]\nUse shell to get inside the container (for distributed runs you can select the correct pod and container):"
+        "Answer_body":"Before updating the connections or changing anything about your current deployment, please perform the following debugging steps:\n\nEnable logs from all containers:\n\n\n\nYou can also inspect the operations from the statuses page to get more information (for distributed runs you can select the correct pod)\n\n\nYou can suspend the init container using :\n\n  - connection: my-connection\n    git: {...}\n    container:\n      command: [\"\/bin\/bash\", \"-c\"]\n      args: [\"sleep 3600\"]\nUse shell to get inside the container (for distributed runs you can select the correct pod and container):",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Batch deletion of archived runs",
@@ -321,7 +347,8 @@
         "Question_closed_time":"2022-04-07T10:41:48Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"You should first filter for archived runs, and then select all and use the actions above to delete the selection, you can eventually select a large table size, for example 50.\n\n  \n\nif you are an org admin and you need to delete archived runs cross-projects, you can use the button All Runs under the organization and follow the steps above:"
+        "Answer_body":"You should first filter for archived runs, and then select all and use the actions above to delete the selection, you can eventually select a large table size, for example 50.\n\n  \n\nif you are an org admin and you need to delete archived runs cross-projects, you can use the button All Runs under the organization and follow the steps above:",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Is there a way to have the logs from a polyaxon run viewable via the cloud UI?",
@@ -333,7 +360,8 @@
         "Question_closed_time":"2022-04-07T10:37:50Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"That's not possible I am afraid. Logs, as well as other artifacts, are only viewable via the gateway deployed with the agent.\n\nIn order to provide such option, Polyaxon will have to have access to the artifacts store, but I do not think that we want to provide such functionality at the moment since logs also can include sensitive information."
+        "Answer_body":"That's not possible I am afraid. Logs, as well as other artifacts, are only viewable via the gateway deployed with the agent.\n\nIn order to provide such option, Polyaxon will have to have access to the artifacts store, but I do not think that we want to provide such functionality at the moment since logs also can include sensitive information.",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Serverless Airflow Operators on Polyaxon",
@@ -345,7 +373,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"Welcome to Discussions!",
@@ -357,7 +386,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"Create video tutorials for the new users",
@@ -369,7 +399,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"Does Community UI has Admin dashboard?",
@@ -381,7 +412,8 @@
         "Question_closed_time":"2022-03-25T08:25:27Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"The admin page is under http:\/\/localhost:8000\/_admin\/"
+        "Answer_body":"The admin page is under http:\/\/localhost:8000\/_admin\/",
+        "Question_self_resolution":false
     },
     {
         "Question_title":"Support for spark DF?",
@@ -393,7 +425,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"Re-introduce a per-operation automatic build process",
@@ -405,7 +438,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"(How) Can I pass path to Dockerfile using Kaniko?",
@@ -417,7 +451,8 @@
         "Question_closed_time":"2021-05-10T16:58:05Z",
         "Answer_score_count":2.0,
         "Answer_comment_count":4.0,
-        "Answer_body":"Hi @captainCapitalism, next release we will be pushing a new set of guides, including guides for building containers and how to pass a custom dockerfile context.\n\nWe will update this thread as soon as we start updating the documentation's guides section."
+        "Answer_body":"Hi @captainCapitalism, next release we will be pushing a new set of guides, including guides for building containers and how to pass a custom dockerfile context.\n\nWe will update this thread as soon as we start updating the documentation's guides section.",
+        "Question_self_resolution":false
     },
     {
         "Question_title":"Best practices of project management for multiple users on Polyaxon v1",
@@ -429,7 +464,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"Private github repo fail for using log_model and log_metric",
@@ -441,7 +477,8 @@
         "Question_closed_time":"2021-04-27T07:35:55Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"This is very hard to debug, you need to check if the git repo has some more information like a hard-coded NO_OP.\n\nAlso I would check if you added the local cache folder .polyaxon to your .gitignore and .dockerignore. If this folder was added to you git repo, then indeed the metrics and artifacts will be saved to a different run.\n\nYou can also validate that the run is running with the correct run-uuid:\n\n...\nprint(tracking.TRACKING_RUN.run_uuid)\n...\n\nIf the run_uuid does not correspond to the currently running run, then the cache is bundled somewhere (git repo or docker image)."
+        "Answer_body":"This is very hard to debug, you need to check if the git repo has some more information like a hard-coded NO_OP.\n\nAlso I would check if you added the local cache folder .polyaxon to your .gitignore and .dockerignore. If this folder was added to you git repo, then indeed the metrics and artifacts will be saved to a different run.\n\nYou can also validate that the run is running with the correct run-uuid:\n\n...\nprint(tracking.TRACKING_RUN.run_uuid)\n...\n\nIf the run_uuid does not correspond to the currently running run, then the cache is bundled somewhere (git repo or docker image).",
+        "Question_self_resolution":false
     },
     {
         "Question_title":"Improve integrations with data sources",
@@ -453,7 +490,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"Push image error: Get \"https:\/\/https\/v2\/\": dial tcp: lookup https on SOME-IP: no such host",
@@ -465,7 +503,8 @@
         "Question_closed_time":"2021-04-23T12:58:58Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"Resolution:\n\nThis was error on the ECR side. The repo SOME-NAME:SOME-TAG was not existing inside docker registry. Creating SOME-NAME in ECR allowed successful build and push."
+        "Answer_body":"Resolution:\n\nThis was error on the ECR side. The repo SOME-NAME:SOME-TAG was not existing inside docker registry. Creating SOME-NAME in ECR allowed successful build and push.",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Able to push image to ECR with Kaniko but pull stuck on ContainersNotReady containers with unready status: [polyaxon-main polyaxon-sidecar]",
@@ -477,7 +516,8 @@
         "Question_closed_time":"2021-04-23T12:58:35Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"Resolution:\n\nThe issue was aws credentials.\n\nDisclaimer: I am more of a consumer of Polyaxon and I have limited AWS knowledge so if terminology is not precise that is the reason.\n\nWe were trying two kinds of authorizations:\na. The 12-hour auth that needs refreshing.\nb. The auth with no time constraints.\nWe were not able to work with token A for builds so B was used there .\nThis is when we encountered above error.\nThe dummy pod did not work with token B for build(Kaniko) setting.\nSetting up token A allowed to pull the image from ECR and complete experiment.\n\nWe ended up with having two different types of aws-secrets:\n\nthe indefinite for the build;\n12-hour for pulling images during experiment."
+        "Answer_body":"Resolution:\n\nThe issue was aws credentials.\n\nDisclaimer: I am more of a consumer of Polyaxon and I have limited AWS knowledge so if terminology is not precise that is the reason.\n\nWe were trying two kinds of authorizations:\na. The 12-hour auth that needs refreshing.\nb. The auth with no time constraints.\nWe were not able to work with token A for builds so B was used there .\nThis is when we encountered above error.\nThe dummy pod did not work with token B for build(Kaniko) setting.\nSetting up token A allowed to pull the image from ECR and complete experiment.\n\nWe ended up with having two different types of aws-secrets:\n\nthe indefinite for the build;\n12-hour for pulling images during experiment.",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Image push with Kaniko stuck on ContainersNotReady containers with unready status: [polyaxon-main polyaxon-sidecar]",
@@ -489,7 +529,8 @@
         "Question_closed_time":"2021-04-23T12:57:53Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"Resolution:\n\nThe issue was with aws-secret type.\n\nAt first we had the type of secret that expires every 12 hours.\nChanging it to one that does not expire allowed successful connection and push of built image."
+        "Answer_body":"Resolution:\n\nThe issue was with aws-secret type.\n\nAt first we had the type of secret that expires every 12 hours.\nChanging it to one that does not expire allowed successful connection and push of built image.",
+        "Question_self_resolution":true
     },
     {
         "Question_title":"Advanced filters for the comparison table",
@@ -501,7 +542,8 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     },
     {
         "Question_title":"Issue building docker image using example build config",
@@ -513,7 +555,8 @@
         "Question_closed_time":"2021-04-16T13:37:38Z",
         "Answer_score_count":1.0,
         "Answer_comment_count":0.0,
-        "Answer_body":"Very strange, and I could not reproduce. Did you try other files in the same examples folder https:\/\/github.com\/polyaxon\/polyaxon-examples\/tree\/master\/in_cluster\/build_image ?\nNot sure if quoting all values would work on your system:\n\nversion: 1.1\nkind: operation\nname: build\nparams:\n  destination:\n    connection: localreg\n    value: \"polyaxon-examples:ml\"\nrunPatch:\n  init:\n  - dockerfile:\n      image: \"python:3.8.8-buster\"\n      run:\n      - 'pip3 install --no-cache-dir -U polyaxon[\"polyboard\"]'\n      - 'pip3 install scikit-learn xgboost matplotlib vega-datasets joblib lightgbm xgboost'\n      langEnv: 'en_US.UTF-8'\nhubRef: kaniko\n\nFinally you may try with polyaxon -v ... to trigger some additional debug information."
+        "Answer_body":"Very strange, and I could not reproduce. Did you try other files in the same examples folder https:\/\/github.com\/polyaxon\/polyaxon-examples\/tree\/master\/in_cluster\/build_image ?\nNot sure if quoting all values would work on your system:\n\nversion: 1.1\nkind: operation\nname: build\nparams:\n  destination:\n    connection: localreg\n    value: \"polyaxon-examples:ml\"\nrunPatch:\n  init:\n  - dockerfile:\n      image: \"python:3.8.8-buster\"\n      run:\n      - 'pip3 install --no-cache-dir -U polyaxon[\"polyboard\"]'\n      - 'pip3 install scikit-learn xgboost matplotlib vega-datasets joblib lightgbm xgboost'\n      langEnv: 'en_US.UTF-8'\nhubRef: kaniko\n\nFinally you may try with polyaxon -v ... to trigger some additional debug information.",
+        "Question_self_resolution":false
     },
     {
         "Question_title":"Allow annotations in connections",
@@ -525,6 +568,7 @@
         "Question_closed_time":null,
         "Answer_score_count":null,
         "Answer_comment_count":null,
-        "Answer_body":null
+        "Answer_body":null,
+        "Question_self_resolution":null
     }
 ]

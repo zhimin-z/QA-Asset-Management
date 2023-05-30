@@ -57,8 +57,12 @@ def get_data(driver, url):
     post['Answer_score_count'] = np.nan
     post['Answer_comment_count'] = np.nan
     post['Answer_body'] = np.nan
+    post["Question_self_resolution"] = np.nan
     
-    try:
+    info = driver.find_element(By.XPATH, '//div[@class="d-flex flex-wrap flex-items-center mb-3 mt-2"]')
+    accepted = info.find_element(By.XPATH, './/span').get_attribute('title')
+    
+    if accepted == 'Answered':
         answer = driver.find_element(By.XPATH, '//section[@class="width-full" and @aria-label="Marked as Answer"]')
         post['Question_closed_time'] = answer.find_element(By.XPATH, './/relative-time').get_attribute('datetime')
         Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
@@ -66,8 +70,9 @@ def get_data(driver, url):
         post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
         Answer_comment_count = answer.find_element(By.XPATH, './/span[@class="color-fg-muted no-wrap"]').text
         post['Answer_comment_count'] = convert2num(Answer_comment_count)
-    except:
-        pass
+        answerer = info.find_element(By.XPATH, './/a[@class="Link--secondary text-bold"]').text
+        poster = info.find_element(By.XPATH, './/a[@class="Link--secondary text-bold d-inline-block"]').get_attribute('innerText').strip()
+        post['Question_self_resolution'] = poster == answerer
 
     return post
 
@@ -109,4 +114,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Polyaxon.json'), orient='records', indent=4)
+    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Polyaxon.json'), orient='records', indent=4)

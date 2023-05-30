@@ -62,6 +62,7 @@ def get_data(driver, url):
     post["Answer_score_count"] = np.nan
     post["Answer_comment_count"] = np.nan
     post["Answer_body"] = np.nan
+    post["Question_self_resolution"] = np.nan
 
     acceptedAnswer = question["acceptedAnswer"]
     if acceptedAnswer:
@@ -114,4 +115,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Azure Machine Learning.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Azure Machine Learning.json'), indent=4, orient='records')
