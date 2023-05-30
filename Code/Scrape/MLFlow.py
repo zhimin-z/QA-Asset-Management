@@ -56,12 +56,12 @@ def get_data(driver, url):
 
 
 def get_url(driver):
-    posts_url = []
+    posts_url = set()
     urls_lst = driver.find_elements(By.XPATH, '//div[@class="yhgbKd"]')
 
     for url_node in urls_lst:
         post_url = url_node.get_attribute('data-rowid')
-        posts_url.append(post_url)
+        posts_url.add(post_url)
 
     return posts_url
 
@@ -72,11 +72,11 @@ if __name__ == '__main__':
     
     base_url = 'https://groups.google.com/g/mlflow-users'
     driver.get(base_url)
-    posts_url_lst = []
+    posts_url_lst = set()
 
     while True:
         posts_url = get_url(driver)
-        posts_url_lst.extend(posts_url)
+        posts_url_lst = posts_url_lst.union(posts_url)
         
         next_button = driver.find_element(By.XPATH, '//div[@role="button" and @aria-label="Next page"]')
         next_page = next_button.get_attribute('tabindex')

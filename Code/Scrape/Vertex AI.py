@@ -63,7 +63,7 @@ def get_data(driver, url):
     post = {}
     post["Question_title"] = title
     post["Question_created_time"] = date
-    post["Question_link"] = url
+    post["Question_link"] = driver.current_url
     post["Question_answer_count"] = answer_count
     post["Question_score_count"] = upvote_count
     post["Question_view_count"] = view_count
@@ -76,8 +76,8 @@ def get_data(driver, url):
     try:
         driver.find_element(
             By.XPATH, '//div[@class="custom-google-accepted-solution root"]')
-        post['Question_closed_time'] = comments[1].find_element(
-            By.XPATH, './/span[@class="local-friendly-date"]').get_attribute('title')
+        post['Question_closed_time'] = comments[1].find_elements(
+            By.XPATH, './/span[@class="local-friendly-date"]')[1].get_attribute('title')
         Answer_score_count = comments[1].find_element(
                 By.XPATH, './/span[@itemprop="upvoteCount"]').text
         post['Answer_score_count'] = convert2num(Answer_score_count)
@@ -94,11 +94,11 @@ def get_data(driver, url):
 def get_url(driver, url):
     driver.get(url)
 
-    posts_url = []
+    posts_url = set()
     urls_lst = driver.find_elements(
         By.XPATH, '//h5[@class="message-subject"]/a')
     for url_node in urls_lst:
-        posts_url.append(url_node.get_attribute('href'))
+        posts_url.add(url_node.get_attribute('href'))
 
     return posts_url, driver.current_url
 
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     driver.implicitly_wait(2)
 
     base_url = 'https://www.googlecloudcommunity.com/gc/AI-ML/bd-p/cloud-ai-ml/page/'
-    posts_url_lst = []
+    posts_url_lst = set()
     last_url = ''
     index = 0
 
@@ -120,7 +120,7 @@ if __name__ == '__main__':
         if ref_url == last_url:
             break
 
-        posts_url_lst.extend(posts_url)
+        posts_url_lst = posts_url_lst.union(posts_url)
         last_url = cur_url
 
     posts = pd.DataFrame()
@@ -128,5 +128,5 @@ if __name__ == '__main__':
         post = get_data(driver, post_url)
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
-
+        
     posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Vertex AI.json'), indent=4, orient='records')

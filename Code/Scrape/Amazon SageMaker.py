@@ -121,11 +121,11 @@ def get_data(driver, url):
 def get_url(driver, url):
     driver.get(url)
 
-    posts_url = []
+    posts_url = set()
     urls_lst = driver.find_elements(
         By.XPATH, '//a[@class="QuestionCard_cardLink__7XTIk"]')
     for url_node in urls_lst:
-        posts_url.append(url_node.get_attribute('href'))
+        posts_url.add(url_node.get_attribute('href'))
     
     next_page_url = ''
     next_page = driver.find_element(By.XPATH, '//li[@title="Next Page"]')
@@ -140,7 +140,7 @@ if __name__ == '__main__':
     driver.implicitly_wait(2)
 
     next_page_url = 'https://repost.aws/tags/TAT80swPyVRPKPcA0rsJYPuA/amazon-sage-maker'
-    cur_urls_lst = []
+    cur_urls_lst = set()
 
     while True:
         cur_urls, next_page_url = get_url(driver, next_page_url)
@@ -148,7 +148,7 @@ if __name__ == '__main__':
         if not next_page_url:
             break
         
-        cur_urls_lst.extend(cur_urls)
+        cur_urls_lst = cur_urls_lst.union(cur_urls)
     
     posts = pd.DataFrame()
     for post_url in cur_urls_lst:
@@ -156,5 +156,5 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
         
-    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Amazon SageMaker.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Amazon SageMaker.json'), indent=4, orient='records')
     

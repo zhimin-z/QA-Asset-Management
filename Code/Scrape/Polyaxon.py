@@ -80,12 +80,12 @@ def get_data(driver, url):
 def get_url(driver, url):
     driver.get(url)
 
-    posts_url = []
+    posts_url = set()
     post_list = driver.find_elements(
         By.XPATH, '//div[@class="lh-condensed pl-2 pr-3 flex-1"]/h3/a')
 
     for post in post_list:
-        posts_url.append(post.get_attribute('href'))
+        posts_url.add(post.get_attribute('href'))
 
     return posts_url
 
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     driver.implicitly_wait(5)
 
     base_url = 'https://github.com/orgs/polyaxon/discussions?page='
-    posts_url_lst = []
+    posts_url_lst = set()
     index = 0
 
     while True:
@@ -106,7 +106,7 @@ if __name__ == '__main__':
         if not posts_url:
             break
         
-        posts_url_lst.extend(posts_url)
+        posts_url_lst = posts_url_lst.union(posts_url)
 
     posts = pd.DataFrame()
     for url in posts_url_lst:
@@ -114,4 +114,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Polyaxon.json'), orient='records', indent=4)
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Polyaxon.json'), orient='records', indent=4)

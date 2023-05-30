@@ -80,11 +80,11 @@ def get_data(driver, url):
 def get_url(driver, url):
     driver.get(url)
 
-    urls_lst = []
+    urls_lst = set()
     urls_node_lst = driver.find_elements(By.XPATH, '//h2[@class="title is-6 margin-bottom-xxs"]/a')
 
     for urls_node in urls_node_lst:
-        urls_lst.append(urls_node.get_attribute('href'))
+        urls_lst.add(urls_node.get_attribute('href'))
 
     return urls_lst, driver.current_url
 
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     driver.implicitly_wait(3)
 
     base_url = 'https://learn.microsoft.com/en-us/answers/tags/75/azure-machine-learning?page='
-    posts_url_lst = []
+    posts_url_lst = set()
     last_url = ''
     index = 0
 
@@ -106,7 +106,7 @@ if __name__ == '__main__':
         if ref_url == last_url:
             break
         
-        posts_url_lst.extend(posts_url)
+        posts_url_lst = posts_url_lst.union(posts_url)
         last_url = cur_url
         
     posts = pd.DataFrame()
@@ -115,4 +115,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('Dataset/Tool-specific/Raw', 'Azure Machine Learning.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Azure Machine Learning.json'), indent=4, orient='records')

@@ -66,9 +66,9 @@ def get_topic(driver, url):
     community_urls_lst = driver.find_elements(By.XPATH, '//li[contains(@class, "topics-item")]/a')
 
     topics = []
-    communities_url = []
+    communities_url = set()
     for community_url in community_urls_lst:
-        communities_url.append(community_url.get_attribute('href'))
+        communities_url.add(community_url.get_attribute('href'))
         topics.append(community_url.find_element(By.XPATH, './/h4').text)
 
     return communities_url, topics
@@ -80,14 +80,14 @@ if __name__ == '__main__':
 
     base_url = 'https://tickets.dominodatalab.com/hc/en-us/community/topics'
     communities_url, topics = get_topic(driver, base_url)
-    posts_url_lst = [] 
+    posts_url_lst = set()
 
     for community_url, topic in zip(communities_url, topics):
         posts_url = get_url(driver, community_url)
-        posts_url_lst.extend(posts_url)
-        
+        posts_url_lst = posts_url_lst.union(posts_url)
+    
     posts = pd.DataFrame()
-    for post_url in posts_url:
+    for post_url in posts_url_lst:
         post = get_data(driver, post_url)
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
