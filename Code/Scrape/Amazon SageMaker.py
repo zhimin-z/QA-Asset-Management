@@ -97,7 +97,7 @@ def get_data(driver, url):
     post["Answerer_isModerator"] = np.nan
     post["Answerer_isExpert"] = np.nan
     post["Answerer_isCse"] = np.nan
-    post["Question_self_resolution"] = np.nan
+    post["Question_self_closed"] = np.nan
                 
     if question["accepted"]:
         for answer in answers_lst:
@@ -112,7 +112,7 @@ def get_data(driver, url):
                 post["Answerer_isModerator"] = author_a["isModerator"]
                 post["Answerer_isExpert"] = author_a["isExpert"]
                 post["Answerer_isCse"] = author_a["isCse"]
-                post["Question_self_resolution"] = author_a["id"] == author_q["id"]
+                post["Question_self_closed"] = author_a["id"] == author_q["id"]
                 break
 
     return post

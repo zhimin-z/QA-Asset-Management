@@ -57,7 +57,7 @@ def get_data(driver, url):
     post['Answer_score_count'] = np.nan
     post['Answer_comment_count'] = np.nan
     post['Answer_body'] = np.nan
-    post["Question_self_resolution"] = np.nan
+    post["Question_self_closed"] = np.nan
     
     info = driver.find_element(By.XPATH, '//div[@class="d-flex flex-wrap flex-items-center mb-3 mt-2"]')
     accepted = info.find_element(By.XPATH, './/span').get_attribute('title')
@@ -72,7 +72,7 @@ def get_data(driver, url):
         post['Answer_comment_count'] = convert2num(Answer_comment_count)
         answerer = info.find_element(By.XPATH, './/a[@class="Link--secondary text-bold"]').text
         poster = info.find_element(By.XPATH, './/a[@class="Link--secondary text-bold d-inline-block"]').get_attribute('innerText').strip()
-        post['Question_self_resolution'] = poster == answerer
+        post['Question_self_closed'] = poster == answerer
 
     return post
 

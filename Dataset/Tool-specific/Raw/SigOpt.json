@@ -9,7 +9,7 @@
         "Question_body":"<p>Interested in trying the SigOpt platform? Sign up for your free account <a href=\"https:\/\/app.sigopt.com\/signup\">here<\/a>, and get optimizing today!<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"About the General Discussion category",
@@ -21,7 +21,7 @@
         "Question_body":"<p>This category is here for you to post any general questions or topics you\u2019d like to discuss with the community. Please observe community rules, and enjoy!<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"Sigopt for RL DQN",
@@ -33,7 +33,7 @@
         "Question_body":"<p>I found an old example on DQN on the github page. But it was using TF v1 and the old sigopt. It would have been nice to get a new tutorial replacing it.<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"\"Early Stop\" feature and API call for terminating running experiment",
@@ -45,7 +45,7 @@
         "Question_body":"<p>Hi,<\/p>\n<p>I was wondering if there is an \u201cearly stop\u201d feature for the SigOpt optimization: something that would stop the Experiment once a user provided value for a given metric is satisfied (ie. if our metric is \u2018time\u2019, then the experiment would stop before it runs out of budget, as soon as any of it\u2019s run achieves a \u2018time\u2019 metric below a defined value.)<br>\nI looked at the API Reference documentation and didn\u2019t find any similar feature so I started working on a separate python script that sends a query to the API and pulls the best runs from the given experiment (via the use of sigopt.get_experiment(experiment_id).get_best_runs() method).<br>\nFrom there it is easy to write custom logic based on the pulled data, however I cannot find an elegant way to close the Experiment (if I find the best run data to be good enough). The only way I was able to pull it off is via the use of sigopt.archive_experiment([experiment ID]). This will cause an error in the currently running optimization job, as the sigopt won\u2019t be able to log any run data to an archived experiment (that\u2019s ok - this is the behaviour I\u2019m looking for), however it also means that the Experiment is moved to the archived section (not great, would prefer to keep it in the main view). If there was an API call to just close the given experiment (without moving it to archive) it would be great!<br>\nIs there any missing API call that I missed that would enable such functionality?<\/p>\n<p>Thanks!<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"SigOpt run improvement",
@@ -57,7 +57,7 @@
         "Question_body":"<p>In the \u201ctrials vs best value\u201d visualization I see a lot of points with the same value. Does this mean that SigOpt is not finding any improvement for those runs?<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"XGBoost, cross-validation",
@@ -69,7 +69,7 @@
         "Question_body":"<p>I am checking out the <code>sigopt.xgboost<\/code> API.  How do I perform cross-validation with it?<\/p>\n<p>I think I see how to do it using <code>sigopt.create_experiment<\/code>, because that expects the training to happen external of the API call, and I can use a cross-validation technique that I am familiar with (e.g. <code>sklearn.model_selection.cross_val_score<\/code>).  However <code>sigopt.create_experiment<\/code> also requires me to do more work setting up parameter search ranges compare to <code>sigopt.xgboost<\/code>.<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"SigOpt best parameters",
@@ -81,7 +81,7 @@
         "Question_body":"<p>How do I know that the parameters picked by SigOpt are the best ones?<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"What Compute Infrastructure do I have to use?",
@@ -93,7 +93,7 @@
         "Question_body":"<p>Where can you choose the device you\u2019d like to execute a SigOpt run or optimization on? Is there a default device?<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"Suppress output during SigOpt runs optimization",
@@ -105,7 +105,7 @@
         "Question_body":"<p>Right now, when I run with<\/p>\n<pre><code class=\"lang-python\">while not experiment.is_finished():\n    with experiment.create_run() as run:\n<\/code><\/pre>\n<p>I get <code>Run started<\/code> and <code>Run finished<\/code> calls.  How can I suppress these if I don\u2019t want to see this output?<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"Can I use SigOpt together with any cloud provider?",
@@ -117,7 +117,7 @@
         "Question_body":"<p>The short answer it Yes!<\/p>\n<p>The SigOpt backend is communicating with your environment using a lightweight API. So as long as you have access to the internet you can use SigOpt for your modeling project.<\/p>\n<p>Similarly you can use SigOpt together with any infrastructure available (your laptop, company wide cluster etc.) as long as you can connect to the internet.<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"SigOpt for Neural Architecture Search",
@@ -129,7 +129,7 @@
         "Question_body":"<p>Neural Architecture Search is certainly a challenge that faces the modeling and optimization community today. What are some examples of efficient or effective NAS experiments that you\u2019ve come across lately?<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"Has SigOpt been used for NLP tasks?",
@@ -141,7 +141,7 @@
         "Question_body":"<p>Yes, SigOpt can and has been applied to a variety of applications, NLP included. Check out this <a href=\"https:\/\/sigopt.com\/blog\/efficient-bert-overview\/\" rel=\"noopener nofollow ugc\">blog post<\/a> to see how we tackled the task of question answering by tuning the architecture of BERT.<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"SigOpt Optimization",
@@ -153,7 +153,7 @@
         "Question_body":"<p>General discussion board for anything optimization!<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"Python Client Discussion",
@@ -165,7 +165,7 @@
         "Question_body":"<p>Got a question or want to discuss how to best use our Python client? Post here!<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     },
     {
         "Question_title":"Debug and Troubleshoot",
@@ -177,6 +177,6 @@
         "Question_body":"<p>Think you\u2019ve found a bug? Let us know here!<\/p>",
         "Question_closed_time":null,
         "Answer_body":null,
-        "Question_self_resolution":null
+        "Question_self_closed":null
     }
 ]

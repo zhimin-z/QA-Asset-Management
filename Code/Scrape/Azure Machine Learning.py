@@ -62,7 +62,7 @@ def get_data(driver, url):
     post["Answer_score_count"] = np.nan
     post["Answer_comment_count"] = np.nan
     post["Answer_body"] = np.nan
-    post["Question_self_resolution"] = np.nan
+    post["Question_self_closed"] = np.nan
 
     acceptedAnswer = question["acceptedAnswer"]
     if acceptedAnswer:
@@ -72,7 +72,7 @@ def get_data(driver, url):
         post["Question_closed_time"] = answer.find_element(By.XPATH, './/local-time[@format="datetime"]').get_attribute("datetime")
         Answer_comment_count = answer.find_element(By.XPATH, './/span[@class="font-size-sm is-visually-hidden-mobile"]').text
         post["Answer_comment_count"] = convert2num(Answer_comment_count)
-        post["Question_self_resolution"] = acceptedAnswer["authorId"] == question["authorId"]
+        post["Question_self_closed"] = acceptedAnswer["authorId"] == question["authorId"]
         
     return post
 

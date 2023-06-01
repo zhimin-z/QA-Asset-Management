@@ -71,7 +71,7 @@ def get_data(driver, url):
     post['Question_closed_time'] = np.nan
     post['Answer_score_count'] = np.nan
     post['Answer_body'] = np.nan
-    post["Question_self_resolution"] = np.nan
+    post["Question_self_closed"] = np.nan
     
     try:
         comments[1].find_element(By.XPATH, './/div[@class="solved"]')
@@ -83,7 +83,7 @@ def get_data(driver, url):
         post['Answer_body'] = comments[1].find_element(By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
         poster = comments[0].find_element(By.XPATH, './/a[@class="lia-link-navigation lia-page-link lia-user-name-link"]').get_attribute('innerText').strip()
         answerer = comments[1].find_element(By.XPATH, './/a[@class="lia-link-navigation lia-page-link lia-user-name-link"]').get_attribute('innerText').strip()
-        post['Question_self_resolution'] = poster == answerer
+        post['Question_self_closed'] = poster == answerer
     except:
         pass
 
