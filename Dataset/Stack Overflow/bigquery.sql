@@ -11,10 +11,6 @@ SELECT
   Question_tags,
   Question_view_count,
   Poster_id,
-  Poster_created_time,
-  Poster_last_access_time,
-  Poster_age,
-  Poster_location,
   Poster_reputation_count,
   Poster_view_count,
   Answer_body,
@@ -23,10 +19,6 @@ SELECT
   Answer_last_edit_time,
   Answer_score_count,
   Answerer_id,
-  Answerer_created_time,
-  Answerer_last_access_time,
-  Answerer_age,
-  Answerer_location,
   Answerer_reputation_count,
   Answerer_view_count,
 FROM (
@@ -51,10 +43,6 @@ FROM (
 LEFT JOIN (
   SELECT
     id Poster_id,
-    creation_date Poster_created_time,
-    last_access_date Poster_last_access_time,
-    age Poster_age,
-    location Poster_location,
     reputation Poster_reputation_count,
     views Poster_view_count
   FROM
@@ -77,10 +65,6 @@ ON
 LEFT JOIN (
   SELECT
     id Answerer_id,
-    creation_date Answerer_created_time,
-    last_access_date Answerer_last_access_time,
-    age Answerer_age,
-    location Answerer_location,
     reputation Answerer_reputation_count,
     views Answerer_view_count
   FROM
