@@ -24,6 +24,10 @@ def get_data(driver, url):
     title = driver.find_element(
         By.XPATH, '//span[@class="js-issue-title markdown-title"]').text
     # print("Title:", title)
+    
+    # question_tag_count
+    tag_count = len(driver.find_elements(By.XPATH, '//span[@class="discussion-sidebar-item js-discussion-sidebar-item"]/div[1]/a'))
+    # print("tag_count:", tag_count)
 
     # Question_created_time
     date = driver.find_element(
@@ -48,6 +52,7 @@ def get_data(driver, url):
     # print("answer_count:", len(answers_lst))
 
     post["Question_title"] = title
+    post["Question_tag_count"] = tag_count
     post["Question_link"] = url
     post["Question_created_time"] = date
     post["Question_answer_count"] = answer_count
@@ -94,7 +99,7 @@ if __name__ == '__main__':
     driver = uc.Chrome()
     driver.implicitly_wait(5)
 
-    base_url = 'https://github.com/orgs/polyaxon/discussions?page='
+    base_url = 'https://github.com/orgs/polyaxon/discussions/categories/q-a?page='
     posts_url_lst = set()
     index = 0
 

@@ -30,6 +30,10 @@ def get_data(driver, url):
     title = driver.find_element(
         By.XPATH, '//div[@class="lia-message-subject"]').text
     # print("Title:", title)
+    
+    # question_tag_count
+    tag_count = len(driver.find_elements(By.XPATH, '//span[@class="label-link lia-link-navigation lia-custom-event"]'))
+    # print("tag_count:", tag_count)
 
     # Question_created_time
     date = driver.find_element(
@@ -62,6 +66,7 @@ def get_data(driver, url):
 
     post = {}
     post["Question_title"] = title
+    post["Question_tag_count"] = tag_count
     post["Question_created_time"] = date
     post["Question_link"] = driver.current_url
     post["Question_answer_count"] = answer_count

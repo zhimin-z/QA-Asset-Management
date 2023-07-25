@@ -28,6 +28,10 @@ def get_data(driver, url):
     comment_count = convert2num(comment_count)
     # print("comment_count", comment_count)
     
+    # question_tag_count
+    tag_count = len(driver.find_elements(By.XPATH, '//span[@class="popover popover-left"]'))
+    # print("tag_count:", tag_count)
+    
     data_json = driver.find_element(
         By.XPATH, '//script[@type="application/ld+json"]').get_attribute("innerText")
     data_dict = json.loads(data_json)
@@ -52,6 +56,7 @@ def get_data(driver, url):
 
     post = {}
     post["Question_title"] = title
+    post["Question_tag_count"] = tag_count
     post["Question_created_time"] = date
     post["Question_link"] = url
     post["Question_score_count"] = score_count

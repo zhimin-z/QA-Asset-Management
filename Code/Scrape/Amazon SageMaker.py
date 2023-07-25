@@ -29,6 +29,10 @@ def get_data(driver, url):
     title = question["title"]
     # print("Title:", title)
 
+    # question_tag_count
+    tag_count = len(question["tags"])
+    # print("tag_count:", tag_count)
+
     # Question_created_time
     date = question["createdAt"]
     # print("date:", date)
@@ -75,6 +79,7 @@ def get_data(driver, url):
 
     post = {}
     post["Question_title"] = title
+    post["Question_tag_count"] = tag_count
     post["Question_created_time"] = date
     post["Question_last_edit_time"] = date_update
     post["Question_link"] = url
