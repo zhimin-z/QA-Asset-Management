@@ -26,14 +26,17 @@ def convert2date(date):
 def get_data(driver, url):
     driver.get(url)
 
-    # question_title
-    title = driver.find_element(
-        By.XPATH, '//div[@class="lia-message-subject"]').text
-    # print("Title:", title)
+    try:
+        # question_title
+        title = driver.find_element(
+            By.XPATH, '//div[@class="lia-message-subject"]').text
+        # print("Title:", title)
+    except:
+        print(url)
     
-    # question_tag_count
-    tag_count = len(driver.find_elements(By.XPATH, '//span[@class="label-link lia-link-navigation lia-custom-event"]'))
-    # print("tag_count:", tag_count)
+    # question_label_count
+    label_count = len(driver.find_elements(By.XPATH, '//a[@class="label-link lia-link-navigation lia-custom-event"]'))
+    # print("label_count:", label_count)
 
     # Question_created_time
     date = driver.find_element(
@@ -66,7 +69,7 @@ def get_data(driver, url):
 
     post = {}
     post["Question_title"] = title
-    post["Question_tag_count"] = tag_count
+    post["Question_tag_count"] = label_count
     post["Question_created_time"] = date
     post["Question_link"] = driver.current_url
     post["Question_answer_count"] = answer_count
@@ -133,4 +136,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
         
-    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Vertex AI.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('Dataset/Tool-specific', 'Vertex AI.json'), indent=4, orient='records')

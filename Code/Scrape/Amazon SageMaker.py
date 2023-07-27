@@ -11,7 +11,7 @@ def convert2num(num):
         return int(num)
     except:
         try:
-            return int(num.split()[0])
+            return int(num.strip().split()[0])
         except:
             return 0
 
@@ -32,6 +32,10 @@ def get_data(driver, url):
     # question_tag_count
     tag_count = len(question["tags"])
     # print("tag_count:", tag_count)
+
+    # question_topic_count
+    topic_count = len(question["topics"])
+    # print("topic_count:", topic_count)
 
     # Question_created_time
     date = question["createdAt"]
@@ -54,7 +58,7 @@ def get_data(driver, url):
     # print("Question_score_count:", upvote_count)
 
     # Question_comment_count
-    comments = question["comments"]
+    comments = [comment['body'] for comment in question["comments"]]
     comment_count = len(comments)
     # print("Question_comment_count:", comment_count)
 
@@ -79,6 +83,7 @@ def get_data(driver, url):
 
     post = {}
     post["Question_title"] = title
+    post["Question_topic_count"] = topic_count
     post["Question_tag_count"] = tag_count
     post["Question_created_time"] = date
     post["Question_last_edit_time"] = date_update
@@ -86,6 +91,7 @@ def get_data(driver, url):
     post["Question_score_count"] = upvote_count
     post["Question_favorite_count"] = follower_count
     post["Question_comment_count"] = comment_count
+    post["Question_comment_body"] = ' '.join(comments)
     post["Question_view_count"] = view_count
     post["Question_answer_count"] = len(answers_lst)
     post["Question_body"] = body
@@ -97,6 +103,7 @@ def get_data(driver, url):
     post['Answer_score_count'] = np.nan
     post['Answer_last_edit_time'] = np.nan
     post['Answer_comment_count'] = np.nan
+    post["Answer_comment_body"] = np.nan
     post['Answer_body'] = np.nan
     post["Answerer_isAwsEmployee"] = np.nan
     post["Answerer_isModerator"] = np.nan
@@ -109,7 +116,9 @@ def get_data(driver, url):
             if answer["accepted"]:
                 post['Question_closed_time'] = answer["createdAt"]
                 post['Answer_last_edit_time'] = answer["updatedAt"]
-                post['Answer_comment_count'] = len(answer["comments"])
+                comments = [comment['body'] for comment in answer["comments"]]
+                post['Answer_comment_count'] = len(comments)
+                post["Answer_comment_body"] = ' '.join(comments)
                 post['Answer_score_count'] = answer["votes"]
                 post['Answer_body'] = answer["body"]
                 author_a = answer["author"]
@@ -142,7 +151,7 @@ def get_url(driver, url):
 
 if __name__ == '__main__':
     driver = uc.Chrome()
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(5)
 
     next_page_url = 'https://repost.aws/tags/TAT80swPyVRPKPcA0rsJYPuA/amazon-sage-maker'
     cur_urls_lst = set()
@@ -161,5 +170,5 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
         
-    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Amazon SageMaker.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('Dataset/Tool-specific', 'Amazon SageMaker.json'), indent=4, orient='records')
     

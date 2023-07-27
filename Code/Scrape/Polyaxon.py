@@ -10,7 +10,7 @@ def convert2num(num):
         return int(num)
     except:
         try:
-            return int(num.split()[0])
+            return int(num.strip().split()[0])
         except:
             return 0
 
@@ -47,7 +47,7 @@ def get_data(driver, url):
 
     # question_answer_count
     answer_count = driver.find_element(
-        By.XPATH, '//h2[@id="discussion-comment-count"]/span[2]')
+        By.XPATH, '//h2[@id="discussion-comment-count"]/span[1]')
     answer_count = convert2num(answer_count)
     # print("answer_count:", len(answers_lst))
 
@@ -73,8 +73,9 @@ def get_data(driver, url):
         Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
         post['Answer_score_count'] = convert2num(Answer_score_count)
         post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
-        Answer_comment_count = answer.find_element(By.XPATH, './/span[@class="color-fg-muted no-wrap"]').text
-        post['Answer_comment_count'] = convert2num(Answer_comment_count)
+        comments = answer.find_elements(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body px-3 pt-0 pb-2"]/p')
+        post['Answer_comment_count'] = len(comments)
+        post['Answer_comment_body'] = ' '.join([comment.get_attribute('innerText').strip() for comment in comments])
         answerer = info.find_element(By.XPATH, './/a[@class="Link--secondary text-bold"]').text
         poster = info.find_element(By.XPATH, './/a[@class="Link--secondary text-bold d-inline-block"]').get_attribute('innerText').strip()
         post['Question_self_closed'] = poster == answerer
@@ -119,4 +120,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Polyaxon.json'), orient='records', indent=4)
+    posts.to_json(os.path.join('../Dataset/Tool-specific', 'Polyaxon.json'), orient='records', indent=4)

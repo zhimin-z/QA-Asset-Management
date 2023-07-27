@@ -68,7 +68,7 @@ def get_url(driver):
 
 if __name__ == '__main__':
     driver = uc.Chrome()
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(5)
     
     base_url = 'https://groups.google.com/g/mlflow-users'
     driver.get(base_url)
@@ -82,7 +82,6 @@ if __name__ == '__main__':
         next_page = next_button.get_attribute('tabindex')
         if next_page == '-1':
             break
-        
         next_button = next_button.find_element(By.XPATH, './/span[@class="DPvwYc sm8sCf"]')
         next_button.click()
         time.sleep(5)
@@ -94,4 +93,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'MLflow.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific', 'MLflow.json'), indent=4, orient='records')

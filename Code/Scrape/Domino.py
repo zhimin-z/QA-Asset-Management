@@ -92,4 +92,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
     
-    posts.to_json(os.path.join('../Dataset/Tool-specific/Raw', 'Domino.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('../Dataset/Tool-specific', 'Domino.json'), indent=4, orient='records')
