@@ -48,7 +48,7 @@ def get_data(driver, url):
     post["Question_title"] = title
     post["Question_created_time"] = date
     post["Question_link"] = url
-    post["Question_answer_count"] = answer_count
+    post["Question_comment_count"] = answer_count
     post["Question_view_count"] = view_count
     post["Question_body"] = body 
 

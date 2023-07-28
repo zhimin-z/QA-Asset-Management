@@ -63,8 +63,8 @@ def get_data(driver, url):
     # print("len:", len(answers_lst))
 
     # question_body
-    comments = driver.find_elements(By.XPATH, '//div[@class="lia-quilt lia-quilt-forum-message lia-quilt-layout-custom-message"]')
-    body = comments[0].find_element(By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
+    answers = driver.find_elements(By.XPATH, '//div[@class="lia-quilt lia-quilt-forum-message lia-quilt-layout-custom-message"]')
+    body = answers[0].find_element(By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
     # print("body:", body)
 
     post = {}
@@ -82,15 +82,15 @@ def get_data(driver, url):
     post["Question_self_closed"] = np.nan
     
     try:
-        comments[1].find_element(By.XPATH, './/div[@class="solved"]')
-        post['Question_closed_time'] = comments[1].find_elements(
+        answers[1].find_element(By.XPATH, './/div[@class="solved"]')
+        post['Question_closed_time'] = answers[1].find_elements(
             By.XPATH, './/span[@class="local-friendly-date"]')[1].get_attribute('title')
-        Answer_score_count = comments[1].find_element(
+        Answer_score_count = answers[1].find_element(
                 By.XPATH, './/span[@itemprop="upvoteCount"]').text
         post['Answer_score_count'] = convert2num(Answer_score_count)
-        post['Answer_body'] = comments[1].find_element(By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
-        poster = comments[0].find_element(By.XPATH, './/a[@class="lia-link-navigation lia-page-link lia-user-name-link"]').get_attribute('innerText').strip()
-        answerer = comments[1].find_element(By.XPATH, './/a[@class="lia-link-navigation lia-page-link lia-user-name-link"]').get_attribute('innerText').strip()
+        post['Answer_body'] = answers[1].find_element(By.XPATH, './/div[@class="lia-message-body-content"]').get_attribute('innerText').strip()
+        poster = answers[0].find_element(By.XPATH, './/a[@class="lia-link-navigation lia-page-link lia-user-name-link"]').get_attribute('innerText').strip()
+        answerer = answers[1].find_element(By.XPATH, './/a[@class="lia-link-navigation lia-page-link lia-user-name-link"]').get_attribute('innerText').strip()
         post['Question_self_closed'] = poster == answerer
     except:
         pass
