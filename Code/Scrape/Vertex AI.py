@@ -107,31 +107,30 @@ def get_url(driver, url):
     for url_node in urls_lst:
         posts_url.add(url_node.get_attribute('href'))
 
-    return posts_url, driver.current_url
+    return posts_url
 
 
 if __name__ == '__main__':
     driver = uc.Chrome()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(2)
     
     label_list = ['vertex%20ai%20model%20registry', 'vertex%20ai%20platform', 'vertex%20ai%20workbench']
     base_url = 'https://www.googlecloudcommunity.com/gc/forums/filteredbylabelpage/board-id/cloud-ai-ml/label-name/'
     posts_url_lst = set()
 # 
     for label in label_list:
-        last_url = ''
         index = 0
         
         while True:
             index += 1
             cur_url = base_url + label + '/page/' + str(index)
-            posts_url, ref_url = get_url(driver, cur_url)
-
-            if ref_url == last_url:
+            posts_url = get_url(driver, cur_url)
+            
+            try:
+                driver.find_element(By.XPATH, '//span[@class="lia-link-navigation lia-link-disabled"]')
                 break
-
-            posts_url_lst = posts_url_lst.union(posts_url)
-            last_url = cur_url
+            except:
+                posts_url_lst = posts_url_lst.union(posts_url)
 
     posts = pd.DataFrame()
     for post_url in posts_url_lst:
