@@ -112,7 +112,7 @@ def get_url(driver, url):
 
 if __name__ == '__main__':
     driver = uc.Chrome()
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(5)
     
     label_list = ['vertex%20ai%20model%20registry', 'vertex%20ai%20platform', 'vertex%20ai%20workbench']
     base_url = 'https://www.googlecloudcommunity.com/gc/forums/filteredbylabelpage/board-id/cloud-ai-ml/label-name/'
