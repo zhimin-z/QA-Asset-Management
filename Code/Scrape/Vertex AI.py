@@ -113,22 +113,25 @@ def get_url(driver, url):
 if __name__ == '__main__':
     driver = uc.Chrome()
     driver.implicitly_wait(2)
-
-    base_url = 'https://www.googlecloudcommunity.com/gc/AI-ML/bd-p/cloud-ai-ml/page/'
+    
+    label_list = ['vertex%20ai%20model%20registry', 'vertex%20ai%20platform', 'vertex%20ai%20workbench']
+    base_url = 'https://www.googlecloudcommunity.com/gc/forums/filteredbylabelpage/board-id/cloud-ai-ml/label-name/'
     posts_url_lst = set()
-    last_url = ''
-    index = 0
+# 
+    for label in label_list:
+        last_url = ''
+        index = 0
+        
+        while True:
+            index += 1
+            cur_url = base_url + label + '/page/' + str(index)
+            posts_url, ref_url = get_url(driver, cur_url)
 
-    while True:
-        index += 1
-        cur_url = base_url + str(index)
-        posts_url, ref_url = get_url(driver, cur_url)
+            if ref_url == last_url:
+                break
 
-        if ref_url == last_url:
-            break
-
-        posts_url_lst = posts_url_lst.union(posts_url)
-        last_url = cur_url
+            posts_url_lst = posts_url_lst.union(posts_url)
+            last_url = cur_url
 
     posts = pd.DataFrame()
     for post_url in posts_url_lst:
@@ -136,4 +139,4 @@ if __name__ == '__main__':
         post = pd.DataFrame([post])
         posts = pd.concat([posts, post], ignore_index=True)
         
-    posts.to_json(os.path.join('Dataset/Tool-specific', 'Vertex AI.json'), indent=4, orient='records')
+    posts.to_json(os.path.join('Dataset/Tool-specific', 'Vertex AI+.json'), indent=4, orient='records')
