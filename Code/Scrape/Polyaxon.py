@@ -12,7 +12,10 @@ def convert2num(num):
         try:
             return int(num.strip().split()[0])
         except:
-            return 0
+            try:
+                return int(num.strip().split()[-1])
+            except:
+                return 0
 
 
 def get_data(driver, url):
@@ -36,7 +39,7 @@ def get_data(driver, url):
 
     # Question_score_count
     upvote_count = driver.find_element(
-        By.XPATH, '//div[@class="text-center discussion-vote-form position-relative"]//button').text
+        By.XPATH, '//div[@class="text-center discussion-vote-form position-relative"]//button').get_attribute("aria-label")
     upvote_count = convert2num(upvote_count)
     # print("Question_score_count:", upvote_count)
 
@@ -70,7 +73,7 @@ def get_data(driver, url):
     if accepted == 'Answered':
         answer = driver.find_element(By.XPATH, '//section[@class="width-full" and @aria-label="Marked as Answer"]')
         post['Question_closed_time'] = answer.find_element(By.XPATH, './/relative-time').get_attribute('datetime')
-        Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').text
+        Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').get_attribute("aria-label")
         post['Answer_score_count'] = convert2num(Answer_score_count)
         post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
         comments = answer.find_elements(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body px-3 pt-0 pb-2"]/p')
