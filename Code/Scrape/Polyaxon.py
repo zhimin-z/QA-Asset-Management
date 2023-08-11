@@ -71,17 +71,20 @@ def get_data(driver, url):
     accepted = info.find_element(By.XPATH, './/span').get_attribute('title')
     
     if accepted == 'Answered':
-        answer = driver.find_element(By.XPATH, '//section[@class="width-full" and @aria-label="Marked as Answer"]')
-        post['Question_closed_time'] = answer.find_element(By.XPATH, './/relative-time').get_attribute('datetime')
-        Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').get_attribute("aria-label")
-        post['Answer_score_count'] = convert2num(Answer_score_count)
-        post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
-        comments = answer.find_elements(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body px-3 pt-0 pb-2"]/p')
-        post['Answer_comment_count'] = len(comments)
-        post['Answer_comment_body'] = ' '.join([comment.get_attribute('innerText').strip() for comment in comments])
         answerer = info.find_element(By.XPATH, './/a[@class="Link--secondary text-bold"]').text
         poster = info.find_element(By.XPATH, './/a[@class="Link--secondary text-bold d-inline-block"]').get_attribute('innerText').strip()
         post['Question_self_closed'] = poster == answerer
+        answer = driver.find_element(By.XPATH, '//section[@class="width-full" and @aria-label="Marked as Answer"]')
+        post['Question_closed_time'] = answer.find_element(By.XPATH, './/relative-time').get_attribute('datetime')
+        post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
+        try:
+            Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').get_attribute('aria-label')
+            post['Answer_score_count'] = convert2num(Answer_score_count)
+            comments = answer.find_elements(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body px-3 pt-0 pb-2"]/p')
+            post['Answer_comment_count'] = len(comments)
+            post['Answer_comment_body'] = ' '.join([comment.get_attribute('innerText').strip() for comment in comments])
+        except:
+            pass
 
     return post
 
