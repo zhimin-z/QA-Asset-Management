@@ -12,10 +12,7 @@ def convert2num(num):
         try:
             return int(num.strip().split()[0])
         except:
-            try:
-                return int(num.strip().split()[-1])
-            except:
-                return 0
+            return 0
 
 
 def get_data(driver, url):
@@ -23,13 +20,17 @@ def get_data(driver, url):
 
     post = {}
 
-    # question_title
-    title = driver.find_element(
-        By.XPATH, '//span[@class="js-issue-title markdown-title"]').text
-    # print("Title:", title)
+    try:
+        # question_title
+        title = driver.find_element(
+            By.XPATH, '//span[@class="js-issue-title markdown-title"]').text
+        # print("Title:", title)
+    except:
+        print(url)
+        return post
     
     # question_tag_count
-    tag_count = len(driver.find_elements(By.XPATH, '//span[@class="discussion-sidebar-item js-discussion-sidebar-item"]/div[1]/a'))
+    tag_count = len(driver.find_elements(By.XPATH, '//div[@class="discussion-sidebar-item js-discussion-sidebar-item"]/div[2]/a'))
     # print("tag_count:", tag_count)
 
     # Question_created_time
@@ -39,7 +40,7 @@ def get_data(driver, url):
 
     # Question_score_count
     upvote_count = driver.find_element(
-        By.XPATH, '//div[@class="text-center discussion-vote-form position-relative"]//button').get_attribute("aria-label")
+        By.XPATH, '//div[@class="text-center discussion-vote-form position-relative"]//button').text
     upvote_count = convert2num(upvote_count)
     # print("Question_score_count:", upvote_count)
 
@@ -50,7 +51,7 @@ def get_data(driver, url):
 
     # question_answer_count
     answer_count = driver.find_element(
-        By.XPATH, '//h2[@id="discussion-comment-count"]/span[1]')
+        By.XPATH, '//h2[@id="discussion-comment-count"]/span[2]').get_attribute("innerText").strip()
     answer_count = convert2num(answer_count)
     # print("answer_count:", len(answers_lst))
 
@@ -61,11 +62,6 @@ def get_data(driver, url):
     post["Question_answer_count"] = answer_count
     post["Question_score_count"] = upvote_count
     post["Question_body"] = body
-    post['Question_closed_time'] = np.nan
-    post['Answer_score_count'] = np.nan
-    post['Answer_comment_count'] = np.nan
-    post['Answer_body'] = np.nan
-    post["Question_self_closed"] = np.nan
     
     info = driver.find_element(By.XPATH, '//div[@class="d-flex flex-wrap flex-items-center mb-3 mt-2"]')
     accepted = info.find_element(By.XPATH, './/span').get_attribute('title')
@@ -76,15 +72,18 @@ def get_data(driver, url):
         post['Question_self_closed'] = poster == answerer
         answer = driver.find_element(By.XPATH, '//section[@class="width-full" and @aria-label="Marked as Answer"]')
         post['Question_closed_time'] = answer.find_element(By.XPATH, './/relative-time').get_attribute('datetime')
-        post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
+        comments = answer.find_elements(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body px-3 pt-0 pb-2"]/p')
+        post['Answer_comment_count'] = len(comments)
+        post['Answer_comment_body'] = ' '.join([comment.get_attribute('innerText').strip() for comment in comments])
         try:
             Answer_score_count = answer.find_element(By.XPATH, './/div[@class="text-center discussion-vote-form position-relative"]//button').get_attribute('aria-label')
             post['Answer_score_count'] = convert2num(Answer_score_count)
-            comments = answer.find_elements(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body px-3 pt-0 pb-2"]/p')
-            post['Answer_comment_count'] = len(comments)
-            post['Answer_comment_body'] = ' '.join([comment.get_attribute('innerText').strip() for comment in comments])
+            try:
+                post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body"]').get_attribute('innerText').strip()
+            except:
+                post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body email-format"]/div').get_attribute('innerText').strip()
         except:
-            pass
+            post['Answer_body'] = answer.find_element(By.XPATH, './/td[@class="d-block color-fg-default comment-body markdown-body js-comment-body px-3 pt-0 pb-2"]').get_attribute('innerText').strip()
 
     return post
 
