@@ -106,6 +106,7 @@ WHERE
   Question_tags LIKE '%clearml%' OR 
   Question_tags LIKE '%comet-ml%' OR
   Question_tags LIKE '%dvc%' OR
+  Question_tags LIKE '%h2o.ai%' OR
   Question_tags LIKE '%kedro%' OR
   Question_tags LIKE '%mlflow%' OR
   Question_tags LIKE '%mlrun%' OR
