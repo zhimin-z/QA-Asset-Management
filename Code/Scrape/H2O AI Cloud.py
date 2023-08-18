@@ -23,6 +23,7 @@ if __name__ == '__main__':
         
         question = content['Discussion']
         post['Question_title'] = question['Name']
+        post['Question_body'] = question['Body']
         post['Question_created_time'] = question['FirstDate']
         post['Question_comment_count'] = question['CountComments']
         post['Question_score_count'] = convert2num(question['Score'])
